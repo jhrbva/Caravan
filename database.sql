@@ -8,7 +8,7 @@ CREATE TABLE emergencyContact(
   ECid SERIAL PRIMARY KEY NOT NULL,
   address VARCHAR(255),
   firstName VARCHAR(255) NOT NULL,
-  lastName VARCHAR(255),
+  lastName VARCHAR(255) NOT NULL,
   phoneNumber VARCHAR(255) NOT NULL,
   relationship VARCHAR(255)
 );
@@ -17,7 +17,7 @@ CREATE TABLE emergencyContact(
 CREATE TABLE user(
   userID SERIAL PRIMARY KEY, -- SERIAL is the equivalent to Auto Increment
   firstName VARCHAR(255) NOT NULL,
-  lastName VARCHAR(255),
+  lastName VARCHAR(255) NOT NULL,
   username VARCHAR(255) UNIQUE NOT NULL,
   email VARCHAR(500) UNIQUE NOT NULL,
   phoneNumber VARCHAR(100) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE invitations(
   hostID INT UNIQUE,
   userID INT UNIQUE,
   tripID INT UNIQUE,
-  accept BOOLEAN
+  accepted? BOOLEAN
 );
 
 -- trips table
@@ -72,6 +72,8 @@ CREATE TABLE itineraryRequest(
   FORIEGN KEY (tripID) REFERENCES trips(tripID),
   FORIEGN KEY (typeID) REFERENCES requestType(typeID)
 );
+
+-- Mock Data
 
 INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship)
 VALUES
