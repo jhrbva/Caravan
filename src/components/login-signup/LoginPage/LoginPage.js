@@ -11,21 +11,21 @@ function LoginPage() {
 			<h1 className="temp-logo">Caravan</h1>
 			<form action="Submit">
 				<Input
-					icon={'person'}
-					type={'text'}
-					name={'email'}
-					placeholder={'username'}
+					icon="person"
+					type="text"
+					name="email"
+					placeholder="username"
 					maxLength={254}
-					autofocus={'true'}
-				></Input>
+					autofocus="true"
+				/>
 				<Input
-					icon={'vpn_key'}
-					type={'password'}
-					name={'password'}
-					placeholder={'password'}
-					autofocus={'false'}
-				></Input>
-				<BigButton value={'Login'}></BigButton>
+					icon="vpn_key"
+					type="password"
+					name="password"
+					placeholder="password"
+					autofocus="false"
+				/>
+				<BigButton value="Login" />
 			</form>
 		</div>
 	);
