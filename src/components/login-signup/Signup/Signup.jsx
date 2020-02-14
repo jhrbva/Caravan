@@ -3,32 +3,56 @@ import "./Signup.scss";
 import "../../../utilities/fonts.scss";
 import Input from "../Input/Input";
 import BigButton from "../BigButton/BigButton";
+import { Field, Form, Formik } from "formik";
+import {
+	validateEmail,
+	validatePhone,
+} from "../../../utilities/formValidation";
 
-function Signup() {
-	return (
-		<div className='login-page-wrapper'>
-			{/* TODO: CA-30 create logo */}
-			<h1 className='temp-logo'>Caravan</h1>
-			<form action='Submit'>
-				<Input
-					icon={"person"}
-					type={"text"}
-					name={"email"}
-					placeholder={"username"}
-					maxLength={254}
-					autofocus={"true"}
-				></Input>
-				<Input
-					icon={"vpn_key"}
-					type={"password"}
-					name={"password"}
-					placeholder={"password"}
-					autofocus={"false"}
-				></Input>
-				<BigButton value={"Signup"}></BigButton>
-			</form>
-		</div>
-	);
-}
-
-export default Signup();
+const Signup = () => (
+	<div>
+		<Formik
+			initialValues={{
+				username: "",
+				email: "",
+			}}
+			onSubmit={values => {
+				// same shape as initial values
+				console.log(values);
+			}}
+		>
+			{({ errors, touched, isValidating }) => (
+				<Form>
+					<Field
+						icon='email'
+						type='text'
+						name='email'
+						placeholder='Email'
+						validate={validateEmail}
+						autofocus='true'
+						className={errors.email && touched.email && "error"}
+						component={Input}
+					/>
+					{errors.email && touched.email && (
+						<div className='error'>{errors.email}</div>
+					)}
+					<Field
+						icon='call'
+						type='text'
+						name='phone'
+						placeholder='Phone Number'
+						validate={validatePhone}
+						autofocus='true'
+						className={errors.phone && touched.phone && "error"}
+						component={Input}
+					/>
+					{errors.phone && touched.phone && (
+						<div className='error'>{errors.phone}</div>
+					)}
+					<BigButton value={"Signup"} />
+				</Form>
+			)}
+		</Formik>
+	</div>
+);
+export default Signup;
