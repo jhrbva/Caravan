@@ -1,7 +1,6 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
 
-import "./Signup.scss";
 import "../../../utilities/fonts.scss";
 import Input from "../Input/Input";
 import BigButton from "../BigButton/BigButton";

@@ -29,7 +29,9 @@ function Input({
 				{...field}
 				{...props}
 			/>
-			{errorExists && <div className='error'>{form.errors[field.name]}</div>}
+			{errorExists && (
+				<div className='error-text'>{form.errors[field.name]}</div>
+			)}
 		</div>
 	);
 }
