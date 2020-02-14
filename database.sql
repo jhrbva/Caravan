@@ -1,7 +1,7 @@
 -- drop database if already exists
-DROP DATABASE IF EXISTS carvan;
+DROP DATABASE IF EXISTS caravan;
 -- create database
-CREATE DATABASE carvan;
+CREATE DATABASE caravan;
 
 -- emergencyContact TABLE
 CREATE TABLE emergencyContact(
@@ -9,6 +9,7 @@ CREATE TABLE emergencyContact(
   address VARCHAR(255),
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
+  email VARCHAR(254) NOT NULL,
   phoneNumber VARCHAR(255) NOT NULL,
   relationship VARCHAR(255)
 );
@@ -37,8 +38,12 @@ CREATE TABLE invitations(
 CREATE TABLE trips(
   tripID SERIAL PRIMARY KEY,
   hostID INT NOT NULL,
-  startLocation VARCHAR(255) NOT NULL,
-  destination VARCHAR(255) NOT NULL,
+  -- startLocation VARCHAR(255) NOT NULL,
+  -- destination VARCHAR(255) NOT NULL,
+  startLongitude VARCHAR(255) NOT NULL,
+  startLatitude VARCHAR(255) NOT NULL,
+  destLongitude VARCHAR(255) NOT NULL,
+  destLatitude VARCHAR(255) NOT NULL,
   tripDate TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
   FORIEGN KEY (hostID) REFERENCES user(userID)
 );
@@ -54,7 +59,9 @@ CREATE TABLE members(
 -- rest stop table
 CREATE TABLE restStop(
   tripID INT,
-  location VARCHAR(255)
+  -- location VARCHAR(255)
+  stopLongitude VARCHAR(255),
+  stopLatitude VARCHAR(255)
 );
 
 -- Request type table
@@ -91,10 +98,10 @@ VALUES
   ("Julia", "Red", "julia@gmail.com", "4567890123", 5),
   ("Quetourah", "Purple", "quetourah@gmail.com", "5678901234", 4);
 
-INSERT INTO trips(hostID, startLocation, destination, tripDate)
+INSERT INTO trips(hostID, startLongitude, startLatitude, destLongitude, destLatitude, tripDate)
 VALUES
-  (1, "1307 Florence Avenue, Plainfield, NJ 07060", "45 Rockefeller Plaza, New York, NY, 10111", '2020-06-01 09:55:06'),
-  (3, "1385 Hancock Street, Quincy, MA 02169", "1600 Pennsylvania Avenue NW, Washington, DC 20500", '2020-03-27 12:05:06');
+  (1, "-74.400540", "40.604280", "-73.978700", "40.758730", '2020-06-01 09:55:06'), -- "1307 Florence Avenue, Plainfield, NJ 07060", "45 Rockefeller Plaza, New York, NY, 10111"
+  (3, "-71.003980", "42.249570", "-77.036690", "38.898819", '2020-03-27 12:05:06'); -- "1385 Hancock Street, Quincy, MA 02169", "1600 Pennsylvania Avenue NW, Washington, DC 20500"
 
 INSERT INTO members(tripID, userID)
 VALUES
@@ -104,10 +111,10 @@ VALUES
   (2, 1),
   (2, 4);
 
-INSERT INTO restStop(tripID, location)
+INSERT INTO restStop(tripID, stopLongitude, stopLatitude)
 VALUES
-  (1, "20 W 34th Street, New York, NY 10001"),
-  (2, "132 Christiana Mall, Newark, DE 19702");
+  (1, "-73.986470", "40.749300"), -- "20 W 34th Street, New York, NY 10001"
+  (2, "-75.6529224", "39.6804262"); -- "132 Christiana Mall, Newark, DE 19702"
 
 INSERT INTO requestType(type)
 VALUES
@@ -116,6 +123,7 @@ VALUES
   ("Start Time"),
   ("Add Rest Stop"),
   ("Delete Rest Stop");
+
 
 INSERT INTO itineraryRequest(tripID, typeID, value, accept)
 VALUES
