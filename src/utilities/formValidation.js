@@ -7,16 +7,22 @@ export const invalidEmail = "Invalid email address";
 export const invalidPhone = "Invalid phone number";
 
 // Validation Functions
-export const validateEmail = value => {
+export const required = value => {
 	let error;
 	if (!value) error = requiredError;
+	return error;
+};
+
+export const validateEmail = value => {
+	let error;
+	if ((error = required(value)));
 	else if (!emailRegex.test(value)) error = invalidEmail;
 	return error;
 };
 
 export const validatePhone = value => {
 	let error;
-	if (!value) error = "Required";
+	if ((error = required(value)));
 	else if (!phoneRegex.test(value)) error = invalidPhone;
 	return error;
 };
