@@ -13,11 +13,13 @@ function Input({
 	form,
 	...props
 }) {
+	const errorExists =
+		form && field && form.errors[field.name] && form.touched[field.name];
 	return (
 		<div class='input-wrapper'>
 			<i className='material-icons'>{icon}</i>
 			<input
-				className={`login-input ${className}`}
+				className={`login-input ${errorExists && "error"}`}
 				type={type}
 				name={name}
 				placeholder={placeholder}
@@ -27,6 +29,7 @@ function Input({
 				{...field}
 				{...props}
 			/>
+			{errorExists && <div className='error'>{form.errors[field.name]}</div>}
 		</div>
 	);
 }

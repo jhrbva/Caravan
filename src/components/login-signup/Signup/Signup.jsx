@@ -1,41 +1,48 @@
 import React from "react";
+import { Field, Form, Formik } from "formik";
+
 import "./Signup.scss";
 import "../../../utilities/fonts.scss";
 import Input from "../Input/Input";
 import BigButton from "../BigButton/BigButton";
-import { Field, Form, Formik } from "formik";
 import {
 	validateEmail,
 	validatePhone,
+	required,
 } from "../../../utilities/formValidation";
 
 const Signup = () => (
 	<div>
 		<Formik
 			initialValues={{
-				username: "",
 				email: "",
+				phone: "",
 			}}
 			onSubmit={values => {
 				// same shape as initial values
 				console.log(values);
 			}}
 		>
-			{({ errors, touched, isValidating }) => (
+			{() => (
 				<Form>
 					<Field
-						icon='email'
+						icon='person_pin'
 						type='text'
-						name='email'
-						placeholder='Email'
-						validate={validateEmail}
+						name='first_name'
+						placeholder='First Name'
+						validate={required}
 						autofocus='true'
-						className={errors.email && touched.email && "error"}
 						component={Input}
 					/>
-					{errors.email && touched.email && (
-						<div className='error'>{errors.email}</div>
-					)}
+					<Field
+						icon='person_pin'
+						type='text'
+						name='last_name'
+						placeholder='Last Name'
+						validate={required}
+						autofocus='true'
+						component={Input}
+					/>
 					<Field
 						icon='call'
 						type='text'
@@ -43,12 +50,26 @@ const Signup = () => (
 						placeholder='Phone Number'
 						validate={validatePhone}
 						autofocus='true'
-						className={errors.phone && touched.phone && "error"}
 						component={Input}
 					/>
-					{errors.phone && touched.phone && (
-						<div className='error'>{errors.phone}</div>
-					)}
+					<Field
+						icon='email'
+						type='text'
+						name='email'
+						placeholder='Email'
+						validate={validateEmail}
+						autofocus='true'
+						component={Input}
+					/>
+					<Field
+						icon='lock'
+						type='text'
+						name='password'
+						placeholder='Password'
+						validate={required}
+						autofocus='true'
+						component={Input}
+					/>
 					<BigButton value={"Signup"} />
 				</Form>
 			)}
