@@ -49,11 +49,9 @@ Postgress -
 
 ## Authors
 
-Júlia Helena Aguiar -
-Khristian Brooks -
-Chantelle Levy -
-Connie Wu -
-Quetourah Dalencourt -
+| [<img src="https://avatars2.githubusercontent.com/u/25853876?s=460&v=4" width="100px;"/><br /><sub><b>Julia Helena Aguiar</b></sub>](https://github.com/jhrbva)<br /> | [<img src="https://avatars1.githubusercontent.com/u/7966507?s=460&v=4" width="100px;"/><br /><sub><b>Khristian Brooks</b></sub>](https://github.com/kcode20)<br /> | [<img src="https://avatars1.githubusercontent.com/u/9854881?s=460&v=4" width="100px;"/><br /><sub><b>Quetourah Dalencourt</b></sub>](https://github.com/Quetourah)<br /> |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [<img src="https://avatars0.githubusercontent.com/u/12536700?s=460&v=4" width="100px;"/><br /><sub><b>Chantelle Levy</b></sub>](https://github.com/chanie01234)<br /> |  [<img src="https://avatars2.githubusercontent.com/u/38799293?s=460&v=4" width="100px;"/><br /><sub><b>Connie Wu</b></sub>](https://github.com/connie-code)<br />  |
 
 ## Acknowledgments
 
