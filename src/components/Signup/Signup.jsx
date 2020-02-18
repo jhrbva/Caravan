@@ -14,8 +14,11 @@ const Signup = () => (
 	<div>
 		<Formik
 			initialValues={{
-				email: '',
+				first_name: '',
+				last_name: '',
 				phone: '',
+				email: '',
+				password: '',
 			}}
 			onSubmit={values => {
 				// same shape as initial values
