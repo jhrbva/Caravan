@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.scss';
-import '../../../utilities/fonts.scss';
+import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 
