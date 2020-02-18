@@ -1,7 +1,7 @@
-import React from "react";
-import "./App.css";
-import LoginPage from "./components/login-signup/LoginPage/LoginPage";
-import Signup from "./components/login-signup/Signup/Signup";
+import React from 'react';
+import './App.css';
+import LoginPage from './components/login-signup/Login/Login';
+import Signup from './components/login-signup/Signup/Signup';
 
 function App() {
 	return (
