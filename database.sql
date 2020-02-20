@@ -14,7 +14,7 @@ CREATE TABLE emergencyContact(
 );
 
 -- Users Table
-CREATE TABLE user(
+CREATE TABLE userTable(
   userID SERIAL PRIMARY KEY, -- SERIAL is the equivalent to Auto Increment
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE invitations(
   hostID INT UNIQUE,
   userID INT UNIQUE,
   tripID INT UNIQUE,
-  accepted? BOOLEAN
+  accepted BOOLEAN
 );
 
 -- trips table
@@ -40,7 +40,7 @@ CREATE TABLE trips(
   startLocation VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
   tripDate TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
-  FORIEGN KEY (hostID) REFERENCES user(userID)
+  FORIEGN KEY (hostID) REFERENCES userTable(userID)
 );
 
 -- members table
@@ -48,7 +48,7 @@ CREATE TABLE members(
   tripID INT,
   userID INT,
   FORIEGN KEY (tripID) REFERENCES trips(tripID),
-  FORIEGN KEY (userID) REFERENCES user(userID)
+  FORIEGN KEY (userID) REFERENCES userTable(userID)
 );
 
 -- rest stop table
@@ -83,7 +83,7 @@ VALUES
   ("22 Orange Street", "Chris", "Lamp", "8288019421", "Sister"),
   ("100 Convent Avenue", "Andrew", "Smith", "7280981748", "Partner");
 
-INSERT INTO user(firstName, lastName, username, email, phoneNumber, ECid)
+INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, ECid)
 VALUES
   ("Connie", "Pink", "Connie", "connie@gmail.com", "1234567890", 2),
   ("Khristian", "Rose Gold", "khristian@gmail.com", "2345678901", 1),
@@ -99,7 +99,7 @@ VALUES
 INSERT INTO members(tripID, userID)
 VALUES
   (1, 3),
-  (1, 4)
+  (1, 4),
   (1, 2),
   (2, 1),
   (2, 4);
