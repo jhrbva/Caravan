@@ -1,24 +1,24 @@
-import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import React from "react";
+import { Field, Form, Formik } from "formik";
 
-import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
-import BigButton from '../BigButton/BigButton';
+import "../../utilities/fonts.scss";
+import Input from "../Input/Input";
+import BigButton from "../BigButton/BigButton";
 import {
 	validateEmail,
 	validatePhone,
 	required,
-} from '../../utilities/formValidation';
+} from "../../utilities/formValidation";
 
 const Signup = () => (
 	<div>
 		<Formik
 			initialValues={{
-				first_name: '',
-				last_name: '',
-				phone: '',
-				email: '',
-				password: '',
+				first_name: "",
+				last_name: "",
+				phone: "",
+				email: "",
+				password: "",
 			}}
 			onSubmit={values => {
 				// same shape as initial values
@@ -72,7 +72,8 @@ const Signup = () => (
 						autofocus='true'
 						component={Input}
 					/>
-					<BigButton value={'Signup'} />
+
+					<BigButton value={"Signup"} />
 				</Form>
 			)}
 		</Formik>
