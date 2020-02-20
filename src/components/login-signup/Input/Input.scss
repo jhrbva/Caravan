@@ -19,3 +19,13 @@ input:focus {
 
 	margin: 10px 0 0 5px;
 }
+
+.error {
+	border-color: red;
+}
+
+.error-text {
+	color: red;
+	font-size: 15px;
+	text-align: left;
+}
