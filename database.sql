@@ -76,25 +76,24 @@ CREATE TABLE itineraryRequest(
 -- Mock Data
 
 INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship)
-VALUES
-  ("123 Wood Avenue", "Tiffany", "Sliver", "0585628942", "Friend"),
-  ("145 Main Street", "Crystal", "Drawers", "1278981880", "Cousin"),
-  ("56 Canal Avenue", "Alex", "Clear", "7284782001", "Brother"),
-  ("22 Orange Street", "Chris", "Lamp", "8288019421", "Sister"),
-  ("100 Convent Avenue", "Andrew", "Smith", "7280981748", "Partner");
+VALUES ('123 Wood Avenue', 'Tiffany', 'Sliver', '0585628942', 'Friend'),
+  ('145 Main Street', 'Crystal', 'Drawers', '1278981880', 'Cousin'),
+  ('56 Canal Avenue', 'Alex', 'Clear', '7284782001', 'Brother'),
+  ('22 Orange Street', 'Chris', 'Lamp', '8288019421', 'Sister'),
+  ('100 Convent Avenue', 'Andrew', 'Smith', '7280981748', 'Partner');
 
 INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, ECid)
 VALUES
-  ("Connie", "Pink", "Connie", "connie@gmail.com", "1234567890", 2),
-  ("Khristian", "Rose Gold", "khristian@gmail.com", "2345678901", 1),
-  ("Chantelle", "Blue", "chantelle@gmail.com", "3456789012", 3),
-  ("Julia", "Red", "julia@gmail.com", "4567890123", 5),
-  ("Quetourah", "Purple", "quetourah@gmail.com", "5678901234", 4);
+  ('Connie', 'Pink', 'Connie', 'connie@gmail.com', '1234567890', 2),
+  ('Khristian', 'Rose Gold', 'khristian@gmail.com', '2345678901', 1),
+  ('Chantelle', 'Blue', 'chantelle@gmail.com', '3456789012', 3),
+  ('Julia', 'Red', 'julia@gmail.com', '4567890123', 5),
+  ('Quetourah', 'Purple', 'quetourah@gmail.com', '5678901234', 4);
 
 INSERT INTO trips(hostID, startLocation, destination, tripDate)
 VALUES
-  (1, "1307 Florence Avenue, Plainfield, NJ 07060", "45 Rockefeller Plaza, New York, NY, 10111", '2020-06-01 09:55:06'),
-  (3, "1385 Hancock Street, Quincy, MA 02169", "1600 Pennsylvania Avenue NW, Washington, DC 20500", '2020-03-27 12:05:06');
+  (1, '1307 Florence Avenue, Plainfield, NJ 07060', '45 Rockefeller Plaza, New York, NY, 10111', '2020-06-01 09:55:06'),
+  (3, '1385 Hancock Street, Quincy, MA 02169', '1600 Pennsylvania Avenue NW, Washington, DC 20500', '2020-03-27 12:05:06');
 
 INSERT INTO members(tripID, userID)
 VALUES
@@ -106,18 +105,18 @@ VALUES
 
 INSERT INTO restStop(tripID, location)
 VALUES
-  (1, "20 W 34th Street, New York, NY 10001"),
-  (2, "132 Christiana Mall, Newark, DE 19702");
+  (1, '20 W 34th Street, New York, NY 10001'),
+  (2, '132 Christiana Mall, Newark, DE 19702');
 
 INSERT INTO requestType(type)
 VALUES
-  ("starting location"),
-  ("destination"),
-  ("Start Time"),
-  ("Add Rest Stop"),
-  ("Delete Rest Stop");
+  ('starting location'),
+  ('destination'),
+  ('Start Time'),
+  ('Add Rest Stop'),
+  ('Delete Rest Stop');
 
 INSERT INTO itineraryRequest(tripID, typeID, value, accept)
 VALUES
-  (2, 4, "5861 High Line, New York, NY 10001"),
-  (1, 1, "651 Kapkowski Rd, Elizabeth, NJ 07201");
+  (2, 4, '5861 High Line, New York, NY 10001'),
+  (1, 1, '651 Kapkowski Rd, Elizabeth, NJ 07201');
