@@ -22,7 +22,7 @@ CREATE TABLE userTable(
   email VARCHAR(254) UNIQUE NOT NULL,
   phoneNumber VARCHAR(100) NOT NULL,
   ECid INT UNIQUE,
-  FORIEGN KEY (ECid) REFERENCES emergencyContact(ECid)
+  FOREIGN KEY (ECid) REFERENCES emergencyContact(ECid)
 );
 
 -- Invitations table
@@ -40,15 +40,15 @@ CREATE TABLE trips(
   startLocation VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
   tripDate TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
-  FORIEGN KEY (hostID) REFERENCES userTable(userID)
+  FOREIGN KEY (hostID) REFERENCES userTable(userID)
 );
 
 -- members table
 CREATE TABLE members(
   tripID INT,
   userID INT,
-  FORIEGN KEY (tripID) REFERENCES trips(tripID),
-  FORIEGN KEY (userID) REFERENCES userTable(userID)
+  FOREIGN KEY (tripID) REFERENCES trips(tripID),
+  FOREIGN KEY (userID) REFERENCES userTable(userID)
 );
 
 -- rest stop table
@@ -69,8 +69,8 @@ CREATE TABLE itineraryRequest(
   typeID INT,
   value VARCHAR(255), -- input for the request
   accept BOOLEAN,
-  FORIEGN KEY (tripID) REFERENCES trips(tripID),
-  FORIEGN KEY (typeID) REFERENCES requestType(typeID)
+  FOREIGN KEY (tripID) REFERENCES trips(tripID),
+  FOREIGN KEY (typeID) REFERENCES requestType(typeID)
 );
 
 -- Mock Data
