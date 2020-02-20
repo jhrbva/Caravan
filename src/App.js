@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import LoginPage from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import TripForm from './components/TripForm/tripForm';
 
 function App() {
 	return (
@@ -10,6 +11,8 @@ function App() {
 				<LoginPage />
 				<br />
 				<Signup />
+				<br />
+				<TripForm />
 			</header>
 		</div>
 	);

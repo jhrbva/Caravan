@@ -5,12 +5,10 @@ import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import {
-	validateEmail,
-	validatePhone,
 	required,
 } from '../../utilities/formValidation';
 
-const Signup = () => (
+const tripForm = () => (
 	<div>
 		<Formik
 			initialValues={{
@@ -28,54 +26,45 @@ const Signup = () => (
 			{() => (
 				<Form>
 					<Field
-						icon='person_pin'
+						icon='trip_origin'
 						type='text'
-						name='first_name'
-						placeholder='First Name'
+						name='start_location'
+						placeholder='Start Location'
 						validate={required}
 						autofocus='true'
 						component={Input}
 					/>
 					<Field
-						icon='person_pin'
+						icon='location_city'
 						type='text'
-						name='last_name'
-						placeholder='Last Name'
+						name='Destination'
+						placeholder='Destination'
 						validate={required}
 						autofocus='true'
 						component={Input}
 					/>
 					<Field
-						icon='call'
+						icon='event'
 						type='text'
-						name='phone'
-						placeholder='Phone Number'
-						validate={validatePhone}
-						autofocus='true'
-						component={Input}
-					/>
-					<Field
-						icon='email'
-						type='text'
-						name='email'
-						placeholder='Email'
-						validate={validateEmail}
-						autofocus='true'
-						component={Input}
-					/>
-					<Field
-						icon='lock'
-						type='text'
-						name='password'
-						placeholder='Password'
+						name='date'
+						placeholder='Date'
 						validate={required}
 						autofocus='true'
 						component={Input}
 					/>
-					<BigButton value={'Sign up'} />
+					<Field
+						icon='schedule'
+						type='text'
+						name='time'
+						placeholder='Time'
+						validate={required}
+						autofocus='true'
+						component={Input}
+					/>
+					<BigButton value={'Create Trip'} />
 				</Form>
 			)}
 		</Formik>
 	</div>
 );
-export default Signup;
+export default tripForm;
