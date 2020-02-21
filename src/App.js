@@ -7,6 +7,7 @@ function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
+				<h2>Welcome to React</h2>
 				<LoginPage />
 				<br />
 				<Signup />
