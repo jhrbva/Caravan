@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/jhrbva/Caravan/badge.svg?branch=master)](https://coveralls.io/github/jhrbva/Caravan?branch=master)
+
 # Caravan
 
 Let's get there together!
