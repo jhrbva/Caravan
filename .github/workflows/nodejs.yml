@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: [push, pull request]
+on: ["push", "pull_request"]
 
 jobs:
   build:
@@ -25,7 +25,8 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        
+        path-to-lcov: ./output/coverage/lcov.info
+
     - run: npm run build --if-present
     - run: npm test
       env:
