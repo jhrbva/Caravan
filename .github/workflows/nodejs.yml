@@ -20,14 +20,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./output/coverage/lcov.info
+        path-to-lcov: ./node_modules/coveralls/bin/coveralls.js
+        COVERALLS_REPO_TOKEN: "${{ secrets.COVERALLS_REPO_TOKEN }}"
+        COVERALLS_GIT_BRANCH: "${{ github.ref }}"
 
-    - run: npm run build --if-present
-    - run: npm test
       env:
         CI: true
