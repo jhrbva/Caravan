@@ -9,6 +9,7 @@ function App() {
 		<Router>
 			<div className='App'>
 				<header className='App-header'>
+				<h2>Welcome to React</h2>
 					<h1 className='temp-logo'>Caravan</h1>
 					{/* TODO: CA-30 create logo */}
 					<Switch>
