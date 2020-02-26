@@ -12,11 +12,10 @@ const tripForm = () => (
 	<div>
 		<Formik
 			initialValues={{
-				first_name: '',
-				last_name: '',
-				phone: '',
-				email: '',
-				password: '',
+				start_location: '',
+				destination: '',
+				start_date: '',
+				start_time: '',
 			}}
 			onSubmit={values => {
 				// same shape as initial values
@@ -37,7 +36,7 @@ const tripForm = () => (
 					<Field
 						icon='location_city'
 						type='text'
-						name='Destination'
+						name='destination'
 						placeholder='Destination'
 						validate={required}
 						autofocus='true'
@@ -46,7 +45,7 @@ const tripForm = () => (
 					<Field
 						icon='event'
 						type='text'
-						name='date'
+						name='start_date'
 						placeholder='Date'
 						validate={required}
 						autofocus='true'
@@ -55,7 +54,7 @@ const tripForm = () => (
 					<Field
 						icon='schedule'
 						type='text'
-						name='time'
+						name='start_time'
 						placeholder='Time'
 						validate={required}
 						autofocus='true'
