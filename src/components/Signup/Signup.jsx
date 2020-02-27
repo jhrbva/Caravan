@@ -9,7 +9,6 @@ import {
 	validatePhone,
 	required,
 } from '../../utilities/formValidation';
-import { BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 
 const Signup = () => (
 	<div>
@@ -79,9 +78,7 @@ const Signup = () => (
 			)}
 		</Formik>
 		<p>Already have an account?</p>
-		<Switch>
-			<Link to='/'>Sign In</Link>
-		</Switch>
+		<a href='/'>Sign In</a>
 	</div>
 );
 export default Signup;

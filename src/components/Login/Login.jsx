@@ -6,7 +6,6 @@ import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
-import { BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 
 function Login() {
 	return (
@@ -48,9 +47,7 @@ function Login() {
 				)}
 			</Formik>
 			<p>Don't have an account yet?</p>
-			<Switch>
-				<Link to='/signup'>Sign up!</Link>
-			</Switch>
+			<a href='/signup'>Sign up!</a>
 		</div>
 	);
 }
