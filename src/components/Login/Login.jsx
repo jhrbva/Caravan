@@ -10,8 +10,6 @@ import '../../utilities/fonts.scss';
 function Login() {
 	return (
 		<div className='login-page-wrapper'>
-			<h1 className='temp-logo'>Caravan</h1>
-			{/* TODO: CA-30 create logo */}
 			<Formik
 				initialValues={{
 					email: '',
@@ -43,10 +41,13 @@ function Login() {
 							validate={required}
 							component={Input}
 						/>
+
 						<BigButton value={'Login'} />
 					</Form>
 				)}
 			</Formik>
+			<p>Don't have an account yet?</p>
+			<a href='/signup'>Sign up!</a>
 		</div>
 	);
 }
