@@ -72,10 +72,13 @@ const Signup = () => (
 						autofocus='true'
 						component={Input}
 					/>
+
 					<BigButton value={'Sign up'} />
 				</Form>
 			)}
 		</Formik>
+		<p>Already have an account?</p>
+		<a href='/'>Sign In</a>
 	</div>
 );
 export default Signup;
