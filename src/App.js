@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import TripForm from './components/TripForm/tripForm';
 
 function App() {
 	return (
@@ -19,7 +20,10 @@ function App() {
 					<Route exact path='/signup'>
 						<Signup />
 					</Route>
-				</header>
+					<Route exact path='trip'>
+						<TripForm />
+					</Route>
+					</header>
 			</div>
 		</Router>
 	);
