@@ -9,7 +9,7 @@ import {
 } from '../../utilities/formValidation';
 
 
-const TripGuests = () => (
+const TripGuests = ({handleBack, handleSubmit}) => (
 	<Form>
 		<Field
 			icon='group_add'
@@ -20,8 +20,8 @@ const TripGuests = () => (
 			autofocus='true'
 			component={Input}
 		/>
-		<BigButton value={'Back'} />
-		<BigButton value={'Next'} />
+		<BigButton value={'Back'} onClick={handleBack}/>
+		<BigButton value={'Next'} onClick={handleSubmit}/>
 	</Form>
 )
 

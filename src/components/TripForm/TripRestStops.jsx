@@ -9,18 +9,19 @@ import {
 } from '../../utilities/formValidation';
 
 
-const TripRestStops = () => (
+const TripRestStops = ({handleBack, handleSubmit}) => (
 	<Form>
 		<Field
-			icon='restStop_add'
+			icon='location_on'
 			type='text'
 			name='rest_stops'
 			placeholder='Rest Stop'
-			validate={required}
+			// validate={required}
 			autofocus='true'
 			component={Input}
 		/>
-		<BigButton value={'Submit'} />
+		<BigButton value={'Back'} onClick = {handleBack}/>
+		<BigButton value={'Submit'} onClick = {handleSubmit}/>
 	</Form>
 )
 

@@ -54,7 +54,7 @@ export class TripForm extends React.Component {
 							{this.state.page === 1 && (
 								<TripInformation
 									handleSubmit={this.nextPage}
-									handleBack={this.previousPage}
+									// handleBack={this.previousPage}
 								/>
 							)}
 							{this.state.page === 2 && (
@@ -66,6 +66,7 @@ export class TripForm extends React.Component {
 							{this.state.page === 3 && (
 								<TripRestStops
 									handleSubmit={this.onSubmit}
+									handleBack={this.previousPage}
 								/>
 							)}
 						</>
