@@ -20,7 +20,7 @@ function App() {
 					<Route exact path='/signup'>
 						<Signup />
 					</Route>
-					<Route exact path='trip'>
+					<Route exact path='/trip'>
 						<TripForm />
 					</Route>
 					</header>
