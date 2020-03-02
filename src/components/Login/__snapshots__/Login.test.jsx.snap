@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match the snapshot 1`] = `
+<div
+  className="login-page-wrapper"
+>
+  <Formik
+    initialValues={
+      Object {
+        "email": "",
+        "password": "",
+      }
+    }
+    onSubmit={[Function]}
+  >
+    <Component />
+  </Formik>
+  <p>
+    Don't have an account yet?
+  </p>
+  <a
+    href="/signup"
+  >
+    Sign up!
+  </a>
+</div>
+`;
