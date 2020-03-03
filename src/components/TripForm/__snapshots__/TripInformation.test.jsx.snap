@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TripInformation should match the snapshot 1`] = `
+<Form>
+  <Field
+    autofocus="true"
+    component={[Function]}
+    icon="trip_origin"
+    name="start_location"
+    placeholder="Start Location"
+    type="text"
+    validate={[Function]}
+  />
+  <Field
+    autofocus="true"
+    component={[Function]}
+    icon="location_city"
+    name="destination"
+    placeholder="Destination"
+    type="text"
+    validate={[Function]}
+  />
+  <Field
+    autofocus="true"
+    component={[Function]}
+    icon="event"
+    name="start_date"
+    placeholder="Date"
+    type="text"
+    validate={[Function]}
+  />
+  <Field
+    autofocus="true"
+    component={[Function]}
+    icon="schedule"
+    name="start_time"
+    placeholder="Time"
+    type="text"
+    validate={[Function]}
+  />
+  <BigButton
+    value="Next"
+  />
+</Form>
+`;
