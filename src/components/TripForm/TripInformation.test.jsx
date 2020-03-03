@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TripInformation, { TripInformation } from './Login';
+import TripInformation, { TripInformation } from './TripForm';
 
 describe('TripInformation', () => {
     it('should match the snapshot', () => {
