@@ -1,14 +1,11 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
-
+import { Field, Form } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
-import {
-	required,
-} from '../../utilities/formValidation';
+import { required } from '../../utilities/formValidation';
 
-const TripInformation = ({handleSubmit}) => (
+const TripInformation = ({ handleSubmit }) => (
 	<Form>
 		<Field
 			icon='trip_origin'
@@ -46,8 +43,8 @@ const TripInformation = ({handleSubmit}) => (
 			autofocus='true'
 			component={Input}
 		/>
-		<BigButton value={'Next'} onClick={handleSubmit}/>
+		<BigButton value={'Next'} onClick={handleSubmit} />
 	</Form>
-)
+);
 
 export default TripInformation;
