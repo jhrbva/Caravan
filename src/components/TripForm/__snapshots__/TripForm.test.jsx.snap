@@ -1,25 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TripForm changes page to Trip Information 1`] = `
-<div>
-  <Formik
-    initialValues={
-      Object {
-        "destination": "",
-        "guests": "",
-        "rest_stops": "",
-        "start_date": "",
-        "start_location": "",
-        "start_time": "",
-      }
-    }
-    onSubmit={[Function]}
-  >
-    <Component />
-  </Formik>
-</div>
-`;
-
 exports[`TripForm should match the snapshot 1`] = `
 <div>
   <Formik
