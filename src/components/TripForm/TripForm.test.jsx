@@ -7,14 +7,15 @@ describe('TripForm', () => {
 		const wrapper = shallow(<TripForm />);
 		expect(wrapper).toMatchSnapshot();
 	});
-	it('changes page to Trip Guests', () => {
+});
+describe('NextPage()', () => {
+	it('changes pages from 1 to 2 then 3', () => {
 		const wrapper = shallow(<TripForm />);
-		wrapper.setState({ page: 2 });
-		expect(wrapper.state('page')).toEqual(2);
-	});
-	it('changes page to Trip Rest Stops', () => {
-		const wrapper = shallow(<TripForm />);
-		wrapper.setState({ page: 3 });
-		expect(wrapper.state('page')).toEqual(3);
+		const instance = wrapper.instance();
+		expect(instance.state.page).toBe(1);
+		instance.nextPage({ preventDefault: jest.fn() });
+		expect(instance.state.page).toBe(2);
+		instance.nextPage({ preventDefault: jest.fn() });
+		expect(instance.state.page).toBe(3);
 	});
 });
