@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 import './Login.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
-import axios from 'axios';
-import { withRouter } from 'react-router';
 
 export const LoginForm = () => (
 	<Form>
