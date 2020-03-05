@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import axios from 'axios';
 
 import './Login.scss';
 import Input from '../Input/Input';
@@ -8,7 +7,7 @@ import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
 
-function Login(props) {
+function Login() {
 	return (
 		<div className='login-page-wrapper'>
 			<Formik
@@ -19,17 +18,6 @@ function Login(props) {
 				onSubmit={values => {
 					// same shape as initial values
 					console.log(values);
-					axios.post('/login', {
-						username: values.email,
-						password: values.password
-					})
-						.then(function (response) {
-							console.log(response);
-							props.history.push('/trip');
-						})
-						.catch(function (error) {
-							console.log(error);
-						});
 				}}
 			>
 				{() => (
