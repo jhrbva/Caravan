@@ -1,6 +1,10 @@
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const { Pool } = require('pg');
+const bodyParser = require('body-parser');
 const express = require('express'); // grab express module installed
 const app = express(); // created an app using express module
-const { Pool } = require('pg');
+
 const port = 8080;
 
 const pool = new Pool({
@@ -10,18 +14,60 @@ const pool = new Pool({
 	password: 'tazoicedblacktea',
 	port: 5432,
 });
-// continue here: instead of GET we need POST request
-// app.get('/login', (req, res) => {
-//     req = req.user , req.password
-//     pool.query('SELECT * FROM userTable WHERE username='req.user' AND password='req.password';', (err, response) => {
-//         console.log(err, response.rows);
-//         pool.end();
-//     });
-// })
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+	done(null, user.userid);
+});
+
+passport.deserializeUser((id, cb) => {
+	db.query(
+		'SELECT userid, username FROM users WHERE userid = $1',
+		[parseInt(id, 10)],
+		(err, results) => {
+			if (err) {
+				console.log('Error when selecting user on session deserialize', err);
+				return cb(err);
+			}
+
+			cb(null, results.rows[0]);
+		}
+	);
+});
+
+passport.use(
+	new LocalStrategy((username, password, cb) => {
+		pool.query(
+			'SELECT * FROM usertable WHERE username=$1',
+			[username],
+			(err, result) => {
+				if (err) {
+					console.log('Error when selecting user on login', err);
+					return cb(err);
+				}
+
+				if (result.rows.length > 0) {
+					const first = result.rows[0];
+					cb(null, first);
+				} else {
+					cb(null, false);
+				}
+			}
+		);
+	})
+);
 
 app.get('/', (req, res) => {
-	console.log(req.body);
 	return res.send('Hello World!');
 }); // express is handling a GET request
+
+app.post('/login', passport.authenticate('local'), (req, res) => {
+	const { user } = req;
+	res.json(user);
+});
 
 app.listen(port, () => console.log(`Example app running on port ${port}!`));
