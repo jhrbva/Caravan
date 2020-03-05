@@ -19,3 +19,14 @@ describe('NextPage()', () => {
 		expect(instance.state.page).toBe(3);
 	});
 });
+describe('PreviousPage()', () => {
+	it('changes pages from 3 to 2 then 1', () => {
+		const wrapper = shallow(<TripForm />);
+		const instance = wrapper.instance();
+		wrapper.setState({ page: 3 });
+		instance.previousPage({ preventDefault: jest.fn() });
+		expect(instance.state.page).toBe(2);
+		instance.previousPage({ preventDefault: jest.fn() });
+		expect(instance.state.page).toBe(1);
+	});
+});
