@@ -6,6 +6,8 @@ import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
 export const LoginForm = () => (
 	<Form>
@@ -33,7 +35,7 @@ export const LoginForm = () => (
 	</Form>
 );
 
-const Login = () => {
+const Login = props => {
 	return (
 		<div className='login-page-wrapper'>
 			<Formik
@@ -42,8 +44,22 @@ const Login = () => {
 					password: '',
 				}}
 				onSubmit={values => {
+					const { history } = props;
 					// same shape as initial values
 					console.log(values);
+					console.log(props);
+					axios
+						.post('/login', {
+							username: values.email,
+							password: values.password,
+						})
+						.then(function(response) {
+							console.log(response);
+							history.push('/trip');
+						})
+						.catch(function(error) {
+							console.log(error);
+						});
 				}}
 			>
 				{() => <LoginForm />}
@@ -54,4 +70,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default withRouter(Login);
