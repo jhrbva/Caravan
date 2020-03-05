@@ -4,9 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
-import {
-	required,
-} from '../../utilities/formValidation';
+import { required } from '../../utilities/formValidation';
 
 const tripForm = () => (
 	<div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import axios from 'axios';
+import { withRouter } from 'react-router';
 
 import './Login.scss';
 import Input from '../Input/Input';
@@ -17,17 +18,19 @@ function Login(props) {
 					password: '',
 				}}
 				onSubmit={values => {
+					const { history } = props;
 					// same shape as initial values
-					console.log(values);
-					axios.post('/login', {
-						username: values.email,
-						password: values.password
-					})
-						.then(function (response) {
-							console.log(response);
-							props.history.push('/trip');
+					console.log(props);
+					axios
+						.post('/login', {
+							username: values.email,
+							password: values.password,
 						})
-						.catch(function (error) {
+						.then(function(response) {
+							console.log(response);
+							history.push('/trip');
+						})
+						.catch(function(error) {
 							console.log(error);
 						});
 				}}
@@ -63,5 +66,4 @@ function Login(props) {
 		</div>
 	);
 }
-
-export default Login;
+export default withRouter(Login);
