@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const express = require('express'); // grab express module installed
@@ -8,10 +9,10 @@ const app = express(); // created an app using express module
 const port = 8080;
 
 const pool = new Pool({
-	user: 'postgres',
-	host: 'database-4.ckeaom6xxsow.us-east-2.rds.amazonaws.com',
-	database: 'Pepperoni',
-	password: 'tazoicedblacktea',
+	user: DB_USER,
+	host: DB_HOST,
+	database: DB_NAME,
+	password: DB_PASSWORD,
 	port: 5432,
 });
 
