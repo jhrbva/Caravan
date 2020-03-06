@@ -1,15 +1,9 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
-
+import { Formik } from 'formik';
 import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
-import BigButton from '../BigButton/BigButton';
 import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
-import {
-	required,
-} from '../../utilities/formValidation';
 
 export class TripForm extends React.Component {
 	constructor(props) {
@@ -29,11 +23,11 @@ export class TripForm extends React.Component {
 	}
 
 	onSubmit() {
-		console.log("submitted");
+		console.log('submitted');
 	}
 
 	render() {
-		return(
+		return (
 			<div>
 				<Formik
 					initialValues={{
@@ -52,10 +46,7 @@ export class TripForm extends React.Component {
 					{() => (
 						<>
 							{this.state.page === 1 && (
-								<TripInformation
-									handleSubmit={this.nextPage}
-									// handleBack={this.previousPage}
-								/>
+								<TripInformation handleSubmit={this.nextPage} />
 							)}
 							{this.state.page === 2 && (
 								<TripGuests
@@ -73,7 +64,7 @@ export class TripForm extends React.Component {
 					)}
 				</Formik>
 			</div>
-		)
+		);
 	}
 }
 

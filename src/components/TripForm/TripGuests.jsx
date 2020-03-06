@@ -1,15 +1,11 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
-
+import { Field, Form } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
-import {
-	required,
-} from '../../utilities/formValidation';
+import { required } from '../../utilities/formValidation';
 
-
-const TripGuests = ({handleBack, handleSubmit}) => (
+const TripGuests = ({ handleBack, handleSubmit }) => (
 	<Form>
 		<Field
 			icon='group_add'
@@ -20,9 +16,9 @@ const TripGuests = ({handleBack, handleSubmit}) => (
 			autofocus='true'
 			component={Input}
 		/>
-		<BigButton value={'Back'} onClick={handleBack}/>
-		<BigButton value={'Next'} onClick={handleSubmit}/>
+		<BigButton value={'Back'} onClick={handleBack} />
+		<BigButton value={'Next'} onClick={handleSubmit} />
 	</Form>
-)
+);
 
 export default TripGuests;
