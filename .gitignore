@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# env variables
+secrets.js
+
 # dependencies
 /node_modules
 /.pnp
@@ -10,9 +13,6 @@
 
 # production
 /build
-
-#env variables
-secrets.js
 
 # misc
 .DS_Store
