@@ -15,10 +15,10 @@ describe('LoginForm', () => {
 		const fieldWrapper = wrapper.find('Field');
 		expect(fieldWrapper.length).toBe(2);
 	});
-	it('should have an email field', () => {
+	it('should have a username field', () => {
 		const wrapper = shallow(<LoginForm />);
 		const fieldWrapper = wrapper.find('Field');
-		const usernameField = fieldWrapper.find({ name: 'email' });
+		const usernameField = fieldWrapper.find({ name: 'username' });
 		expect(usernameField.length).toBe(1);
 	});
 	it('should have a password field', () => {

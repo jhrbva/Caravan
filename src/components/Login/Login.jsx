@@ -14,7 +14,7 @@ export const LoginForm = () => (
 		<Field
 			icon='person'
 			type='text'
-			name='email'
+			name='username'
 			placeholder='username'
 			maxLength={254}
 			autofocus='true'
@@ -50,7 +50,7 @@ const Login = props => {
 					console.log(props);
 					axios
 						.post('/login', {
-							username: values.email,
+							username: values.username,
 							password: values.password,
 						})
 						.then(function(response) {
