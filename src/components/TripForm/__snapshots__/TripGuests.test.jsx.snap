@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TripGuests should match the snapshot 1`] = `
+<Form>
+  <Field
+    autofocus="true"
+    component={[Function]}
+    icon="group_add"
+    name="guests"
+    placeholder="Guest"
+    type="text"
+    validate={[Function]}
+  />
+  <BigButton
+    value="Back"
+  />
+  <BigButton
+    value="Next"
+  />
+</Form>
+`;
