@@ -13,7 +13,7 @@ const TripGuests = ({ handleBack, handleSubmit }) => (
 			name='guests'
 			placeholder='Guest'
 			validate={required}
-			autofocus='true'
+			autoFocus={true}
 			component={Input}
 		/>
 		<BigButton value={'Back'} onClick={handleBack} />

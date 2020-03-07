@@ -11,7 +11,7 @@ const TripRestStops = ({ handleBack, handleSubmit }) => (
 			type='text'
 			name='rest_stops'
 			placeholder='Rest Stop'
-			autofocus='true'
+			autoFocus={true}
 			component={Input}
 		/>
 		<BigButton value={'Back'} onClick={handleBack} />

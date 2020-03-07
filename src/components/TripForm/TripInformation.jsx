@@ -13,7 +13,7 @@ const TripInformation = ({ handleSubmit }) => (
 			name='start_location'
 			placeholder='Start Location'
 			validate={required}
-			autofocus='true'
+			autoFocus={true}
 			component={Input}
 		/>
 		<Field
@@ -22,7 +22,7 @@ const TripInformation = ({ handleSubmit }) => (
 			name='destination'
 			placeholder='Destination'
 			validate={required}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -31,7 +31,7 @@ const TripInformation = ({ handleSubmit }) => (
 			name='start_date'
 			placeholder='Date'
 			validate={required}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -40,7 +40,7 @@ const TripInformation = ({ handleSubmit }) => (
 			name='start_time'
 			placeholder='Time'
 			validate={required}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<BigButton value={'Next'} onClick={handleSubmit} />
