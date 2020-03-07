@@ -3,7 +3,7 @@
 exports[`TripGuests should match the snapshot 1`] = `
 <Form>
   <Field
-    autofocus="true"
+    autoFocus={true}
     component={[Function]}
     icon="group_add"
     name="guests"
