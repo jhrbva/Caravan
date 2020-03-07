@@ -69,7 +69,6 @@ app.post('/signup', (req, res) => {
 		phonenumber,
 		password,
 	} = req.body;
-	console.log(req.body);
 	pool.query(
 		'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
 		[firstname, lastname, username, email, phonenumber, password],
