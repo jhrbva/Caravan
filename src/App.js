@@ -1,21 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import './App.css';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TripForm from './components/TripForm/TripForm';
-import caravan from './caravan.png';
+import logo from './assets/caravan-logo.png';
 
 function App() {
 	return (
 		<Router>
 			<div className='App'>
 				<header className='App-header'>
-					<h2>Welcome to the Caravan App</h2>
-					<img src={caravan} className="App-logo" alt="Caravan" />
-					{/*<h1 className='temp-logo'>Caravan</h1>*}
-					{/* TODO: CA-30 create logo */}
-
+					<img src={logo} className='caravan-logo' alt='Caravan logo' />
 					<Route exact path='/'>
 						<Login />
 					</Route>
@@ -25,7 +22,7 @@ function App() {
 					<Route exact path='/trip'>
 						<TripForm />
 					</Route>
-					</header>
+				</header>
 			</div>
 		</Router>
 	);
