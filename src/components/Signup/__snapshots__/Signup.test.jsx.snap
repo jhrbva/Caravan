@@ -1,28 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Signup should match the snapshot 1`] = `
-<div>
-  <Formik
-    initialValues={
-      Object {
-        "email": "",
-        "first_name": "",
-        "last_name": "",
-        "password": "",
-        "phone": "",
-      }
-    }
-    onSubmit={[Function]}
-  >
-    <Component />
-  </Formik>
-  <p>
-    Already have an account?
-  </p>
-  <a
-    href="/"
-  >
-    Sign In
-  </a>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

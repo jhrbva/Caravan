@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
@@ -16,7 +18,7 @@ export const SignupForm = () => (
 		<Field
 			icon='person_pin'
 			type='text'
-			name='first_name'
+			name='firstname'
 			placeholder='First Name'
 			validate={required}
 			autoFocus={true}
@@ -25,8 +27,17 @@ export const SignupForm = () => (
 		<Field
 			icon='person_pin'
 			type='text'
-			name='last_name'
+			name='lastname'
 			placeholder='Last Name'
+			validate={required}
+			autoFocus={false}
+			component={Input}
+		/>
+		<Field
+			icon='person_pin'
+			type='text'
+			name='username'
+			placeholder='Username'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -51,7 +62,7 @@ export const SignupForm = () => (
 		/>
 		<Field
 			icon='lock'
-			type='text'
+			type='password'
 			name='password'
 			placeholder='Password'
 			validate={validatePassword}
@@ -63,20 +74,39 @@ export const SignupForm = () => (
 	</Form>
 );
 
-const Signup = () => {
+const Signup = props => {
 	return (
 		<div>
 			<Formik
 				initialValues={{
-					first_name: '',
-					last_name: '',
+					firstname: '',
+					lastname: '',
+					username: '',
 					phone: '',
 					email: '',
 					password: '',
 				}}
 				onSubmit={values => {
+					const { history } = props;
 					// same shape as initial values
 					console.log(values);
+					console.log(props);
+					axios
+						.post('/signup', {
+							firstname: values.firstname,
+							lastname: values.lastname,
+							username: values.username,
+							email: values.email,
+							phonenumber: values.phone,
+							password: values.password,
+						})
+						.then(function(response) {
+							console.log(response);
+							history.push('/trip');
+						})
+						.catch(function(error) {
+							console.log(error);
+						});
 				}}
 			>
 				{() => <SignupForm />}
@@ -87,4 +117,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default withRouter(Signup);
