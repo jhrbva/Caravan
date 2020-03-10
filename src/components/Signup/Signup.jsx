@@ -33,6 +33,7 @@ export const SignupForm = () => (
 			autoFocus={false}
 			component={Input}
 		/>
+		{/* TO DO: error message in case username already exists */}
 		<Field
 			icon='person_pin'
 			type='text'
