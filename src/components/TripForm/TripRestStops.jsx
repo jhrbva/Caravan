@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
@@ -11,7 +11,7 @@ const TripRestStops = ({ handleBack, handleSubmit }) => (
 			type='text'
 			name='rest_stops'
 			placeholder='Rest Stop'
-			autofocus='true'
+			autoFocus={true}
 			component={Input}
 		/>
 		<BigButton value={'Back'} onClick={handleBack} />

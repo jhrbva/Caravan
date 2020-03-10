@@ -3,7 +3,7 @@
 exports[`TripInformation should match the snapshot 1`] = `
 <Form>
   <Field
-    autofocus="true"
+    autoFocus={true}
     component={[Function]}
     icon="trip_origin"
     name="start_location"
@@ -12,7 +12,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     validate={[Function]}
   />
   <Field
-    autofocus="true"
+    autoFocus={false}
     component={[Function]}
     icon="location_city"
     name="destination"
@@ -21,7 +21,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     validate={[Function]}
   />
   <Field
-    autofocus="true"
+    autoFocus={false}
     component={[Function]}
     icon="event"
     name="start_date"
@@ -30,7 +30,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     validate={[Function]}
   />
   <Field
-    autofocus="true"
+    autoFocus={false}
     component={[Function]}
     icon="schedule"
     name="start_time"

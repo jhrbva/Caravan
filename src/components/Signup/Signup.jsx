@@ -8,6 +8,7 @@ import {
 	validateEmail,
 	validatePhone,
 	required,
+	validatePassword,
 } from '../../utilities/formValidation';
 
 export const SignupForm = () => (
@@ -18,7 +19,7 @@ export const SignupForm = () => (
 			name='first_name'
 			placeholder='First Name'
 			validate={required}
-			autofocus='true'
+			autoFocus={true}
 			component={Input}
 		/>
 		<Field
@@ -27,7 +28,7 @@ export const SignupForm = () => (
 			name='last_name'
 			placeholder='Last Name'
 			validate={required}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -36,7 +37,7 @@ export const SignupForm = () => (
 			name='phone'
 			placeholder='Phone Number'
 			validate={validatePhone}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -45,7 +46,7 @@ export const SignupForm = () => (
 			name='email'
 			placeholder='Email'
 			validate={validateEmail}
-			autofocus='true'
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -53,8 +54,8 @@ export const SignupForm = () => (
 			type='text'
 			name='password'
 			placeholder='Password'
-			validate={required}
-			autofocus='true'
+			validate={validatePassword}
+			autoFocus={false}
 			component={Input}
 		/>
 

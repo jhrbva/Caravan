@@ -1,5 +1,5 @@
-import React from "react";
-import "./Input.scss";
+import React from 'react';
+import './Input.scss';
 
 function Input({
 	type,
@@ -16,15 +16,15 @@ function Input({
 	const errorExists =
 		form && field && form.errors[field.name] && form.touched[field.name];
 	return (
-		<div class='input-wrapper'>
+		<div className='input-wrapper'>
 			<i className='material-icons'>{icon}</i>
 			<input
-				className={`login-input ${errorExists && "error"}`}
+				className={`login-input ${errorExists && 'error'}`}
 				type={type}
 				name={name}
 				placeholder={placeholder}
 				maxLength={maxLength}
-				autofocus={autofocus}
+				autoFocus={autofocus}
 				required
 				{...field}
 				{...props}

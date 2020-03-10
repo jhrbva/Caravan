@@ -17,7 +17,7 @@ export const LoginForm = () => (
 			name='username'
 			placeholder='username'
 			maxLength={254}
-			autofocus='true'
+			autoFocus={true}
 			validate={required}
 			component={Input}
 		/>
@@ -26,7 +26,7 @@ export const LoginForm = () => (
 			type='password'
 			name='password'
 			placeholder='password'
-			autofocus='false'
+			autoFocus={false}
 			validate={required}
 			component={Input}
 		/>

@@ -3,7 +3,7 @@
 exports[`TripRestStops should match the snapshot 1`] = `
 <Form>
   <Field
-    autofocus="true"
+    autoFocus={true}
     component={[Function]}
     icon="location_on"
     name="rest_stops"
