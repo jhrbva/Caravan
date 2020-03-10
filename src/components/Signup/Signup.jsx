@@ -52,6 +52,7 @@ export const SignupForm = () => (
 			autoFocus={false}
 			component={Input}
 		/>
+		{/* To Do: error message when the email is already in the db */}
 		<Field
 			icon='email'
 			type='text'
