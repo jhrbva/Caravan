@@ -60,6 +60,22 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 	res.json(user);
 });
 
+app.get('/invitations/:userid', (req, res) =>{
+	pool.query(
+		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		[req.params.userid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting invitation of a specific user', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
+				res.send(result.rows);
+			}
+		}
+	);
+})
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
