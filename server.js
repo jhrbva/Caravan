@@ -3,7 +3,14 @@ const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
+const {
+	DB_USER,
+	DB_HOST,
+	DB_NAME,
+	DB_PASSWORD,
+	FACEBOOK,
+	GOOGLE,
+} = require('./secrets');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const express = require('express'); // grab express module installed
@@ -11,8 +18,6 @@ const session = require('express-session');
 const app = express(); // created an app using express module
 
 const port = 8080;
-const keys = require('./config');
-
 let user = {};
 
 const pool = new Pool({
@@ -33,8 +38,8 @@ app.use(passport.session());
 passport.use(
 	new FacebookStrategy(
 		{
-			clientID: keys.FACEBOOK.clientID,
-			clientSecret: keys.FACEBOOK.clientSecret,
+			clientID: FACEBOOK.clientID,
+			clientSecret: FACEBOOK.clientSecret,
 			callbackURL: 'http://localhost:8080/auth/facebook/callback',
 		},
 		function(accessToken, refreshToken, profile, done) {
@@ -52,8 +57,8 @@ passport.use(
 passport.use(
 	new GoogleStrategy(
 		{
-			clientID: keys.GOOGLE.clientID,
-			clientSecret: keys.GOOGLE.clientSecret,
+			clientID: GOOGLE.clientID,
+			clientSecret: GOOGLE.clientSecret,
 			callbackURL: 'http://localhost:8080/oauth2callback',
 		},
 		function(accessToken, refreshToken, profile, done) {
