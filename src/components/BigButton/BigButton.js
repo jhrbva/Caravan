@@ -1,9 +1,9 @@
 import React from 'react';
 import './BigButton.scss';
 
-function BigButton({ value }) {
+function BigButton({ value, onClick }) {
 	return (
-		<button className="big-button" type="Submit">
+		<button className="big-button" type="Submit" onClick={onClick}>
 			{value}
 		</button>
 	);
