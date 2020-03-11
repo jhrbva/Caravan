@@ -14,7 +14,6 @@ const {
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const express = require('express'); // grab express module installed
-const session = require('express-session');
 const app = express(); // created an app using express module
 
 const port = 8080;
@@ -30,7 +29,6 @@ const pool = new Pool({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'crusty' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
