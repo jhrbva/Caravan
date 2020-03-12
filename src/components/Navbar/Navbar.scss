@@ -1,0 +1,15 @@
+@import '../../utilities/colorPalette.scss';
+
+.navbar-wrapper {
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: $dream-blue;
+}
+.caravan-logo-navbar {
+	height: 50px;
+	float: left;
+	margin: 15px;
+}

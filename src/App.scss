@@ -1,13 +1,17 @@
+@import '../src/utilities/colorPalette.scss';
+@import '../src/utilities/fonts.scss';
+
 .App {
 	text-align: center;
 }
 
+/* Logo */
 .caravan-logo {
 	height: 100px;
 	pointer-events: none;
 }
 
-.App-header {
+.app-wrapper {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
