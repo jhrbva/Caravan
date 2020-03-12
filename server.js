@@ -60,7 +60,7 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 	res.json(user);
 });
 
-app.get('/invitations/:userid', (req, res) =>{
+app.get('/invitations/:userid', (req, res) => {
 	pool.query(
 		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
 		[req.params.userid],
@@ -74,7 +74,23 @@ app.get('/invitations/:userid', (req, res) =>{
 			}
 		}
 	);
-})
+});
+
+app.post('/invitations', (req, res) => {
+	const { host_id, user_id, trip_id } = req.body;
+	pool.query(
+		'INSERT INTO invitations(hostid, userid, tripid) VALUES ($1, $2, $3)',
+		[host_id, user_id, trip_id],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
 
 app.post('/signup', (req, res) => {
 	const {
@@ -92,7 +108,7 @@ app.post('/signup', (req, res) => {
 			if (err) {
 				console.log('Error when inserting user', err);
 				// TODO: add better error handling
-				res.send(400);
+				res.sendStatus(400);
 			}
 			req.login(req.body, err => {
 				const { user } = req;
