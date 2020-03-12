@@ -15,3 +15,16 @@
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
 }
+
+/* Typography */
+body {
+	font-family: 'Open-Sans', sans-serif;
+}
+.header-text {
+	font-family: 'Baloo 2', sans-serif;
+	font-weight: 700;
+}
+.header-text-light {
+	font-family: 'Baloo 2', sans-serif;
+	font-weight: 400;
+}
