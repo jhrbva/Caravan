@@ -76,7 +76,7 @@ export const SignupForm = () => (
 	</Form>
 );
 
-const Signup = props => {
+export const Signup = props => {
 	return (
 		<div>
 			<Formik
@@ -90,9 +90,6 @@ const Signup = props => {
 				}}
 				onSubmit={values => {
 					const { history } = props;
-					// same shape as initial values
-					console.log(values);
-					console.log(props);
 					axios
 						.post('/signup', {
 							firstname: values.firstname,
@@ -103,7 +100,6 @@ const Signup = props => {
 							password: values.password,
 						})
 						.then(function(response) {
-							console.log(response);
 							history.push('/trip');
 						})
 						.catch(function(error) {

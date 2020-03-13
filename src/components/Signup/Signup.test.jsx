@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Signup, { SignupForm } from './Signup';
+import { SignupForm, Signup } from './Signup';
 
 describe('Signup', () => {
 	it('should match the snapshot', () => {
