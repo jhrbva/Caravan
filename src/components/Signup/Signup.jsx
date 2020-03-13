@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
@@ -16,7 +18,7 @@ export const SignupForm = () => (
 		<Field
 			icon='person_pin'
 			type='text'
-			name='first_name'
+			name='firstname'
 			placeholder='First Name'
 			validate={required}
 			autoFocus={true}
@@ -25,8 +27,18 @@ export const SignupForm = () => (
 		<Field
 			icon='person_pin'
 			type='text'
-			name='last_name'
+			name='lastname'
 			placeholder='Last Name'
+			validate={required}
+			autoFocus={false}
+			component={Input}
+		/>
+		{/* TO DO: error message in case username already exists */}
+		<Field
+			icon='person_pin'
+			type='text'
+			name='username'
+			placeholder='Username'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -40,6 +52,7 @@ export const SignupForm = () => (
 			autoFocus={false}
 			component={Input}
 		/>
+		{/* To Do: error message when the email is already in the db */}
 		<Field
 			icon='email'
 			type='text'
@@ -51,7 +64,7 @@ export const SignupForm = () => (
 		/>
 		<Field
 			icon='lock'
-			type='text'
+			type='password'
 			name='password'
 			placeholder='Password'
 			validate={validatePassword}
@@ -63,21 +76,36 @@ export const SignupForm = () => (
 	</Form>
 );
 
-const Signup = () => {
+export const Signup = props => {
 	return (
 		<div>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
-					first_name: '',
-					last_name: '',
+					firstname: '',
+					lastname: '',
+					username: '',
 					phone: '',
 					email: '',
 					password: '',
 				}}
 				onSubmit={values => {
-					// same shape as initial values
-					console.log(values);
+					const { history } = props;
+					axios
+						.post('/signup', {
+							firstname: values.firstname,
+							lastname: values.lastname,
+							username: values.username,
+							email: values.email,
+							phonenumber: values.phone,
+							password: values.password,
+						})
+						.then(function(response) {
+							history.push('/trip');
+						})
+						.catch(function(error) {
+							console.log(error);
+						});
 				}}
 			>
 				{() => <SignupForm />}
@@ -88,4 +116,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default withRouter(Signup);

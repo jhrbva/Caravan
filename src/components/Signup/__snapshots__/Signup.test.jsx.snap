@@ -11,10 +11,11 @@ exports[`Signup should match the snapshot 1`] = `
     initialValues={
       Object {
         "email": "",
-        "first_name": "",
-        "last_name": "",
+        "firstname": "",
+        "lastname": "",
         "password": "",
         "phone": "",
+        "username": "",
       }
     }
     onSubmit={[Function]}
