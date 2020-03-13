@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
@@ -9,6 +8,7 @@ import {
 	validatePhone,
 	required,
 } from '../../utilities/formValidation';
+import * as Yup from 'yup';
 
 const Signup = () => (
 	<div>
@@ -79,6 +79,8 @@ const Signup = () => (
 		</Formik>
 		<p>Already have an account?</p>
 		<a href='/'>Sign In</a>
+		<a href='/auth/facebook'>Sign Up with Facebook</a>
+		<a href='/auth/google'>Sign Up with Google</a>
 	</div>
 );
 export default Signup;

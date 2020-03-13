@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-
 import './Login.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
+import * as Yup from 'yup';
 
 function Login() {
 	return (
@@ -48,6 +48,8 @@ function Login() {
 			</Formik>
 			<p>Don't have an account yet?</p>
 			<a href='/signup'>Sign up!</a>
+		  <a href='/auth/facebook'>Login with Facebook</a>
+			<a href='/auth/google'>Login with Google</a>
 		</div>
 	);
 }
