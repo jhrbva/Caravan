@@ -84,6 +84,22 @@ app.get('/invitations/:userid', (req, res) => {
 	);
 });
 
+app.post('/invitations', (req, res) => {
+	const { host_id, user_id, trip_id } = req.body;
+	pool.query(
+		'INSERT INTO invitations(hostid, userid, tripid) VALUES ($1, $2, $3)',
+		[host_id, user_id, trip_id],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
