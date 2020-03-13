@@ -1,12 +1,29 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import {
 	required,
 } from '../../utilities/formValidation';
+import * as Yup from 'yup';
+
+const SignupSchema = Yup.object().shape({
+  start_location: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  destination: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  start_date: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+	start_time: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+});
 
 const tripForm = () => (
 	<div>
@@ -17,6 +34,7 @@ const tripForm = () => (
 				start_date: '',
 				start_time: '',
 			}}
+			validationSchema={SignupSchema}
 			onSubmit={values => {
 				// same shape as initial values
 				console.log(values);
