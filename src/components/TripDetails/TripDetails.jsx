@@ -8,8 +8,10 @@ function TripDetails() {
 			<Navbar />
 			<div className='trip-details-wrapper'>
 				<h1 className='header-text'>Name of the trip</h1>
-				<h3 className='header-text-light'>You are invited by @host</h3>
-				<h4>Guest list</h4>
+				<h3 className='header-text-light'>Created by @host</h3>
+				<h3 className='header-text-light'>Start</h3>
+				<h3 className='header-text-light'>Destination</h3>
+				<h4 className='header-text-light'>Guest list</h4>
 				<ul>
 					<li>@guestA</li>
 					<li>@guestB</li>

@@ -1,16 +1,14 @@
 @import '../src/utilities/colorPalette.scss';
 @import '../src/utilities/fonts.scss';
+@import '../src/utilities/mediaQueries.scss';
 
 .App {
 	text-align: center;
-}
 
-/* Logo */
-.caravan-logo {
-	height: 100px;
-	pointer-events: none;
+	@media screen and (max-width: $break-mobile-portrait) {
+		width: 100%;
+	}
 }
-
 .app-wrapper {
 	min-height: 100vh;
 	display: flex;
@@ -20,7 +18,13 @@
 	font-size: calc(10px + 2vmin);
 }
 
-/* Typography */
+/* ---------- Logo ----------- */
+.caravan-logo {
+	height: 100px;
+	pointer-events: none;
+}
+
+/* ---------- Typography ----------- */
 body {
 	font-family: 'Open-Sans', sans-serif;
 }
