@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Signup, { SignupForm } from './Signup';
+import { SignupForm, Signup } from './Signup';
 
 describe('Signup', () => {
 	it('should match the snapshot', () => {
@@ -13,19 +13,25 @@ describe('SignupForm', () => {
 	it('should have five fields', () => {
 		const wrapper = shallow(<SignupForm />);
 		const fieldWrapper = wrapper.find('Field');
-		expect(fieldWrapper.length).toBe(5);
+		expect(fieldWrapper.length).toBe(6);
 	});
 	it('should have an first name field', () => {
 		const wrapper = shallow(<SignupForm />);
 		const fieldWrapper = wrapper.find('Field');
-		const firstNameField = fieldWrapper.find({ name: 'first_name' });
+		const firstNameField = fieldWrapper.find({ name: 'firstname' });
 		expect(firstNameField.length).toBe(1);
 	});
 	it('should have an last name field', () => {
 		const wrapper = shallow(<SignupForm />);
 		const fieldWrapper = wrapper.find('Field');
-		const lastNameField = fieldWrapper.find({ name: 'last_name' });
+		const lastNameField = fieldWrapper.find({ name: 'lastname' });
 		expect(lastNameField.length).toBe(1);
+	});
+	it('should have an username field', () => {
+		const wrapper = shallow(<SignupForm />);
+		const fieldWrapper = wrapper.find('Field');
+		const usernameField = fieldWrapper.find({ name: 'username' });
+		expect(usernameField.length).toBe(1);
 	});
 	it('should have an phone field', () => {
 		const wrapper = shallow(<SignupForm />);
