@@ -5,7 +5,7 @@ import './App.scss';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
-import InvitationDetails from './components/InvitationDetails/InvitationDetails';
+import TripDetails from './components/TripDetails/TripDetails';
 
 function App() {
 	return (
@@ -21,9 +21,9 @@ function App() {
 					<Route exact path='/trip'>
 						<TripForm />
 					</Route>
-					{/* invitation route should later be something like /invistation/$ where $ is the invitation id */}
+					{/* invitation route should later be something like /trip/$trip-id where $ is the invitation id */}
 					<Route exact path='/invitation'>
-						<InvitationDetails />
+						<TripDetails />
 					</Route>
 				</header>
 			</div>
