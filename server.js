@@ -100,6 +100,22 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.post('/invitations/accept', (req, res) => {
+	const { user_id, trip_id, accepted } = req.body;
+	pool.query(
+		'UPDATE invitations SET accepted=$1 WHERE userid=$2 AND tripid=$3;',
+		[accepted, user_id, trip_id],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
