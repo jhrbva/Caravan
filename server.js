@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const express = require('express'); // grab express module installed
 const app = express(); // created an app using express module
 
@@ -42,9 +43,16 @@ passport.use(
 
 				if (result.rows.length > 0) {
 					const first = result.rows[0];
-					cb(null, first);
-				} else {
-					cb(null, false);
+					bcrypt.compare(password, first.password, function(err, res) {
+						if (err) {
+							console.log(err);
+							cb(null, false);
+						}
+						if (res) {
+							console.log(res);
+							cb(null, first);
+						}
+					});
 				}
 			}
 		);
@@ -101,24 +109,30 @@ app.post('/signup', (req, res) => {
 		phonenumber,
 		password,
 	} = req.body;
-	pool.query(
-		'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
-		[firstname, lastname, username, email, phonenumber, password],
-		(err, results) => {
-			if (err) {
-				console.log('Error when inserting user', err);
-				// TODO: add better error handling
-				res.sendStatus(400);
-			}
-			req.login(req.body, err => {
-				const { user } = req;
-				if (err) {
-					console.log(err);
+	bcrypt.genSalt(10, function(err, salt) {
+		if (err) console.log(err);
+		bcrypt.hash(password, salt, function(err, hashpassword) {
+			if (err) console.log(err);
+			pool.query(
+				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
+				[firstname, lastname, username, email, phonenumber, hashpassword],
+				(err, results) => {
+					if (err) {
+						console.log('Error when inserting user', err);
+						// TODO: add better error handling
+						res.send(400);
+					}
+					req.login(req.body, err => {
+						const { user } = req;
+						if (err) {
+							console.log(err);
+						}
+						res.json(user);
+					});
 				}
-				res.json(user);
-			});
-		}
-	);
+			);
+		});
+	});
 });
 
 app.listen(port, () => console.log(`Example app running on port ${port}!`));
