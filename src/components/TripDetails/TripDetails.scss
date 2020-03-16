@@ -1,25 +1,19 @@
 @import '../../utilities/colorPalette.scss';
+@import '../../utilities/mediaQueries.scss';
 
-// .trip-details-wrapper {
-// 	width: 100vw;
-// 	height: calc(100vh - 80px);
+.trip-details-wrapper {
+	margin-top: 90px;
+}
+.trip-details-header {
+	padding: 20px 0 10px 0;
+}
+.trip-details {
+	color: white;
+	background: $dream-blue;
 
-// 	position: absolute;
-// 	bottom: 0;
-// 	left: 0;
-
-// 	color: white;
-// }
-// .trip-details-illustration {
-// 	max-width: 150px;
-// }
-// .trip-details {
-// 	background: $dream-blue;
-
-// 	height: calc(100% - 150px);
-
-// 	border-top-right-radius: 50px;
-// 	border-top-left-radius: 50px;
-
-// 	padding: 20px;
-// }
+	padding: 30px 20px;
+}
+.trip-details-headings {
+	font-weight: bold;
+	font-size: 18px;
+}

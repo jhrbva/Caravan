@@ -34,18 +34,42 @@ export default class TripDetails extends React.Component {
 	}
 
 	render() {
+		const tripDate = this.state.date;
+		let date = tripDate.slice(0, 10);
+		let time = tripDate.slice(12, 19);
+		console.log(date);
 		return (
 			<div>
 				<Navbar />
 				<div className='trip-details-wrapper'>
-					<div className='trip-details'>
+					<div className='trip-details-header'>
 						<h1 className='header-text'>{this.state.tripName}</h1>
 						<h2 className='header-text-light'>{this.state.tripDescription}</h2>
-						<h3 className='header-text-light'>Created by @{this.state.host}</h3>
-						<h3 className='header-text-light'>When: {this.state.date}</h3>
-						<h3 className='header-text-light'>Going from {this.state.start}</h3>
-						<h3 className='header-text-light'>To {this.state.destination}</h3>
-						<h4 className='header-text-light'>Guest list</h4>
+					</div>
+					<div className='trip-details'>
+						<p>
+							<span className='trip-details-headings'>
+								You were invited by{' '}
+							</span>{' '}
+							@{this.state.host}
+						</p>
+						<p>
+							<span className='trip-details-headings'>When:</span> {date}
+						</p>
+						<p>
+							<span className='trip-details-headings'>Leaving at:</span> {time}
+						</p>
+						<p>
+							<span className='trip-details-headings'>From</span>
+							<br /> {this.state.start}
+						</p>
+						<p>
+							<span className='trip-details-headings'>To</span>
+							<br /> {this.state.destination}
+						</p>
+						<p>
+							<span className='trip-details-headings'>Guest list</span>
+						</p>
 						<ul>
 							<li>@guestA</li>
 							<li>@guestB</li>
