@@ -21,7 +21,7 @@ function App() {
 					<Route exact path='/trip'>
 						<TripForm />
 					</Route>
-					{/* invitation route should later be something like /trip/$trip-id where $ is the invitation id */}
+					{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
 					<Route exact path='/invitation'>
 						<TripDetails />
 					</Route>

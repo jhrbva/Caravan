@@ -33,11 +33,15 @@ export default class TripDetails extends React.Component {
 			});
 	}
 
+	getDateTime = () => {
+		const { date } = this.state;
+		const tripDate = date.slice(0, 10);
+		const tripTime = date.slice(12, 19);
+		return { tripDate, tripTime };
+	};
+
 	render() {
-		const tripDate = this.state.date;
-		let date = tripDate.slice(0, 10);
-		let time = tripDate.slice(12, 19);
-		console.log(date);
+		const { tripDate, tripTime } = this.getDateTime();
 		return (
 			<div>
 				<Navbar />
@@ -54,10 +58,11 @@ export default class TripDetails extends React.Component {
 							@{this.state.host}
 						</p>
 						<p>
-							<span className='trip-details-headings'>When:</span> {date}
+							<span className='trip-details-headings'>When:</span> {tripDate}
 						</p>
 						<p>
-							<span className='trip-details-headings'>Leaving at:</span> {time}
+							<span className='trip-details-headings'>Leaving at:</span>{' '}
+							{tripTime}
 						</p>
 						<p>
 							<span className='trip-details-headings'>From</span>
