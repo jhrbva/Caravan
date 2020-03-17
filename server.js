@@ -100,6 +100,22 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.post('/itineraryrequest', (req, res) => {
+	const { tripid, typeid, value, accept } = req.body;
+	pool.query(
+		'INSERT INTO itineraryrequest(tripid, typeid, value, accept) VALUES ($1, $2, $3, $4)',
+		[tripid, typeid, value, accept],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting itineraryrequest', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
