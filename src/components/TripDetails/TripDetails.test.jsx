@@ -16,11 +16,10 @@ describe('getDateTime()', () => {
 	it('gets the date and time for a trip', () => {
 		const wrapper = shallow(<TripDetails />);
 		const instance = wrapper.instance();
-		// set state date to be the mock value
 		expect(instance.state.date).toBe('');
-		instance.getDateTime();
-		// check individual values against state
-		expect(instance.tripDate).toBe('');
-		expect(instance.tripTime).toBe('');
+		instance.setState({ date: testDateTime });
+		const results = instance.getDateTime();
+		expect(results.tripDate).toBe('2020-06-01');
+		expect(results.tripTime).toBe('13:55:06');
 	});
 });
