@@ -100,6 +100,31 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.get('/members/:tripid', (req, res) => {
+	let result = [];
+	pool.query(
+		'SELECT userid, firstname, lastname FROM members NATURAL JOIN usertable WHERE tripid=$1',
+		[req.params.tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when selecting members of a specific trip', err);
+			}
+			result.push(results.rows);
+			console.log(result);
+
+			pool.query(
+				'SELECT userid, firstname, lastname FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				(err, results) => {
+					if (err) {
+						console.log('Error when selecting host id', err);
+					}
+					res.send({hostINFO: results.rows, members: result});
+				}
+			);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
