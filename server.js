@@ -100,6 +100,27 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.delete('/members', (req, res) => {
+	const { userid, tripid } = req.body;
+	console.log(userid, tripid);
+	pool.query(
+		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
+		[userid, tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting invitation of a specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
