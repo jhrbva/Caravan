@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Trip Details should match the snapshot 1`] = `
+<div>
+  <Navbar />
+  <div
+    className="trip-details-wrapper"
+  >
+    <div
+      className="trip-details-header"
+    >
+      <h1
+        className="header-text"
+      />
+      <h2
+        className="header-text-light"
+      />
+    </div>
+    <div
+      className="trip-details"
+    >
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          You were invited by
+           
+        </span>
+         
+        @
+      </p>
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          When:
+        </span>
+         
+      </p>
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          Leaving at:
+        </span>
+         
+      </p>
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          From
+        </span>
+        <br />
+         
+      </p>
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          To
+        </span>
+        <br />
+         
+      </p>
+      <p>
+        <span
+          className="trip-details-headings"
+        >
+          Guest list
+        </span>
+      </p>
+      <ul>
+        <li>
+          @guestA
+        </li>
+        <li>
+          @guestB
+        </li>
+        <li>
+          @guestC
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
