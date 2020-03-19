@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
+import SummaryCard from './components/SummaryCard/summarycard'; // testing for Dashboard
 import logo from './assets/caravan-logo.png';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
 					</Route>
 					<Route exact path='/trip'>
 						<TripForm />
+					</Route>
+					<Route exact path='/summarycard'>
+						<SummaryCard />
 					</Route>
 				</header>
 			</div>
