@@ -84,27 +84,11 @@ app.get('/invitations/:userid', (req, res) => {
 	);
 });
 
-app.get('/trip/:userid', (req, res) => {
-	pool.query(
-		'SELECT * FROM trips INNER JOIN members ON trips.tripid=members.tripid WHERE members.userid=$1',
-		[req.params.userid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting trips of a specific user', err);
-			}
-			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
-				res.send(result.rows);
-			}
-		}
-	);
-});
-
 app.post('/invitations', (req, res) => {
-	const { hostid, userid, tripid } = req.body;
+	const { host_id, user_id, trip_id } = req.body;
 	pool.query(
 		'INSERT INTO invitations(hostid, userid, tripid) VALUES ($1, $2, $3)',
-		[hostid, userid, tripid],
+		[host_id, user_id, trip_id],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting invitation', err);
@@ -112,6 +96,31 @@ app.post('/invitations', (req, res) => {
 				res.sendStatus(400);
 			}
 			res.sendStatus(201);
+		}
+	);
+});
+
+app.get('/members/:tripid', (req, res) => {
+	let result = [];
+	pool.query(
+		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
+		[req.params.tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when selecting members of a specific trip', err);
+			}
+			result.push(results.rows);
+			console.log(result);
+
+			pool.query(
+				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				(err, results) => {
+					if (err) {
+						console.log('Error when selecting host id', err);
+					}
+					res.send({host: results.rows, members: result});
+				}
+			);
 		}
 	);
 });
