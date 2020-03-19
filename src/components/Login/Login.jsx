@@ -3,7 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 
-import './Login.scss';
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
@@ -38,6 +38,7 @@ export const LoginForm = () => (
 const Login = props => {
 	return (
 		<div className='login-page-wrapper'>
+			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
 					email: '',

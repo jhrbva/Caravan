@@ -1,0 +1,19 @@
+@import '../../utilities/colorPalette.scss';
+@import '../../utilities/mediaQueries.scss';
+
+.trip-details-wrapper {
+	margin-top: 90px;
+}
+.trip-details-header {
+	padding: 20px 0 10px 0;
+}
+.trip-details {
+	color: white;
+	background: $dream-blue;
+
+	padding: 30px 20px;
+}
+.trip-details-headings {
+	font-weight: bold;
+	font-size: 18px;
+}
