@@ -103,7 +103,7 @@ app.post('/invitations', (req, res) => {
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
-		'SELECT userid, firstname, lastname FROM members NATURAL JOIN usertable WHERE tripid=$1',
+		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
 		(err, results) => {
 			if (err) {
@@ -113,14 +113,67 @@ app.get('/members/:tripid', (req, res) => {
 			console.log(result);
 
 			pool.query(
-				'SELECT userid, firstname, lastname FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
 				(err, results) => {
 					if (err) {
 						console.log('Error when selecting host id', err);
 					}
-					res.send({hostINFO: results.rows, members: result});
+					res.send({host: results.rows, members: result});
 				}
 			);
+		}
+	);
+});
+
+app.post('/invitations/accept', (req, res) => {
+	const { userid, tripid, accepted } = req.body;
+	pool.query(
+		'UPDATE invitations SET accepted=$1 WHERE userid=$2 AND tripid=$3;',
+		[accepted, userid, tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
+app.post('/itineraryrequest', (req, res) => {
+	const { tripid, typeid, value, accept } = req.body;
+	pool.query(
+		'INSERT INTO itineraryrequest(tripid, typeid, value, accept) VALUES ($1, $2, $3, $4)',
+		[tripid, typeid, value, accept],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting itineraryrequest', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
+app.delete('/members', (req, res) => {
+	const { userid, tripid } = req.body;
+	console.log(userid, tripid);
+	pool.query(
+		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
+		[userid, tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting invitation of a specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
 		}
 	);
 });
