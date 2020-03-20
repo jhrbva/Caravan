@@ -38,8 +38,5 @@ exports[`TripInformation should match the snapshot 1`] = `
     type="text"
     validate={[Function]}
   />
-  <BigButton
-    value="Next"
-  />
 </Form>
 `;

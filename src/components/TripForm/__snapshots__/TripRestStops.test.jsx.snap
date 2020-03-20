@@ -10,11 +10,5 @@ exports[`TripRestStops should match the snapshot 1`] = `
     placeholder="Rest Stop"
     type="text"
   />
-  <BigButton
-    value="Back"
-  />
-  <BigButton
-    value="Submit"
-  />
 </Form>
 `;

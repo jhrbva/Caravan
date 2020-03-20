@@ -2,73 +2,104 @@ import React from 'react';
 import { Formik } from 'formik';
 
 import Navbar from '../Navbar/Navbar';
+import BigButton from '../BigButton/BigButton';
 import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
 
-export class TripForm extends React.Component {
+export class TripContainer extends React.Component {
+	static Page = ({ children }) => children;
+
 	constructor(props) {
 		super(props);
-		this.nextPage = this.nextPage.bind(this);
-		this.previousPage = this.previousPage.bind(this);
-		this.state = { page: 1 };
+		this.state = { page: 1, values: props.initialValues };
 	}
 
-	nextPage(evt) {
-		evt.preventDefault();
+	nextPage = event => {
+		event.preventDefault();
 		this.setState({ page: this.state.page + 1 });
-	}
+	};
 
-	previousPage() {
+	previousPage = () => {
 		this.setState({ page: this.state.page - 1 });
-	}
+	};
+
+	validate = values => {
+		const activePage = React.Children.toArray(this.props.children)[
+			this.state.page
+		];
+		return activePage.props.validate ? activePage.props.validate(values) : {};
+	};
 
 	onSubmit() {
 		console.log('submitted');
 	}
 
 	render() {
+		const { children } = this.props;
+		const { page, values } = this.state;
+		const activePage = React.Children.toArray(children)[page];
+
 		return (
-			<div>
+			<>
 				<Navbar />
 				<h1 className='header-text'>New Trip</h1>
 				<Formik
-					initialValues={{
-						start_location: '',
-						destination: '',
-						start_date: '',
-						start_time: '',
-						guests: '',
-						rest_stops: '',
-					}}
+					initialValues={values}
+					validate={this.validate}
 					onSubmit={values => {
 						// same shape as initial values
 						console.log(values);
 					}}
 				>
-					{() => (
-						<>
-							{this.state.page === 1 && (
-								<TripInformation handleSubmit={this.nextPage} />
+					<>
+						{activePage}
+						<div className='tripFormBtns'>
+							{page === 1 && (
+								<BigButton value={'Next'} onClick={this.nextPage} />
 							)}
-							{this.state.page === 2 && (
-								<TripGuests
-									handleSubmit={this.nextPage}
-									handleBack={this.previousPage}
-								/>
+							{page === 2 && (
+								<>
+									<BigButton value={'Previous'} onClick={this.previousPage} />
+									<BigButton value={'Next'} onClick={this.nextPage} />
+								</>
 							)}
-							{this.state.page === 3 && (
-								<TripRestStops
-									handleSubmit={this.onSubmit}
-									handleBack={this.previousPage}
-								/>
+							{page === 3 && (
+								<>
+									<BigButton value={'Previous'} onClick={this.previousPage} />
+									<BigButton value={'Submit'} onClick={this.onSubmit} />
+								</>
 							)}
-						</>
-					)}
+						</div>
+					</>
 				</Formik>
-			</div>
+			</>
 		);
 	}
 }
+const TripForm = () => (
+	<>
+		<TripContainer
+			initialValues={{
+				start_location: '',
+				destination: '',
+				start_date: '',
+				start_time: '',
+				guests: '',
+				rest_stops: '',
+			}}
+		>
+			<TripContainer.Page>
+				<TripInformation />
+			</TripContainer.Page>
+			<TripContainer.Page>
+				<TripGuests />
+			</TripContainer.Page>
+			<TripContainer.Page>
+				<TripRestStops />
+			</TripContainer.Page>
+		</TripContainer>
+	</>
+);
 
 export default TripForm;
