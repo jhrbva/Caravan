@@ -178,6 +178,22 @@ app.delete('/members', (req, res) => {
 	);
 });
 
+app.post('/trip', (req, res) => {
+	const { host_id, start_location, destination, trip_date, trip_description, trip_title } = req.body;
+	pool.query(
+		'INSERT INTO trips(hostid, startLocation, destination, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6)',
+		[host_id, start_location, destination, trip_date, trip_description, trip_title],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting new trip', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
