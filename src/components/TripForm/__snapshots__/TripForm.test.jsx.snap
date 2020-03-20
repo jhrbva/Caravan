@@ -2,6 +2,12 @@
 
 exports[`TripForm should match the snapshot 1`] = `
 <div>
+  <Navbar />
+  <h1
+    className="header-text"
+  >
+    New Trip
+  </h1>
   <Formik
     initialValues={
       Object {

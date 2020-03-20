@@ -1,0 +1,42 @@
+@import '../src/utilities/colorPalette.scss';
+
+.App {
+	text-align: center;
+}
+.app-wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+}
+
+/* ---------- Logo ----------- */
+.caravan-logo {
+	height: 100px;
+	pointer-events: none;
+}
+
+/* ---------- Typography ----------- */
+body {
+	font-family: 'Open-Sans', sans-serif;
+}
+p {
+	text-align: left;
+	font-size: 20px;
+}
+li {
+	text-align: left;
+	font-size: 20px;
+}
+.header-text {
+	font-family: 'Baloo 2', sans-serif;
+	font-weight: 700;
+	font-size: 35px;
+}
+.header-text-light {
+	font-family: 'Baloo 2', sans-serif;
+	font-weight: 400;
+	font-size: 30px;
+}

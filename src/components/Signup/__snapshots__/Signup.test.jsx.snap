@@ -2,6 +2,11 @@
 
 exports[`Signup should match the snapshot 1`] = `
 <div>
+  <img
+    alt="Caravan logo"
+    className="caravan-logo"
+    src="caravan-logo-blueOnWhite.png"
+  />
   <Formik
     initialValues={
       Object {

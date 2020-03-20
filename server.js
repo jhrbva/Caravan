@@ -85,10 +85,10 @@ app.get('/invitations/:userid', (req, res) => {
 });
 
 app.post('/invitations', (req, res) => {
-	const { hostid, userid, tripid } = req.body;
+	const { host_id, user_id, trip_id } = req.body;
 	pool.query(
 		'INSERT INTO invitations(hostid, userid, tripid) VALUES ($1, $2, $3)',
-		[hostid, userid, tripid],
+		[host_id, user_id, trip_id],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting invitation', err);
@@ -96,6 +96,31 @@ app.post('/invitations', (req, res) => {
 				res.sendStatus(400);
 			}
 			res.sendStatus(201);
+		}
+	);
+});
+
+app.get('/members/:tripid', (req, res) => {
+	let result = [];
+	pool.query(
+		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
+		[req.params.tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when selecting members of a specific trip', err);
+			}
+			result.push(results.rows);
+			console.log(result);
+
+			pool.query(
+				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				(err, results) => {
+					if (err) {
+						console.log('Error when selecting host id', err);
+					}
+					res.send({host: results.rows, members: result});
+				}
+			);
 		}
 	);
 });
@@ -108,6 +133,22 @@ app.post('/invitations/accept', (req, res) => {
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
+app.post('/itineraryrequest', (req, res) => {
+	const { tripid, typeid, value, accept } = req.body;
+	pool.query(
+		'INSERT INTO itineraryrequest(tripid, typeid, value, accept) VALUES ($1, $2, $3, $4)',
+		[tripid, typeid, value, accept],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting itineraryrequest', err);
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
