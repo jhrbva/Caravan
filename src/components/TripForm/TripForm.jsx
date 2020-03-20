@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
-import '../../utilities/fonts.scss';
+
+import Navbar from '../Navbar/Navbar';
 import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
@@ -29,6 +30,8 @@ export class TripForm extends React.Component {
 	render() {
 		return (
 			<div>
+				<Navbar />
+				<h1 className='header-text'>New Trip</h1>
 				<Formik
 					initialValues={{
 						start_location: '',

@@ -3,7 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 
-import '../../utilities/fonts.scss';
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
 import {
@@ -79,6 +79,7 @@ export const SignupForm = () => (
 export const Signup = props => {
 	return (
 		<div>
+			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
 					firstname: '',
