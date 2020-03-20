@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Toast from 'react-bootstrap/Toast';
 import Button from 'react-bootstrap/Button';
-import './summarycard.css';
+import './SummaryCard.css';
 
 const TripCard = ({ children }) => {
   const [show, toggleShow] = useState(true);
