@@ -10,6 +10,11 @@ import TripDetails from './components/TripDetails/TripDetails';
 function App() {
 	return (
 		<Router>
+			<p>
+				This is just a test for notifications to PR reviwers.
+				<br />
+				This branch will not me merged to master!
+			</p>
 			<div className='App'>
 				<header className='app-wrapper'>
 					<Route exact path='/'>
