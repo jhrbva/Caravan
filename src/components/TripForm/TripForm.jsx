@@ -6,7 +6,7 @@ import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
 
-class TripContainer extends React.Component {
+export class TripContainer extends React.Component {
 	static Page = ({ children }) => children;
 
 	constructor(props) {

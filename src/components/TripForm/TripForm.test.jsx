@@ -10,13 +10,13 @@ describe('TripForm', () => {
 });
 describe('NextPage()', () => {
 	it('changes pages from 1 to 2 then 3', () => {
-		const wrapper = shallow(<TripContainer />);
+		const wrapper = shallow(<TripContainer children={[1, 2, 3]} />);
 		const instance = wrapper.instance();
+		expect(instance.state.page).toBe(0);
+		instance.nextPage({ preventDefault: jest.fn() });
 		expect(instance.state.page).toBe(1);
 		instance.nextPage({ preventDefault: jest.fn() });
 		expect(instance.state.page).toBe(2);
-		instance.nextPage({ preventDefault: jest.fn() });
-		expect(instance.state.page).toBe(3);
 	});
 });
 describe('PreviousPage()', () => {
