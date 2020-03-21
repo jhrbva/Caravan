@@ -1,10 +1,10 @@
-# What is this?
+# Description
 Describe this PR in a couple of sentences
 
 # Related Issues
 https://caravanning.atlassian.net/browse/CA-XX
 
-# How can reviewers test this PR?
+# Testing
 Add a step-by-step list on how to test this PR, like this:
 - [ ] Run the server
 - [ ] Click on *It's my birthday!*
