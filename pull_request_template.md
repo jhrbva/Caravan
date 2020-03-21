@@ -1,8 +1,8 @@
 # What is this?
 Describe this PR in a couple of sentences
 
-# Are there any related issues?
-Link related issues
+# Related Issues
+https://caravanning.atlassian.net/browse/CA-XX
 
 # How can reviewers test this PR?
 Add a step-by-step list on how to test this PR, like this:
