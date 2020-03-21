@@ -4,7 +4,7 @@ import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 
 const TripRestStops = () => (
-	<Form>
+	<>
 		<Field
 			icon='location_on'
 			type='text'
@@ -13,7 +13,7 @@ const TripRestStops = () => (
 			autoFocus={true}
 			component={Input}
 		/>
-	</Form>
+	</>
 );
 
 export default TripRestStops;
