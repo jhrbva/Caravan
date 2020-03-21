@@ -12,7 +12,7 @@ export class TripContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { page: 1, values: props.initialValues };
+		this.state = { page: 0, values: props.initialValues };
 	}
 
 	nextPage = event => {
@@ -55,16 +55,16 @@ export class TripContainer extends React.Component {
 					<>
 						{activePage}
 						<div className='tripFormBtns'>
-							{page === 1 && (
+							{page === 0 && (
 								<BigButton value={'Next'} onClick={this.nextPage} />
 							)}
-							{page === 2 && (
+							{page === 1 && (
 								<>
 									<BigButton value={'Previous'} onClick={this.previousPage} />
 									<BigButton value={'Next'} onClick={this.nextPage} />
 								</>
 							)}
-							{page === 3 && (
+							{page === 2 && (
 								<>
 									<BigButton value={'Previous'} onClick={this.previousPage} />
 									<BigButton value={'Submit'} onClick={this.onSubmit} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Form } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import { required } from '../../utilities/formValidation';
@@ -14,6 +14,11 @@ const TripInformation = () => (
 			validate={required}
 			autoFocus={true}
 			component={Input}
+		/>
+		<ErrorMessage
+			name='start_location'
+			component='div'
+			className='field-error'
 		/>
 		<Field
 			icon='location_city'
