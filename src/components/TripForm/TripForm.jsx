@@ -28,7 +28,7 @@ export class TripContainer extends React.Component {
 			page: Math.max(state.page - 1, 0),
 		}));
 
-	onSubmit = (values, bag) => {
+	handleSubmit = (values, bag) => {
 		const { children, onSubmit } = this.props;
 		const { page } = this.state;
 		const isLastPage = page === React.Children.count(children) - 1;
