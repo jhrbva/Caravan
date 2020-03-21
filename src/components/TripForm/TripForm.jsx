@@ -1,28 +1,32 @@
 import React from 'react';
 import { Formik } from 'formik';
 
-import Navbar from '../Navbar/Navbar';
 import BigButton from '../BigButton/BigButton';
 import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
 
-export class TripContainer extends React.Component {
+class TripContainer extends React.Component {
 	static Page = ({ children }) => children;
 
 	constructor(props) {
 		super(props);
-		this.state = { page: 0, values: props.initialValues };
+		this.state = {
+			page: 0,
+			values: props.initialValues,
+		};
 	}
 
-	nextPage = event => {
-		event.preventDefault();
-		this.setState({ page: this.state.page + 1 });
-	};
+	next = values =>
+		this.setState(state => ({
+			page: Math.min(state.page + 1, this.props.children.length - 1),
+			values,
+		}));
 
-	previousPage = () => {
-		this.setState({ page: this.state.page - 1 });
-	};
+	previous = () =>
+		this.setState(state => ({
+			page: Math.max(state.page - 1, 0),
+		}));
 
 	validate = values => {
 		const activePage = React.Children.toArray(this.props.children)[
@@ -31,52 +35,58 @@ export class TripContainer extends React.Component {
 		return activePage.props.validate ? activePage.props.validate(values) : {};
 	};
 
-	onSubmit() {
-		console.log('submitted');
-	}
+	handleSubmit = (values, bag) => {
+		const { children, onSubmit } = this.props;
+		const { page } = this.state;
+		const isLastPage = page === React.Children.count(children) - 1;
+		if (isLastPage) {
+			return onSubmit(values, bag);
+		} else {
+			bag.setTouched({});
+			bag.setSubmitting(false);
+			this.next(values);
+		}
+	};
 
 	render() {
 		const { children } = this.props;
 		const { page, values } = this.state;
 		const activePage = React.Children.toArray(children)[page];
-
+		const isLastPage = page === React.Children.count(children) - 1;
 		return (
-			<>
-				<Navbar />
-				<h1 className='header-text'>New Trip</h1>
-				<Formik
-					initialValues={values}
-					validate={this.validate}
-					onSubmit={values => {
-						// same shape as initial values
-						console.log(values);
-					}}
-				>
-					<>
+			<Formik
+				initialValues={values}
+				enableReinitialize={false}
+				validate={this.validate}
+				onSubmit={this.handleSubmit}
+				render={({ values, handleSubmit, isSubmitting, handleReset }) => (
+					<form onSubmit={handleSubmit}>
 						{activePage}
-						<div className='tripFormBtns'>
-							{page === 0 && (
-								<BigButton value={'Next'} onClick={this.nextPage} />
+						<div className='buttons'>
+							{page > 0 && (
+								<BigButton
+									type='button'
+									onClick={this.previous}
+									value='Previous'
+								/>
 							)}
-							{page === 1 && (
-								<>
-									<BigButton value={'Previous'} onClick={this.previousPage} />
-									<BigButton value={'Next'} onClick={this.nextPage} />
-								</>
-							)}
-							{page === 2 && (
-								<>
-									<BigButton value={'Previous'} onClick={this.previousPage} />
-									<BigButton value={'Submit'} onClick={this.onSubmit} />
-								</>
+
+							{!isLastPage && <BigButton type='submit' value='Next' />}
+							{isLastPage && (
+								<BigButton
+									type='submit'
+									value='Submit'
+									disabled={isSubmitting}
+								/>
 							)}
 						</div>
-					</>
-				</Formik>
-			</>
+					</form>
+				)}
+			/>
 		);
 	}
 }
+
 const TripForm = () => (
 	<>
 		<TripContainer
