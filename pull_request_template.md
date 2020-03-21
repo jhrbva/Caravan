@@ -2,6 +2,7 @@
 Describe this PR in a couple of sentences
 
 # Related Issues
+Link any related issues, like this:
 https://caravanning.atlassian.net/browse/CA-XX
 
 # Testing
