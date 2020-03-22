@@ -100,6 +100,22 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.post('/restStop', (req, res) => {
+	const { trip_id, req_location, loc_long, loc_lat } = req.body;
+	pool.query(
+		'INSERT INTO reststop(tripid, location, loc_long, loc_lat) VALUES ($1, $2, $3, $4)',
+		[trip_id, req_location, loc_long, loc_lat],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting invitation', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
