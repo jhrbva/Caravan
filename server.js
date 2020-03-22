@@ -107,7 +107,7 @@ app.post('/restStop', (req, res) => {
 		[trip_id, req_location, loc_long, loc_lat],
 		(err, results) => {
 			if (err) {
-				console.log('Error when inserting invitation', err);
+				console.log('Error when inserting rest stop for a trip', err);
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
