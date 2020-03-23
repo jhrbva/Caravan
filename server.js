@@ -100,11 +100,11 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
-app.post('/restStop', (req, res) => {
-	const { trip_id, req_location, loc_long, loc_lat } = req.body;
+app.post('/reststop', (req, res) => {
+	const { trip_id, location, loc_long, loc_lat } = req.body;
 	pool.query(
 		'INSERT INTO reststop(tripid, location, loc_long, loc_lat) VALUES ($1, $2, $3, $4)',
-		[trip_id, req_location, loc_long, loc_lat],
+		[trip_id, location, loc_long, loc_lat],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting rest stop for a trip', err);
