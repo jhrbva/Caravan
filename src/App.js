@@ -7,6 +7,7 @@ import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
 import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
+import Map from './components/Map/Map';
 
 function App() {
 	return (
@@ -28,6 +29,9 @@ function App() {
 					</Route>
 					<Route exact path='/dashboard'>
 						<Dashboard />
+					</Route>
+					<Route exact path='/map'>
+						<Map />
 					</Route>
 				</header>
 			</div>
