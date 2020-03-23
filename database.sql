@@ -39,9 +39,14 @@ CREATE TABLE trips(
   tripID SERIAL PRIMARY KEY,
   hostID INT NOT NULL,
   startLocation VARCHAR(255) NOT NULL,
+  start_long VARCHAR(265) NOT NULL,
+  start_lat VARCHAR(265) NOT NULL,
   destination VARCHAR(255) NOT NULL,
+  des_long VARCHAR(265) NOT NULL,
+  des_lat VARCHAR(265) NOT NULL,
   tripDate TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
   trip_description VARCHAR(500),
+  trip_title VARCHAR(255),
   FOREIGN KEY (hostID) REFERENCES userTable(userID)
 );
 
@@ -56,7 +61,10 @@ CREATE TABLE members(
 -- rest stop table
 CREATE TABLE restStop(
   tripID INT,
-  location VARCHAR(255)
+  location VARCHAR(255) NOT NULL,
+  loc_long VARCHAR(255) NOT NULL,
+  loc_lat VARCHAR(255) NOT NULL,
+  FOREIGN KEY (tripID) REFERENCES trips(tripID)
 );
 
 -- Request type table
