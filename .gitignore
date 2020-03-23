@@ -2,6 +2,7 @@
 
 # env variables
 secrets.js
+src/components/Map/apikey.js
 
 # dependencies
 /node_modules
