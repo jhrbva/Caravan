@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
 import TripDetails from './components/TripDetails/TripDetails';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
 	return (
@@ -24,6 +25,9 @@ function App() {
 					{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
 					<Route exact path='/invitation'>
 						<TripDetails />
+					</Route>
+					<Route exact path='/dashboard'>
+						<Dashboard />
 					</Route>
 				</header>
 			</div>
