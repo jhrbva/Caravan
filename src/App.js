@@ -5,8 +5,7 @@ import './App.scss';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
-import SummaryCard from './components/SummaryCard/summarycard'; // testing for Dashboard
-import logo from './assets/caravan-logo.png';
+import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for Dashboard
 import TripDetails from './components/TripDetails/TripDetails';
 
 function App() {
@@ -25,6 +24,7 @@ function App() {
 					</Route>
 					<Route exact path='/summarycard'>
 						<SummaryCard />
+					</Route>
 					{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
 					<Route exact path='/invitation'>
 						<TripDetails />
