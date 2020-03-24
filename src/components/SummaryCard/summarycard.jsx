@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Toast from 'react-bootstrap/Toast';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './SummaryCard.css';
 
@@ -13,12 +13,14 @@ export default class SummaryCard extends React.Component {
       this.state = {
         tripName: '',
         host: '',
+        destination: '',
         show: false
       };
     }
 
     componentDidMount() {
       // TO DO: add redux to dynamically import user id
+      console.log("componentDidMount");
       fetch('/invitations/3')
         .then(response => {
           return response.json();
@@ -31,6 +33,7 @@ export default class SummaryCard extends React.Component {
           this.setState({
             host: data[0].username
           });
+          this.setState({ destination: data[0].destination });
         });
     }
 
@@ -39,40 +42,18 @@ export default class SummaryCard extends React.Component {
      };
 
     render() {
-      const {show} = this.state;
-      return ( <
-        > {
-          !show && < Button onClick = {
-            () => {
-              this.toggleShow(true);
-            }
-          }
-          style = {
-            {
-              backgroundColor: "red",
-              color: "white"
-            }
-          } > < b > Cancel ? < /b></Button >
-        } <
-        Toast show = {
-          show
-        }
-        onClose = {
-          () => this.toggleShow(false)
-        } >
-        <
-        Toast.Header >
-        <
-        strong className = "mr-auto" > Trip Name < /strong> <
-        /Toast.Header> <
-        Toast.Body >
-        <
-        p > {this.state.host} < /p> <
-        p > Trip Location < /p> <
-        a href = "" > More Info < /a> <
-        /Toast.Body> <
-        /Toast> <
-        />
+      const {show, tripName, host, destination} = this.state;
+
+      return (
+        <Card style={{ width: '18rem' }}>
+          <Card.Body>
+              <Card.Title>{tripName}</Card.Title>
+              <Card.Text>
+                <p>{host}</p>
+                <p>{destination}</p>
+              </Card.Text>
+          </Card.Body>
+        </Card>
       );
     };
   }
