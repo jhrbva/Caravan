@@ -7,11 +7,10 @@ import {
     GoogleMap,
     DirectionsRenderer,
 } from 'react-google-maps';
-import apikey from './apikey'
 
 const Map = compose(
     withProps({
-        googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apikey}&v=3.exp&libraries=geometry,drawing,places`,
+        googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `100vh`, width: `1000px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
@@ -22,6 +21,7 @@ const Map = compose(
         componentDidMount() {
             const DirectionsService = new google.maps.DirectionsService();
 
+            console.log(process.env.REACT_APP_API_KEY);
             DirectionsService.route(
                 {
                     origin: new google.maps.LatLng(41.85073, -87.65126),
