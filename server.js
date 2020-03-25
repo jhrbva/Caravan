@@ -100,6 +100,22 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.post('/reststop', (req, res) => {
+	const { trip_id, location, loc_long, loc_lat } = req.body;
+	pool.query(
+		'INSERT INTO reststop(tripid, location, loc_long, loc_lat) VALUES ($1, $2, $3, $4)',
+		[trip_id, location, loc_long, loc_lat],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting rest stop for a trip', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
@@ -179,10 +195,10 @@ app.delete('/members', (req, res) => {
 });
 
 app.post('/trip', (req, res) => {
-	const { host_id, start_location, destination, trip_date, trip_description, trip_title } = req.body;
+	const { host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title } = req.body;
 	pool.query(
-		'INSERT INTO trips(hostid, startLocation, destination, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6)',
-		[host_id, start_location, destination, trip_date, trip_description, trip_title],
+		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+		[host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting new trip', err);
