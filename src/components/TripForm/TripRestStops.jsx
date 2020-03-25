@@ -3,10 +3,12 @@ import { Field, Form } from 'formik';
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
 const TripRestStops = () => (
 	<>
 		<Field
-			icon='location_on'
+			icon={<LocationOnIcon />}
 			type='text'
 			name='rest_stops'
 			placeholder='Rest Stop'

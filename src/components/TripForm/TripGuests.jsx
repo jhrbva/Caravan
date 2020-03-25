@@ -4,10 +4,12 @@ import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import { required } from '../../utilities/formValidation';
 
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+
 const TripGuests = () => (
 	<>
 		<Field
-			icon='group_add'
+			icon={<GroupAddIcon />}
 			type='text'
 			name='guests'
 			placeholder='Guest'
