@@ -210,6 +210,21 @@ app.post('/trip', (req, res) => {
 	);
 });
 
+app.get('/trip/:tripid', (req, res) => {
+	pool.query(
+		'SELECT trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting trip information of a specific trip', err);
+			}
+			if (result.rows.length > 0) {
+				res.json(result.rows[0]);
+			}
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
