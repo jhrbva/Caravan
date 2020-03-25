@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TripRestStops should match the snapshot 1`] = `
-<Form>
+<Fragment>
   <Field
     autoFocus={true}
     component={[Function]}
@@ -10,11 +10,5 @@ exports[`TripRestStops should match the snapshot 1`] = `
     placeholder="Rest Stop"
     type="text"
   />
-  <BigButton
-    value="Back"
-  />
-  <BigButton
-    value="Submit"
-  />
-</Form>
+</Fragment>
 `;
