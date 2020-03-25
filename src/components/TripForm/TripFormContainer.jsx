@@ -1,9 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import { Formik } from 'formik';
+import { withRouter } from 'react-router';
 
 import BigButton from '../BigButton/BigButton';
 
-export default class TripFormContainer extends React.Component {
+class TripFormContainer extends React.Component {
 	static Page = ({ children }) => children;
 
 	constructor(props) {
@@ -25,12 +27,41 @@ export default class TripFormContainer extends React.Component {
 			page: Math.max(state.page - 1, 0),
 		}));
 
+	onSubmit = (values, bag) => {
+		const { history } = this.props;
+		const {
+			start_location,
+			destination,
+			start_date,
+			start_time,
+			guests,
+			rest_stops,
+		} = values;
+		console.log('in onSubmit', values, bag);
+		axios
+			.post('/trip', {
+				host_id: 2,
+				start_location,
+				destination,
+				trip_date: `${start_date}${start_date}`,
+				trip_description: '',
+				trip_title: '',
+			})
+			.then(function(response) {
+				console.log(response);
+				history.push('/dashboard');
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+	};
+
 	handleSubmit = (values, bag) => {
-		const { children, onSubmit } = this.props;
+		const { children } = this.props;
 		const { page } = this.state;
 		const isLastPage = page === React.Children.count(children) - 1;
 		if (isLastPage) {
-			return onSubmit(values, bag);
+			return this.onSubmit(values, bag);
 		} else {
 			bag.setTouched({});
 			bag.setSubmitting(false);
@@ -75,3 +106,5 @@ export default class TripFormContainer extends React.Component {
 		);
 	}
 }
+
+export default withRouter(TripFormContainer);
