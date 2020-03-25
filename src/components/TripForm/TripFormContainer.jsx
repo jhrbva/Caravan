@@ -44,8 +44,8 @@ class TripFormContainer extends React.Component {
 				start_location,
 				destination,
 				trip_date: `${start_date}${start_date}`,
-				trip_description: '',
-				trip_title: '',
+				trip_description,
+				trip_title,
 			})
 			.then(function(response) {
 				console.log(response);
