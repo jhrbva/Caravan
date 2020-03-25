@@ -203,8 +203,7 @@ app.get('/trip/:tripid', (req, res) => {
 				console.log('Error when selecting trip information of a specific trip', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
-				res.send(result.rows);
+				res.json(result.rows[0]);
 			}
 		}
 	);
