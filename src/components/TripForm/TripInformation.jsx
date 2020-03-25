@@ -7,6 +7,24 @@ import { required } from '../../utilities/formValidation';
 const TripInformation = () => (
 	<>
 		<Field
+			icon='title'
+			type='text'
+			name='trip_title'
+			placeholder='Trip Title'
+			validate={required}
+			autoFocus={true}
+			component={Input}
+		/>
+		<Field
+			icon='description'
+			type='text'
+			name='trip_description'
+			placeholder='Description'
+			validate={required}
+			autoFocus={true}
+			component={Input}
+		/>
+		<Field
 			icon='trip_origin'
 			type='text'
 			name='start_location'

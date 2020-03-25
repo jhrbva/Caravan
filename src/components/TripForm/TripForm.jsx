@@ -9,6 +9,8 @@ const TripForm = () => (
 	<>
 		<TripFormContainer
 			initialValues={{
+				trip_title: '',
+				trip_description: '',
 				start_location: '',
 				destination: '',
 				start_date: '',
