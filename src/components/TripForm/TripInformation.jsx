@@ -4,10 +4,17 @@ import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
 import { required } from '../../utilities/formValidation';
 
+import TitleIcon from '@material-ui/icons/Title';
+import DescriptionIcon from '@material-ui/icons/Description';
+import TripOriginIcon from '@material-ui/icons/TripOrigin';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import EventIcon from '@material-ui/icons/Event';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+
 const TripInformation = () => (
 	<>
 		<Field
-			icon='title'
+			icon={<TitleIcon />}
 			type='text'
 			name='trip_title'
 			placeholder='Trip Title'
@@ -16,7 +23,7 @@ const TripInformation = () => (
 			component={Input}
 		/>
 		<Field
-			icon='description'
+			icon={<DescriptionIcon />}
 			type='text'
 			name='trip_description'
 			placeholder='Description'
@@ -25,7 +32,7 @@ const TripInformation = () => (
 			component={Input}
 		/>
 		<Field
-			icon='trip_origin'
+			icon={<TripOriginIcon />}
 			type='text'
 			name='start_location'
 			placeholder='Start Location'
@@ -34,7 +41,7 @@ const TripInformation = () => (
 			component={Input}
 		/>
 		<Field
-			icon='location_city'
+			icon={<LocationCityIcon />}
 			type='text'
 			name='destination'
 			placeholder='Destination'
@@ -43,7 +50,7 @@ const TripInformation = () => (
 			component={Input}
 		/>
 		<Field
-			icon='event'
+			icon={<EventIcon />}
 			type='text'
 			name='start_date'
 			placeholder='Date'
@@ -52,7 +59,7 @@ const TripInformation = () => (
 			component={Input}
 		/>
 		<Field
-			icon='schedule'
+			icon={<ScheduleIcon />}
 			type='text'
 			name='start_time'
 			placeholder='Time'

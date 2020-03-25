@@ -36,6 +36,8 @@ class TripFormContainer extends React.Component {
 			start_time,
 			guests,
 			rest_stops,
+			trip_description,
+			trip_title,
 		} = values;
 		console.log('in onSubmit', values, bag);
 		axios
@@ -43,7 +45,7 @@ class TripFormContainer extends React.Component {
 				host_id: 2,
 				start_location,
 				destination,
-				trip_date: `${start_date}${start_date}`,
+				trip_date: `${start_date} ${start_time}`,
 				trip_description,
 				trip_title,
 			})
