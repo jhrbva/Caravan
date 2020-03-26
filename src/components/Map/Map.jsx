@@ -6,7 +6,9 @@ import {
     withGoogleMap,
     GoogleMap,
     DirectionsRenderer,
+    Marker,
 } from 'react-google-maps';
+import { geolocated } from "react-geolocated";
 
 const Map = compose(
     withProps({
@@ -17,14 +19,13 @@ const Map = compose(
     }),
     withScriptjs,
     withGoogleMap,
+    geolocated(),
     lifecycle({
         componentDidMount() {
             const DirectionsService = new google.maps.DirectionsService();
-
-            console.log(process.env.REACT_APP_API_KEY);
             DirectionsService.route(
                 {
-                    origin: new google.maps.LatLng(41.85073, -87.65126),
+                    origin: new google.maps.LatLng(40.604279, -74.400543),
                     destination: new google.maps.LatLng(41.85258, -87.65141),
                     travelMode: google.maps.TravelMode.DRIVING,
                 },
@@ -40,13 +41,15 @@ const Map = compose(
             );
         },
     })
-)(props => (
+)(props => {
+    return(
     <GoogleMap
-        defaultZoom={7}
+        defaultZoom={2}
         defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
+        {props.coords &&<Marker position={{ lat: props.coords.latitude, lng: props.coords.longitude }} />}
     </GoogleMap>
-));
+)});
 
 export default Map;
