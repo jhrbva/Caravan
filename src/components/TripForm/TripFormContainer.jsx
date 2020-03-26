@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 
 import BigButton from '../BigButton/BigButton';
 
-class TripFormContainer extends React.Component {
+export class TripFormContainer extends React.Component {
 	static Page = ({ children }) => children;
 
 	constructor(props) {

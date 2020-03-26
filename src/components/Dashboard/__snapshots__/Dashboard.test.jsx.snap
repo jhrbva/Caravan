@@ -2,6 +2,20 @@
 
 exports[`Dashboard should match the snapshot 1`] = `
 <Fragment>
-  Dashboard
+  <h1>
+    Dashboard
+  </h1>
+  <Link
+    to="/trip"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      type="button"
+      variant="success"
+    >
+      New Trip +
+    </Button>
+  </Link>
 </Fragment>
 `;

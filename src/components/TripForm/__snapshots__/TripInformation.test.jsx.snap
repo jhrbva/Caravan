@@ -5,7 +5,25 @@ exports[`TripInformation should match the snapshot 1`] = `
   <Field
     autoFocus={true}
     component={[Function]}
-    icon="trip_origin"
+    icon={<UNDEFINED />}
+    name="trip_title"
+    placeholder="Trip Title"
+    type="text"
+    validate={[Function]}
+  />
+  <Field
+    autoFocus={true}
+    component={[Function]}
+    icon={<UNDEFINED />}
+    name="trip_description"
+    placeholder="Description"
+    type="text"
+    validate={[Function]}
+  />
+  <Field
+    autoFocus={true}
+    component={[Function]}
+    icon={<UNDEFINED />}
     name="start_location"
     placeholder="Start Location"
     type="text"
@@ -14,7 +32,7 @@ exports[`TripInformation should match the snapshot 1`] = `
   <Field
     autoFocus={false}
     component={[Function]}
-    icon="location_city"
+    icon={<UNDEFINED />}
     name="destination"
     placeholder="Destination"
     type="text"
@@ -23,7 +41,7 @@ exports[`TripInformation should match the snapshot 1`] = `
   <Field
     autoFocus={false}
     component={[Function]}
-    icon="event"
+    icon={<UNDEFINED />}
     name="start_date"
     placeholder="Date"
     type="text"
@@ -32,7 +50,7 @@ exports[`TripInformation should match the snapshot 1`] = `
   <Field
     autoFocus={false}
     component={[Function]}
-    icon="schedule"
+    icon={<UNDEFINED />}
     name="start_time"
     placeholder="Time"
     type="text"
