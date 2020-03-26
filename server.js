@@ -116,6 +116,22 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
@@ -129,12 +145,14 @@ app.get('/members/:tripid', (req, res) => {
 			console.log(result);
 
 			pool.query(
-				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
+					req.params.tripid +
+					')',
 				(err, results) => {
 					if (err) {
 						console.log('Error when selecting host id', err);
 					}
-					res.send({host: results.rows, members: result});
+					res.send({ host: results.rows, members: result });
 				}
 			);
 		}
@@ -195,10 +213,32 @@ app.delete('/members', (req, res) => {
 });
 
 app.post('/trip', (req, res) => {
-	const { host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title } = req.body;
+	const {
+		host_id,
+		start_location,
+		start_long,
+		start_lat,
+		destination,
+		dest_long,
+		dest_lat,
+		trip_date,
+		trip_description,
+		trip_title,
+	} = req.body;
 	pool.query(
 		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
-		[host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title],
+		[
+			host_id,
+			start_location,
+			start_long,
+			start_lat,
+			destination,
+			dest_long,
+			dest_lat,
+			trip_date,
+			trip_description,
+			trip_title,
+		],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting new trip', err);
@@ -216,7 +256,10 @@ app.get('/trip/:tripid', (req, res) => {
 		[req.params.tripid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting trip information of a specific trip', err);
+				console.log(
+					'Error when selecting trip information of a specific trip',
+					err
+				);
 			}
 			if (result.rows.length > 0) {
 				res.json(result.rows[0]);
