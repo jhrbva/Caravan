@@ -5,6 +5,7 @@ import './App.scss';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
+import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for Dashboard
 import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 
@@ -21,6 +22,9 @@ function App() {
 					</Route>
 					<Route exact path='/trip'>
 						<TripForm />
+					</Route>
+					<Route exact path='/summarycard'>
+						<SummaryCard />
 					</Route>
 					{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
 					<Route exact path='/invitation'>
