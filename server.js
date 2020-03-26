@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { Pool } = require('pg');
@@ -7,14 +5,15 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const express = require('express'); // grab express module installed
 const app = express(); // created an app using express module
+const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 
 const port = 8080;
 
 const pool = new Pool({
-	user: process.env.REACT_APP_DB_USER,
-	host: process.env.REACT_APP_DB_HOST,
-	database: process.env.REACT_APP_DB_NAME,
-	password: process.env.REACT_APP_DB_PASSWORD,
+	user: DB_USER,
+	host: DB_HOST,
+	database: DB_NAME,
+	password: DB_PASSWORD,
 	port: 5432,
 });
 
