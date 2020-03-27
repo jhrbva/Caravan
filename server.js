@@ -232,7 +232,7 @@ app.get('/trips/:userid', (req, res) => {
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting trip information of a specific trip', err);
+				console.log('Error when selecting trip for a specific user that they host', err);
 			}
 			tripsHosted.push(result.rows);
 
@@ -240,7 +240,7 @@ app.get('/trips/:userid', (req, res) => {
 				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
 				(err, result) => {
 					if (err) {
-						console.log('Error when selecting host id', err);
+						console.log('Error when selecting trip for a user that they are a memeber of', err);
 					}
 					console.log(result);
 					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
