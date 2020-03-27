@@ -8,7 +8,7 @@ import {
     DirectionsRenderer,
     Marker,
 } from 'react-google-maps';
-import { geolocated } from 'react-geolocated';
+import { geolocated } from "react-geolocated";
 
 const Map = compose(
     withProps({
@@ -16,8 +16,6 @@ const Map = compose(
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `100vh`, width: `1000px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
-        iconlabel: 'TC',
-        iconColor: '#3d6cb9'
     }),
     withScriptjs,
     withGoogleMap,
@@ -50,25 +48,7 @@ const Map = compose(
         defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
-        {props.coords &&
-            <Marker
-                icon={{
-                    path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                    fillColor: props.iconColor,
-                    fillOpacity: 0.8,
-                    scale: 8,
-                    strokeColor: props.iconColor,
-                    strokeWeight: 0.8,
-                    rotation: 270,
-                    labelOrigin: new google.maps.Point(0,-2.5)}}
-                position={{ lat: props.coords.latitude, lng: props.coords.longitude }}
-                label={
-                    {text: props.iconlabel,
-                    color: 'white',
-                    fontSize: '9px',
-                    fontWeight: 'bold',
-                    fontFamily: 'Helvetica'}}
-            />}
+        {props.coords &&<Marker position={{ lat: props.coords.latitude, lng: props.coords.longitude }} />}
     </GoogleMap>
 )});
 
