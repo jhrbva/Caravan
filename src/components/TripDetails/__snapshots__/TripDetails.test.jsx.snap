@@ -2,7 +2,6 @@
 
 exports[`Trip Details should match the snapshot 1`] = `
 <div>
-  <Navbar />
   <div
     className="trip-details-wrapper"
   >
@@ -11,10 +10,14 @@ exports[`Trip Details should match the snapshot 1`] = `
     >
       <h1
         className="header-text"
-      />
+      >
+        Wonders of the Canyon
+      </h1>
       <h2
         className="header-text-light"
-      />
+      >
+        Join in as we travel to the Grand Canyon
+      </h2>
     </div>
     <div
       className="trip-details"
@@ -23,11 +26,9 @@ exports[`Trip Details should match the snapshot 1`] = `
         <span
           className="trip-details-headings"
         >
-          You were invited by
-           
+          You were invited by 
         </span>
-         
-        @
+        @ Host
       </p>
       <p>
         <span
@@ -36,6 +37,7 @@ exports[`Trip Details should match the snapshot 1`] = `
           When:
         </span>
          
+        2020-06-01
       </p>
       <p>
         <span
@@ -43,7 +45,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         >
           Leaving at:
         </span>
-         
+        13:55:06
       </p>
       <p>
         <span
@@ -53,6 +55,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         </span>
         <br />
          
+        123 OneTreeHill St.
       </p>
       <p>
         <span
@@ -62,6 +65,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         </span>
         <br />
          
+        Grand Canyon, Grand Canyon Ave.
       </p>
       <p>
         <span

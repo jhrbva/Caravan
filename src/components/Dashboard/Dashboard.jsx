@@ -1,5 +1,6 @@
 import React from 'react';
 import SummaryCard from '../SummaryCard/SummaryCard';
+
 export default class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,13 +19,14 @@ export default class Dashboard extends React.Component {
 				this.setState({ invitations: data });
 			});
 	}
+
 	render() {
 		const { invitations } = this.state;
 
 		return (
 			<>
 				<h1>Dashboard</h1>
-				<h2> Invitations </h2>
+				<h3> Invitations </h3>
 				{invitations.map((invite, id) => {
 					return <SummaryCard key={id} trip={invite} />;
 				})}

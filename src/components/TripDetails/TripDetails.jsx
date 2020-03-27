@@ -2,14 +2,13 @@ import React from 'react';
 
 import './TripDetails.scss';
 
-const getDateTime = date => {
+export const getDateTime = date => {
 	const tripDate = date.slice(0, 10);
 	const tripTime = date.slice(11, 19);
 	return { tripDate, tripTime };
 };
 
 const TripDetails = props => {
-	console.log(props);
 	const {
 		trip_title,
 		tripdate,
@@ -18,7 +17,6 @@ const TripDetails = props => {
 		destination,
 	} = props.trip;
 
-	console.log(tripdate);
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
