@@ -12,15 +12,29 @@ exports[`SummaryCard should match the snapshot 1`] = `
     }
   >
     <CardBody>
-      <CardTitle />
-      <CardText />
+      <CardTitle>
+        Wonders of the Canyon
+      </CardTitle>
+      <CardText>
+        Grand Canyon, Grand Canyon Ave.
+      </CardText>
     </CardBody>
   </Card>
   <Bootstrap(Modal)
     onHide={[Function]}
     show={false}
   >
-    <TripDetails />
+    <TripDetails
+      trip={
+        Object {
+          "destination": "Grand Canyon, Grand Canyon Ave.",
+          "startlocation": "123 OneTreeHill St.",
+          "trip_description": "Join in as we travel to the Grand Canyon",
+          "trip_title": "Wonders of the Canyon",
+          "tripdate": "2020-06-01T13:55:06.000Z",
+        }
+      }
+    />
   </Bootstrap(Modal)>
 </Fragment>
 `;
