@@ -2,6 +2,11 @@
 
 exports[`Dashboard should match the snapshot 1`] = `
 <Fragment>
-  Dashboard
+  <h1>
+    Dashboard
+  </h1>
+  <h3>
+     Invitations 
+  </h3>
 </Fragment>
 `;
