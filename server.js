@@ -1,11 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const express = require('express'); // grab express module installed
 const app = express(); // created an app using express module
+const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 
 const port = 8080;
 
