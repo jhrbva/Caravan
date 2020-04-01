@@ -1,28 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+// import { renderHook, act } from '@testing-library/react-hooks';
+
 import SummaryCard from './SummaryCard';
+
+const trip = {
+	trip_title: 'Wonders of the Canyon',
+	tripdate: '2020-06-01T13:55:06.000Z',
+	trip_description: 'Join in as we travel to the Grand Canyon',
+	startlocation: '123 OneTreeHill St.',
+	destination: 'Grand Canyon, Grand Canyon Ave.',
+};
 
 describe('SummaryCard', () => {
 	it('should match the snapshot', () => {
-		const wrapper = shallow(<SummaryCard />);
+		const wrapper = shallow(<SummaryCard trip={trip} />);
 		expect(wrapper).toMatchSnapshot();
 	});
 });
-describe('handleShohw', () => {
-	it('sets show to true', () => {
-		const wrapper = shallow(<SummaryCard />);
-		const instance = wrapper.instance();
-		expect(instance.state.show).toBeFalsy();
-		instance.handleShow();
-		expect(instance.state.show).toBeTruthy();
-	});
-});
-describe('handleClose', () => {
-	it('sets show to false', () => {
-		const wrapper = shallow(<SummaryCard />);
-		const instance = wrapper.instance();
-		wrapper.setState({ show: true });
-		instance.handleClose();
-		expect(instance.state.show).toBeFalsy();
-	});
-});
+
+// TODO: Test React Hooks for handleShow & handleClose using react-hook testing library.
