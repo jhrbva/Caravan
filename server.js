@@ -226,7 +226,6 @@ app.get('/trip/:tripid', (req, res) => {
 });
 
 app.get('/trips/:userid', (req, res) => {
-	let tripsHosted = []
 	pool.query(
 		'SELECT hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE hostid=$1',
 		[req.params.userid],
@@ -234,7 +233,7 @@ app.get('/trips/:userid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting trip for a specific user that they host', err);
 			}
-			tripsHosted.push(result.rows);
+			const tripsHosted = result.rows;
 
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
