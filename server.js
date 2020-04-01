@@ -225,6 +225,30 @@ app.get('/trip/:tripid', (req, res) => {
 	);
 });
 
+app.get('/trips/:userid', (req, res) => {
+	pool.query(
+		'SELECT hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE hostid=$1',
+		[req.params.userid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting trip for a specific user that they host', err);
+			}
+			const tripsHosted = result.rows;
+
+			pool.query(
+				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
+				(err, result) => {
+					if (err) {
+						console.log('Error when selecting trip for a user that they are a memeber of', err);
+					}
+					console.log(result);
+					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
+				}
+			);
+		}
+	);
+});
+
 app.post('/signup', (req, res) => {
 	const {
 		firstname,
