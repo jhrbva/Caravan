@@ -1,10 +1,5 @@
-import React, {
-  useState
-} from 'react';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import './SummaryCard.css';
 
 export default class SummaryCard extends React.Component {
