@@ -117,18 +117,16 @@ app.post('/reststop', (req, res) => {
 });
 
 app.delete('/reststop', (req, res) => {
-	const { tripid } = req.body;
-	console.log(tripid);
+	const { reststopid } = req.body;
 	pool.query(
 		'DELETE FROM reststop WHERE tripid=$1',
-		[tripid],
+		[reststopid],
 		(err, result) => {
 			if (err) {
 				console.log('Error when selecting rest stop', err);
 			}
 			if (result.rowCount > 0) {
 				res.sendStatus(200);
-				console.log(result);
 			}
 			if (result.rowCount == 0) {
 				// No row that meets the condition
