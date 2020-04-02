@@ -84,6 +84,22 @@ app.get('/invitations/:userid', (req, res) => {
 	);
 });
 
+app.get('/user/:username', (req, res) => {
+	pool.query(
+		'SELECT userid FROM usertable WHERE username=$1',
+		[req.params.username],
+		(err, result) => {
+			if (err) {
+				console.log('Error when looking for user', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows);
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.post('/invitations', (req, res) => {
 	const { host_id, user_id, trip_id } = req.body;
 	pool.query(
