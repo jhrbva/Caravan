@@ -101,7 +101,7 @@ export const Signup = props => {
 							password: values.password,
 						})
 						.then(function(response) {
-							history.push('/trip');
+							history.push('/dashboard');
 						})
 						.catch(function(error) {
 							console.log(error);
