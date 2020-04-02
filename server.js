@@ -117,16 +117,17 @@ app.post('/reststop', (req, res) => {
 });
 
 app.get('/reststop/:tripid', (req, res) => {
-	let result = []; // since there can be more than one rest stop
 	pool.query(
 		'SELECT * FROM reststop WHERE tripid=$1',
 		[req.params.tripid],
-		(err, results) => {
+		(err, result) => {
 			if (err) {
 				console.log('Error when selecting a rest stop', err);
 			}
-			result.push(results.rows);
-			console.log(result);
+			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
+				res.send(result.rows);
+			}
 		}
 	);
 });
