@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import './TripDetails.scss';
 
@@ -54,6 +56,10 @@ const TripDetails = props => {
 						<li>@guestB</li>
 						<li>@guestC</li>
 					</ul>
+
+					<Link to='/map'>
+						<Button variant='success'>Start Trip</Button>
+					</Link>
 				</div>
 			</div>
 		</div>
