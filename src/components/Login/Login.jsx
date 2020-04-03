@@ -59,7 +59,7 @@ const Login = props => {
 						})
 						.then(function(response) {
 							console.log(response);
-							history.push('/trip');
+							history.push('/dashboard');
 						})
 						.catch(function(error) {
 							console.log(error);

@@ -17,5 +17,8 @@ exports[`Dashboard should match the snapshot 1`] = `
       New Trip +
     </Button>
   </Link>
+  <h3>
+     Invitations 
+  </h3>
 </Fragment>
 `;

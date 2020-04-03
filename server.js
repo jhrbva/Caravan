@@ -1,11 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const express = require('express'); // grab express module installed
 const app = express(); // created an app using express module
+const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD } = require('./secrets');
 
 const port = 8080;
 
@@ -78,6 +78,22 @@ app.get('/invitations/:userid', (req, res) => {
 			}
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
+app.get('/user/:username', (req, res) => {
+	pool.query(
+		'SELECT userid FROM usertable WHERE username=$1',
+		[req.params.username],
+		(err, result) => {
+			if (err) {
+				console.log('Error when looking for user', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -206,6 +222,45 @@ app.post('/trip', (req, res) => {
 				res.sendStatus(400);
 			}
 			res.sendStatus(201);
+		}
+	);
+});
+
+app.get('/trip/:tripid', (req, res) => {
+	pool.query(
+		'SELECT trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting trip information of a specific trip', err);
+			}
+			if (result.rows.length > 0) {
+				res.json(result.rows[0]);
+			}
+		}
+	);
+});
+
+app.get('/trips/:userid', (req, res) => {
+	pool.query(
+		'SELECT hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE hostid=$1',
+		[req.params.userid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting trip for a specific user that they host', err);
+			}
+			const tripsHosted = result.rows;
+
+			pool.query(
+				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
+				(err, result) => {
+					if (err) {
+						console.log('Error when selecting trip for a user that they are a memeber of', err);
+					}
+					console.log(result);
+					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
+				}
+			);
 		}
 	);
 });
