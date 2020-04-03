@@ -69,10 +69,10 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 app.post('/emergency', (req, res) => {
-	const {} = req.body;
+	const { ec_id, firstname, lastname, phonenumber, username, relationship } = req.body;
 	pool.query(
-		'',
-		[],
+		'INSERT INTO emergencyContact(ECid, firstName, lastName, phoneNumber, username, relationship) VALUES ($1, $2, $3, $4, $5, $6)',
+		[ec_id, firstname, lastname, phonenumber, username, relationship],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting emergency contact for user', err);
@@ -86,7 +86,7 @@ app.post('/emergency', (req, res) => {
 
 app.get('/emergency/:username', (req, res) => {
 	pool.query(
-		'',
+		'SELECT * FROM emergencyContact WHERE username=$1',
 		[req.params.username],
 		(err, result) => {
 			if (err) {
