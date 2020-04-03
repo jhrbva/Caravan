@@ -1,6 +1,5 @@
 import React from 'react';
 import { InputGroup, Form, FormControl } from 'react-bootstrap';
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 
 import './Input.scss';
 

@@ -34,8 +34,6 @@ export class TripFormContainer extends React.Component {
 			destination,
 			start_date,
 			start_time,
-			guests,
-			rest_stops,
 			trip_description,
 			trip_title,
 		} = values;
