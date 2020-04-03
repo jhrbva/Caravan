@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 
 export default class Dashboard extends React.Component {
@@ -26,6 +28,9 @@ export default class Dashboard extends React.Component {
 		return (
 			<>
 				<h1>Dashboard</h1>
+				<Link to='/trip'>
+					<Button variant='success'>New Trip +</Button>
+				</Link>
 				<h3> Invitations </h3>
 				{invitations.map((invite, id) => {
 					return <SummaryCard key={id} trip={invite} />;

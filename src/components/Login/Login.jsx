@@ -9,10 +9,13 @@ import BigButton from '../BigButton/BigButton';
 import { required } from '../../utilities/formValidation';
 import '../../utilities/fonts.scss';
 
+import PersonIcon from '@material-ui/icons/Person';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
 export const LoginForm = () => (
 	<Form>
 		<Field
-			icon='person'
+			icon={<PersonIcon />}
 			type='text'
 			name='username'
 			placeholder='username'
@@ -22,7 +25,7 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 		<Field
-			icon='vpn_key'
+			icon={<VpnKeyIcon />}
 			type='password'
 			name='password'
 			placeholder='password'

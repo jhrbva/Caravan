@@ -10,7 +10,7 @@ describe('TripInformation', () => {
 	it('should have four fields', () => {
 		const wrapper = shallow(<TripInformation />);
 		const fieldWrapper = wrapper.find('Field');
-		expect(fieldWrapper.length).toBe(4);
+		expect(fieldWrapper.length).toBe(6);
 	});
 	it('should have an start_location field', () => {
 		const wrapper = shallow(<TripInformation />);
