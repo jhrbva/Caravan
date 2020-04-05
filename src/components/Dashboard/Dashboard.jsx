@@ -27,7 +27,6 @@ export default class Dashboard extends React.Component {
 				return response.json();
 			})
 			.then((data) => {
-				console.log('trip data: ', data);
 				this.setState({ tripsJoined: data.tripsJoined });
 				this.setState({ tripsHosted: data.tripsHosted });
 			});
@@ -52,7 +51,6 @@ export default class Dashboard extends React.Component {
 
 	render() {
 		const { invitations, tripsJoined, tripsHosted } = this.state;
-
 		return (
 			<>
 				<h1>Dashboard</h1>
