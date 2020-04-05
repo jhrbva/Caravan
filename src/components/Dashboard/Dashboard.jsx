@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component {
 
 	componentDidMount() {
 		// TO DO: add redux to dynamically import user id
-		fetch('/invitations/3')
+		fetch('/invitations/2')
 			.then((response) => {
 				return response.json();
 			})
@@ -33,17 +33,23 @@ export default class Dashboard extends React.Component {
 	}
 
 	renderSection = (title, data) => {
+		const nullResponse =
+			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
 			<>
 				<h3>{title}</h3>
 				<Row>
-					{data.map((entry, id) => {
-						return (
-							<Col>
-								<SummaryCard key={id} trip={entry} />
-							</Col>
-						);
-					})}
+					{data.length ? (
+						data.map((entry, id) => {
+							return (
+								<Col>
+									<SummaryCard key={id} trip={entry} />
+								</Col>
+							);
+						})
+					) : (
+						<p>{nullResponse}</p>
+					)}
 				</Row>
 			</>
 		);
