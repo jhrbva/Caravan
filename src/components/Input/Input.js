@@ -26,7 +26,7 @@ function Input({
 				<FormControl
 					type={type}
 					name={name}
-					isInvalid={!!form.errors[field.name]}
+					isInvalid={form && !!form.errors[field.name]}
 					placeholder={placeholder}
 					maxLength={maxLength}
 					autoFocus={autofocus}

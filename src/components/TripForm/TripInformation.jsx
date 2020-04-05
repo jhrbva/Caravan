@@ -1,7 +1,9 @@
 import React from 'react';
 import { Field } from 'formik';
+
 import '../../utilities/fonts.scss';
 import Input from '../Input/Input';
+import DatePickerInput from '../DatePicker/DatePickerInput';
 import { required } from '../../utilities/formValidation';
 
 import TitleIcon from '@material-ui/icons/Title';
@@ -56,16 +58,7 @@ const TripInformation = () => (
 			placeholder='Date'
 			validate={required}
 			autoFocus={false}
-			component={Input}
-		/>
-		<Field
-			icon={<ScheduleIcon />}
-			type='text'
-			name='start_time'
-			placeholder='Time'
-			validate={required}
-			autoFocus={false}
-			component={Input}
+			component={DatePickerInput}
 		/>
 	</>
 );
