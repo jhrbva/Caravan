@@ -30,7 +30,7 @@ const TripInformation = () => (
 			name='trip_description'
 			placeholder='Description'
 			validate={required}
-			autoFocus={true}
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
@@ -39,7 +39,7 @@ const TripInformation = () => (
 			name='start_location'
 			placeholder='Start Location'
 			validate={required}
-			autoFocus={true}
+			autoFocus={false}
 			component={Input}
 		/>
 		<Field
