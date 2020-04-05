@@ -19,6 +19,7 @@ const DatePickerInput = (props) => {
 				}}
 				customInput={<Input {...props} />}
 				dateFormat='MMMM d, yyyy h:mm aa'
+				minDate={new Date() - 1}
 				showTimeSelect
 			/>
 		</>
