@@ -27,6 +27,10 @@ export class TripFormContainer extends React.Component {
 			page: Math.max(state.page - 1, 0),
 		}));
 
+	pgFormatDate = (date) => {
+		return date.toISOString().replace('T', ' ').replace('Z', '');
+	};
+
 	onSubmit = (values, bag) => {
 		const { history } = this.props;
 		const {
@@ -42,7 +46,7 @@ export class TripFormContainer extends React.Component {
 				host_id: 2,
 				start_location,
 				destination,
-				trip_date: `${start_date}`,
+				trip_date: this.pgFormatDate(start_date),
 				trip_description,
 				trip_title,
 			})
@@ -73,6 +77,7 @@ export class TripFormContainer extends React.Component {
 		const { page, values } = this.state;
 		const activePage = React.Children.toArray(children)[page];
 		const isLastPage = page === React.Children.count(children) - 1;
+
 		return (
 			<Formik
 				initialValues={values}
