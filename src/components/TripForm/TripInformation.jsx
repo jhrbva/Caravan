@@ -11,7 +11,6 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import TripOriginIcon from '@material-ui/icons/TripOrigin';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import EventIcon from '@material-ui/icons/Event';
-import ScheduleIcon from '@material-ui/icons/Schedule';
 
 const TripInformation = () => (
 	<>

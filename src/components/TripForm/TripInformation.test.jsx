@@ -7,10 +7,10 @@ describe('TripInformation', () => {
 		const wrapper = shallow(<TripInformation />);
 		expect(wrapper).toMatchSnapshot();
 	});
-	it('should have four fields', () => {
+	it('should have five fields', () => {
 		const wrapper = shallow(<TripInformation />);
 		const fieldWrapper = wrapper.find('Field');
-		expect(fieldWrapper.length).toBe(6);
+		expect(fieldWrapper.length).toBe(5);
 	});
 	it('should have an start_location field', () => {
 		const wrapper = shallow(<TripInformation />);
@@ -28,12 +28,6 @@ describe('TripInformation', () => {
 		const wrapper = shallow(<TripInformation />);
 		const fieldWrapper = wrapper.find('Field');
 		const usernameField = fieldWrapper.find({ name: 'start_date' });
-		expect(usernameField.length).toBe(1);
-	});
-	it('should have a start_time field', () => {
-		const wrapper = shallow(<TripInformation />);
-		const fieldWrapper = wrapper.find('Field');
-		const usernameField = fieldWrapper.find({ name: 'start_time' });
 		expect(usernameField.length).toBe(1);
 	});
 });
