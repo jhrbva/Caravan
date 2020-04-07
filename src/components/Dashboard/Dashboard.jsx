@@ -14,10 +14,10 @@ export default class Dashboard extends React.Component {
 	componentDidMount() {
 		// TO DO: add redux to dynamically import user id
 		fetch('/invitations/3')
-			.then(response => {
+			.then((response) => {
 				return response.json();
 			})
-			.then(data => {
+			.then((data) => {
 				this.setState({ invitations: data });
 			});
 	}

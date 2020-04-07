@@ -1,0 +1,9 @@
+// overriding bootstrap styles
+a:focus,
+a:active,
+button:focus,
+button:active,
+input:active,
+input:focus {
+	outline: none !important;
+}
