@@ -3,7 +3,7 @@ import React from 'react';
 import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
 
-const getDateTime = (date) => {
+export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
 	const tripTime = date.slice(11, 19);
 	return { tripDate, tripTime };
