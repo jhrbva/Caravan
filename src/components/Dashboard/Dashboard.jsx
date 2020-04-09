@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 
@@ -8,33 +8,64 @@ export default class Dashboard extends React.Component {
 		super(props);
 		this.state = {
 			invitations: [],
+			tripsJoined: [],
+			tripsHosted: [],
 		};
 	}
 
 	componentDidMount() {
 		// TO DO: add redux to dynamically import user id
-		fetch('/invitations/3')
-			.then(response => {
+		fetch('/invitations/2')
+			.then((response) => {
 				return response.json();
 			})
-			.then(data => {
+			.then((data) => {
 				this.setState({ invitations: data });
+			});
+		fetch('/trips/2')
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				this.setState({ tripsJoined: data.tripsJoined });
+				this.setState({ tripsHosted: data.tripsHosted });
 			});
 	}
 
-	render() {
-		const { invitations } = this.state;
+	renderSection = (title, data) => {
+		const nullResponse =
+			title === 'Invitations' ? 'No invitations' : 'No trips';
+		return (
+			<>
+				<h3>{title}</h3>
+				<Row>
+					{data.length ? (
+						data.map((entry, id) => {
+							return (
+								<Col>
+									<SummaryCard key={id} trip={entry} />
+								</Col>
+							);
+						})
+					) : (
+						<p>{nullResponse}</p>
+					)}
+				</Row>
+			</>
+		);
+	};
 
+	render() {
+		const { invitations, tripsJoined, tripsHosted } = this.state;
 		return (
 			<>
 				<h1>Dashboard</h1>
 				<Link to='/trip'>
 					<Button variant='success'>New Trip +</Button>
 				</Link>
-				<h3> Invitations </h3>
-				{invitations.map((invite, id) => {
-					return <SummaryCard key={id} trip={invite} />;
-				})}
+				{this.renderSection('Invitations', invitations)}
+				{this.renderSection('Your Trips', tripsHosted)}
+				{this.renderSection('Trips Joined', tripsJoined)}
 			</>
 		);
 	}
