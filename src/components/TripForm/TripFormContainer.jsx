@@ -16,16 +16,20 @@ export class TripFormContainer extends React.Component {
 		};
 	}
 
-	nextPage = values =>
-		this.setState(state => ({
+	nextPage = (values) =>
+		this.setState((state) => ({
 			page: Math.min(state.page + 1, this.props.children.length - 1),
 			values,
 		}));
 
 	previousPage = () =>
-		this.setState(state => ({
+		this.setState((state) => ({
 			page: Math.max(state.page - 1, 0),
 		}));
+
+	pgFormatDate = (date) => {
+		return date.toISOString().replace('T', ' ').replace('Z', '');
+	};
 
 	onSubmit = (values, bag) => {
 		const { history } = this.props;
@@ -33,7 +37,6 @@ export class TripFormContainer extends React.Component {
 			start_location,
 			destination,
 			start_date,
-			start_time,
 			trip_description,
 			trip_title,
 		} = values;
@@ -43,15 +46,15 @@ export class TripFormContainer extends React.Component {
 				host_id: 2,
 				start_location,
 				destination,
-				trip_date: `${start_date} ${start_time}`,
+				trip_date: this.pgFormatDate(start_date),
 				trip_description,
 				trip_title,
 			})
-			.then(function(response) {
+			.then(function (response) {
 				console.log(response);
 				history.push('/dashboard');
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.log(error);
 			});
 	};
@@ -74,6 +77,7 @@ export class TripFormContainer extends React.Component {
 		const { page, values } = this.state;
 		const activePage = React.Children.toArray(children)[page];
 		const isLastPage = page === React.Children.count(children) - 1;
+
 		return (
 			<Formik
 				initialValues={values}
