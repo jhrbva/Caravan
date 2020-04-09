@@ -10,6 +10,7 @@ import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for D
 import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 import Map from './components/Map/Map';
+import SuggestEdit from './components/SuggestEdit/SuggestEdit';
 
 function App() {
 	return (
@@ -37,6 +38,9 @@ function App() {
 					</Route>
 					<Route exact path='/map'>
 						<Map />
+					</Route>
+					<Route exact path='/suggestedit'>
+						<SuggestEdit />
 					</Route>
 				</header>
 			</div>

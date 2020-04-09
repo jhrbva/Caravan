@@ -35,7 +35,6 @@ const responseToInvitation = (response) => {
 				console.log(error);
 			});
 	}
-	// TO DO: once we are ready to add functionality for 'request change' we can add another responseCode here
 };
 
 const ActionButtons = (response) => {
@@ -58,7 +57,9 @@ const ActionButtons = (response) => {
 							});
 						}}
 					/>
-					<BigButton value={'Request Change'} />
+					<Link to='/suggestedit'>
+						<BigButton value={'Request Change'} />
+					</Link>
 				</div>
 			</div>
 		);
@@ -95,7 +96,9 @@ const ActionButtons = (response) => {
 						});
 					}}
 				/>
-				<BigButton value={'Request Change'} />
+				<Link to='/suggestedit'>
+					<BigButton value={'Request Change'} />
+				</Link>
 			</div>
 		);
 	}
