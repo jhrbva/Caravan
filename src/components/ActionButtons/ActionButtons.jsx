@@ -7,7 +7,8 @@ import './ActionButtons.scss';
 
 const responseToInvitation = (response) => {
 	const { userid, tripid, responseCode } = response;
-
+	// responseCode == 1 accepted
+	// responseCode == 2 rejected
 	if (responseCode === 1) {
 		axios
 			.post('/invitations/accept', {
@@ -43,10 +44,11 @@ const ActionButtons = (response) => {
 	let responseCode = 0;
 
 	if (accepted === false) {
+		//user has rejected invitation buttons
 		return (
 			<div className='rejected-msg'>
 				<p>You declined this invitation. Changed your mind?</p>
-				<div className='invitation-btns rejected'>
+				<div className='invitation-btns two-btns'>
 					<BigButton
 						value={'Accept Invitation'}
 						onClick={() => {
@@ -63,16 +65,29 @@ const ActionButtons = (response) => {
 			</div>
 		);
 	} else if (accepted === true) {
+		//user has accepted invitation buttons
 		return (
-			<div className='invitation-btns'>
-				<Link to='/map' className='start-trip-btn'>
+			<div className='invitation-btns two-btns'>
+				<Link to='/map'>
 					<BigButton value={'Start Trip'} />
 				</Link>
+				<BigButton
+					value={'Leave Trip'}
+					onClick={() => {
+						responseCode = 2;
+						responseToInvitation({
+							userid,
+							tripid,
+							responseCode,
+						});
+					}}
+				/>
 			</div>
 		);
 	} else {
+		// user was invited but has neither accept or rejected the invitation yet
 		return (
-			<div className='invitation-btns'>
+			<div className='invitation-btns three-btns'>
 				<BigButton
 					value={'Accept'}
 					onClick={() => {
