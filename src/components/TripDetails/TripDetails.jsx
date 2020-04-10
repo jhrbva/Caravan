@@ -19,7 +19,9 @@ const TripDetails = props => {
 		destination,
 	} = props.trip;
 
-	const { tripDate, tripTime } = getDateTime(tripdate);
+console.log(props);
+
+const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
 		<div>
@@ -30,8 +32,7 @@ const TripDetails = props => {
 				</div>
 				<div className='trip-details'>
 					<p>
-						<span className='trip-details-headings'>You were invited by </span>@
-						Host
+						<span className='trip-details-headings'>You were invited by </span> {props.host}
 					</p>
 					<p>
 						<span className='trip-details-headings'>When:</span> {tripDate}
@@ -52,7 +53,7 @@ const TripDetails = props => {
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
 					<ul>
-						<li>@guestA</li>
+						<li>{props.members[0].username}</li>
 						<li>@guestB</li>
 						<li>@guestC</li>
 					</ul>
