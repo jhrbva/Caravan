@@ -4,7 +4,7 @@ import { Card, Modal } from 'react-bootstrap';
 import './SummaryCard.css';
 import TripDetails from '../TripDetails/TripDetails';
 
-const SummaryCard = props => {
+const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -22,7 +22,7 @@ const SummaryCard = props => {
 				</Card.Body>
 			</Card>
 			<Modal show={show} onHide={handleClose}>
-				<TripDetails trip={trip} host={host} members={members}/>
+				<TripDetails trip={trip} host={host} members={members} />
 			</Modal>
 		</>
 	);

@@ -4,13 +4,13 @@ import { Button } from 'react-bootstrap';
 
 import './TripDetails.scss';
 
-export const getDateTime = date => {
+export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
 	const tripTime = date.slice(11, 19);
 	return { tripDate, tripTime };
 };
 
-const TripDetails = props => {
+const TripDetails = (props) => {
 	const {
 		trip_title,
 		tripdate,
@@ -19,9 +19,14 @@ const TripDetails = props => {
 		destination,
 	} = props.trip;
 
-console.log(props);
+	const host = props.host;
+	const members = props.members;
 
-const { tripDate, tripTime } = getDateTime(tripdate);
+	const listMembers = members.map((member, key) => (
+		<li key={key}>{member.username}</li>
+	));
+
+	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
 		<div>
@@ -32,7 +37,8 @@ const { tripDate, tripTime } = getDateTime(tripdate);
 				</div>
 				<div className='trip-details'>
 					<p>
-						<span className='trip-details-headings'>You were invited by </span> {props.host}
+						<span className='trip-details-headings'>You were invited by </span>{' '}
+						{host}
 					</p>
 					<p>
 						<span className='trip-details-headings'>When:</span> {tripDate}
@@ -52,11 +58,8 @@ const { tripDate, tripTime } = getDateTime(tripdate);
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
-					<ul>
-						<li>{props.members[0].username}</li>
-						<li>@guestB</li>
-						<li>@guestC</li>
-					</ul>
+
+					<ul>{listMembers}</ul>
 
 					<Link to='/map'>
 						<Button variant='success'>Start Trip</Button>

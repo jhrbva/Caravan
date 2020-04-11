@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import TripDetails, { getDateTime } from './TripDetails';
 
 const testDateTime = '2020-06-01T13:55:06.000Z';
+const members = ['conniecode', 'jrobazzi', 'kcode'];
 const trip = {
 	trip_title: 'Wonders of the Canyon',
 	tripdate: testDateTime,
@@ -13,7 +14,7 @@ const trip = {
 
 describe('Trip Details', () => {
 	it('should match the snapshot', () => {
-		const wrapper = shallow(<TripDetails trip={trip} />);
+		const wrapper = shallow(<TripDetails trip={trip} members={members} />);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

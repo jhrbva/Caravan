@@ -28,7 +28,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         >
           You were invited by 
         </span>
-        @ Host
+         
       </p>
       <p>
         <span
@@ -75,15 +75,15 @@ exports[`Trip Details should match the snapshot 1`] = `
         </span>
       </p>
       <ul>
-        <li>
-          @guestA
-        </li>
-        <li>
-          @guestB
-        </li>
-        <li>
-          @guestC
-        </li>
+        <li
+          key="0"
+        />
+        <li
+          key="1"
+        />
+        <li
+          key="2"
+        />
       </ul>
       <Link
         to="/map"
