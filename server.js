@@ -43,7 +43,7 @@ passport.use(
 
 				if (result.rows.length > 0) {
 					const first = result.rows[0];
-					bcrypt.compare(password, first.password, function(err, res) {
+					bcrypt.compare(password, first.password, function (err, res) {
 						if (err) {
 							console.log(err);
 							cb(null, false);
@@ -132,19 +132,6 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
-<<<<<<< HEAD
-app.get('/reststop/:tripid', (req, res) => {
-	pool.query(
-		'SELECT * FROM reststop WHERE tripid=$1',
-		[req.params.tripid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting a rest stop', err);
-			}
-			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
-				res.send(result.rows);
-=======
 app.delete('/reststop', (req, res) => {
 	const { reststopid } = req.body;
 	pool.query(
@@ -160,16 +147,11 @@ app.delete('/reststop', (req, res) => {
 			if (result.rowCount == 0) {
 				// No row that meets the condition
 				res.sendStatus(403);
->>>>>>> master
 			}
 		}
 	);
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
@@ -312,18 +294,25 @@ app.get('/trips/:userid', (req, res) => {
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting trip for a specific user that they host', err);
+				console.log(
+					'Error when selecting trip for a specific user that they host',
+					err
+				);
 			}
 			const tripsHosted = result.rows;
 
 			pool.query(
-				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
+				'SELECT * FROM members NATURAL JOIN trips where userid=' +
+					req.params.userid,
 				(err, result) => {
 					if (err) {
-						console.log('Error when selecting trip for a user that they are a memeber of', err);
+						console.log(
+							'Error when selecting trip for a user that they are a memeber of',
+							err
+						);
 					}
 					console.log(result);
-					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
+					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
 		}
@@ -339,9 +328,9 @@ app.post('/signup', (req, res) => {
 		phonenumber,
 		password,
 	} = req.body;
-	bcrypt.genSalt(10, function(err, salt) {
+	bcrypt.genSalt(10, function (err, salt) {
 		if (err) console.log(err);
-		bcrypt.hash(password, salt, function(err, hashpassword) {
+		bcrypt.hash(password, salt, function (err, hashpassword) {
 			if (err) console.log(err);
 			pool.query(
 				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
@@ -352,7 +341,7 @@ app.post('/signup', (req, res) => {
 						// TODO: add better error handling
 						res.send(400);
 					}
-					req.login(req.body, err => {
+					req.login(req.body, (err) => {
 						const { user } = req;
 						if (err) {
 							console.log(err);
