@@ -2,6 +2,83 @@
 
 exports[`Dashboard should match the snapshot 1`] = `
 <Fragment>
-  Dashboard
+  <h1>
+    Dashboard
+  </h1>
+  <Link
+    to="/trip"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      type="button"
+      variant="success"
+    >
+      New Trip +
+    </Button>
+  </Link>
+  <h3>
+    Invitations
+  </h3>
+  <Row
+    noGutters={false}
+  >
+    <Col>
+      <SummaryCard
+        key="0"
+        trip={
+          Object {
+            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+            "trip_description": "Let's see Rockefeller",
+            "trip_title": "Brunch at gold statue :P",
+            "tripdate": "2020-06-01T13:55:06.000Z",
+          }
+        }
+      />
+    </Col>
+  </Row>
+  <h3>
+    Your Trips
+  </h3>
+  <Row
+    noGutters={false}
+  >
+    <Col>
+      <SummaryCard
+        key="0"
+        trip={
+          Object {
+            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+            "trip_description": "Let's see Rockefeller",
+            "trip_title": "Brunch at gold statue :P",
+            "tripdate": "2020-06-01T13:55:06.000Z",
+          }
+        }
+      />
+    </Col>
+  </Row>
+  <h3>
+    Trips Joined
+  </h3>
+  <Row
+    noGutters={false}
+  >
+    <Col>
+      <SummaryCard
+        key="0"
+        trip={
+          Object {
+            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+            "trip_description": "Let's see Rockefeller",
+            "trip_title": "Brunch at gold statue :P",
+            "tripdate": "2020-06-01T13:55:06.000Z",
+          }
+        }
+      />
+    </Col>
+  </Row>
 </Fragment>
 `;

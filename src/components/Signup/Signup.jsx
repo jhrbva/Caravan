@@ -3,6 +3,11 @@ import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import CallIcon from '@material-ui/icons/Call';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
+
 import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
@@ -16,7 +21,7 @@ import {
 export const SignupForm = () => (
 	<Form>
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='firstname'
 			placeholder='First Name'
@@ -25,7 +30,7 @@ export const SignupForm = () => (
 			component={Input}
 		/>
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='lastname'
 			placeholder='Last Name'
@@ -35,7 +40,7 @@ export const SignupForm = () => (
 		/>
 		{/* TO DO: error message in case username already exists */}
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='username'
 			placeholder='Username'
@@ -44,7 +49,7 @@ export const SignupForm = () => (
 			component={Input}
 		/>
 		<Field
-			icon='call'
+			icon={<CallIcon />}
 			type='text'
 			name='phone'
 			placeholder='Phone Number'
@@ -54,7 +59,7 @@ export const SignupForm = () => (
 		/>
 		{/* To Do: error message when the email is already in the db */}
 		<Field
-			icon='email'
+			icon={<EmailIcon />}
 			type='text'
 			name='email'
 			placeholder='Email'
@@ -63,7 +68,7 @@ export const SignupForm = () => (
 			component={Input}
 		/>
 		<Field
-			icon='lock'
+			icon={<LockIcon />}
 			type='password'
 			name='password'
 			placeholder='Password'
@@ -101,7 +106,7 @@ export const Signup = props => {
 							password: values.password,
 						})
 						.then(function(response) {
-							history.push('/trip');
+							history.push('/dashboard');
 						})
 						.catch(function(error) {
 							console.log(error);

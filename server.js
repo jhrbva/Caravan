@@ -84,6 +84,22 @@ app.get('/invitations/:userid', (req, res) => {
 	);
 });
 
+app.get('/user/:username', (req, res) => {
+	pool.query(
+		'SELECT userid FROM usertable WHERE username=$1',
+		[req.params.username],
+		(err, result) => {
+			if (err) {
+				console.log('Error when looking for user', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows);
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.post('/invitations', (req, res) => {
 	const { host_id, user_id, trip_id } = req.body;
 	pool.query(
@@ -116,6 +132,7 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
+<<<<<<< HEAD
 app.get('/reststop/:tripid', (req, res) => {
 	pool.query(
 		'SELECT * FROM reststop WHERE tripid=$1',
@@ -127,12 +144,32 @@ app.get('/reststop/:tripid', (req, res) => {
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
 				res.send(result.rows);
+=======
+app.delete('/reststop', (req, res) => {
+	const { reststopid } = req.body;
+	pool.query(
+		'DELETE FROM reststop WHERE tripid=$1',
+		[reststopid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting rest stop', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+>>>>>>> master
 			}
 		}
 	);
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
@@ -265,6 +302,30 @@ app.get('/trip/:tripid', (req, res) => {
 			if (result.rows.length > 0) {
 				res.json(result.rows[0]);
 			}
+		}
+	);
+});
+
+app.get('/trips/:userid', (req, res) => {
+	pool.query(
+		'SELECT hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE hostid=$1',
+		[req.params.userid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting trip for a specific user that they host', err);
+			}
+			const tripsHosted = result.rows;
+
+			pool.query(
+				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
+				(err, result) => {
+					if (err) {
+						console.log('Error when selecting trip for a user that they are a memeber of', err);
+					}
+					console.log(result);
+					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
+				}
+			);
 		}
 	);
 });

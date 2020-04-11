@@ -1,54 +1,31 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
+import React, { useState } from 'react';
+import { Card, Modal } from 'react-bootstrap';
+
 import './SummaryCard.css';
+import TripDetails from '../TripDetails/TripDetails';
 
-export default class SummaryCard extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        tripName: '',
-        host: '',
-        destination: '',
-        show: false
-      };
-    }
+const SummaryCard = (props) => {
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+	const { trip } = props;
 
-    componentDidMount() {
-      // TO DO: add redux to dynamically import user id
-      console.log("componentDidMount");
-      fetch('/invitations/3')
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          this.setState({
-            tripName: data[0].trip_title
-          });
-          this.setState({
-            host: data[0].username
-          });
-          this.setState({ destination: data[0].destination });
-        });
-    }
+	return (
+		<>
+			<Card style={{ width: '18rem' }} onClick={handleShow}>
+				<Card.Body>
+					<Card.Title>{trip.trip_title}</Card.Title>
+					<Card.Text>
+						<>{trip.username}</>
+						<>{trip.destination}</>
+					</Card.Text>
+				</Card.Body>
+			</Card>
+			<Modal show={show} onHide={handleClose}>
+				<TripDetails trip={trip} />
+			</Modal>
+		</>
+	);
+};
 
-    toggleShow = bool => {
-	    this.setState({ show: bool });
-     };
-
-    render() {
-      const {show, tripName, host, destination} = this.state;
-
-      return (
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-              <Card.Title>{tripName}</Card.Title>
-              <Card.Text>
-                <p>{host}</p>
-                <p>{destination}</p>
-              </Card.Text>
-          </Card.Body>
-        </Card>
-      );
-    };
-  }
+export default SummaryCard;
