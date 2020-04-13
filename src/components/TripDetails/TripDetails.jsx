@@ -4,13 +4,13 @@ import { Button } from 'react-bootstrap';
 
 import './TripDetails.scss';
 
-export const getDateTime = date => {
+export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
 	const tripTime = date.slice(11, 19);
 	return { tripDate, tripTime };
 };
 
-const TripDetails = props => {
+const TripDetails = (props) => {
 	const {
 		trip_title,
 		tripdate,
@@ -48,6 +48,10 @@ const TripDetails = props => {
 						<span className='trip-details-headings'>To</span>
 						<br /> {destination}
 					</p>
+					<p>Stoping at</p>
+					<ul>
+						<li>Stop 1</li>
+					</ul>
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
