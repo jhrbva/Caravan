@@ -116,6 +116,21 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.post('/reststop', (req, res) => {
 	const { trip_id, location, loc_long, loc_lat } = req.body;
 	pool.query(

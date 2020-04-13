@@ -10,24 +10,34 @@ export default class Dashboard extends React.Component {
 			invitations: [],
 			host: [],
 			members: [],
+			reststops: [],
 		};
 	}
 
 	componentDidMount() {
 		// TO DO: add redux to dynamically import user id
-		Promise.all([fetch('/invitations/3'), fetch('/members/1'), fetch('')])
-			.then(([response1, response2]) => {
-				return Promise.all([response1.json(), response2.json()]);
+		Promise.all([
+			fetch('/invitations/3'),
+			fetch('/members/1'),
+			fetch('/reststop/1'),
+		])
+			.then(([response1, response2, response3]) => {
+				return Promise.all([
+					response1.json(),
+					response2.json(),
+					response3.json(),
+				]);
 			})
-			.then(([response1, response2]) => {
+			.then(([response1, response2, response3]) => {
 				this.setState({ invitations: response1 });
 				this.setState({ host: response2.host[0].username });
 				this.setState({ members: response2.members });
+				this.setState({ reststops: response3 });
 			});
 	}
 
 	render() {
-		const { invitations, host, members } = this.state;
+		const { invitations, host, members, reststops } = this.state;
 		return (
 			<>
 				<h1>Dashboard</h1>
@@ -43,6 +53,7 @@ export default class Dashboard extends React.Component {
 								trip={invite}
 								host={host}
 								members={members}
+								reststops={reststops}
 							/>
 						</>
 					);
