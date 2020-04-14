@@ -1,0 +1,28 @@
+@import '../../utilities/colorPalette.scss';
+
+.invitation-btns {
+	.big-button {
+		width: 33.333333%;
+	}
+
+	.start-trip-btn .big-button {
+		width: 100%;
+	}
+}
+.rejected-msg {
+	p {
+		margin: 10px 0;
+		text-align: center;
+	}
+
+	.invitation-btns.rejected {
+		.big-button {
+			width: 50%;
+		}
+	}
+}
+
+.invitation-btns .big-button:active,
+.invitation-btns .big-button:focus {
+	background: $fun-yellow;
+}
