@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BigButton from '../BigButton/BigButton';
 import './ActionButtons.scss';
+import RequestChange from '../RequestChange/RequestChange';
 
 const responseToInvitation = (response) => {
 	const { userid, tripid, accepted } = response;
@@ -36,8 +37,11 @@ const ActionButtons = (response) => {
 							responseToInvitation({ userid, tripid, accepted: true });
 						}}
 					/>
-					<Link to='/suggestedit'>
-						<BigButton value={'Request Change'} />
+					<Link to='/requestchange'>
+						<BigButton
+							value={'Request Change'}
+							onClick={() => <RequestChange props={tripid} />}
+						/>
 					</Link>
 				</div>
 			</div>
