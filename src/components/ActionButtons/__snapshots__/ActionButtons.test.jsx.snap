@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Action Buttons should match the snapshot 1`] = `
+exports[`Action Buttons should match the snapshot for accepted invitation 1`] = `
+<div
+  className="invitation-btns two-btns"
+>
+  <Link
+    to="/map"
+  >
+    <BigButton
+      value="Start Trip"
+    />
+  </Link>
+  <BigButton
+    onClick={[Function]}
+    value="Leave Trip"
+  />
+</div>
+`;
+
+exports[`Action Buttons should match the snapshot for new invitation 1`] = `
 <div
   className="invitation-btns three-btns"
 >
@@ -15,5 +33,26 @@ exports[`Action Buttons should match the snapshot 1`] = `
   <BigButton
     value="Request Change"
   />
+</div>
+`;
+
+exports[`Action Buttons should match the snapshot for rejected invitation 1`] = `
+<div
+  className="rejected-msg"
+>
+  <p>
+    You declined this invitation. Changed your mind?
+  </p>
+  <div
+    className="invitation-btns two-btns"
+  >
+    <BigButton
+      onClick={[Function]}
+      value="Accept Invitation"
+    />
+    <BigButton
+      value="Request Change"
+    />
+  </div>
 </div>
 `;
