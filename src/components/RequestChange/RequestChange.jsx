@@ -11,11 +11,13 @@ export const RequestChangeForm = () => (
 		<Field
 			placeholder='Type your suggestions'
 			autoFocus={true}
+			name='suggestion'
 			component='textarea'
+			type='textarea'
 		/>
-		<Link to='/dashboard'>
-			<BigButton type='submit' value='Send' />
-		</Link>
+		{/* <Link to='/dashboard'> */}
+		<BigButton type='submit' value='Send' />
+		{/* </Link> */}
 	</Form>
 );
 
@@ -25,7 +27,7 @@ const RequestChange = (tripid) => {
 		<Formik
 			initialValues={{ value: '' }}
 			onSubmit={(values) => {
-				console.log(values);
+				// console.log(values);
 				axios
 					.post('/itineraryrequest', {
 						tripid: tripid,
