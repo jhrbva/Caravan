@@ -6,40 +6,24 @@ import BigButton from '../BigButton/BigButton';
 import './ActionButtons.scss';
 
 const responseToInvitation = (response) => {
-	const { userid, tripid, responseCode } = response;
+	const { userid, tripid, accepted } = response;
 
-	if (responseCode === 1) {
-		axios
-			.post('/invitations/accept', {
-				userid: userid,
-				tripid: tripid,
-				accepted: true,
-			})
-			.then(function (response) {
-				console.log(response);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	} else if (responseCode === 2) {
-		axios
-			.post('/invitations/accept', {
-				userid: userid,
-				tripid: tripid,
-				accepted: false,
-			})
-			.then(function (response) {
-				console.log(response);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	}
+	axios
+		.post('/invitations/accept', {
+			userid,
+			tripid,
+			accepted,
+		})
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 };
 
 const ActionButtons = (response) => {
 	const { userid, tripid, accepted } = response;
-	let responseCode = 0;
 
 	if (accepted === false) {
 		return (
@@ -49,12 +33,7 @@ const ActionButtons = (response) => {
 					<BigButton
 						value={'Accept Invitation'}
 						onClick={() => {
-							responseCode = 1;
-							responseToInvitation({
-								userid,
-								tripid,
-								responseCode,
-							});
+							responseToInvitation({ userid, tripid, accepted: true });
 						}}
 					/>
 					<Link to='/suggestedit'>
@@ -77,23 +56,13 @@ const ActionButtons = (response) => {
 				<BigButton
 					value={'Accept'}
 					onClick={() => {
-						responseCode = 1;
-						responseToInvitation({
-							userid,
-							tripid,
-							responseCode,
-						});
+						responseToInvitation({ userid, tripid, accepted: true });
 					}}
 				/>
 				<BigButton
 					value={'Reject'}
 					onClick={() => {
-						responseCode = 2;
-						responseToInvitation({
-							userid,
-							tripid,
-							responseCode,
-						});
+						responseToInvitation({ userid, tripid, accepted: false });
 					}}
 				/>
 				<Link to='/suggestedit'>
