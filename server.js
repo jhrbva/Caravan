@@ -68,6 +68,38 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 	res.json(user);
 });
 
+app.post('/emergency', (req, res) => {
+	const { address, firstname, lastname, phonenumber, relationship } = req.body;
+	pool.query(
+		'INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship) VALUES ($1, $2, $3, $4, $5)',
+		[address, firstname, lastname, phonenumber, relationship],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
+app.get('/emergency/:ECid', (req, res) => {
+	pool.query(
+		'SELECT * FROM emergencyContact WHERE ECid=$1',
+		[req.params.ECid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when finding an emergency contact for a specific user', err);
+			}
+			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
 		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
