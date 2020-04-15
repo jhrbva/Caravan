@@ -2,22 +2,25 @@
 
 exports[`Action Buttons should match the snapshot for accepted invitation 1`] = `
 <div
-  className="invitation-btns"
+  className="invitation-btns two-btns"
 >
   <Link
-    className="start-trip-btn"
     to="/map"
   >
     <BigButton
       value="Start Trip"
     />
   </Link>
+  <BigButton
+    onClick={[Function]}
+    value="Leave Trip"
+  />
 </div>
 `;
 
 exports[`Action Buttons should match the snapshot for new invitation 1`] = `
 <div
-  className="invitation-btns"
+  className="invitation-btns three-btns"
 >
   <BigButton
     onClick={[Function]}
@@ -45,7 +48,7 @@ exports[`Action Buttons should match the snapshot for rejected invitation 1`] = 
     You declined this invitation. Changed your mind?
   </p>
   <div
-    className="invitation-btns rejected"
+    className="invitation-btns two-btns"
   >
     <BigButton
       onClick={[Function]}

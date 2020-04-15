@@ -6,75 +6,91 @@ import BigButton from '../BigButton/BigButton';
 import './ActionButtons.scss';
 import RequestChange from '../RequestChange/RequestChange';
 
-const responseToInvitation = (response) => {
-	const { userid, tripid, accepted } = response;
-
-	axios
-		.post('/invitations/accept', {
-			userid,
-			tripid,
-			accepted,
-		})
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-};
-
-const ActionButtons = (response) => {
-	const { userid, tripid, accepted } = response;
-
-	if (accepted === false) {
-		return (
-			<div className='rejected-msg'>
-				<p>You declined this invitation. Changed your mind?</p>
-				<div className='invitation-btns rejected'>
-					<BigButton
-						value={'Accept Invitation'}
-						onClick={() => {
-							responseToInvitation({ userid, tripid, accepted: true });
-						}}
-					/>
-					<Link to='/requestchange'>
-						<BigButton
-							value={'Request Change'}
-							onClick={() => <RequestChange props={tripid} />}
-						/>
-					</Link>
-				</div>
-			</div>
-		);
-	} else if (accepted === true) {
-		return (
-			<div className='invitation-btns'>
-				<Link to='/map' className='start-trip-btn'>
-					<BigButton value={'Start Trip'} />
-				</Link>
-			</div>
-		);
-	} else {
-		return (
-			<div className='invitation-btns'>
-				<BigButton
-					value={'Accept'}
-					onClick={() => {
-						responseToInvitation({ userid, tripid, accepted: true });
-					}}
-				/>
-				<BigButton
-					value={'Reject'}
-					onClick={() => {
-						responseToInvitation({ userid, tripid, accepted: false });
-					}}
-				/>
-				<Link to='/suggestedit'>
-					<BigButton value={'Request Change'} />
-				</Link>
-			</div>
-		);
+export default class ActionButtons extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			accepted: this.props.accepted,
+		};
 	}
-};
 
-export default ActionButtons;
+	responseToInvitation = () => {
+		axios
+			.post('/invitations/accept', {
+				userid: this.props.userid,
+				tripid: this.props.tripid,
+				accepted: this.state.accepted,
+			})
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+
+	acceptInvitationButton = (value) => {
+		return (
+			<BigButton
+				value={value}
+				onClick={() => {
+					this.setState({ accepted: true }, function () {
+						this.responseToInvitation();
+					});
+				}}
+			/>
+		);
+	};
+
+	rejectInvitationButton = (value) => {
+		return (
+			<BigButton
+				value={value}
+				onClick={() => {
+					this.setState({ accepted: false }, function () {
+						this.responseToInvitation();
+					});
+				}}
+			/>
+		);
+	};
+
+	requestChangeButton = () => {
+		return (
+			<Link to='/requestchange'>
+				<BigButton value={'Request Change'} />
+			</Link>
+		);
+	};
+
+	render() {
+		if (this.state.accepted === false) {
+			return (
+				<div className='rejected-msg'>
+					<p>You declined this invitation. Changed your mind?</p>
+					<div className='invitation-btns two-btns'>
+						{this.acceptInvitationButton('Accept Invitation')}
+						{this.requestChangeButton()}
+					</div>
+				</div>
+			);
+		} else if (this.state.accepted === true) {
+			return (
+				<div className='invitation-btns two-btns'>
+					<Link to='/map'>
+						<BigButton value={'Start Trip'} />
+					</Link>
+					{this.rejectInvitationButton('Leave Trip')}
+				</div>
+			);
+		} else {
+			return (
+				<div className='invitation-btns three-btns'>
+					{this.acceptInvitationButton('Accept')}
+					{this.rejectInvitationButton('Reject')}
+					{this.requestChangeButton()}
+				</div>
+			);
+		}
+	}
+}
