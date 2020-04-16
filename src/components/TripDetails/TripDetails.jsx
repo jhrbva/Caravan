@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
@@ -23,11 +25,11 @@ const TripDetails = (props) => {
 
 	const host = props.host;
 	const members = props.members;
-
+// console.log(members);
 	const listMembers = members.map((member, key) => (
-		<li key={key}>{member.username}</li>
-	));
-
+			<li key={key}>{member.username}</li>
+		));
+console.log(listMembers);
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
@@ -60,11 +62,9 @@ const TripDetails = (props) => {
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
-					<ul>
-						<li>@guestA</li>
-						<li>@guestB</li>
-						<li>@guestC</li>
-					</ul>
+
+					<ul>{listMembers}</ul>
+
 				</div>
 				<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />
 			</div>

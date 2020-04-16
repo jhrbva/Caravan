@@ -10,6 +10,8 @@ export default class Dashboard extends React.Component {
 			invitations: [],
 			tripsJoined: [],
 			tripsHosted: [],
+			host: [],
+			members: [],
 		};
 	}
 
@@ -30,9 +32,17 @@ export default class Dashboard extends React.Component {
 				this.setState({ tripsJoined: data.tripsJoined });
 				this.setState({ tripsHosted: data.tripsHosted });
 			});
+		fetch('/members/1')
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				this.setState({ host: data.host[0].username });
+				this.setState({ members: data.members[0] });
+			});
 	}
 
-	renderSection = (title, data) => {
+	renderSection = (title, data, host, members) => {
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
@@ -43,7 +53,7 @@ export default class Dashboard extends React.Component {
 						data.map((entry, id) => {
 							return (
 								<Col>
-									<SummaryCard key={id} trip={entry} />
+									<SummaryCard key={id} trip={entry} host={host} members={members}/>
 								</Col>
 							);
 						})
@@ -56,16 +66,16 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
-		const { invitations, tripsJoined, tripsHosted } = this.state;
+		const { invitations, tripsJoined, tripsHosted, host, members } = this.state;
 		return (
 			<>
 				<h1>Dashboard</h1>
 				<Link to='/trip'>
 					<Button variant='success'>New Trip +</Button>
 				</Link>
-				{this.renderSection('Invitations', invitations)}
-				{this.renderSection('Your Trips', tripsHosted)}
-				{this.renderSection('Trips Joined', tripsJoined)}
+				{this.renderSection('Invitations', invitations, host, members)}
+				{this.renderSection('Your Trips', tripsHosted, host, members)}
+				{this.renderSection('Trips Joined', tripsJoined, host, members)}
 			</>
 		);
 	}
