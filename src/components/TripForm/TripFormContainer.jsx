@@ -52,6 +52,12 @@ export class TripFormContainer extends React.Component {
 			})
 			.then(function (response) {
 				console.log(response);
+				// call /user/:username to get userid
+				axios.post('/invitations', {
+					host_id: 2,
+					trip_id: response.data.trip_id,
+					// add username to call
+				});
 				history.push('/dashboard');
 			})
 			.catch(function (error) {
