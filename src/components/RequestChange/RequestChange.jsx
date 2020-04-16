@@ -15,9 +15,9 @@ export const RequestChangeForm = () => (
 			component='textarea'
 			type='textarea'
 		/>
-		{/* <Link to='/dashboard'> */}
-		<BigButton type='submit' value='Send' />
-		{/* </Link> */}
+		<Link to='/dashboard'>
+			<BigButton type='submit' value='Send' />
+		</Link>
 	</Form>
 );
 
