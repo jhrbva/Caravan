@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
+import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
 
 export const getDateTime = (date) => {
@@ -12,6 +11,9 @@ export const getDateTime = (date) => {
 
 const TripDetails = (props) => {
 	const {
+		userid,
+		tripid,
+		accepted,
 		trip_title,
 		tripdate,
 		trip_description,
@@ -58,13 +60,13 @@ const TripDetails = (props) => {
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
-
-					<ul>{listMembers}</ul>
-
-					<Link to='/map'>
-						<Button variant='success'>Start Trip</Button>
-					</Link>
+					<ul>
+						<li>@guestA</li>
+						<li>@guestB</li>
+						<li>@guestC</li>
+					</ul>
 				</div>
+				<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />
 			</div>
 		</div>
 	);
