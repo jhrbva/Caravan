@@ -10,6 +10,20 @@ export const getDateTime = (date) => {
 	return { tripDate, tripTime };
 };
 
+export const getRestStops = (reststops) => {
+	if (reststops.length > 0) {
+		return (
+			<div>
+				<span className='trip-details-headings'>Stoping at</span>
+				<ul>
+					<li>Stop 1</li>
+				</ul>
+			</div>
+		);
+	}
+	console.log(reststops);
+};
+
 const TripDetails = (props) => {
 	const {
 		trip_title,
@@ -18,6 +32,8 @@ const TripDetails = (props) => {
 		startlocation,
 		destination,
 	} = props.trip;
+
+	const { reststops } = props;
 
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
@@ -48,10 +64,9 @@ const TripDetails = (props) => {
 						<span className='trip-details-headings'>To</span>
 						<br /> {destination}
 					</p>
-					<p>Stoping at</p>
-					<ul>
-						<li>Stop 1</li>
-					</ul>
+
+					{getRestStops(reststops)}
+
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
