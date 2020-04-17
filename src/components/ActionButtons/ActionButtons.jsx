@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
+import './ActionButtons.scss';
 import { Link } from 'react-router-dom';
 import BigButton from '../BigButton/BigButton';
-import './ActionButtons.scss';
-import RequestChange from '../RequestChange/RequestChange';
+import { withRouter } from 'react-router';
 
-export default class ActionButtons extends React.Component {
+class ActionButtons extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -56,11 +56,11 @@ export default class ActionButtons extends React.Component {
 	};
 
 	requestChangeButton = () => {
-		return (
-			<Link to='/requestchange'>
-				<BigButton value={'Request Change'} />
-			</Link>
-		);
+		const { history } = this.props;
+		return history.push({
+			pathname: '/requestchange',
+			tripid: this.props.tripid,
+		});
 	};
 
 	render() {
@@ -70,7 +70,12 @@ export default class ActionButtons extends React.Component {
 					<p>You declined this invitation. Changed your mind?</p>
 					<div className='invitation-btns two-btns'>
 						{this.acceptInvitationButton('Accept Invitation')}
-						{this.requestChangeButton()}
+						<BigButton
+							value={'Request Change'}
+							onClick={() => {
+								this.requestChangeButton();
+							}}
+						/>
 					</div>
 				</div>
 			);
@@ -88,9 +93,15 @@ export default class ActionButtons extends React.Component {
 				<div className='invitation-btns three-btns'>
 					{this.acceptInvitationButton('Accept')}
 					{this.rejectInvitationButton('Reject')}
-					{this.requestChangeButton()}
+					<BigButton
+						value={'Request Change'}
+						onClick={() => {
+							this.requestChangeButton();
+						}}
+					/>
 				</div>
 			);
 		}
 	}
 }
+export default withRouter(ActionButtons);

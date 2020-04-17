@@ -39,9 +39,10 @@ function App() {
 					<Route exact path='/map'>
 						<Map />
 					</Route>
-					<Route exact path='/requestchange'>
-						<RequestChange />
-					</Route>
+					<Route
+						path='/requestchange'
+						render={(props) => <RequestChange {...props} />}
+					/>
 				</header>
 			</div>
 		</Router>
