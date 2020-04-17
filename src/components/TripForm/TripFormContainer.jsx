@@ -40,7 +40,8 @@ export class TripFormContainer extends React.Component {
 			trip_description,
 			trip_title,
 		} = values;
-		console.log('in onSubmit', values, bag);
+		//console.log('in onSubmit', values, bag);
+
 		axios
 			.post('/trip', {
 				host_id: 2,
@@ -51,13 +52,17 @@ export class TripFormContainer extends React.Component {
 				trip_title,
 			})
 			.then(function (response) {
-				console.log(response);
-				// call /user/:username to get userid
-				axios.post('/invitations', {
-					host_id: 2,
-					trip_id: response.data.trip_id,
-					// add username to call
-				});
+				fetch('/user/rubyr')
+					.then((res) => {
+						return res.json();
+					})
+					.then((info) => {
+						axios.post('/invitations', {
+							host_id: 2,
+							user_id: info[0].userid,
+							trip_id: response.data,
+						});
+					});
 				history.push('/dashboard');
 			})
 			.catch(function (error) {

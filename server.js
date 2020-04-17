@@ -257,13 +257,12 @@ app.post('/trip', (req, res) => {
 			trip_title,
 		],
 		(err, results) => {
-			console.log(results.rows[0].tripid);
 			if (err) {
 				console.log('Error when inserting new trip', err);
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			res.json(results.rows[0]);
+			res.json(results.rows[0].tripid);
 		}
 	);
 });
