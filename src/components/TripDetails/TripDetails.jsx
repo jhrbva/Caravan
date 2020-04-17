@@ -12,16 +12,16 @@ export const getDateTime = (date) => {
 
 export const getRestStops = (reststops) => {
 	if (reststops.length > 0) {
+		const listReststops = reststops.map((reststop, key) => (
+			<li key={key}>{reststop.location}</li>
+		));
 		return (
 			<div>
 				<span className='trip-details-headings'>Stoping at</span>
-				<ul>
-					<li>Stop 1</li>
-				</ul>
+				<ul>{listReststops}</ul>
 			</div>
 		);
 	}
-	console.log(reststops);
 };
 
 const TripDetails = (props) => {
