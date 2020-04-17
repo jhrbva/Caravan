@@ -10,10 +10,7 @@ const trip = {
 	startlocation: '123 OneTreeHill St.',
 	destination: 'Grand Canyon, Grand Canyon Ave.',
 };
-
-const reststops = {
-	location: 'Wawa',
-};
+const reststops = [{ location: 'Wawa' }, { location: 'Loves' }];
 
 describe('Trip Details', () => {
 	it('should match the snapshot', () => {
