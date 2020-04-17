@@ -11,9 +11,13 @@ const trip = {
 	destination: 'Grand Canyon, Grand Canyon Ave.',
 };
 
+const reststops = {
+	location: 'Wawa',
+};
+
 describe('Trip Details', () => {
 	it('should match the snapshot', () => {
-		const wrapper = shallow(<TripDetails trip={trip} />);
+		const wrapper = shallow(<TripDetails trip={trip} reststops={reststops} />);
 		expect(wrapper).toMatchSnapshot();
 	});
 });
