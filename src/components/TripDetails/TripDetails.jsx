@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
+import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
 
 export const getDateTime = (date) => {
@@ -26,6 +25,9 @@ export const getRestStops = (reststops) => {
 
 const TripDetails = (props) => {
 	const {
+		userid,
+		tripid,
+		accepted,
 		trip_title,
 		tripdate,
 		trip_description,
@@ -75,11 +77,8 @@ const TripDetails = (props) => {
 						<li>@guestB</li>
 						<li>@guestC</li>
 					</ul>
-
-					<Link to='/map'>
-						<Button variant='success'>Start Trip</Button>
-					</Link>
 				</div>
+				<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />
 			</div>
 		</div>
 	);

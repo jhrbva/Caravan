@@ -104,19 +104,8 @@ exports[`Trip Details should match the snapshot 1`] = `
           @guestC
         </li>
       </ul>
-      <Link
-        to="/map"
-      >
-        <Button
-          active={false}
-          disabled={false}
-          type="button"
-          variant="success"
-        >
-          Start Trip
-        </Button>
-      </Link>
     </div>
+    <ActionButtons />
   </div>
 </div>
 `;

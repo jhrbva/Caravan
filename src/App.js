@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.scss';
+import './BootstrapOverride.scss';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
