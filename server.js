@@ -68,27 +68,6 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 	res.json(user);
 });
 
-app.delete('/invitations', (req, res) => {
-	const { host_id, user_id, trip_id } = req.body;
-	console.log(host_id, user_id, trip_id);
-	pool.query(
-		'DELETE FROM invitations WHERE hostid=$1 AND userid=$2 AND tripid=$3',
-		[host_id, user_id, trip_id],
-		(err, result) => {
-			if (err) {
-				console.log('Error when deleting invitation for specific user', err);
-			}
-			if (result.rowCount > 0) {
-				res.sendStatus(200);
-			}
-			if (result.rowCount == 0) {
-				// No row that meets the condition
-				res.sendStatus(403);
-			}
-		}
-	);
-});
-
 app.post('/emergency', (req, res) => {
 	const { address, firstname, lastname, phonenumber, relationship } = req.body;
 	pool.query(
@@ -132,6 +111,25 @@ app.get('/invitations/:userid', (req, res) => {
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
 				res.send(result.rows);
+			}
+		}
+	);
+});
+
+app.delete('/invitations/:userid/:tripid', (req, res) => {
+	pool.query(
+		'DELETE * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1 AND tripid=$2',
+		[req.params.userid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when deleting invitation for specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
 			}
 		}
 	);
