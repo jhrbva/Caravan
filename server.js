@@ -68,6 +68,27 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 	res.json(user);
 });
 
+app.delete('/invitations', (req, res) => {
+	const { host_id, user_id, trip_id } = req.body;
+	console.log(host_id, user_id, trip_id);
+	pool.query(
+		'DELETE FROM invitations WHERE hostid=$1 AND userid=$2 AND tripid=$3',
+		[host_id, user_id, trip_id],
+		(err, result) => {
+			if (err) {
+				console.log('Error when deleting invitation for specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
 app.post('/emergency', (req, res) => {
 	const { address, firstname, lastname, phonenumber, relationship } = req.body;
 	pool.query(
