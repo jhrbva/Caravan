@@ -258,6 +258,27 @@ app.post('/trip', (req, res) => {
 	);
 });
 
+app.delete('/trip/:userid', (req, res) => { // Delete trip after the member decides to leave trip
+	const { host_id, trip_date, trip_description, trip_title } = req.body;
+	console.log(host_id, trip_date, trip_description, trip_title);
+	pool.query(
+		'DELETE FROM trips WHERE hostid=$1 AND tripDate=$2 AND trip_title=$3',
+		[host_id, trip_date, trip_description, trip_title],
+		(err, result) => {
+			if (err) {
+				console.log('Error when deleting a trip for a specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
 app.get('/trip/:tripid', (req, res) => {
 	pool.query(
 		'SELECT trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips WHERE tripid=$1',
