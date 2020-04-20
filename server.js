@@ -333,19 +333,24 @@ app.get('/trips/:userid', (req, res) => {
 			}
 			const tripsHosted = result.rows;
 			// console.log(tripsHosted);
-			tripsHosted.map(async (trips) => {
-				await	pool.query(
+			const tripsHostedUpdated = tripsHosted.map((trips) => {
+				pool.query(
 					'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 					[trips.tripid],
 					(err, result) => {
 						if (err) {
 							console.log('Error when selecting members from a trip', err);
 						}
-						return { ...trips, members: result.rows };
+						updatedTrips = { ...trips, members: result.rows }
+						return updatedTrips;
 					}
 				);
+				//console.log({ ...trips, members: result.rows });
+				return updatedTrips;
 			});
-			console.log(tripsHosted);
+			//console.log(tripsHosted);
+
+			console.log(tripsHostedUpdated);
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
 					req.params.userid,
