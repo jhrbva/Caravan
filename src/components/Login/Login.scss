@@ -1,0 +1,11 @@
+@import "../../utilities/colorPalette.scss";
+
+.login-page-wrapper {
+	h1 {
+		color: $happy-blue;
+	}
+	p {
+		text-align: center;
+		font-size: 16px;
+	}
+}

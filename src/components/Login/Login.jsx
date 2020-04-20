@@ -10,6 +10,7 @@ import { required } from "../../utilities/formValidation";
 
 import PersonIcon from "@material-ui/icons/PersonOutlined";
 import VpnKeyIcon from "@material-ui/icons/VpnKeyOutlined";
+import "./Login.scss";
 
 export const LoginForm = () => (
 	<Form>
@@ -40,7 +41,12 @@ export const LoginForm = () => (
 const Login = (props) => {
 	return (
 		<div className='login-page-wrapper'>
-			<img src={logo} className='caravan-logo' alt='Caravan logo' />
+			<img
+				src={logo}
+				height='25px'
+				className='caravan-logo'
+				alt='Caravan logo'
+			/>
 			<h1 className='header-text'>Welcome Back</h1>
 			<p> Login to continue</p>
 			<Formik
@@ -69,8 +75,9 @@ const Login = (props) => {
 			>
 				{() => <LoginForm />}
 			</Formik>
-			<p>Don't have an account yet?</p>
-			<a href='/signup'>Sign up!</a>
+			<p>
+				Don't have an account yet? <a href='/signup'>Sign up!</a>
+			</p>
 		</div>
 	);
 };
