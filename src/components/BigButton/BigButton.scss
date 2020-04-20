@@ -1,4 +1,4 @@
-@import '../../utilities/colorPalette.scss';
+@import "../../utilities/colorPalette.scss";
 
 .big-button {
 	width: 270px;
@@ -8,6 +8,7 @@
 	font-weight: bold;
 
 	border: none;
+	border-radius: 5px;
 	box-shadow: none;
 
 	background: $happy-blue;

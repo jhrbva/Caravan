@@ -1,16 +1,15 @@
-import React from 'react';
-import { Field } from 'formik';
+import React from "react";
+import { Field } from "formik";
 
-import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
-import DatePickerInput from '../DatePicker/DatePickerInput';
-import { required } from '../../utilities/formValidation';
+import Input from "../Input/Input";
+import DatePickerInput from "../DatePicker/DatePickerInput";
+import { required } from "../../utilities/formValidation";
 
-import TitleIcon from '@material-ui/icons/Title';
-import DescriptionIcon from '@material-ui/icons/Description';
-import TripOriginIcon from '@material-ui/icons/TripOrigin';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
-import EventIcon from '@material-ui/icons/Event';
+import TitleIcon from "@material-ui/icons/Title";
+import DescriptionIcon from "@material-ui/icons/Description";
+import TripOriginIcon from "@material-ui/icons/TripOrigin";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import EventIcon from "@material-ui/icons/Event";
 
 const TripInformation = () => (
 	<>

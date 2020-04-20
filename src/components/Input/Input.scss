@@ -2,22 +2,23 @@
 
 .input-wrapper {
 	.input-outlined {
+		border-radius: 5px;
+		border-style: solid;
 		border-color: gray;
 		margin: 15px;
 		width: 233px;
 		padding: 8px 8px 8px 30px;
 
 		font-size: 15px;
-
-		box-shadow: none;
 	}
+
 	.material-icons {
-		opacity: 0.3;
 		font-size: 20px;
 
 		position: absolute;
 
 		margin: 15px 0 0 20px;
+		color: $happy-blue;
 	}
 
 	.error {
