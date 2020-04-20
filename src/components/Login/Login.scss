@@ -1,6 +1,10 @@
 @import "../../utilities/colorPalette.scss";
 
 .login-page-wrapper {
+	margin: 15px;
+	.header {
+		margin-bottom: 25px;
+	}
 	h1 {
 		color: $happy-blue;
 	}

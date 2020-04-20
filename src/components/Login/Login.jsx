@@ -41,14 +41,16 @@ export const LoginForm = () => (
 const Login = (props) => {
 	return (
 		<div className='login-page-wrapper'>
-			<img
-				src={logo}
-				height='25px'
-				className='caravan-logo'
-				alt='Caravan logo'
-			/>
-			<h1 className='header-text'>Welcome Back</h1>
-			<p> Login to continue</p>
+			<div className='header'>
+				<img
+					src={logo}
+					height='25px'
+					className='caravan-logo'
+					alt='Caravan logo'
+				/>
+				<h1 className='header-text'>Welcome Back</h1>
+				<p> Login to continue</p>
+			</div>
 			<Formik
 				initialValues={{
 					email: "",
