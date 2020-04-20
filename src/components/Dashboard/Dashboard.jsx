@@ -42,7 +42,8 @@ export default class Dashboard extends React.Component {
 			});
 	}
 
-	renderSection = (title, data, host, members) => {
+	renderSection = (title, data) => {
+		const { host, members } = this.state;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
@@ -66,16 +67,16 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
-		const { invitations, tripsJoined, tripsHosted, host, members } = this.state;
+		const { invitations, tripsJoined, tripsHosted } = this.state;
 		return (
 			<>
 				<h1>Dashboard</h1>
 				<Link to='/trip'>
 					<Button variant='success'>New Trip +</Button>
 				</Link>
-				{this.renderSection('Invitations', invitations, host, members)}
-				{this.renderSection('Your Trips', tripsHosted, host, members)}
-				{this.renderSection('Trips Joined', tripsJoined, host, members)}
+				{this.renderSection('Invitations', invitations)}
+				{this.renderSection('Your Trips', tripsHosted)}
+				{this.renderSection('Trips Joined', tripsJoined)}
 			</>
 		);
 	}

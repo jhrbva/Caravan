@@ -185,7 +185,7 @@ app.delete('/reststop', (req, res) => {
 });
 
 app.get('/members/:tripid', (req, res) => {
-	// let result = [];
+	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -193,9 +193,8 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
-			const members = results.rows;
-			// result.push(results.rows);
-			// console.log(result);
+			result.push(results.rows);
+			console.log(result);
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
@@ -205,7 +204,7 @@ app.get('/members/:tripid', (req, res) => {
 					if (err) {
 						console.log('Error when selecting host id', err);
 					}
-					res.send({host: results.rows, members: members});
+					res.send({ host: results.rows, members: result });
 				}
 			);
 		}
@@ -333,7 +332,20 @@ app.get('/trips/:userid', (req, res) => {
 				);
 			}
 			const tripsHosted = result.rows;
-
+			// console.log(tripsHosted);
+			tripsHosted.map(async (trips) => {
+				await	pool.query(
+					'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
+					[trips.tripid],
+					(err, result) => {
+						if (err) {
+							console.log('Error when selecting members from a trip', err);
+						}
+						return { ...trips, members: result.rows };
+					}
+				);
+			});
+			console.log(tripsHosted);
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
 					req.params.userid,
@@ -344,7 +356,7 @@ app.get('/trips/:userid', (req, res) => {
 							err
 						);
 					}
-					console.log(result);
+					// console.log(result);
 					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
