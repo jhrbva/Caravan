@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 function Input({
 	type,
 	name,
+	tag,
 	placeholder,
 	className,
 	maxLength,
@@ -19,7 +20,7 @@ function Input({
 		form && field && form.errors[field.name] && form.touched[field.name];
 	return (
 		<div className='input-wrapper'>
-			<p className='field-header'>{placeholder}</p>
+			<p className='field-header'>{tag}</p>
 			<i className='material-icons'>{icon}</i>
 			<input
 				className='input-outlined'

@@ -17,8 +17,8 @@ export const LoginForm = () => (
 		<Field
 			icon={<PersonIcon />}
 			type='text'
+			tag='USERNAME'
 			name='username'
-			placeholder='username'
 			maxLength={254}
 			autoFocus={true}
 			validate={required}
@@ -27,8 +27,8 @@ export const LoginForm = () => (
 		<Field
 			icon={<VpnKeyIcon />}
 			type='password'
+			tag='PASSWORD'
 			name='password'
-			placeholder='password'
 			autoFocus={false}
 			validate={required}
 			component={Input}
