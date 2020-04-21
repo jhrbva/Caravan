@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./Input.scss";
-import TextField from "@material-ui/core/TextField";
 
 function Input({
 	type,
