@@ -49,7 +49,7 @@ const Login = (props) => {
 					alt='Caravan logo'
 				/>
 				<h1 className='header-text'>Welcome Back</h1>
-				<p> Login to continue</p>
+				<p className='header-subheader'> Login to continue</p>
 			</div>
 			<Formik
 				initialValues={{
