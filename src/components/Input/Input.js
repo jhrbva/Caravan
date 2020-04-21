@@ -19,6 +19,7 @@ function Input({
 		form && field && form.errors[field.name] && form.touched[field.name];
 	return (
 		<div className='input-wrapper'>
+			<p className='field-header'>{placeholder}</p>
 			<i className='material-icons'>{icon}</i>
 			<input
 				className='input-outlined'

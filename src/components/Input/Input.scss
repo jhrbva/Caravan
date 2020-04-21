@@ -15,7 +15,7 @@
 		font-size: 20px;
 		position: absolute;
 		margin: 15px 0px 0px 10px;
-		color: $happy-blue;
+		color: $dream-blue;
 	}
 
 	.error {
@@ -26,5 +26,12 @@
 		color: red;
 		font-size: 15px;
 		text-align: left;
+	}
+	.field-header {
+		position: absolute;
+		font-size: 12px;
+		margin: 5px 0px 0px 40px;
+		padding: 0px 5px;
+		background: white;
 	}
 }
