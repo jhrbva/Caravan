@@ -1,9 +1,8 @@
-import React from 'react';
-import { Field } from 'formik';
-import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
+import React from "react";
+import { Field } from "formik";
+import Input from "../Input/Input";
 
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const TripRestStops = () => (
 	<>
