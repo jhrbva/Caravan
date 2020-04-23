@@ -25,7 +25,9 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
+        host={Array []}
         key="0"
+        reststops={Array []}
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -46,7 +48,9 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
+        host={Array []}
         key="0"
+        reststops={Array []}
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -67,7 +71,9 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
+        host={Array []}
         key="0"
+        reststops={Array []}
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",

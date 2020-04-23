@@ -67,6 +67,25 @@ exports[`Trip Details should match the snapshot 1`] = `
          
         Grand Canyon, Grand Canyon Ave.
       </p>
+      <div>
+        <span
+          className="trip-details-headings"
+        >
+          Stoping at
+        </span>
+        <ul>
+          <li
+            key="0"
+          >
+            Wawa
+          </li>
+          <li
+            key="1"
+          >
+            Loves
+          </li>
+        </ul>
+      </div>
       <p>
         <span
           className="trip-details-headings"
