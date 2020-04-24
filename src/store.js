@@ -5,7 +5,8 @@ import indexReducer from './reducers';
 // Its API is { subscribe, dispatch, getState }.
 const store = createStore(
 	indexReducer /* preloadedState, */,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	window.__REDUX_DEVTOOLS_EXTENSION__ &&
+		window.__REDUX_DEVTOOLS_EXTENSION__() /* for redux devtools */
 );
 // const store = createStore(counter);
 

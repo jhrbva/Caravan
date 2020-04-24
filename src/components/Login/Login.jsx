@@ -42,6 +42,7 @@ export const LoginForm = () => (
 
 const Login = (props) => {
 	const { addLoggedUser, setLogged } = props;
+
 	return (
 		<div className='login-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
@@ -60,9 +61,8 @@ const Login = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
-							addLoggedUser({ id: 5 });
+							addLoggedUser(response);
 							setLogged();
-							console.log(response);
 							history.push('/dashboard');
 						})
 						.catch(function (error) {
@@ -81,7 +81,6 @@ const Login = (props) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addLoggedUser: (user) => {
-			console.log(user);
 			dispatch({ type: 'ADD_USER', payload: user });
 		},
 		setLogged: () => {

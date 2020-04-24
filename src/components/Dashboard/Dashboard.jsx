@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
-	return { userId: state.currentUser || {}.id };
-};
-
 class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,6 +15,8 @@ class Dashboard extends React.Component {
 	}
 
 	componentDidMount() {
+		const { user } = this.props;
+		console.log('our user:', user);
 		// TO DO: add redux to dynamically import user id
 		fetch('/invitations/3')
 			.then((response) => {
@@ -76,5 +74,9 @@ class Dashboard extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return { user: state.currentUser };
+};
 
 export default connect(mapStateToProps)(Dashboard);
