@@ -119,7 +119,7 @@ app.get('/invitations/:userid', (req, res) => {
 app.delete('/invitations/:userid/:tripid', (req, res) => {
 	pool.query(
 		'DELETE * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1 AND tripid=$2',
-		[req.params.userid],
+		[req.params.userid, req.params.userid],
 		(err, result) => {
 			if (err) {
 				console.log('Error when deleting invitation for specific user', err);
