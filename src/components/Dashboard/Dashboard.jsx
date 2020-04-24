@@ -2,8 +2,13 @@ import React from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
+import { connect } from 'react-redux';
 
-export default class Dashboard extends React.Component {
+const mapStateToProps = (state) => {
+	return { userId: state.currentUser || {}.id };
+};
+
+class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -57,6 +62,7 @@ export default class Dashboard extends React.Component {
 
 	render() {
 		const { invitations, tripsJoined, tripsHosted } = this.state;
+		console.log(this.props.userid);
 		return (
 			<>
 				<h1>Dashboard</h1>
@@ -70,3 +76,5 @@ export default class Dashboard extends React.Component {
 		);
 	}
 }
+
+export default connect(mapStateToProps)(Dashboard);

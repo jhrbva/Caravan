@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
@@ -38,7 +39,7 @@ export const LoginForm = () => (
 	</Form>
 );
 
-const Login = props => {
+const Login = (props) => {
 	return (
 		<div className='login-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
@@ -47,21 +48,20 @@ const Login = props => {
 					email: '',
 					password: '',
 				}}
-				onSubmit={values => {
+				onSubmit={(values) => {
 					const { history } = props;
 					// same shape as initial values
-					console.log(values);
-					console.log(props);
+
 					axios
 						.post('/login', {
 							username: values.username,
 							password: values.password,
 						})
-						.then(function(response) {
+						.then(function (response) {
 							console.log(response);
 							history.push('/dashboard');
 						})
-						.catch(function(error) {
+						.catch(function (error) {
 							console.log(error);
 						});
 				}}
