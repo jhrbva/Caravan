@@ -39,6 +39,7 @@ export class TripFormContainer extends React.Component {
 			start_date,
 			trip_description,
 			trip_title,
+			guests,
 		} = values;
 		//console.log('in onSubmit', values, bag);
 
@@ -52,7 +53,7 @@ export class TripFormContainer extends React.Component {
 				trip_title,
 			})
 			.then(function (response) {
-				fetch('/user/rubyr')
+				fetch(`/user/${guests}`)
 					.then((res) => {
 						return res.json();
 					})
