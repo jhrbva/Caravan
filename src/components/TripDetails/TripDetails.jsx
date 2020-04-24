@@ -1,7 +1,8 @@
 import React from 'react';
 
-import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
+import ActionButtons from '../ActionButtons/ActionButtons';
+import MapSnippet from '../Map/MapSnippet';
 
 export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
@@ -45,6 +46,9 @@ const TripDetails = (props) => {
 				<div className='trip-details-header'>
 					<h1 className='header-text'>{trip_title}</h1>
 					<h2 className='header-text-light'>{trip_description}</h2>
+				</div>
+				<div className='map-snippet'>
+					<MapSnippet />
 				</div>
 				<div className='trip-details'>
 					<p>

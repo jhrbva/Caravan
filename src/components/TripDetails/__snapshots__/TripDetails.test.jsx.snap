@@ -20,6 +20,11 @@ exports[`Trip Details should match the snapshot 1`] = `
       </h2>
     </div>
     <div
+      className="map-snippet"
+    >
+      <withProps(withScriptjs(withGoogleMap(Geolocated(lifecycle(Component))))) />
+    </div>
+    <div
       className="trip-details"
     >
       <p>
