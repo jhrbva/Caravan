@@ -14,7 +14,16 @@ const Map = compose(
 	withProps({
 		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
 		loadingElement: <div style={{ height: `100%` }} />,
-		containerElement: <div style={{ height: `100vh`, width: `100%` }} />,
+		containerElement: (
+			<div
+				style={{
+					height: `90vh`,
+					width: `100%`,
+					position: `absolute`,
+					top: `0`,
+				}}
+			/>
+		),
 		mapElement: <div style={{ height: `100%` }} />,
 		iconLabel: 'TC',
 		iconColor: '#3d6cb9',
