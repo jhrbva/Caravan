@@ -5,7 +5,6 @@ import {
 	withScriptjs,
 	withGoogleMap,
 	GoogleMap,
-	DirectionsRenderer,
 	Marker,
 } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
