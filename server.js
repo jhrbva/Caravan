@@ -298,7 +298,7 @@ app.get('/trips/:userid', (req, res) => {
 });
 
 app.delete('/trips/:tripid/:userid', (req, res) => {
-	const { userid, tripid } = req.body;
+	const { userid, tripid } = req.params;
 	console.log(userid, tripid);
 	pool.query(
 		'DELETE * FROM members NATURAL JOIN trips WHERE userid=$1 AND tripid=$2',
