@@ -335,7 +335,7 @@ app.post('/signup', (req, res) => {
 					if (err) {
 						console.log('Error when inserting user', err);
 						// TODO: add better error handling
-						res.send(400);
+						res.sendStatus(400);
 					}
 					req.login(req.body, (err) => {
 						const { user } = req;
