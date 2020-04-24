@@ -1,27 +1,37 @@
-.login-input {
-	width: 233px;
-	padding: 8px 8px 8px 25px;
+@import "../../utilities/colorPalette.scss";
 
-	font-size: 15px;
+.input-wrapper {
+	.input-outlined {
+		border-radius: 5px;
+		border-style: solid;
+		border-color: gray;
+		margin: 15px 0px;
+		width: 100%;
+		padding: 8px 8px 8px 40px;
+		font-size: 15px;
+	}
 
-	box-shadow: none;
-}
+	.material-icons {
+		font-size: 20px;
+		position: absolute;
+		margin: 15px 0px 0px 10px;
+		color: $dream-blue;
+	}
 
-.material-icons {
-	opacity: 0.3;
-	font-size: 20px;
+	.error {
+		border-color: red;
+	}
 
-	position: absolute;
-
-	margin: 10px 0 0 5px;
-}
-
-.error {
-	border-color: red;
-}
-
-.error-text {
-	color: red;
-	font-size: 15px;
-	text-align: left;
+	.error-text {
+		color: red;
+		font-size: 15px;
+		text-align: left;
+	}
+	.field-header {
+		position: absolute;
+		font-size: 12px;
+		margin: 5px 0px 0px 40px;
+		padding: 0px 5px;
+		background: white;
+	}
 }

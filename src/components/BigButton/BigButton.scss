@@ -1,15 +1,19 @@
-@import '../../utilities/colorPalette.scss';
+@import "../../utilities/colorPalette.scss";
 
 .big-button {
-	width: 270px;
+	width: 100%;
+	margin: 15px 0px;
 	padding: 8px;
-
 	font-size: 15px;
 	font-weight: bold;
 
 	border: none;
+	border-radius: 5px;
 	box-shadow: none;
 
 	background: $happy-blue;
 	color: white;
+}
+button:active {
+	background: $fun-yellow;
 }
