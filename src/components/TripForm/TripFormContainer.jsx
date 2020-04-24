@@ -92,15 +92,19 @@ export class TripFormContainer extends React.Component {
 									type='button'
 									onClick={this.previousPage}
 									value='Previous'
+									color={'blue'}
 								/>
 							)}
 
-							{!isLastPage && <BigButton type='submit' value='Next' />}
+							{!isLastPage && (
+								<BigButton type='submit' value='Next' color={'blue'} />
+							)}
 							{isLastPage && (
 								<BigButton
 									type='submit'
 									value='Submit'
 									disabled={isSubmitting}
+									color={'blue'}
 								/>
 							)}
 						</div>

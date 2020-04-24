@@ -10,8 +10,13 @@
 	border: none;
 	border-radius: 5px;
 	box-shadow: none;
-
+}
+.big-button.blue {
 	background: $happy-blue;
+	color: white;
+}
+.big-button.green {
+	background: $trust-green;
 	color: white;
 }
 button:active {

@@ -92,7 +92,7 @@ export default class Dashboard extends React.Component {
 				<Navbar />
 				<div className='dashboard-wrapper'>
 					<Link to='/trip'>
-						<BigButton value='+ New Trip' />
+						<BigButton value='+ New Trip' color={'green'} />
 					</Link>
 					<div className='trip-section'>
 						{this.renderSection(

@@ -1,23 +1,23 @@
-import React from "react";
-import { Field, Form, Formik } from "formik";
-import { withRouter } from "react-router";
-import axios from "axios";
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
-import PersonPinIcon from "@material-ui/icons/PersonPin";
-import CallIcon from "@material-ui/icons/Call";
-import EmailIcon from "@material-ui/icons/Email";
-import LockIcon from "@material-ui/icons/Lock";
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import CallIcon from '@material-ui/icons/Call';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
 
-import logo from "../../assets/caravan-logo-blueOnWhite.png";
-import Input from "../Input/Input";
-import BigButton from "../BigButton/BigButton";
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
+import Input from '../Input/Input';
+import BigButton from '../BigButton/BigButton';
 import {
 	validateEmail,
 	validatePhone,
 	required,
 	validatePassword,
-} from "../../utilities/formValidation";
-import "./Signup.scss";
+} from '../../utilities/formValidation';
+import './Signup.scss';
 
 export const SignupForm = () => (
 	<Form>
@@ -78,7 +78,7 @@ export const SignupForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={"Sign up"} />
+		<BigButton value={'Sign up'} color={'blue'} />
 	</Form>
 );
 
@@ -88,17 +88,17 @@ export const Signup = (props) => {
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
-					firstname: "",
-					lastname: "",
-					username: "",
-					phone: "",
-					email: "",
-					password: "",
+					firstname: '',
+					lastname: '',
+					username: '',
+					phone: '',
+					email: '',
+					password: '',
 				}}
 				onSubmit={(values) => {
 					const { history } = props;
 					axios
-						.post("/signup", {
+						.post('/signup', {
 							firstname: values.firstname,
 							lastname: values.lastname,
 							username: values.username,
@@ -107,7 +107,7 @@ export const Signup = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
-							history.push("/dashboard");
+							history.push('/dashboard');
 						})
 						.catch(function (error) {
 							console.log(error);
