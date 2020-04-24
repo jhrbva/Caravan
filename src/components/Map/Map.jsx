@@ -46,34 +46,43 @@ const Map = compose(
 	})
 )((props) => {
 	return (
-		<GoogleMap
-			defaultZoom={2}
-			defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
-		>
-			{props.directions && <DirectionsRenderer directions={props.directions} />}
+		<>
 			{props.coords && (
-				<Marker
-					position={{ lat: props.coords.latitude, lng: props.coords.longitude }}
-					icon={{
-						path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-						fillColor: props.iconColor,
-						fillOpacity: 0.8,
-						scale: 8,
-						strokeColor: props.iconColor,
-						strokeWeight: 0.8,
-						rotation: 270,
-						labelOrigin: new google.maps.Point(0, -2.5),
-					}}
-					label={{
-						text: props.iconLabel,
-						color: 'white',
-						fontSize: '9px',
-						fontWeight: 'bold',
-						fontFamily: 'Helvetica',
-					}}
-				/>
+				<GoogleMap
+					defaultZoom={16}
+					defaultCenter={
+						new google.maps.LatLng(
+							props.coords.latitude,
+							props.coords.longitude
+						)
+					}
+				>
+					<Marker
+						position={{
+							lat: props.coords.latitude,
+							lng: props.coords.longitude,
+						}}
+						icon={{
+							path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+							fillColor: props.iconColor,
+							fillOpacity: 0.8,
+							scale: 8,
+							strokeColor: props.iconColor,
+							strokeWeight: 0.8,
+							rotation: 270,
+							labelOrigin: new google.maps.Point(0, -2.5),
+						}}
+						label={{
+							text: props.iconLabel,
+							color: 'white',
+							fontSize: '9px',
+							fontWeight: 'bold',
+							fontFamily: 'Helvetica',
+						}}
+					/>
+				</GoogleMap>
 			)}
-		</GoogleMap>
+		</>
 	);
 });
 
