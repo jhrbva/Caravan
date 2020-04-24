@@ -1,7 +1,7 @@
 const currentUserReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_USER':
-			return { id: 2 };
+			return action.payload;
 		case 'REMOVE_USER':
 			return {};
 		default:

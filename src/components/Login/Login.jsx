@@ -3,6 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
@@ -40,6 +41,7 @@ export const LoginForm = () => (
 );
 
 const Login = (props) => {
+	const { addLoggedUser, setLogged } = props;
 	return (
 		<div className='login-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
@@ -58,6 +60,8 @@ const Login = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
+							addLoggedUser({ id: 5 });
+							setLogged();
 							console.log(response);
 							history.push('/dashboard');
 						})
@@ -74,4 +78,18 @@ const Login = (props) => {
 	);
 };
 
-export default withRouter(Login);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addLoggedUser: (user) => {
+			console.log(user);
+			dispatch({ type: 'ADD_USER', payload: user });
+		},
+		setLogged: () => {
+			dispatch({ type: 'SIGN_IN' });
+		},
+	};
+};
+
+const enhance = compose(withRouter, connect(null, mapDispatchToProps));
+
+export default enhance(Login);
