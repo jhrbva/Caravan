@@ -17,9 +17,9 @@ exports[`Dashboard should match the snapshot 1`] = `
       New Trip +
     </Button>
   </Link>
-  <h3>
+  <h2>
     Invitations
-  </h3>
+  </h2>
   <Row
     noGutters={false}
   >
@@ -40,9 +40,9 @@ exports[`Dashboard should match the snapshot 1`] = `
       />
     </Col>
   </Row>
-  <h3>
+  <h2>
     Your Trips
-  </h3>
+  </h2>
   <Row
     noGutters={false}
   >
@@ -63,9 +63,9 @@ exports[`Dashboard should match the snapshot 1`] = `
       />
     </Col>
   </Row>
-  <h3>
+  <h2>
     Trips Joined
-  </h3>
+  </h2>
   <Row
     noGutters={false}
   >
