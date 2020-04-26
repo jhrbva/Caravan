@@ -6,6 +6,9 @@ import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import BigButton from '../BigButton/BigButton';
+import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -48,23 +51,31 @@ export default class Dashboard extends React.Component {
 			});
 	}
 
-	renderSection = (title, type, host, members, reststops) => {
+	renderSection = (title, type, host, members, reststops, icon, text) => {
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
 			<>
 				<h3>{title}</h3>
-				<Row>
+				<Row
+					style={{
+						//backgroundColor: 'rgb(203, 230, 255)',
+						paddingTop: '35px',
+						borderRadius: '5px',
+					}}
+				>
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col>
+								<Col md={3}>
 									<SummaryCard
 										key={id}
 										trip={entry}
+										icon={icon}
 										host={host}
 										members={members}
 										reststops={reststops}
+										text={text}
 									/>
 								</Col>
 							);
@@ -86,7 +97,7 @@ export default class Dashboard extends React.Component {
 			member,
 			reststops,
 		} = this.state;
-
+		console.log(invitations);
 		return (
 			<>
 				<Navbar />
@@ -100,7 +111,9 @@ export default class Dashboard extends React.Component {
 							invitations,
 							host,
 							member,
-							reststops
+							reststops,
+							<MailOutlinedIcon fontSize='large' />,
+							'You are invited to ' + +' by ' + host + '.'
 						)}
 					</div>
 					<div className='trip-section'>
@@ -109,7 +122,8 @@ export default class Dashboard extends React.Component {
 							tripsHosted,
 							host,
 							member,
-							reststops
+							reststops,
+							<CardTravelIcon fontSize='large' />
 						)}
 					</div>
 					<div className='trip-section'>
@@ -118,7 +132,8 @@ export default class Dashboard extends React.Component {
 							tripsJoined,
 							host,
 							member,
-							reststops
+							reststops,
+							<GroupAddOutlinedIcon fontSize='large' />
 						)}
 					</div>
 				</div>
