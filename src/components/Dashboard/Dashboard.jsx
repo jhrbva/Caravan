@@ -1,7 +1,11 @@
 import React from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+
+import './Dashboard.scss';
+import Navbar from '../Navbar/Navbar';
+import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
+import BigButton from '../BigButton/BigButton';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -45,7 +49,6 @@ export default class Dashboard extends React.Component {
 	}
 
 	renderSection = (title, type, host, members, reststops) => {
-		// console.log(title, data);
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
@@ -86,25 +89,39 @@ export default class Dashboard extends React.Component {
 
 		return (
 			<>
-				<h1>Dashboard</h1>
-				<Link to='/trip'>
-					<Button variant='success'>New Trip +</Button>
-				</Link>
-				{this.renderSection(
-					'Invitations',
-					invitations,
-					host,
-					member,
-					reststops
-				)}
-				{this.renderSection('Your Trips', tripsHosted, host, member, reststops)}
-				{this.renderSection(
-					'Trips Joined',
-					tripsJoined,
-					host,
-					member,
-					reststops
-				)}
+				<Navbar />
+				<div className='dashboard-wrapper'>
+					<Link to='/trip'>
+						<BigButton value='+ New Trip' color={'green'} />
+					</Link>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Invitations',
+							invitations,
+							host,
+							member,
+							reststops
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Your Trips',
+							tripsHosted,
+							host,
+							member,
+							reststops
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Trips Joined',
+							tripsJoined,
+							host,
+							member,
+							reststops
+						)}
+					</div>
+				</div>
 			</>
 		);
 	}

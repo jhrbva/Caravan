@@ -62,7 +62,7 @@ class RequestChange extends React.Component {
 						component='textarea'
 						type='textarea'
 					/>
-					<BigButton value='Send' />
+					<BigButton value='Send' color={'blue'} />
 				</Form>
 			</Formik>
 		);
