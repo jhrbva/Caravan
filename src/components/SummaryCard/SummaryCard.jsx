@@ -8,17 +8,26 @@ const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { trip, reststops } = props;
+	const { trip, reststops, icon, text } = props;
 
 	return (
 		<>
-			<Card style={{ width: '18rem' }} onClick={handleShow}>
-				<Card.Body>
-					<Card.Title>{trip.trip_title}</Card.Title>
-					<Card.Text>
-						<>{trip.username}</>
-						<>{trip.destination}</>
-					</Card.Text>
+			<Card
+				className='card'
+				style={{
+					//backgroundColor: 'rgb(233, 244, 255)',
+					width: '18rem',
+					borderRadius: '15px',
+					height: '14rem',
+				}}
+				onClick={handleShow}
+			>
+				<Card.Body className='cardbody'>
+					<i className='material-icons'>{icon}</i>
+					<Card.Title style={{ fontWeight: '700' }} className='cardtitle'>
+						{trip.trip_title}
+					</Card.Title>
+					<Card.Text>{text}</Card.Text>
 				</Card.Body>
 			</Card>
 			<Modal show={show} onHide={handleClose}>

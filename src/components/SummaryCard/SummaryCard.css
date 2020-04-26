@@ -1,22 +1,43 @@
 .flex-container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  -ms-box-orient: horizontal;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
 }
 
-.wrap    {
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
+.wrap {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .flex-item {
-  padding: 5px;
-  margin: 10px;
+	padding: 5px;
+	margin: 10px;
+}
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin-bottom: 30px;
+	margin-right: 0px;
+}
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cardbody {
+	text-align: left;
+}
+.cardtitle {
+	margin-left: 40px;
+}
+.material-icons {
+	font-size: 20px;
+	position: absolute;
+	margin-top: -10px;
+	color: rgb(53, 130, 202);
 }
