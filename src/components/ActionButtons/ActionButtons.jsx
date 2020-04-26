@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './ActionButtons.scss';
 import { Link } from 'react-router-dom';
-import BigButton from '../BigButton/BigButton';
+import ModalButton from '../ModalButton/ModalButton';
 import { withRouter } from 'react-router';
 
 class ActionButtons extends React.Component {
@@ -31,7 +31,7 @@ class ActionButtons extends React.Component {
 
 	acceptInvitationButton = (value) => {
 		return (
-			<BigButton
+			<ModalButton
 				value={value}
 				onClick={() => {
 					this.setState({ accepted: true }, function () {
@@ -44,7 +44,7 @@ class ActionButtons extends React.Component {
 
 	rejectInvitationButton = (value) => {
 		return (
-			<BigButton
+			<ModalButton
 				value={value}
 				onClick={() => {
 					this.setState({ accepted: false }, function () {
@@ -70,7 +70,7 @@ class ActionButtons extends React.Component {
 					<p>You declined this invitation. Changed your mind?</p>
 					<div className='invitation-btns two-btns'>
 						{this.acceptInvitationButton('Accept Invitation')}
-						<BigButton
+						<ModalButton
 							value={'Request Change'}
 							onClick={() => {
 								this.requestChangeButton();
@@ -83,7 +83,7 @@ class ActionButtons extends React.Component {
 			return (
 				<div className='invitation-btns two-btns'>
 					<Link to='/map'>
-						<BigButton value={'Start Trip'} />
+						<ModalButton value={'Start Trip'} />
 					</Link>
 					{this.rejectInvitationButton('Leave Trip')}
 				</div>
@@ -93,7 +93,7 @@ class ActionButtons extends React.Component {
 				<div className='invitation-btns three-btns'>
 					{this.acceptInvitationButton('Accept')}
 					{this.rejectInvitationButton('Reject')}
-					<BigButton
+					<ModalButton
 						value={'Request Change'}
 						onClick={() => {
 							this.requestChangeButton();
