@@ -45,7 +45,13 @@ export default class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				this.setState({ host: response3.host[0].username });
+				console.log(response1);
+				this.setState({
+					host: response1.map((item) => ({
+						host: item.username,
+					})),
+				});
+				//this.setState({ host: response1.username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
@@ -75,7 +81,13 @@ export default class Dashboard extends React.Component {
 										host={host}
 										members={members}
 										reststops={reststops}
-										text={text}
+										text={
+											'You are invited to ' +
+											entry.destination +
+											' by ' +
+											entry.username +
+											'.'
+										}
 									/>
 								</Col>
 							);
@@ -96,8 +108,10 @@ export default class Dashboard extends React.Component {
 			host,
 			member,
 			reststops,
+			text,
 		} = this.state;
-		console.log(invitations);
+		//console.log(this.state.host);
+		//console.log(invitations);
 		return (
 			<>
 				<Navbar />
@@ -105,6 +119,7 @@ export default class Dashboard extends React.Component {
 					<Link to='/trip'>
 						<BigButton value='+ New Trip' color={'green'} />
 					</Link>
+
 					<div className='trip-section'>
 						{this.renderSection(
 							'Invitations',
@@ -112,8 +127,7 @@ export default class Dashboard extends React.Component {
 							host,
 							member,
 							reststops,
-							<MailOutlinedIcon fontSize='large' />,
-							'You are invited to ' + +' by ' + host + '.'
+							<MailOutlinedIcon fontSize='large' />
 						)}
 					</div>
 					<div className='trip-section'>

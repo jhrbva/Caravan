@@ -31,6 +31,10 @@
 
 .cardbody {
 	text-align: left;
+	overflow: scroll;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	hyphens: auto;
 }
 .cardtitle {
 	margin-left: 40px;
