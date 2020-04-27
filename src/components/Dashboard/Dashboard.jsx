@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
 	componentDidMount() {
 		const { user } = this.props;
 		console.log('our user:', user);
+		console.log(user.userid);
 		// TO DO: add redux to dynamically import user id
 		Promise.all([
 			fetch('/invitations/1'),
@@ -48,7 +49,7 @@ class Dashboard extends React.Component {
 	}
 
 	renderSection = (title, type, host, members, reststops) => {
-		// console.log(title, data);
+		console.log(this.state);
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (

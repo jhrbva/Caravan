@@ -70,7 +70,7 @@ const Login = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
-							addLoggedUser(response);
+							addLoggedUser(response.data);
 							setLogged();
 							history.push('/dashboard');
 						})

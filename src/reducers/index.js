@@ -1,5 +1,5 @@
-import currentUserReducer from './currentUser';
-import isLoggedReducer from './isLogged';
+import currentUser from './currentUser';
+import isLogged from './isLogged';
 import { combineReducers } from 'redux';
 
 /**
@@ -8,8 +8,8 @@ import { combineReducers } from 'redux';
  * state.
  */
 const indexReducer = combineReducers({
-	currentUserReducer,
-	isLoggedReducer,
+	currentUser,
+	isLogged,
 });
 
 export default indexReducer;
