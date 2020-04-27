@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import { connect } from 'react-redux';
 
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -47,7 +47,6 @@ class Dashboard extends React.Component {
 	}
 
 	renderSection = (title, type, host, members, reststops) => {
-		console.log(this.state);
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 		return (
