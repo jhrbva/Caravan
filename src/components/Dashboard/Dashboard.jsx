@@ -18,12 +18,10 @@ class Dashboard extends React.Component {
 	}
 
 	componentDidMount() {
-		const { user } = this.props;
-		console.log('our user:', user);
-		console.log(user.userid);
+		const { userid } = this.props.user;
 		// TO DO: add redux to dynamically import user id
 		Promise.all([
-			fetch('/invitations/1'),
+			fetch(`/invitations/${userid}`),
 			fetch('/trips/2'),
 			fetch('/members/1'),
 			fetch('/reststop/1'),
