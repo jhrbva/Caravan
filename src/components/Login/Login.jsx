@@ -1,25 +1,18 @@
-<<<<<<< HEAD
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-=======
-import React from "react";
-import { Field, Form, Formik } from "formik";
-import { withRouter } from "react-router";
-import axios from "axios";
->>>>>>> f536128973b859065490fed7f65ed039d2ab9335
 
-import logo from "../../assets/caravan-logo-blueOnWhite.png";
-import Input from "../Input/Input";
-import BigButton from "../BigButton/BigButton";
-import { required } from "../../utilities/formValidation";
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
+import Input from '../Input/Input';
+import BigButton from '../BigButton/BigButton';
+import { required } from '../../utilities/formValidation';
 
-import PersonIcon from "@material-ui/icons/PersonOutlined";
-import VpnKeyIcon from "@material-ui/icons/VpnKeyOutlined";
-import "./Login.scss";
+import PersonIcon from '@material-ui/icons/PersonOutlined';
+import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
+import './Login.scss';
 
 export const LoginForm = () => (
 	<Form>
@@ -43,16 +36,13 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={"Login"} />
+		<BigButton value={'Login'} />
 	</Form>
 );
 
 const Login = (props) => {
-<<<<<<< HEAD
 	const { addLoggedUser, setLogged } = props;
 
-=======
->>>>>>> f536128973b859065490fed7f65ed039d2ab9335
 	return (
 		<div className='login-page-wrapper'>
 			<div className='header'>
@@ -67,15 +57,15 @@ const Login = (props) => {
 			</div>
 			<Formik
 				initialValues={{
-					email: "",
-					password: "",
+					email: '',
+					password: '',
 				}}
 				onSubmit={(values) => {
 					const { history } = props;
 					// same shape as initial values
 
 					axios
-						.post("/login", {
+						.post('/login', {
 							username: values.username,
 							password: values.password,
 						})
