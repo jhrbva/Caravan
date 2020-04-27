@@ -29,14 +29,15 @@
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.cardbody {
+.cardbody.card-body {
 	text-align: left;
 	overflow: scroll;
 	overflow-wrap: break-word;
 	word-wrap: break-word;
 	hyphens: auto;
 }
-.cardtitle {
+.h5 {
+	font-size: 20px;
 	margin-left: 40px;
 }
 .material-icons {

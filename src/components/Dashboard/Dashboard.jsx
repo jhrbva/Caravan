@@ -57,19 +57,15 @@ export default class Dashboard extends React.Component {
 			});
 	}
 
-	renderSection = (title, type, host, members, reststops, icon, text) => {
+	renderSection = (title, type, host, members, reststops, icon) => {
+		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
+
 		return (
 			<>
 				<h3>{title}</h3>
-				<Row
-					style={{
-						//backgroundColor: 'rgb(203, 230, 255)',
-						paddingTop: '35px',
-						borderRadius: '5px',
-					}}
-				>
+				<Row>
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
@@ -81,13 +77,7 @@ export default class Dashboard extends React.Component {
 										host={host}
 										members={members}
 										reststops={reststops}
-										text={
-											'You are invited to ' +
-											entry.destination +
-											' by ' +
-											entry.username +
-											'.'
-										}
+										isYourTrips={isYourTrips}
 									/>
 								</Col>
 							);
@@ -108,10 +98,7 @@ export default class Dashboard extends React.Component {
 			host,
 			member,
 			reststops,
-			text,
 		} = this.state;
-		//console.log(this.state.host);
-		//console.log(invitations);
 		return (
 			<>
 				<Navbar />
