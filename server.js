@@ -90,7 +90,10 @@ app.get('/emergency/:ECid', (req, res) => {
 		[req.params.ECid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when finding an emergency contact for a specific user', err);
+				console.log(
+					'Error when finding an emergency contact for a specific user',
+					err
+				);
 			}
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
@@ -102,7 +105,7 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
