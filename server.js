@@ -298,11 +298,9 @@ app.get('/trips/:userid', (req, res) => {
 });
 
 app.delete('/trip/:tripid/:userid', (req, res) => {
-	const { userid, tripid } = req.params;
-	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
-		[userid, tripid],
+		[req.params.userid, req.params.tripid],
 		(err, result) => {
 			if (err) {
 				console.log('Error when removing a member from a trip', err);
