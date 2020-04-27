@@ -100,6 +100,21 @@ app.get('/emergency/:ECid', (req, res) => {
 	);
 });
 
+app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
+	pool.query(
+		'UPDATE invitations SET accepted=$3 WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid, req.params.accepted],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
 		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
