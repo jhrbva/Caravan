@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
 		// TO DO: add redux to dynamically import user id
 		Promise.all([
 			fetch(`/invitations/${userid}`),
-			fetch('/trips/2'),
+			fetch(`/trips/${userid}`),
 			fetch('/members/1'),
 			fetch('/reststop/1'),
 		])
