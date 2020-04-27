@@ -1,12 +1,27 @@
 import React from 'react';
 
-import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
+import ActionButtons from '../ActionButtons/ActionButtons';
+import MapSnippet from '../Map/MapSnippet';
 
 export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
 	const tripTime = date.slice(11, 19);
 	return { tripDate, tripTime };
+};
+
+export const getRestStops = (reststops) => {
+	if (reststops.length > 0) {
+		const listReststops = reststops.map((reststop, key) => (
+			<li key={key}>{reststop.location}</li>
+		));
+		return (
+			<div>
+				<span className='trip-details-headings'>Stoping at</span>
+				<ul>{listReststops}</ul>
+			</div>
+		);
+	}
 };
 
 const TripDetails = (props) => {
@@ -21,6 +36,8 @@ const TripDetails = (props) => {
 		destination,
 	} = props.trip;
 
+	const { reststops } = props;
+
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
@@ -29,6 +46,9 @@ const TripDetails = (props) => {
 				<div className='trip-details-header'>
 					<h1 className='header-text'>{trip_title}</h1>
 					<h2 className='header-text-light'>{trip_description}</h2>
+				</div>
+				<div className='map-snippet'>
+					<MapSnippet />
 				</div>
 				<div className='trip-details'>
 					<p>
@@ -50,6 +70,9 @@ const TripDetails = (props) => {
 						<span className='trip-details-headings'>To</span>
 						<br /> {destination}
 					</p>
+
+					{getRestStops(reststops)}
+
 					<p>
 						<span className='trip-details-headings'>Guest list</span>
 					</p>
