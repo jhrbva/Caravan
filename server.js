@@ -297,11 +297,11 @@ app.get('/trips/:userid', (req, res) => {
 	);
 });
 
-app.delete('/trips/:tripid/:userid', (req, res) => {
+app.delete('/trip/:tripid/:userid', (req, res) => {
 	const { userid, tripid } = req.params;
 	console.log(userid, tripid);
 	pool.query(
-		'DELETE * FROM members NATURAL JOIN trips WHERE userid=$1 AND tripid=$2',
+		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
 		(err, result) => {
 			if (err) {
