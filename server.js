@@ -102,7 +102,7 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		'SELECT * FROM invitations WHERE userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
@@ -118,8 +118,8 @@ app.get('/invitations/:userid', (req, res) => {
 
 app.delete('/invitations/:userid/:tripid', (req, res) => {
 	pool.query(
-		'DELETE * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1 AND tripid=$2',
-		[req.params.userid, req.params.userid],
+		'DELETE FROM invitations WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid],
 		(err, result) => {
 			if (err) {
 				console.log('Error when deleting invitation for specific user', err);
