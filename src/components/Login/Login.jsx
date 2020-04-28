@@ -34,7 +34,7 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={'Login'} color={'blue'} />
+		<BigButton value={'Login'} />
 	</Form>
 );
 

@@ -78,7 +78,7 @@ export const SignupForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={'Sign up'} color={'blue'} />
+		<BigButton value={'Sign up'} />
 	</Form>
 );
 
