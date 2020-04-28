@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTagInput from '@pathofdev/react-tag-input';
-import { useField, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import './TagInput.scss';
 
 const TagInput = (props) => {
