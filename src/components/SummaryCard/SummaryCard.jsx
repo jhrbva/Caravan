@@ -16,12 +16,9 @@ const SummaryCard = (props) => {
 	return (
 		<>
 			<Card onClick={handleShow}>
-				<Card.Body className='tryingit'>
-					<i className='material-icons'>{icon}</i>
-					<Card.Title>{trip.trip_title}</Card.Title>
-				</Card.Body>
-
-				<Card.Body className='overridetext'>
+				<i className='material-icons'>{icon}</i>
+				<Card.Title>{trip.trip_title}</Card.Title>
+				<Card.Body>
 					<Card.Text>{text}</Card.Text>
 				</Card.Body>
 			</Card>

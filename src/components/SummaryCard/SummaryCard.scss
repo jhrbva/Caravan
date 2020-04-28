@@ -1,3 +1,5 @@
+@import '../../utilities/colorPalette.scss';
+
 .flex-container {
 	padding: 0;
 	margin: 0;
@@ -35,37 +37,25 @@
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.cardbody.card-body {
-	overflow: scroll;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	hyphens: auto;
-}
-.card-body.tryingit {
-	// background-color: #cedeef;
-	// border-top-left-radius: 27px;
-	// border-top-right-radius: 27px;
-	padding: 0px;
-	margin-bottom: 0px;
-	display: flex;
-	//justify-content: center;
-	align-items: center;
-}
-.h5 {
+.card-title.h5 {
 	text-align: left;
 	font-size: 20px;
 	margin-left: 60px;
 	margin-top: 20px;
+	margin-bottom: 15px;
 }
 
 .card-text {
 	font-size: 17px;
 }
-
-.card-body.overridetext {
-	// background-color: #cedeef;
-	// border-bottom-left-radius: 27px;
-	// border-bottom-right-radius: 27px;
+p {
+	display: inline;
+}
+.card-body {
+	overflow: scroll;
+	background-color: $dream-blue-fade;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -74,7 +64,7 @@
 .material-icons {
 	font-size: 20px;
 	position: absolute;
-	//margin-top: 8px;
+	margin-top: 10px;
 	margin-left: 20px;
-	color: rgb(53, 130, 202);
+	color: $dream-blue-fade;
 }
