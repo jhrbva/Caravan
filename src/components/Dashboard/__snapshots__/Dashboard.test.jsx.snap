@@ -23,9 +23,17 @@ exports[`Dashboard should match the snapshot 1`] = `
       <Row
         noGutters={false}
       >
-        <Col>
+        <Col
+          md={3}
+        >
           <SummaryCard
             host={Array []}
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={false}
             key="0"
             reststops={Array []}
             trip={
@@ -50,9 +58,17 @@ exports[`Dashboard should match the snapshot 1`] = `
       <Row
         noGutters={false}
       >
-        <Col>
+        <Col
+          md={3}
+        >
           <SummaryCard
             host={Array []}
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={true}
             key="0"
             reststops={Array []}
             trip={
@@ -77,9 +93,17 @@ exports[`Dashboard should match the snapshot 1`] = `
       <Row
         noGutters={false}
       >
-        <Col>
+        <Col
+          md={3}
+        >
           <SummaryCard
             host={Array []}
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={false}
             key="0"
             reststops={Array []}
             trip={

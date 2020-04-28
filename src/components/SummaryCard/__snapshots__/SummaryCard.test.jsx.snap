@@ -5,18 +5,16 @@ exports[`SummaryCard should match the snapshot 1`] = `
   <Card
     body={false}
     onClick={[Function]}
-    style={
-      Object {
-        "width": "18rem",
-      }
-    }
   >
+    <i
+      className="material-icons"
+    />
+    <CardTitle>
+      Wonders of the Canyon
+    </CardTitle>
     <CardBody>
-      <CardTitle>
-        Wonders of the Canyon
-      </CardTitle>
       <CardText>
-        Grand Canyon, Grand Canyon Ave.
+        You are invited to Grand Canyon, Grand Canyon Ave. by undefined.
       </CardText>
     </CardBody>
   </Card>

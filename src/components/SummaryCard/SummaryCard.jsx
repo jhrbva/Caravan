@@ -9,10 +9,10 @@ const SummaryCard = (props) => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const { trip, reststops, icon } = props;
-	console.log(trip);
 	const text = props.isYourTrips
 		? `You are going to ${trip.destination}.`
 		: `You are invited to ${trip.destination} by ${trip.username}.`;
+
 	return (
 		<>
 			<Card onClick={handleShow}>
