@@ -6,7 +6,7 @@ import './TagInput.scss';
 const TagInput = (props) => {
 	const { setFieldValue } = useFormikContext();
 	const [tags, setTags] = React.useState([]);
-	const { icon, tag } = props;
+	const { icon, tag, field } = props;
 
 	return (
 		<div className='tag-input-wrapper'>
@@ -16,7 +16,7 @@ const TagInput = (props) => {
 				tags={tags}
 				onChange={(newTags) => {
 					setTags(newTags);
-					setFieldValue('guests', newTags);
+					setFieldValue(field.name, newTags);
 				}}
 			/>
 		</div>
