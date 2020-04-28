@@ -29,32 +29,6 @@ class ActionButtons extends React.Component {
 			});
 	};
 
-	acceptInvitationButton = (value) => {
-		return (
-			<ModalButton
-				value={value}
-				onClick={() => {
-					this.setState({ accepted: true }, function () {
-						this.responseToInvitation();
-					});
-				}}
-			/>
-		);
-	};
-
-	rejectInvitationButton = (value) => {
-		return (
-			<ModalButton
-				value={value}
-				onClick={() => {
-					this.setState({ accepted: false }, function () {
-						this.responseToInvitation();
-					});
-				}}
-			/>
-		);
-	};
-
 	requestChangeButton = () => {
 		const { history } = this.props;
 		return history.push({
@@ -63,45 +37,83 @@ class ActionButtons extends React.Component {
 		});
 	};
 
+	renderInitial = () => {
+		return (
+			<div>
+				<ModalButton
+					value={'Accept'}
+					onClick={() => {
+						this.setState({ accepted: true }, function () {
+							this.responseToInvitation();
+						});
+					}}
+					numberofbuttons={'three'}
+				/>
+				<ModalButton
+					value={'Reject'}
+					onClick={() => {
+						this.setState({ accepted: false }, function () {
+							this.responseToInvitation();
+						});
+					}}
+					numberofbuttons={'three'}
+				/>
+				<ModalButton
+					value={'Request Change'}
+					onClick={() => {
+						this.requestChangeButton();
+					}}
+					numberofbuttons={'three'}
+				/>
+			</div>
+		);
+	};
+
+	renderAccepted = () => {
+		return (
+			<div>
+				<Link to='/map'>
+					<ModalButton value={'Start Trip'} />
+				</Link>
+				<ModalButton
+					value={'Leave Trip'}
+					onClick={() => {
+						this.setState({ accepted: false }, function () {
+							this.responseToInvitation();
+						});
+					}}
+				/>
+			</div>
+		);
+	};
+
+	renderRejected = () => {
+		return (
+			<div>
+				<ModalButton
+					value={'Accept Invitation'}
+					onClick={() => {
+						this.setState({ accepted: true }, function () {
+							this.responseToInvitation();
+						});
+					}}
+				/>
+				<ModalButton
+					value={'Request a Change'}
+					onClick={() => {
+						this.requestChangeButton();
+					}}
+				/>
+			</div>
+		);
+	};
+
 	render() {
-		if (this.state.accepted === false) {
-			return (
-				<div className='rejected-msg'>
-					<p>You declined this invitation. Changed your mind?</p>
-					<div className='invitation-btns two-btns'>
-						{this.acceptInvitationButton('Accept Invitation')}
-						<ModalButton
-							value={'Request Change'}
-							onClick={() => {
-								this.requestChangeButton();
-							}}
-						/>
-					</div>
-				</div>
-			);
-		} else if (this.state.accepted === true) {
-			return (
-				<div className='invitation-btns two-btns'>
-					<Link to='/map'>
-						<ModalButton value={'Start Trip'} />
-					</Link>
-					{this.rejectInvitationButton('Leave Trip')}
-				</div>
-			);
-		} else {
-			return (
-				<div className='invitation-btns three-btns'>
-					{this.acceptInvitationButton('Accept')}
-					{this.rejectInvitationButton('Reject')}
-					<ModalButton
-						value={'Request Change'}
-						onClick={() => {
-							this.requestChangeButton();
-						}}
-					/>
-				</div>
-			);
-		}
+		if (this.state.accepted === true) {
+			return this.renderAccepted();
+		} else if (this.state.accepted === false) {
+			return this.renderRejected();
+		} else return this.renderInitial();
 	}
 }
 export default withRouter(ActionButtons);
