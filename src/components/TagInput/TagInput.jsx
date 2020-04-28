@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactTagInput from '@pathofdev/react-tag-input';
-import PersonIcon from '@material-ui/icons/PersonOutlined';
+import { useField, useFormikContext } from 'formik';
 import './TagInput.scss';
 
-const TagInput = () => {
+const TagInput = (props) => {
+	const { setFieldValue } = useFormikContext();
 	const [tags, setTags] = React.useState([]);
-	const icon = <PersonIcon />;
-	const tag = 'Guests';
+	const { icon, tag } = props;
+
 	return (
 		<div className='tag-input-wrapper'>
 			<i className='material-icons'>{icon}</i>
 			<p className='field-header'>{tag}</p>
-			<ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
+			<ReactTagInput
+				tags={tags}
+				onChange={(newTags) => {
+					setTags(newTags);
+					setFieldValue('guests', newTags);
+				}}
+			/>
 		</div>
 	);
 };
