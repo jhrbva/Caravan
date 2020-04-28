@@ -11,23 +11,18 @@ const SummaryCard = (props) => {
 	const { trip, reststops, icon } = props;
 	console.log(trip);
 	const text = props.isYourTrips
-		? `You are going to ${trip.destination}`
-		: `You are invited by ${trip.username}`;
+		? `You are going to ${trip.destination}.`
+		: `You are invited to ${trip.destination} by ${trip.username}.`;
 	return (
 		<>
-			<Card
-				className='card'
-				style={{
-					width: '18rem',
-					borderRadius: '30px',
-					height: '14rem',
-				}}
-				onClick={handleShow}
-			>
-				<Card.Body>
+			<Card onClick={handleShow}>
+				<Card.Body className='tryingit'>
 					<i className='material-icons'>{icon}</i>
 					<Card.Title>{trip.trip_title}</Card.Title>
-					<Card.Text style={{ fontSize: '17px' }}>{text}</Card.Text>
+				</Card.Body>
+
+				<Card.Body className='overridetext'>
+					<Card.Text>{text}</Card.Text>
 				</Card.Body>
 			</Card>
 			<Modal show={show} onHide={handleClose}>

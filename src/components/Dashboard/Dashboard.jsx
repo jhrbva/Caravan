@@ -8,7 +8,7 @@ import SummaryCard from '../SummaryCard/SummaryCard';
 import BigButton from '../BigButton/BigButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
-import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
+import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -134,7 +134,7 @@ export default class Dashboard extends React.Component {
 							host,
 							member,
 							reststops,
-							<GroupAddOutlinedIcon fontSize='large' />
+							<AirportShuttleIcon fontSize='large' />
 						)}
 					</div>
 				</div>
