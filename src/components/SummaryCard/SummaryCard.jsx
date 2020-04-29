@@ -8,7 +8,7 @@ const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { trip, host, members } = props;
+	const { trip, host, members, reststops } = props;
 
 	return (
 		<>
@@ -22,7 +22,7 @@ const SummaryCard = (props) => {
 				</Card.Body>
 			</Card>
 			<Modal show={show} onHide={handleClose}>
-				<TripDetails trip={trip} host={host} members={members} />
+				<TripDetails trip={trip} host={host} members={members} reststops={reststops}/>
 			</Modal>
 		</>
 	);
