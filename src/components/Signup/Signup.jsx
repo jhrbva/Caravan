@@ -1,22 +1,23 @@
-import React from 'react';
-import { Field, Form, Formik } from 'formik';
-import { withRouter } from 'react-router';
-import axios from 'axios';
+import React from "react";
+import { Field, Form, Formik } from "formik";
+import { withRouter } from "react-router";
+import axios from "axios";
 
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import CallIcon from '@material-ui/icons/Call';
-import EmailIcon from '@material-ui/icons/Email';
-import LockIcon from '@material-ui/icons/Lock';
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import CallIcon from "@material-ui/icons/Call";
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
 
-import logo from '../../assets/caravan-logo-blueOnWhite.png';
-import Input from '../Input/Input';
-import BigButton from '../BigButton/BigButton';
+import logo from "../../assets/caravan-logo-blueOnWhite.png";
+import Input from "../Input/Input";
+import BigButton from "../BigButton/BigButton";
 import {
 	validateEmail,
 	validatePhone,
 	required,
 	validatePassword,
-} from '../../utilities/formValidation';
+} from "../../utilities/formValidation";
+import "./Signup.scss";
 
 export const SignupForm = () => (
 	<Form>
@@ -24,7 +25,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='firstname'
-			placeholder='First Name'
+			tag='FIRST NAME'
 			validate={required}
 			autoFocus={true}
 			component={Input}
@@ -33,7 +34,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='lastname'
-			placeholder='Last Name'
+			tag='LAST NAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -43,7 +44,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='username'
-			placeholder='Username'
+			tag='USERNAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -52,7 +53,7 @@ export const SignupForm = () => (
 			icon={<CallIcon />}
 			type='text'
 			name='phone'
-			placeholder='Phone Number'
+			tag='PHONE NUMBER'
 			validate={validatePhone}
 			autoFocus={false}
 			component={Input}
@@ -62,7 +63,7 @@ export const SignupForm = () => (
 			icon={<EmailIcon />}
 			type='text'
 			name='email'
-			placeholder='Email'
+			tag='EMAIL'
 			validate={validateEmail}
 			autoFocus={false}
 			component={Input}
@@ -71,33 +72,33 @@ export const SignupForm = () => (
 			icon={<LockIcon />}
 			type='password'
 			name='password'
-			placeholder='Password'
+			tag='PASSWORD'
 			validate={validatePassword}
 			autoFocus={false}
 			component={Input}
 		/>
 
-		<BigButton value={'Sign up'} />
+		<BigButton value={"Sign up"} />
 	</Form>
 );
 
-export const Signup = props => {
+export const Signup = (props) => {
 	return (
-		<div>
+		<div className='signup-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
-					firstname: '',
-					lastname: '',
-					username: '',
-					phone: '',
-					email: '',
-					password: '',
+					firstname: "",
+					lastname: "",
+					username: "",
+					phone: "",
+					email: "",
+					password: "",
 				}}
-				onSubmit={values => {
+				onSubmit={(values) => {
 					const { history } = props;
 					axios
-						.post('/signup', {
+						.post("/signup", {
 							firstname: values.firstname,
 							lastname: values.lastname,
 							username: values.username,
@@ -105,18 +106,19 @@ export const Signup = props => {
 							phonenumber: values.phone,
 							password: values.password,
 						})
-						.then(function(response) {
-							history.push('/dashboard');
+						.then(function (response) {
+							history.push("/dashboard");
 						})
-						.catch(function(error) {
+						.catch(function (error) {
 							console.log(error);
 						});
 				}}
 			>
 				{() => <SignupForm />}
 			</Formik>
-			<p>Already have an account?</p>
-			<a href='/'>Sign In</a>
+			<p>
+				Already have an account? <a href='/'>Sign In</a>
+			</p>
 		</div>
 	);
 };

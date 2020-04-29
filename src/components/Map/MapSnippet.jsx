@@ -5,25 +5,16 @@ import {
 	withScriptjs,
 	withGoogleMap,
 	GoogleMap,
+	DirectionsRenderer,
 	Marker,
 } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
-import InstructionalOverlay from './InstructionalOverlay';
 
-const Map = compose(
+const MapSnippet = compose(
 	withProps({
 		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
 		loadingElement: <div style={{ height: `100%` }} />,
-		containerElement: (
-			<div
-				style={{
-					height: `90vh`,
-					width: `100%`,
-					position: `absolute`,
-					top: `0`,
-				}}
-			/>
-		),
+		containerElement: <div style={{ height: `100%`, width: `100%` }} />,
 		mapElement: <div style={{ height: `100%` }} />,
 		iconLabel: 'TC',
 		iconColor: '#3d6cb9',
@@ -41,6 +32,7 @@ const Map = compose(
 					travelMode: google.maps.TravelMode.DRIVING,
 				},
 				(result, status) => {
+					console.log(result.routes[0].legs[0].steps[0].start_location.lat());
 					if (status === google.maps.DirectionsStatus.OK) {
 						this.setState({
 							directions: result,
@@ -54,47 +46,35 @@ const Map = compose(
 	})
 )((props) => {
 	return (
-		<>
+		<GoogleMap
+			defaultZoom={2}
+			defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
+		>
+			{props.directions && <DirectionsRenderer directions={props.directions} />}
 			{props.coords && (
-				<>
-					<GoogleMap
-						defaultZoom={16}
-						defaultCenter={
-							new google.maps.LatLng(
-								props.coords.latitude,
-								props.coords.longitude
-							)
-						}
-					>
-						<Marker
-							position={{
-								lat: props.coords.latitude,
-								lng: props.coords.longitude,
-							}}
-							icon={{
-								path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-								fillColor: props.iconColor,
-								fillOpacity: 0.8,
-								scale: 8,
-								strokeColor: props.iconColor,
-								strokeWeight: 0.8,
-								rotation: 270,
-								labelOrigin: new google.maps.Point(0, -2.5),
-							}}
-							label={{
-								text: props.iconLabel,
-								color: 'white',
-								fontSize: '9px',
-								fontWeight: 'bold',
-								fontFamily: 'Helvetica',
-							}}
-						/>
-					</GoogleMap>
-					<InstructionalOverlay />
-				</>
+				<Marker
+					position={{ lat: props.coords.latitude, lng: props.coords.longitude }}
+					icon={{
+						path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+						fillColor: props.iconColor,
+						fillOpacity: 0.8,
+						scale: 8,
+						strokeColor: props.iconColor,
+						strokeWeight: 0.8,
+						rotation: 270,
+						labelOrigin: new google.maps.Point(0, -2.5),
+					}}
+					label={{
+						text: props.iconLabel,
+						color: 'white',
+						fontSize: '9px',
+						fontWeight: 'bold',
+						fontFamily: 'Helvetica',
+					}}
+				/>
 			)}
-		</>
+		</GoogleMap>
 	);
 });
 
-export default Map;
+export default MapSnippet;

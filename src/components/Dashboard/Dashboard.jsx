@@ -71,7 +71,7 @@ export default class Dashboard extends React.Component {
 				});
 		}
 
-	renderSection = (title, data) => {
+	renderSection = (title, type) => {
 		const { host, members, reststops } = this.state;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
@@ -79,8 +79,8 @@ export default class Dashboard extends React.Component {
 			<>
 				<h3>{title}</h3>
 				<Row>
-					{data.length ? (
-						data.map((entry, id) => {
+					{type.length ? (
+						type.map((entry, id) => {
 							return (
 								<Col>
 									<SummaryCard key={id} trip={entry} host={host} members={members} reststops={reststops}/>
@@ -96,16 +96,36 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
-		const { invitations, tripsJoined, tripsHosted } = this.state;
+		const {
+			invitations,
+			tripsJoined,
+			tripsHosted,
+			host,
+			member,
+			reststops,
+		} = this.state;
+
 		return (
 			<>
 				<h1>Dashboard</h1>
 				<Link to='/trip'>
 					<Button variant='success'>New Trip +</Button>
 				</Link>
-				{this.renderSection('Invitations', invitations)}
-				{this.renderSection('Your Trips', tripsHosted)}
-				{this.renderSection('Trips Joined', tripsJoined)}
+				{this.renderSection(
+					'Invitations',
+					invitations,
+					host,
+					member,
+					reststops
+				)}
+				{this.renderSection('Your Trips', tripsHosted, host, member, reststops)}
+				{this.renderSection(
+					'Trips Joined',
+					tripsJoined,
+					host,
+					member,
+					reststops
+				)}
 			</>
 		);
 	}

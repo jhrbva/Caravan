@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-import ActionButtons from '../ActionButtons/ActionButtons';
 import './TripDetails.scss';
+import ActionButtons from '../ActionButtons/ActionButtons';
+import MapSnippet from '../Map/MapSnippet';
 
 export const getDateTime = (date) => {
 	const tripDate = date.slice(0, 10);
@@ -20,6 +21,24 @@ export const getRestStops = (reststops) => {
 			<div>
 				<span className='trip-details-headings'>Stoping at</span>
 				<ul>{listReststops}</ul>
+			</div>
+		);
+	}
+};
+// export const listMembers = members.map((member, key) => (
+// 		<li key={key}>{member.username}</li>
+// 	));
+// console.log(listMembers);
+
+export const listMembers = (members) => {
+	if (members.length > 0) {
+		const getMembers = members.map((members, key) => (
+			<li key={key}>{members.username}</li>
+		));
+		return (
+			<div>
+				<span className='trip-details-headings'>Guest list</span>
+				<ul>{getMembers}</ul>
 			</div>
 		);
 	}
@@ -42,10 +61,6 @@ const TripDetails = (props) => {
 
 	const { reststops } = props;
 
-	const listMembers = members.map((member, key) => (
-			<li key={key}>{member.username}</li>
-		));
-console.log(listMembers);
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
@@ -54,6 +69,9 @@ console.log(listMembers);
 				<div className='trip-details-header'>
 					<h1 className='header-text'>{trip_title}</h1>
 					<h2 className='header-text-light'>{trip_description}</h2>
+				</div>
+				<div className='map-snippet'>
+					<MapSnippet />
 				</div>
 				<div className='trip-details'>
 					<p>
@@ -78,11 +96,7 @@ console.log(listMembers);
 
 					{getRestStops(reststops)}
 
-					<p>
-						<span className='trip-details-headings'>Guest list</span>
-					</p>
-
-					<ul>{listMembers}</ul>
+					{listMembers(members)}
 
 				</div>
 				<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />

@@ -11,12 +11,20 @@ const trip = {
 	startlocation: '123 OneTreeHill St.',
 	destination: 'Grand Canyon, Grand Canyon Ave.',
 };
+// const reststops = [{ location: 'Wawa' }, { location: 'Loves' }];
+// const host = [{username: 'conniecode'}];
+// const members = [{username: 'jcode'}];
 
 describe('Trip Details', () => {
 	it('should match the snapshot', () => {
-		const wrapper = shallow(<TripDetails trip={trip} members={members} />);
+		const wrapper = shallow(<TripDetails trip={trip} />);
 		expect(wrapper).toMatchSnapshot();
-	});
+
+		const listMembers = members.map((member, key) => (
+				<li key={key}>{member.username}</li>
+			));
+			expect(listMembers).toMatchSnapshot();
+		});
 });
 
 describe('getDateTime()', () => {
