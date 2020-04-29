@@ -25,9 +25,35 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
-        host={Array []}
+        host={
+          Array [
+            Object {
+              "username": "conniecode",
+            },
+          ]
+        }
         key="0"
-        reststops={Array []}
+        members={
+          Array [
+            Array [
+              Object {
+                "username": "jcode",
+              },
+            ],
+          ]
+        }
+        reststops={
+          Array [
+            Array [
+              Object {
+                "location": "Wawa",
+              },
+              Object {
+                "location": "Loves",
+              },
+            ],
+          ]
+        }
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -48,9 +74,35 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
-        host={Array []}
+        host={
+          Array [
+            Object {
+              "username": "conniecode",
+            },
+          ]
+        }
         key="0"
-        reststops={Array []}
+        members={
+          Array [
+            Array [
+              Object {
+                "username": "jcode",
+              },
+            ],
+          ]
+        }
+        reststops={
+          Array [
+            Array [
+              Object {
+                "location": "Wawa",
+              },
+              Object {
+                "location": "Loves",
+              },
+            ],
+          ]
+        }
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -71,9 +123,35 @@ exports[`Dashboard should match the snapshot 1`] = `
   >
     <Col>
       <SummaryCard
-        host={Array []}
+        host={
+          Array [
+            Object {
+              "username": "conniecode",
+            },
+          ]
+        }
         key="0"
-        reststops={Array []}
+        members={
+          Array [
+            Array [
+              Object {
+                "username": "jcode",
+              },
+            ],
+          ]
+        }
+        reststops={
+          Array [
+            Array [
+              Object {
+                "location": "Wawa",
+              },
+              Object {
+                "location": "Loves",
+              },
+            ],
+          ]
+        }
         trip={
           Object {
             "destination": "45 Rockefeller Plaza, New York, NY, 10111",
