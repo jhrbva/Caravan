@@ -105,7 +105,7 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
@@ -147,6 +147,21 @@ app.post('/invitations', (req, res) => {
 				res.sendStatus(400);
 			}
 			res.sendStatus(201);
+		}
+	);
+});
+
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
 		}
 	);
 });
@@ -197,7 +212,7 @@ app.get('/members/:tripid', (req, res) => {
 				console.log('Error when selecting members of a specific trip', err);
 			}
 			result.push(results.rows);
-			// console.log(result);
+			console.log(result);
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
@@ -248,7 +263,7 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
-	// console.log(userid, tripid);
+	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
@@ -334,37 +349,7 @@ app.get('/trips/:userid', (req, res) => {
 					err
 				);
 			}
-			const membersCall = (trips) => {
-				console.log(trips);
-				return Promise.resolve(
-					pool.query(
-						'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
-						[trips.tripid],
-						(err, result) => {
-							if (err) {
-								console.log('Error when selecting members from a trip', err);
-							}
-							console.log({ ...trips, members: result.rows });
-							return { ...trips, members: result.rows };
-						}
-					)
-				);
-			};
-			const addMembers = async (trips) => membersCall(trips);
-
-			// const functionWithPromise = item => { //a function that returns a promise
-			// 	return Promise.resolve('ok')
-			//   }
-
-			//   const anAsyncFunction = async item => {
-			// 	return functionWithPromise(item)
-			//   }
-
-			const tripsHosted = async () => {
-				return Promise.all(result.rows.map((trip) => addMembers(trip)));
-			};
-			tripsHosted().then((data) => console.log(data));
-			// console.log(tripsHosted().the);
+			const tripsHosted = result.rows;
 
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
@@ -376,6 +361,7 @@ app.get('/trips/:userid', (req, res) => {
 							err
 						);
 					}
+					console.log(result);
 					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
