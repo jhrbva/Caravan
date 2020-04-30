@@ -73,7 +73,7 @@ class ActionButtons extends React.Component {
 		return (
 			<div>
 				<Link to='/map'>
-					<ModalButton value={'Start Trip'} />
+					<ModalButton value={'Start Trip'} additionalClass={'start'} />
 				</Link>
 				<ModalButton
 					value={'Leave Trip'}
@@ -82,6 +82,7 @@ class ActionButtons extends React.Component {
 							this.responseToInvitation();
 						});
 					}}
+					additionalClass={'leave'}
 				/>
 			</div>
 		);
