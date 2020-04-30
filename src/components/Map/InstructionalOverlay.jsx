@@ -8,7 +8,7 @@ const InstructionalOverlay = () => (
 			<ArrowRightAltIcon style={{ fontSize: 100 }} />
 		</Col>
 		<Col>
-			<h1 className='align-middle'>Turn right on Clark St.</h1>
+			<h4 className='align-middle'>Turn right on Clark St.</h4>
 		</Col>
 	</Row>
 );
