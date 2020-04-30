@@ -3,22 +3,24 @@
 exports[`Trip Details should match the snapshot 1`] = `
 <div>
   <div
-    className="trip-details-wrapper"
+    className="trip-details"
   >
     <div
-      className="trip-details-header"
+      className="map-snippet"
     >
-      <h1
-        className="header-text"
-      >
+      <withProps(withScriptjs(withGoogleMap(Geolocated(lifecycle(Component))))) />
+    </div>
+    <div
+      className="blue-back"
+    >
+      <h1>
         Wonders of the Canyon
       </h1>
-      <h2
-        className="header-text-light"
-      >
+      <h3>
         Join in as we travel to the Grand Canyon
-      </h2>
+      </h3>
     </div>
+<<<<<<< HEAD
     <div
       className="trip-details"
     >
@@ -37,46 +39,46 @@ exports[`Trip Details should match the snapshot 1`] = `
           When:
         </span>
          
+=======
+    <p>
+      Trip host: 
+      <b>
+        @Host
+      </b>
+    </p>
+    <p>
+      When: 
+      <b>
+>>>>>>> master
         2020-06-01
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          Leaving at:
-        </span>
+      </b>
+    </p>
+    <p>
+      Leaving at: 
+      <b>
         13:55:06
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          From
-        </span>
-        <br />
-         
+      </b>
+    </p>
+    <p>
+      From: 
+      <b>
         123 OneTreeHill St.
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          To
-        </span>
-        <br />
-         
+      </b>
+    </p>
+    <p>
+      To: 
+      <b>
         Grand Canyon, Grand Canyon Ave.
-      </p>
+      </b>
+    </p>
+    <div>
       <p>
-        <span
-          className="trip-details-headings"
-        >
-          Guest list
-        </span>
+        Making stops at:
       </p>
       <ul>
         <li
           key="0"
+<<<<<<< HEAD
         />
         <li
           key="1"
@@ -84,9 +86,43 @@ exports[`Trip Details should match the snapshot 1`] = `
         <li
           key="2"
         />
+=======
+        >
+          <b>
+            Wawa
+          </b>
+        </li>
+        <li
+          key="1"
+        >
+          <b>
+            Loves
+          </b>
+        </li>
+>>>>>>> master
       </ul>
     </div>
-    <ActionButtons />
+    <p>
+      Guests:
+    </p>
+    <ul>
+      <li>
+        <b>
+          @guestA
+        </b>
+      </li>
+      <li>
+        <b>
+          @guestB
+        </b>
+      </li>
+      <li>
+        <b>
+          @guestC
+        </b>
+      </li>
+    </ul>
   </div>
+  <withRouter(ActionButtons) />
 </div>
 `;

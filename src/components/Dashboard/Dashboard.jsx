@@ -1,7 +1,14 @@
 import React from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+
+import './Dashboard.scss';
+import Navbar from '../Navbar/Navbar';
+import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
+import BigButton from '../BigButton/BigButton';
+import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -12,25 +19,41 @@ export default class Dashboard extends React.Component {
 			tripsHosted: [],
 			host: [],
 			members: [],
+			reststops: [],
 		};
 	}
 
 	componentDidMount() {
 		// TO DO: add redux to dynamically import user id
-		fetch('/invitations/3')
-			.then((response) => {
-				return response.json();
+		Promise.all([
+			fetch('/invitations/1'),
+			fetch('/trips/2'),
+			fetch('/members/1'),
+			fetch('/reststop/1'),
+		])
+			.then(([response1, response2, response3, response4]) => {
+				return Promise.all([
+					response1.json(),
+					response2.json(),
+					response3.json(),
+					response4.json(),
+				]);
 			})
-			.then((data) => {
-				this.setState({ invitations: data });
-			});
-		fetch('/trips/2')
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				this.setState({ tripsJoined: data.tripsJoined });
-				this.setState({ tripsHosted: data.tripsHosted });
+			.then(([response1, response2, response3, response4]) => {
+				this.setState({ invitations: response1 });
+				this.setState({
+					tripsJoined: response2.tripsJoined,
+					tripsHosted: response2.tripsHosted,
+				});
+				console.log(response1);
+				this.setState({
+					host: response1.map((item) => ({
+						host: item.username,
+					})),
+				});
+				//this.setState({ host: response1.username });
+				this.setState({ members: response3.members });
+				this.setState({ reststops: response4 });
 			});
 		fetch('/members/1')
 			.then((response) => {
@@ -42,19 +65,28 @@ export default class Dashboard extends React.Component {
 			});
 	}
 
-	renderSection = (title, data) => {
-		const { host, members } = this.state;
+	renderSection = (title, type, host, members, reststops, icon) => {
+		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
+
 		return (
 			<>
-				<h3>{title}</h3>
+				<h2>{title}</h2>
 				<Row>
-					{data.length ? (
-						data.map((entry, id) => {
+					{type.length ? (
+						type.map((entry, id) => {
 							return (
-								<Col>
-									<SummaryCard key={id} trip={entry} host={host} members={members}/>
+								<Col md={3}>
+									<SummaryCard
+										key={id}
+										trip={entry}
+										icon={icon}
+										host={host}
+										members={members}
+										reststops={reststops}
+										isYourTrips={isYourTrips}
+									/>
 								</Col>
 							);
 						})
@@ -67,16 +99,53 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
-		const { invitations, tripsJoined, tripsHosted } = this.state;
+		const {
+			invitations,
+			tripsJoined,
+			tripsHosted,
+			host,
+			member,
+			reststops,
+		} = this.state;
 		return (
 			<>
-				<h1>Dashboard</h1>
-				<Link to='/trip'>
-					<Button variant='success'>New Trip +</Button>
-				</Link>
-				{this.renderSection('Invitations', invitations)}
-				{this.renderSection('Your Trips', tripsHosted)}
-				{this.renderSection('Trips Joined', tripsJoined)}
+				<Navbar />
+				<div className='dashboard-wrapper'>
+					<Link to='/trip'>
+						<BigButton value='+ New Trip' color={'green'} />
+					</Link>
+
+					<div className='trip-section'>
+						{this.renderSection(
+							'Invitations',
+							invitations,
+							host,
+							member,
+							reststops,
+							<MailOutlinedIcon fontSize='large' />
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Your Trips',
+							tripsHosted,
+							host,
+							member,
+							reststops,
+							<CardTravelIcon fontSize='large' />
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Trips Joined',
+							tripsJoined,
+							host,
+							member,
+							reststops,
+							<AirportShuttleIcon fontSize='large' />
+						)}
+					</div>
+				</div>
 			</>
 		);
 	}

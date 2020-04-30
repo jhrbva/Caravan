@@ -1,8 +1,7 @@
 import React from 'react';
 import { Field } from 'formik';
-import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
 import { required } from '../../utilities/formValidation';
+import TagInput from '../TagInput/TagInput';
 
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
@@ -12,10 +11,10 @@ const TripGuests = () => (
 			icon={<GroupAddIcon />}
 			type='text'
 			name='guests'
-			placeholder='Guest'
+			tag='GUESTS'
 			validate={required}
 			autoFocus={true}
-			component={Input}
+			component={TagInput}
 		/>
 	</>
 );

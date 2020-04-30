@@ -17,6 +17,7 @@ import {
 	required,
 	validatePassword,
 } from '../../utilities/formValidation';
+import './Signup.scss';
 
 export const SignupForm = () => (
 	<Form>
@@ -24,7 +25,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='firstname'
-			placeholder='First Name'
+			tag='FIRST NAME'
 			validate={required}
 			autoFocus={true}
 			component={Input}
@@ -33,7 +34,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='lastname'
-			placeholder='Last Name'
+			tag='LAST NAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -43,7 +44,7 @@ export const SignupForm = () => (
 			icon={<PersonPinIcon />}
 			type='text'
 			name='username'
-			placeholder='Username'
+			tag='USERNAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -52,7 +53,7 @@ export const SignupForm = () => (
 			icon={<CallIcon />}
 			type='text'
 			name='phone'
-			placeholder='Phone Number'
+			tag='PHONE NUMBER'
 			validate={validatePhone}
 			autoFocus={false}
 			component={Input}
@@ -62,7 +63,7 @@ export const SignupForm = () => (
 			icon={<EmailIcon />}
 			type='text'
 			name='email'
-			placeholder='Email'
+			tag='EMAIL'
 			validate={validateEmail}
 			autoFocus={false}
 			component={Input}
@@ -71,7 +72,7 @@ export const SignupForm = () => (
 			icon={<LockIcon />}
 			type='password'
 			name='password'
-			placeholder='Password'
+			tag='PASSWORD'
 			validate={validatePassword}
 			autoFocus={false}
 			component={Input}
@@ -81,9 +82,9 @@ export const SignupForm = () => (
 	</Form>
 );
 
-export const Signup = props => {
+export const Signup = (props) => {
 	return (
-		<div>
+		<div className='signup-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
@@ -94,7 +95,7 @@ export const Signup = props => {
 					email: '',
 					password: '',
 				}}
-				onSubmit={values => {
+				onSubmit={(values) => {
 					const { history } = props;
 					axios
 						.post('/signup', {
@@ -105,18 +106,19 @@ export const Signup = props => {
 							phonenumber: values.phone,
 							password: values.password,
 						})
-						.then(function(response) {
+						.then(function (response) {
 							history.push('/dashboard');
 						})
-						.catch(function(error) {
+						.catch(function (error) {
 							console.log(error);
 						});
 				}}
 			>
 				{() => <SignupForm />}
 			</Formik>
-			<p>Already have an account?</p>
-			<a href='/'>Sign In</a>
+			<p>
+				Already have an account? <a href='/'>Sign In</a>
+			</p>
 		</div>
 	);
 };
