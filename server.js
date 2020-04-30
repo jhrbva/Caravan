@@ -109,7 +109,7 @@ app.get('/invitations/:userid', (req, res) => {
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting invitation of a specific user', err);
+				console.log('Error when selecting invitations of a specific user', err);
 			}
 			if (result.rows.length > 0) {
 				res.send(result.rows);

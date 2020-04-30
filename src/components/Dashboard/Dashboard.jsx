@@ -6,6 +6,9 @@ import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import BigButton from '../BigButton/BigButton';
+import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -42,15 +45,23 @@ export default class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				this.setState({ host: response3.host[0].username });
+				console.log(response1);
+				this.setState({
+					host: response1.map((item) => ({
+						host: item.username,
+					})),
+				});
+				//this.setState({ host: response1.username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
 	}
 
-	renderSection = (title, type, host, members, reststops) => {
+	renderSection = (title, type, host, members, reststops, icon) => {
+		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
+
 		return (
 			<>
 				<h3>{title}</h3>
@@ -58,13 +69,15 @@ export default class Dashboard extends React.Component {
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col>
+								<Col md={3}>
 									<SummaryCard
 										key={id}
 										trip={entry}
+										icon={icon}
 										host={host}
 										members={members}
 										reststops={reststops}
+										isYourTrips={isYourTrips}
 									/>
 								</Col>
 							);
@@ -86,7 +99,6 @@ export default class Dashboard extends React.Component {
 			member,
 			reststops,
 		} = this.state;
-
 		return (
 			<>
 				<Navbar />
@@ -94,13 +106,15 @@ export default class Dashboard extends React.Component {
 					<Link to='/trip'>
 						<BigButton value='+ New Trip' color={'green'} />
 					</Link>
+
 					<div className='trip-section'>
 						{this.renderSection(
 							'Invitations',
 							invitations,
 							host,
 							member,
-							reststops
+							reststops,
+							<MailOutlinedIcon fontSize='large' />
 						)}
 					</div>
 					<div className='trip-section'>
@@ -109,7 +123,8 @@ export default class Dashboard extends React.Component {
 							tripsHosted,
 							host,
 							member,
-							reststops
+							reststops,
+							<CardTravelIcon fontSize='large' />
 						)}
 					</div>
 					<div className='trip-section'>
@@ -118,7 +133,8 @@ export default class Dashboard extends React.Component {
 							tripsJoined,
 							host,
 							member,
-							reststops
+							reststops,
+							<AirportShuttleIcon fontSize='large' />
 						)}
 					</div>
 				</div>
