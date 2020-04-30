@@ -20,37 +20,16 @@ exports[`Trip Details should match the snapshot 1`] = `
         Join in as we travel to the Grand Canyon
       </h3>
     </div>
-<<<<<<< HEAD
-    <div
-      className="trip-details"
-    >
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          You were invited by 
-        </span>
-         
-        <Component />
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          When:
-        </span>
-         
-=======
     <p>
       Trip host: 
       <b>
-        @Host
+        @
+        <Component />
       </b>
     </p>
     <p>
       When: 
       <b>
->>>>>>> master
         2020-06-01
       </b>
     </p>
@@ -70,95 +49,40 @@ exports[`Trip Details should match the snapshot 1`] = `
       To: 
       <b>
         Grand Canyon, Grand Canyon Ave.
-<<<<<<< HEAD
       </b>
     </p>
-    <div>
-      <p>
-        Making stops at:
-      </p>
-      <ul>
+    <p
+      className="no-margin-bottom"
+    >
+      Rest Stops:
+    </p>
+    <ul>
+      <b>
         <li
           key="0"
-<<<<<<< HEAD
-        />
-        <li
-          key="1"
-        />
-        <li
-          key="2"
-        />
-=======
         >
-          <b>
-            Wawa
-          </b>
+          Wawa
         </li>
         <li
           key="1"
         >
-          <b>
-            Loves
-          </b>
+          Loves
         </li>
->>>>>>> master
-      </ul>
-=======
-      </p>
-      <div>
-        <span
-          className="trip-details-headings"
-        >
-          Stoping at
-        </span>
-        <ul>
-          <li
-            key="0"
-          >
-            Wawa
-          </li>
-          <li
-            key="1"
-          >
-            Loves
-          </li>
-        </ul>
-      </div>
-      <div>
-        <span
-          className="trip-details-headings"
-        >
-          Guest list
-        </span>
-        <ul>
-          <li
-            key="0"
-          >
-            jcode
-          </li>
-        </ul>
-      </div>
->>>>>>> 8f481f9e1de392925c3f31aae077492803c9567b
-    </div>
-    <p>
+      </b>
+    </ul>
+    <p
+      className="no-margin-bottom"
+    >
       Guests:
     </p>
     <ul>
-      <li>
-        <b>
-          @guestA
-        </b>
-      </li>
-      <li>
-        <b>
-          @guestB
-        </b>
-      </li>
-      <li>
-        <b>
-          @guestC
-        </b>
-      </li>
+      <b>
+        <li
+          key="0"
+        >
+          jcode
+        </li>
+      </b>
     </ul>
   </div>
   <withRouter(ActionButtons) />
