@@ -90,7 +90,10 @@ app.get('/emergency/:ECid', (req, res) => {
 		[req.params.ECid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when finding an emergency contact for a specific user', err);
+				console.log(
+					'Error when finding an emergency contact for a specific user',
+					err
+				);
 			}
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
@@ -102,14 +105,13 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
 				console.log('Error when selecting invitation of a specific user', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
 				res.send(result.rows);
 			}
 		}
@@ -125,7 +127,6 @@ app.get('/user/:username', (req, res) => {
 				console.log('Error when looking for user', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -209,7 +210,6 @@ app.get('/members/:tripid', (req, res) => {
 				console.log('Error when selecting members of a specific trip', err);
 			}
 			result.push(results.rows);
-			console.log(result);
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
@@ -293,7 +293,7 @@ app.post('/trip', (req, res) => {
 		trip_title,
 	} = req.body;
 	pool.query(
-		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
 		[
 			host_id,
 			start_location,
@@ -312,7 +312,7 @@ app.post('/trip', (req, res) => {
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			res.sendStatus(201);
+			res.json(results.rows[0].tripid);
 		}
 	);
 });
@@ -358,7 +358,6 @@ app.get('/trips/:userid', (req, res) => {
 							err
 						);
 					}
-					console.log(result);
 					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
@@ -386,7 +385,7 @@ app.post('/signup', (req, res) => {
 					if (err) {
 						console.log('Error when inserting user', err);
 						// TODO: add better error handling
-						res.send(400);
+						res.sendStatus(400);
 					}
 					req.login(req.body, (err) => {
 						const { user } = req;

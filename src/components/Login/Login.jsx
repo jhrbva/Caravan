@@ -1,16 +1,16 @@
-import React from "react";
-import { Field, Form, Formik } from "formik";
-import { withRouter } from "react-router";
-import axios from "axios";
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
-import logo from "../../assets/caravan-logo-blueOnWhite.png";
-import Input from "../Input/Input";
-import BigButton from "../BigButton/BigButton";
-import { required } from "../../utilities/formValidation";
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
+import Input from '../Input/Input';
+import BigButton from '../BigButton/BigButton';
+import { required } from '../../utilities/formValidation';
 
-import PersonIcon from "@material-ui/icons/PersonOutlined";
-import VpnKeyIcon from "@material-ui/icons/VpnKeyOutlined";
-import "./Login.scss";
+import PersonIcon from '@material-ui/icons/PersonOutlined';
+import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
+import './Login.scss';
 
 export const LoginForm = () => (
 	<Form>
@@ -34,7 +34,7 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={"Login"} />
+		<BigButton value={'Login'} />
 	</Form>
 );
 
@@ -53,8 +53,8 @@ const Login = (props) => {
 			</div>
 			<Formik
 				initialValues={{
-					email: "",
-					password: "",
+					email: '',
+					password: '',
 				}}
 				onSubmit={(values) => {
 					const { history } = props;
@@ -62,13 +62,13 @@ const Login = (props) => {
 					console.log(values);
 					console.log(props);
 					axios
-						.post("/login", {
+						.post('/login', {
 							username: values.username,
 							password: values.password,
 						})
 						.then(function (response) {
 							console.log(response);
-							history.push("/dashboard");
+							history.push('/dashboard');
 						})
 						.catch(function (error) {
 							console.log(error);

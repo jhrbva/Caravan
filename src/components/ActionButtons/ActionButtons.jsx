@@ -33,6 +33,7 @@ class ActionButtons extends React.Component {
 		return (
 			<BigButton
 				value={value}
+				color={'blue'}
 				onClick={() => {
 					this.setState({ accepted: true }, function () {
 						this.responseToInvitation();
@@ -46,6 +47,7 @@ class ActionButtons extends React.Component {
 		return (
 			<BigButton
 				value={value}
+				color={'blue'}
 				onClick={() => {
 					this.setState({ accepted: false }, function () {
 						this.responseToInvitation();
@@ -72,6 +74,7 @@ class ActionButtons extends React.Component {
 						{this.acceptInvitationButton('Accept Invitation')}
 						<BigButton
 							value={'Request Change'}
+							color={'blue'}
 							onClick={() => {
 								this.requestChangeButton();
 							}}
@@ -83,7 +86,7 @@ class ActionButtons extends React.Component {
 			return (
 				<div className='invitation-btns two-btns'>
 					<Link to='/map'>
-						<BigButton value={'Start Trip'} />
+						<BigButton value={'Start Trip'} color={'blue'} />
 					</Link>
 					{this.rejectInvitationButton('Leave Trip')}
 				</div>
@@ -95,6 +98,7 @@ class ActionButtons extends React.Component {
 					{this.rejectInvitationButton('Reject')}
 					<BigButton
 						value={'Request Change'}
+						color={'blue'}
 						onClick={() => {
 							this.requestChangeButton();
 						}}
