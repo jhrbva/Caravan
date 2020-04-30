@@ -260,7 +260,6 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
-	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
