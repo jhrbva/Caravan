@@ -1,0 +1,54 @@
+@import 'node_modules/@pathofdev/react-tag-input/src/styles/index.scss';
+@import '../../utilities/colorPalette.scss';
+
+.tag-input-wrapper {
+	position: relative;
+
+	.material-icons {
+		font-size: 20px;
+		position: absolute;
+		margin-left: 10px;
+		margin-top: 5px;
+		color: $dream-blue;
+		z-index: 9999;
+		left: 0;
+		top: 15;
+	}
+	.field-header {
+		position: absolute;
+		top: -10px;
+		font-size: 12px;
+		margin-left: 40px;
+		padding: 0px 5px;
+		background: white;
+		z-index: 9999;
+	}
+	// /* Wrapper */
+	.react-tag-input {
+		border-width: 2px;
+		border-radius: 5px;
+		border-style: solid;
+		border-color: gray;
+		margin: 15px 0px;
+		width: 100%;
+		padding: 8px 8px 8px 40px;
+		font-size: 15px;
+	}
+	/* Tag wrapper */
+	.react-tag-input__tag {
+		background-color: $dream-blue;
+	}
+	/* The text content within the tag */
+	.react-tag-input__tag__content {
+		color: white;
+	}
+	/* The remove button & icon for a tag */
+	.react-tag-input__tag__remove {
+		background-color: $dream-blue;
+	}
+	/* The remove icon legs */
+	.react-tag-input__tag__remove:before,
+	.react-tag-input__tag__remove:after {
+		background-color: white;
+	}
+}
