@@ -51,8 +51,8 @@ export default class Dashboard extends React.Component {
 			});
 	}
 
-	renderSection = (title, type) => {
-		const { host, members, reststops } = this.state;
+	renderSection = (title, type, host, members, reststops, icon) => {
+		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 
@@ -63,13 +63,15 @@ export default class Dashboard extends React.Component {
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col>
+								<Col md={4}>
 									<SummaryCard
 										key={id}
 										trip={entry}
+										icon={icon}
 										host={host}
 										members={members}
 										reststops={reststops}
+										isYourTrips={isYourTrips}
 									/>
 								</Col>
 							);
@@ -88,7 +90,7 @@ export default class Dashboard extends React.Component {
 			tripsJoined,
 			tripsHosted,
 			host,
-			member,
+			members,
 			reststops,
 		} = this.state;
 		return (
@@ -104,7 +106,7 @@ export default class Dashboard extends React.Component {
 							'Invitations',
 							invitations,
 							host,
-							member,
+							members,
 							reststops,
 							<MailOutlinedIcon fontSize='large' />
 						)}
@@ -114,7 +116,7 @@ export default class Dashboard extends React.Component {
 							'Your Trips',
 							tripsHosted,
 							host,
-							member,
+							members,
 							reststops,
 							<CardTravelIcon fontSize='large' />
 						)}
@@ -124,7 +126,7 @@ export default class Dashboard extends React.Component {
 							'Trips Joined',
 							tripsJoined,
 							host,
-							member,
+							members,
 							reststops,
 							<AirportShuttleIcon fontSize='large' />
 						)}

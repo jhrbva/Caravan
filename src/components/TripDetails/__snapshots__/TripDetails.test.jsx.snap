@@ -79,9 +79,7 @@ exports[`Trip Details should match the snapshot 1`] = `
       <b>
         <li
           key="0"
-        >
-          jcode
-        </li>
+        />
       </b>
     </ul>
   </div>
