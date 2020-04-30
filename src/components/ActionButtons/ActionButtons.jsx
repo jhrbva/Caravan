@@ -43,7 +43,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Accept'}
 					onClick={() => {
-						this.setState({ accepted: true }, function () {
+						this.setState({ accepted: true }, () => {
 							this.responseToInvitation();
 						});
 					}}
@@ -52,7 +52,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Reject'}
 					onClick={() => {
-						this.setState({ accepted: false }, function () {
+						this.setState({ accepted: false }, () => {
 							this.responseToInvitation();
 						});
 					}}
@@ -78,7 +78,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Leave Trip'}
 					onClick={() => {
-						this.setState({ accepted: false }, function () {
+						this.setState({ accepted: false }, () => {
 							this.responseToInvitation();
 						});
 					}}
@@ -94,7 +94,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Accept Invitation'}
 					onClick={() => {
-						this.setState({ accepted: true }, function () {
+						this.setState({ accepted: true }, () => {
 							this.responseToInvitation();
 						});
 					}}
