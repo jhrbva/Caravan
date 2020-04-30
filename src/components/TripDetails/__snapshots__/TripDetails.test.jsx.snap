@@ -31,9 +31,10 @@ exports[`Trip Details should match the snapshot 1`] = `
         <span
           className="trip-details-headings"
         >
-          You were invited by
+          You were invited by 
         </span>
-
+         
+        <Component />
       </p>
       <p>
         <span
@@ -41,7 +42,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         >
           When:
         </span>
-
+         
         2020-06-01
       </p>
       <p>
@@ -59,7 +60,7 @@ exports[`Trip Details should match the snapshot 1`] = `
           From
         </span>
         <br />
-
+         
         123 OneTreeHill St.
       </p>
       <p>
@@ -69,7 +70,7 @@ exports[`Trip Details should match the snapshot 1`] = `
           To
         </span>
         <br />
-
+         
         Grand Canyon, Grand Canyon Ave.
       </p>
       <div>
@@ -91,23 +92,20 @@ exports[`Trip Details should match the snapshot 1`] = `
           </li>
         </ul>
       </div>
-      <p>
+      <div>
         <span
           className="trip-details-headings"
         >
-        Guest list
+          Guest list
         </span>
-      </p>
-      <ul>
-        <li
-          key="0"
-        />
-        jcode
-        <li
-          key="1"
-        />
-        ccode
-      </ul>
+        <ul>
+          <li
+            key="0"
+          >
+            jcode
+          </li>
+        </ul>
+      </div>
     </div>
     <withRouter(ActionButtons) />
   </div>

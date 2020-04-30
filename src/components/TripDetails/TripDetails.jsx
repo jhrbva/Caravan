@@ -25,10 +25,6 @@ export const getRestStops = (reststops) => {
 		);
 	}
 };
-// export const listMembers = members.map((member, key) => (
-// 		<li key={key}>{member.username}</li>
-// 	));
-// console.log(listMembers);
 
 export const listMembers = (members) => {
 	if (members.length > 0) {

@@ -203,7 +203,6 @@ app.delete('/reststop', (req, res) => {
 });
 
 app.get('/members/:tripid', (req, res) => {
-	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -211,7 +210,7 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
-			result.push(results.rows);
+			let result = results.rows;
 			console.log(result);
 
 			pool.query(

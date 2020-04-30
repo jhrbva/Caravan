@@ -16,33 +16,6 @@ export default class Dashboard extends React.Component {
 		};
 	}
 
-	// componentDidMount() {
-	// 	// TO DO: add redux to dynamically import user id
-	// 	fetch('/invitations/3')
-	// 		.then((response) => {
-	// 			return response.json();
-	// 		})
-	// 		.then((data) => {
-	// 			this.setState({ invitations: data });
-	// 		});
-	// 	fetch('/trips/2')
-	// 		.then((response) => {
-	// 			return response.json();
-	// 		})
-	// 		.then((data) => {
-	// 			this.setState({ tripsJoined: data.tripsJoined });
-	// 			this.setState({ tripsHosted: data.tripsHosted });
-	// 		});
-	// 	fetch('/members/1')
-	// 		.then((response) => {
-	// 			return response.json();
-	// 		})
-	// 		.then((data) => {
-	// 			this.setState({ host: data.host[0].username });
-	// 			this.setState({ members: data.members[0] });
-	// 		});
-	// }
-
 	componentDidMount() {
 			// TO DO: add redux to dynamically import user id
 			Promise.all([
@@ -66,7 +39,7 @@ export default class Dashboard extends React.Component {
 						tripsHosted: response2.tripsHosted,
 					});
 					this.setState({ host: response3.host[0].username });
-					this.setState({ members: response3.members[0] });
+					this.setState({ members: response3.members });
 					this.setState({ reststops: response4 });
 				});
 		}
