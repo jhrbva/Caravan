@@ -1,4 +1,4 @@
-@import "../src/utilities/colorPalette.scss";
+@import '../src/utilities/colorPalette.scss';
 
 .App {
 	text-align: center;
@@ -20,25 +20,31 @@
 
 /* ---------- Typography ----------- */
 body {
-	font-family: "Quicksand", sans-serif !important;
+	font-family: 'Quicksand', sans-serif !important;
+	font-weight: 300 !important;
 }
 p {
-	text-align: left;
-	font-size: 20px;
+	font-size: 18px;
+	text-align: center;
+}
+ul {
+	list-style: none;
+	padding: 0;
 }
 li {
-	text-align: left;
-	font-size: 20px;
+	font-size: 18px;
 }
-.header-text {
-	font-family: "Fredoka One", cursive;
-	font-weight: 700;
-	font-size: 35px;
+h1 {
+	font-family: 'Fredoka One', sans-serif;
+	font-size: 35px !important;
 }
-.header-text-light {
-	font-family: "Fredoka One", cursive;
-	font-weight: 400;
-	font-size: 30px;
+h2 {
+	font-family: 'Fredoka One', sans-serif;
+	font-size: 30px !important;
+}
+h3 {
+	font-family: 'Fredoka One', sans-serif;
+	font-size: 25px !important;
 }
 textarea {
 	display: block;

@@ -1,8 +1,15 @@
 import React from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+
+import './Dashboard.scss';
+import Navbar from '../Navbar/Navbar';
+import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import { connect } from 'react-redux';
+import BigButton from '../BigButton/BigButton';
+import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 
 export class Dashboard extends React.Component {
 	constructor(props) {
@@ -40,29 +47,39 @@ export class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				this.setState({ host: response3.host[0].username });
+				console.log(response1);
+				this.setState({
+					host: response1.map((item) => ({
+						host: item.username,
+					})),
+				});
+				//this.setState({ host: response1.username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
 	}
 
-	renderSection = (title, type, host, members, reststops) => {
+	renderSection = (title, type, host, members, reststops, icon) => {
+		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
+
 		return (
 			<>
-				<h3>{title}</h3>
+				<h2>{title}</h2>
 				<Row>
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col>
+								<Col md={3}>
 									<SummaryCard
 										key={id}
 										trip={entry}
+										icon={icon}
 										host={host}
 										members={members}
 										reststops={reststops}
+										isYourTrips={isYourTrips}
 									/>
 								</Col>
 							);
@@ -84,28 +101,45 @@ export class Dashboard extends React.Component {
 			member,
 			reststops,
 		} = this.state;
-
 		return (
 			<>
-				<h1>Dashboard</h1>
-				<Link to='/trip'>
-					<Button variant='success'>New Trip +</Button>
-				</Link>
-				{this.renderSection(
-					'Invitations',
-					invitations,
-					host,
-					member,
-					reststops
-				)}
-				{this.renderSection('Your Trips', tripsHosted, host, member, reststops)}
-				{this.renderSection(
-					'Trips Joined',
-					tripsJoined,
-					host,
-					member,
-					reststops
-				)}
+				<Navbar />
+				<div className='dashboard-wrapper'>
+					<Link to='/trip'>
+						<BigButton value='+ New Trip' color={'green'} />
+					</Link>
+
+					<div className='trip-section'>
+						{this.renderSection(
+							'Invitations',
+							invitations,
+							host,
+							member,
+							reststops,
+							<MailOutlinedIcon fontSize='large' />
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Your Trips',
+							tripsHosted,
+							host,
+							member,
+							reststops,
+							<CardTravelIcon fontSize='large' />
+						)}
+					</div>
+					<div className='trip-section'>
+						{this.renderSection(
+							'Trips Joined',
+							tripsJoined,
+							host,
+							member,
+							reststops,
+							<AirportShuttleIcon fontSize='large' />
+						)}
+					</div>
+				</div>
 			</>
 		);
 	}

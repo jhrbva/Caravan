@@ -1,0 +1,70 @@
+@import '../../utilities/colorPalette.scss';
+
+.flex-container {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.wrap {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-item {
+	padding: 5px;
+	margin: 10px;
+}
+
+.card.card {
+	width: 18rem;
+	border-radius: 30px;
+	height: 14rem;
+
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin-bottom: 30px;
+	margin-right: 0px;
+}
+
+.card.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-title.h5 {
+	text-align: left;
+	font-size: 20px;
+	margin-left: 60px;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+.card-text {
+	font-size: 17px;
+}
+p {
+	display: inline;
+}
+.card-body {
+	overflow: scroll;
+	background-color: $dream-blue-fade;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.material-icons {
+	font-size: 20px;
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 20px;
+	color: $dream-blue-fade;
+}

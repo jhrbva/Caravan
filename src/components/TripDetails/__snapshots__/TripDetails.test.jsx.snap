@@ -3,114 +3,95 @@
 exports[`Trip Details should match the snapshot 1`] = `
 <div>
   <div
-    className="trip-details-wrapper"
+    className="trip-details"
   >
-    <div
-      className="trip-details-header"
-    >
-      <h1
-        className="header-text"
-      >
-        Wonders of the Canyon
-      </h1>
-      <h2
-        className="header-text-light"
-      >
-        Join in as we travel to the Grand Canyon
-      </h2>
-    </div>
     <div
       className="map-snippet"
     >
       <withProps(withScriptjs(withGoogleMap(Geolocated(lifecycle(Component))))) />
     </div>
     <div
-      className="trip-details"
+      className="blue-back"
     >
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          You were invited by 
-        </span>
-        @ Host
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          When:
-        </span>
-         
+      <h1>
+        Wonders of the Canyon
+      </h1>
+      <h3>
+        Join in as we travel to the Grand Canyon
+      </h3>
+    </div>
+    <p>
+      Trip host: 
+      <b>
+        @Host
+      </b>
+    </p>
+    <p>
+      When: 
+      <b>
         2020-06-01
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          Leaving at:
-        </span>
+      </b>
+    </p>
+    <p>
+      Leaving at: 
+      <b>
         13:55:06
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          From
-        </span>
-        <br />
-         
+      </b>
+    </p>
+    <p>
+      From: 
+      <b>
         123 OneTreeHill St.
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          To
-        </span>
-        <br />
-         
+      </b>
+    </p>
+    <p>
+      To: 
+      <b>
         Grand Canyon, Grand Canyon Ave.
-      </p>
-      <div>
-        <span
-          className="trip-details-headings"
-        >
-          Stoping at
-        </span>
-        <ul>
-          <li
-            key="0"
-          >
-            Wawa
-          </li>
-          <li
-            key="1"
-          >
-            Loves
-          </li>
-        </ul>
-      </div>
+      </b>
+    </p>
+    <div>
       <p>
-        <span
-          className="trip-details-headings"
-        >
-          Guest list
-        </span>
+        Making stops at:
       </p>
       <ul>
-        <li>
-          @guestA
+        <li
+          key="0"
+        >
+          <b>
+            Wawa
+          </b>
         </li>
-        <li>
-          @guestB
-        </li>
-        <li>
-          @guestC
+        <li
+          key="1"
+        >
+          <b>
+            Loves
+          </b>
         </li>
       </ul>
     </div>
-    <withRouter(ActionButtons) />
+    <p>
+      Guests:
+    </p>
+    <ul>
+      <li>
+        <b>
+          @guestA
+        </b>
+      </li>
+      <li>
+        <b>
+          @guestB
+        </b>
+      </li>
+      <li>
+        <b>
+          @guestC
+        </b>
+      </li>
+    </ul>
   </div>
+  <withRouter(ActionButtons) />
 </div>
 `;
