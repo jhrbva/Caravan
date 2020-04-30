@@ -7,7 +7,7 @@ exports[`TripRestStops should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="rest_stops"
-    placeholder="Rest Stop"
+    tag="REST STOPS"
     type="text"
   />
 </Fragment>

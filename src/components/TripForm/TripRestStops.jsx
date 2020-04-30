@@ -1,8 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import '../../utilities/fonts.scss';
-import Input from '../Input/Input';
-
+import TagInput from '../TagInput/TagInput';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const TripRestStops = () => (
@@ -11,9 +9,9 @@ const TripRestStops = () => (
 			icon={<LocationOnIcon />}
 			type='text'
 			name='rest_stops'
-			placeholder='Rest Stop'
+			tag='REST STOPS'
 			autoFocus={true}
-			component={Input}
+			component={TagInput}
 		/>
 	</>
 );
