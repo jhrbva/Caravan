@@ -64,7 +64,7 @@ export default class Dashboard extends React.Component {
 
 		return (
 			<>
-				<h3>{title}</h3>
+				<h2>{title}</h2>
 				<Row>
 					{type.length ? (
 						type.map((entry, id) => {
