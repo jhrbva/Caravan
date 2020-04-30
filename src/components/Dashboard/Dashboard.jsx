@@ -45,28 +45,14 @@ export default class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				console.log(response1);
-				this.setState({
-					host: response1.map((item) => ({
-						host: item.username,
-					})),
-				});
-				//this.setState({ host: response1.username });
+				this.setState({ host: response3.host[0].username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
-		fetch('/members/1')
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				this.setState({ host: data.host[0].username });
-				this.setState({ members: data.members[0] });
-			});
 	}
 
-	renderSection = (title, type, host, members, reststops, icon) => {
-		const isYourTrips = title === 'Your Trips' ? true : false;
+	renderSection = (title, type) => {
+		const { host, members, reststops } = this.state;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 
@@ -77,15 +63,13 @@ export default class Dashboard extends React.Component {
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col md={3}>
+								<Col>
 									<SummaryCard
 										key={id}
 										trip={entry}
-										icon={icon}
 										host={host}
 										members={members}
 										reststops={reststops}
-										isYourTrips={isYourTrips}
 									/>
 								</Col>
 							);

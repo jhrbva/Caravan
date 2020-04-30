@@ -26,6 +26,20 @@ export const getRestStops = (reststops) => {
 	}
 };
 
+export const listMembers = (members) => {
+	if (members.length > 0) {
+		const getMembers = members.map((members, key) => (
+			<li key={key}>{members.username}</li>
+		));
+		return (
+			<div>
+				<span className='trip-details-headings'>Guest list</span>
+				<ul>{getMembers}</ul>
+			</div>
+		);
+	}
+};
+
 const TripDetails = (props) => {
 	const {
 		userid,
@@ -39,6 +53,7 @@ const TripDetails = (props) => {
 	} = props.trip;
 
 	const host = props.host;
+<<<<<<< HEAD
 	const { reststops } = props;
 
 	// const members = props.members;
@@ -47,6 +62,12 @@ const TripDetails = (props) => {
 	// 	<li key={key}>{member.username}</li>
 	// ));
 
+=======
+	const members = props.members;
+
+	const { reststops } = props;
+
+>>>>>>> 8f481f9e1de392925c3f31aae077492803c9567b
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
 	return (
@@ -55,9 +76,37 @@ const TripDetails = (props) => {
 				<div className='map-snippet'>
 					<MapSnippet />
 				</div>
+<<<<<<< HEAD
 				<div className='blue-back'>
 					<h1>{trip_title}</h1>
 					<h3>{trip_description}</h3>
+=======
+				<div className='trip-details'>
+					<p>
+						<span className='trip-details-headings'>You were invited by </span>{' '}
+						{host}
+					</p>
+					<p>
+						<span className='trip-details-headings'>When:</span> {tripDate}
+					</p>
+					<p>
+						<span className='trip-details-headings'>Leaving at:</span>
+						{tripTime}
+					</p>
+					<p>
+						<span className='trip-details-headings'>From</span>
+						<br /> {startlocation}
+					</p>
+					<p>
+						<span className='trip-details-headings'>To</span>
+						<br /> {destination}
+					</p>
+
+					{getRestStops(reststops)}
+
+					{listMembers(members)}
+
+>>>>>>> 8f481f9e1de392925c3f31aae077492803c9567b
 				</div>
 
 				<p>

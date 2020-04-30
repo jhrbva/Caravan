@@ -12,9 +12,18 @@ const trip = {
 	destination: 'Grand Canyon, Grand Canyon Ave.',
 };
 
+const host = {
+	username: 'conniecode',
+};
+const members = [{
+	username: 'jcode'
+}];
+
+const reststops = [{ location: 'Wawa' }, { location: 'Loves' }];
+
 describe('SummaryCard', () => {
 	it('should match the snapshot', () => {
-		const wrapper = shallow(<SummaryCard trip={trip} />);
+		const wrapper = shallow(<SummaryCard trip={trip} host={host} members={members} reststops={reststops}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

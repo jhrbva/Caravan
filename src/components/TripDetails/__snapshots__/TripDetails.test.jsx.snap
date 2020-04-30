@@ -31,6 +31,7 @@ exports[`Trip Details should match the snapshot 1`] = `
           You were invited by 
         </span>
          
+        <Component />
       </p>
       <p>
         <span
@@ -69,6 +70,7 @@ exports[`Trip Details should match the snapshot 1`] = `
       To: 
       <b>
         Grand Canyon, Grand Canyon Ave.
+<<<<<<< HEAD
       </b>
     </p>
     <div>
@@ -101,6 +103,42 @@ exports[`Trip Details should match the snapshot 1`] = `
         </li>
 >>>>>>> master
       </ul>
+=======
+      </p>
+      <div>
+        <span
+          className="trip-details-headings"
+        >
+          Stoping at
+        </span>
+        <ul>
+          <li
+            key="0"
+          >
+            Wawa
+          </li>
+          <li
+            key="1"
+          >
+            Loves
+          </li>
+        </ul>
+      </div>
+      <div>
+        <span
+          className="trip-details-headings"
+        >
+          Guest list
+        </span>
+        <ul>
+          <li
+            key="0"
+          >
+            jcode
+          </li>
+        </ul>
+      </div>
+>>>>>>> 8f481f9e1de392925c3f31aae077492803c9567b
     </div>
     <p>
       Guests:
