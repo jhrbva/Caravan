@@ -8,8 +8,8 @@ const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { trip, reststops, icon } = props;
-	const text = props.isYourTrips
+	const { trip, reststops, icon, isYourTrips } = props;
+	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
 		: `You are invited to ${trip.destination} by ${trip.username}.`;
 
