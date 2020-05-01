@@ -13,26 +13,18 @@ export default class InstructionalOverlay extends React.Component {
 	}
 
 	getNextStep = (steps) => {
-		if (this.state.currentInstruction < steps.instruction.length) {
-			this.setState(
-				{
-					currentInstructionMessage:
-						steps.instruction[this.state.currentInstruction][2],
-				},
-				() => {
-					this.setState({
-						currentInstruction: this.state.currentInstruction + 1,
-					});
-				}
-			);
-			clearInterval(this.timer);
+		if (steps && this.state.currentInstruction < steps.instruction.length) {
+			this.setState({
+				currentInstructionMessage:
+					steps.instruction[this.state.currentInstruction][2],
+				currentInstruction: this.state.currentInstruction + 1,
+			});
 		}
+		setTimeout(() => this.getNextStep(steps), 5000);
 	};
 
 	render() {
-		console.log(this.props);
-		this.timer = setTimeout(() => this.getNextStep(this.props), 5000);
-
+		this.getNextStep(this.props);
 		return (
 			<Row style={{ backgroundColor: '#3d6cb9', color: 'white' }}>
 				<Col md='xs'>
