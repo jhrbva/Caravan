@@ -280,7 +280,7 @@ app.post('/trip', (req, res) => {
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			res.sendStatus(201);
+			res.json(results.rows[0].tripid);
 		}
 	);
 });
