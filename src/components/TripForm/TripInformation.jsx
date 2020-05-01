@@ -1,15 +1,15 @@
-import React from "react";
-import { Field } from "formik";
+import React from 'react';
+import { Field } from 'formik';
 
-import Input from "../Input/Input";
-import DatePickerInput from "../DatePicker/DatePickerInput";
-import { required } from "../../utilities/formValidation";
+import Input from '../Input/Input';
+import DatePickerInput from '../DatePicker/DatePickerInput';
+import { required } from '../../utilities/formValidation';
 
-import TitleIcon from "@material-ui/icons/Title";
-import DescriptionIcon from "@material-ui/icons/Description";
-import TripOriginIcon from "@material-ui/icons/TripOrigin";
-import LocationCityIcon from "@material-ui/icons/LocationCity";
-import EventIcon from "@material-ui/icons/Event";
+import TitleIcon from '@material-ui/icons/Title';
+import DescriptionIcon from '@material-ui/icons/Description';
+import TripOriginIcon from '@material-ui/icons/TripOrigin';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import EventIcon from '@material-ui/icons/Event';
 
 const TripInformation = () => (
 	<>
@@ -17,7 +17,7 @@ const TripInformation = () => (
 			icon={<TitleIcon />}
 			type='text'
 			name='trip_title'
-			placeholder='Trip Title'
+			tag='TRIP TITLE'
 			validate={required}
 			autoFocus={true}
 			component={Input}
@@ -26,7 +26,7 @@ const TripInformation = () => (
 			icon={<DescriptionIcon />}
 			type='text'
 			name='trip_description'
-			placeholder='Description'
+			tag='DESCRIPTION'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -35,7 +35,7 @@ const TripInformation = () => (
 			icon={<TripOriginIcon />}
 			type='text'
 			name='start_location'
-			placeholder='Start Location'
+			tag='START LOCATION'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -44,7 +44,7 @@ const TripInformation = () => (
 			icon={<LocationCityIcon />}
 			type='text'
 			name='destination'
-			placeholder='Destination'
+			tag='DESTINATION'
 			validate={required}
 			autoFocus={false}
 			component={Input}
@@ -53,7 +53,7 @@ const TripInformation = () => (
 			icon={<EventIcon />}
 			type='text'
 			name='start_date'
-			placeholder='Date'
+			tag='DATE'
 			validate={required}
 			autoFocus={false}
 			component={DatePickerInput}
