@@ -305,7 +305,6 @@ app.delete('/members/:tripid/:userid', (req, res) => {
 			if (err) {
 				console.log('Error when removing a member from a trip', err);
 			}
-			console.log(result);
 			if (result.rowCount > 0) {
 				res.sendStatus(200);
 			}

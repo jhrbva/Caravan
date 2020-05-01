@@ -5,9 +5,9 @@ exports[`TripGuests should match the snapshot 1`] = `
   <Field
     autoFocus={true}
     component={[Function]}
-    icon="group_add"
+    icon={<UNDEFINED />}
     name="guests"
-    placeholder="Guest"
+    tag="GUESTS"
     type="text"
     validate={[Function]}
   />
