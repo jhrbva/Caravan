@@ -2,6 +2,8 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import CallIcon from '@material-ui/icons/Call';
@@ -83,6 +85,7 @@ export const SignupForm = () => (
 );
 
 export const Signup = (props) => {
+	const { addLoggedUser, setLogged } = props;
 	return (
 		<div className='signup-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
@@ -107,6 +110,8 @@ export const Signup = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
+							addLoggedUser(response.data);
+							setLogged();
 							history.push('/dashboard');
 						})
 						.catch(function (error) {
@@ -123,4 +128,17 @@ export const Signup = (props) => {
 	);
 };
 
-export default withRouter(Signup);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addLoggedUser: (user) => {
+			dispatch({ type: 'ADD_USER', payload: user });
+		},
+		setLogged: () => {
+			dispatch({ type: 'SIGN_IN' });
+		},
+	};
+};
+
+const enhance = compose(withRouter, connect(null, mapDispatchToProps));
+
+export default enhance(Signup);
