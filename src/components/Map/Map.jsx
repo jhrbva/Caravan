@@ -5,6 +5,7 @@ import {
 	withScriptjs,
 	withGoogleMap,
 	GoogleMap,
+	DirectionsRenderer,
 	Marker,
 } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
@@ -36,14 +37,25 @@ const Map = compose(
 			const DirectionsService = new google.maps.DirectionsService();
 			DirectionsService.route(
 				{
-					origin: new google.maps.LatLng(40.604279, -74.400543),
-					destination: new google.maps.LatLng(41.85258, -87.65141),
+					origin: new google.maps.LatLng(29.90864, -97.97519),
+					destination: new google.maps.LatLng(29.89344, -97.962982),
 					travelMode: google.maps.TravelMode.DRIVING,
 				},
 				(result, status) => {
 					if (status === google.maps.DirectionsStatus.OK) {
+						const stepsToDestination = result.routes[0].legs[0].steps.map(
+							(coords) => {
+								return [
+									coords.start_location.lat(),
+									coords.start_location.lng(),
+									coords.instructions,
+								];
+							}
+						);
+
 						this.setState({
 							directions: result,
+							stepsToDestination: stepsToDestination,
 						});
 					} else {
 						console.error(`error fetching directions ${result}`);
@@ -55,6 +67,7 @@ const Map = compose(
 )((props) => {
 	return (
 		<>
+			{props.directions && <DirectionsRenderer directions={props.directions} />}
 			{props.coords && (
 				<>
 					<GoogleMap
@@ -90,7 +103,7 @@ const Map = compose(
 							}}
 						/>
 					</GoogleMap>
-					<InstructionalOverlay />
+					<InstructionalOverlay instruction={props.stepsToDestination} />;
 				</>
 			)}
 		</>

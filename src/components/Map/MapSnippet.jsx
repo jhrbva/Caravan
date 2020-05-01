@@ -32,7 +32,6 @@ const MapSnippet = compose(
 					travelMode: google.maps.TravelMode.DRIVING,
 				},
 				(result, status) => {
-					console.log(result.routes[0].legs[0].steps[0].start_location.lat());
 					if (status === google.maps.DirectionsStatus.OK) {
 						this.setState({
 							directions: result,
