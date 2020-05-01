@@ -261,7 +261,7 @@ app.post('/trip', (req, res) => {
 		trip_title,
 	} = req.body;
 	pool.query(
-		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
 		[
 			host_id,
 			start_location,
