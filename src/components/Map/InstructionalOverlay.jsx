@@ -35,7 +35,11 @@ export default class InstructionalOverlay extends React.Component {
 				</Col>
 				<Col>
 					<h4 className='align-middle'>
-						{this.state.currentInstructionMessage}
+						<div
+							dangerouslySetInnerHTML={{
+								__html: this.state.currentInstructionMessage,
+							}}
+						/>
 					</h4>
 				</Col>
 			</Row>
