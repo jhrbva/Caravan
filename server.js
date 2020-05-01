@@ -367,7 +367,7 @@ app.post('/signup', (req, res) => {
 		bcrypt.hash(password, salt, function (err, hashpassword) {
 			if (err) console.log(err);
 			pool.query(
-				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
+				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
 				[firstname, lastname, username, email, phonenumber, hashpassword],
 				(err, results) => {
 					if (err) {
@@ -380,7 +380,7 @@ app.post('/signup', (req, res) => {
 						if (err) {
 							console.log(err);
 						}
-						res.json(user);
+						res.json(results.rows[0]);
 					});
 				}
 			);
