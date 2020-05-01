@@ -102,8 +102,8 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
 	pool.query(
-		'UPDATE invitations SET accepted=$3 WHERE userid=$1 AND tripid=$2',
-		[req.params.userid, req.params.tripid, req.params.accepted],
+		'UPDATE invitations SET accepted=$1 WHERE userid=$2 AND tripid=$3',
+		[req.params.accepted, req.params.userid, req.params.tripid],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting emergency contact for user', err);
