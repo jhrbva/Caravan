@@ -103,6 +103,21 @@ app.get('/emergency/:ECid', (req, res) => {
 	);
 });
 
+app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
+	pool.query(
+		'UPDATE invitations SET accepted=$1 WHERE userid=$2 AND tripid=$3',
+		[req.params.accepted, req.params.userid, req.params.tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
 		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
@@ -201,7 +216,6 @@ app.delete('/reststop', (req, res) => {
 });
 
 app.get('/members/:tripid', (req, res) => {
-	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -209,8 +223,8 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
-			result.push(results.rows);
 
+			let result = results.rows;
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
 					req.params.tripid +
@@ -260,7 +274,6 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
-	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
@@ -347,7 +360,6 @@ app.get('/trips/:userid', (req, res) => {
 				);
 			}
 			const tripsHosted = result.rows;
-
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
 					req.params.userid,
