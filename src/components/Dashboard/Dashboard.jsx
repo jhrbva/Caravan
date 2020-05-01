@@ -45,13 +45,7 @@ export default class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				console.log(response1);
-				this.setState({
-					host: response1.map((item) => ({
-						host: item.username,
-					})),
-				});
-				//this.setState({ host: response1.username });
+				this.setState({ host: response3.host[0].username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
@@ -69,7 +63,7 @@ export default class Dashboard extends React.Component {
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col md={3}>
+								<Col md={4}>
 									<SummaryCard
 										key={id}
 										trip={entry}
@@ -96,7 +90,7 @@ export default class Dashboard extends React.Component {
 			tripsJoined,
 			tripsHosted,
 			host,
-			member,
+			members,
 			reststops,
 		} = this.state;
 		return (
@@ -112,7 +106,7 @@ export default class Dashboard extends React.Component {
 							'Invitations',
 							invitations,
 							host,
-							member,
+							members,
 							reststops,
 							<MailOutlinedIcon fontSize='large' />
 						)}
@@ -122,7 +116,7 @@ export default class Dashboard extends React.Component {
 							'Your Trips',
 							tripsHosted,
 							host,
-							member,
+							members,
 							reststops,
 							<CardTravelIcon fontSize='large' />
 						)}
@@ -132,7 +126,7 @@ export default class Dashboard extends React.Component {
 							'Trips Joined',
 							tripsJoined,
 							host,
-							member,
+							members,
 							reststops,
 							<AirportShuttleIcon fontSize='large' />
 						)}

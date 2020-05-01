@@ -201,7 +201,6 @@ app.delete('/reststop', (req, res) => {
 });
 
 app.get('/members/:tripid', (req, res) => {
-	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -209,8 +208,8 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
-			result.push(results.rows);
 
+			let result = results.rows;
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
 					req.params.tripid +
@@ -260,7 +259,6 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
-	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
@@ -347,7 +345,6 @@ app.get('/trips/:userid', (req, res) => {
 				);
 			}
 			const tripsHosted = result.rows;
-
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
 					req.params.userid,

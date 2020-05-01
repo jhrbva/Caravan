@@ -23,6 +23,28 @@ exports[`SummaryCard should match the snapshot 1`] = `
     show={false}
   >
     <TripDetails
+      host={
+        Object {
+          "username": "conniecode",
+        }
+      }
+      members={
+        Array [
+          Object {
+            "username": "jcode",
+          },
+        ]
+      }
+      reststops={
+        Array [
+          Object {
+            "location": "Wawa",
+          },
+          Object {
+            "location": "Loves",
+          },
+        ]
+      }
       trip={
         Object {
           "destination": "Grand Canyon, Grand Canyon Ave.",

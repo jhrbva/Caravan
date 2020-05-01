@@ -24,10 +24,16 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
-          md={3}
+          md={4}
         >
           <SummaryCard
-            host={Array []}
+            host={
+              Array [
+                Object {
+                  "username": "conniecode",
+                },
+              ]
+            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -35,7 +41,27 @@ exports[`Dashboard should match the snapshot 1`] = `
             }
             isYourTrips={false}
             key="0"
-            reststops={Array []}
+            members={
+              Array [
+                Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+              ]
+            }
+            reststops={
+              Array [
+                Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+              ]
+            }
             trip={
               Object {
                 "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -59,10 +85,16 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
-          md={3}
+          md={4}
         >
           <SummaryCard
-            host={Array []}
+            host={
+              Array [
+                Object {
+                  "username": "conniecode",
+                },
+              ]
+            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -70,7 +102,27 @@ exports[`Dashboard should match the snapshot 1`] = `
             }
             isYourTrips={true}
             key="0"
-            reststops={Array []}
+            members={
+              Array [
+                Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+              ]
+            }
+            reststops={
+              Array [
+                Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+              ]
+            }
             trip={
               Object {
                 "destination": "45 Rockefeller Plaza, New York, NY, 10111",
@@ -94,10 +146,16 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
-          md={3}
+          md={4}
         >
           <SummaryCard
-            host={Array []}
+            host={
+              Array [
+                Object {
+                  "username": "conniecode",
+                },
+              ]
+            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -105,7 +163,27 @@ exports[`Dashboard should match the snapshot 1`] = `
             }
             isYourTrips={false}
             key="0"
-            reststops={Array []}
+            members={
+              Array [
+                Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+              ]
+            }
+            reststops={
+              Array [
+                Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+              ]
+            }
             trip={
               Object {
                 "destination": "45 Rockefeller Plaza, New York, NY, 10111",
