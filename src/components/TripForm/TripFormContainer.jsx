@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Formik } from 'formik';
 import { withRouter } from 'react-router';
 
+import Navbar from '../Navbar/Navbar';
 import BigButton from '../BigButton/BigButton';
 
 export class TripFormContainer extends React.Component {
@@ -91,34 +92,37 @@ export class TripFormContainer extends React.Component {
 		const isLastPage = page === React.Children.count(children) - 1;
 
 		return (
-			<Formik
-				initialValues={values}
-				enableReinitialize={false}
-				onSubmit={this.handleSubmit}
-				render={({ values, handleSubmit, isSubmitting, handleReset }) => (
-					<form onSubmit={handleSubmit}>
-						{activePage}
-						<div className='buttons'>
-							{page > 0 && (
-								<BigButton
-									type='button'
-									onClick={this.previousPage}
-									value='Previous'
-								/>
-							)}
+			<>
+				<Navbar />
+				<Formik
+					initialValues={values}
+					enableReinitialize={false}
+					onSubmit={this.handleSubmit}
+					render={({ values, handleSubmit, isSubmitting, handleReset }) => (
+						<form onSubmit={handleSubmit}>
+							{activePage}
+							<div className='buttons'>
+								{page > 0 && (
+									<BigButton
+										type='button'
+										onClick={this.previousPage}
+										value='Previous'
+									/>
+								)}
 
-							{!isLastPage && <BigButton type='submit' value='Next' />}
-							{isLastPage && (
-								<BigButton
-									type='submit'
-									value='Submit'
-									disabled={isSubmitting}
-								/>
-							)}
-						</div>
-					</form>
-				)}
-			/>
+								{!isLastPage && <BigButton type='submit' value='Next' />}
+								{isLastPage && (
+									<BigButton
+										type='submit'
+										value='Submit'
+										disabled={isSubmitting}
+									/>
+								)}
+							</div>
+						</form>
+					)}
+				/>
+			</>
 		);
 	}
 }
