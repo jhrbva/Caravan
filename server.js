@@ -43,7 +43,7 @@ passport.use(
 
 				if (result.rows.length > 0) {
 					const first = result.rows[0];
-					bcrypt.compare(password, first.password, function(err, res) {
+					bcrypt.compare(password, first.password, function (err, res) {
 						if (err) {
 							console.log(err);
 							cb(null, false);
@@ -90,7 +90,10 @@ app.get('/emergency/:ECid', (req, res) => {
 		[req.params.ECid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when finding an emergency contact for a specific user', err);
+				console.log(
+					'Error when finding an emergency contact for a specific user',
+					err
+				);
 			}
 			if (result.rows.length > 0) {
 				console.log(result.rows[0]);
@@ -102,14 +105,13 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations WHERE userid=$1',
+		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting invitation of a specific user', err);
+				console.log('Error when selecting invitations of a specific user', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
 				res.send(result.rows);
 			}
 		}
@@ -144,7 +146,6 @@ app.get('/user/:username', (req, res) => {
 				console.log('Error when looking for user', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -167,6 +168,21 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.post('/reststop', (req, res) => {
 	const { trip_id, location, loc_long, loc_lat } = req.body;
 	pool.query(
@@ -183,8 +199,27 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
+app.delete('/reststop', (req, res) => {
+	const { reststopid } = req.body;
+	pool.query(
+		'DELETE FROM reststop WHERE tripid=$1',
+		[reststopid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting rest stop', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
 app.get('/members/:tripid', (req, res) => {
-	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -192,16 +227,17 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
-			result.push(results.rows);
-			console.log(result);
 
+			let result = results.rows;
 			pool.query(
-				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid='+ req.params.tripid +')',
+				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
+					req.params.tripid +
+					')',
 				(err, results) => {
 					if (err) {
 						console.log('Error when selecting host id', err);
 					}
-					res.send({host: results.rows, members: result});
+					res.send({ host: results.rows, members: result });
 				}
 			);
 		}
@@ -242,7 +278,6 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
-	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
@@ -262,17 +297,39 @@ app.delete('/members', (req, res) => {
 });
 
 app.post('/trip', (req, res) => {
-	const { host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title } = req.body;
+	const {
+		host_id,
+		start_location,
+		start_long,
+		start_lat,
+		destination,
+		dest_long,
+		dest_lat,
+		trip_date,
+		trip_description,
+		trip_title,
+	} = req.body;
 	pool.query(
-		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
-		[host_id, start_location, start_long, start_lat, destination, dest_long, dest_lat, trip_date, trip_description, trip_title],
+		'INSERT INTO trips(hostid, startLocation, start_long, start_lat, destination, dest_long, dest_lat, tripDate, trip_description, trip_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+		[
+			host_id,
+			start_location,
+			start_long,
+			start_lat,
+			destination,
+			dest_long,
+			dest_lat,
+			trip_date,
+			trip_description,
+			trip_title,
+		],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting new trip', err);
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			res.sendStatus(201);
+			res.json(results.rows[0].tripid);
 		}
 	);
 });
@@ -283,7 +340,10 @@ app.get('/trip/:tripid', (req, res) => {
 		[req.params.tripid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting trip information of a specific trip', err);
+				console.log(
+					'Error when selecting trip information of a specific trip',
+					err
+				);
 			}
 			if (result.rows.length > 0) {
 				res.json(result.rows[0]);
@@ -298,18 +358,23 @@ app.get('/trips/:userid', (req, res) => {
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting trip for a specific user that they host', err);
+				console.log(
+					'Error when selecting trip for a specific user that they host',
+					err
+				);
 			}
 			const tripsHosted = result.rows;
-
 			pool.query(
-				'SELECT * FROM members NATURAL JOIN trips where userid='+ req.params.userid,
+				'SELECT * FROM members NATURAL JOIN trips where userid=' +
+					req.params.userid,
 				(err, result) => {
 					if (err) {
-						console.log('Error when selecting trip for a user that they are a memeber of', err);
+						console.log(
+							'Error when selecting trip for a user that they are a memeber of',
+							err
+						);
 					}
-					console.log(result);
-					res.send({tripsHosted: tripsHosted, tripsJoined: result.rows});
+					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
 		}
@@ -325,9 +390,9 @@ app.post('/signup', (req, res) => {
 		phonenumber,
 		password,
 	} = req.body;
-	bcrypt.genSalt(10, function(err, salt) {
+	bcrypt.genSalt(10, function (err, salt) {
 		if (err) console.log(err);
-		bcrypt.hash(password, salt, function(err, hashpassword) {
+		bcrypt.hash(password, salt, function (err, hashpassword) {
 			if (err) console.log(err);
 			pool.query(
 				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
@@ -336,9 +401,9 @@ app.post('/signup', (req, res) => {
 					if (err) {
 						console.log('Error when inserting user', err);
 						// TODO: add better error handling
-						res.send(400);
+						res.sendStatus(400);
 					}
-					req.login(req.body, err => {
+					req.login(req.body, (err) => {
 						const { user } = req;
 						if (err) {
 							console.log(err);

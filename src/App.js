@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.scss';
+import './BootstrapOverride.scss';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
@@ -9,6 +10,7 @@ import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for D
 import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 import Map from './components/Map/Map';
+import RequestChange from './components/RequestChange/RequestChange';
 
 function App() {
 	return (
@@ -37,6 +39,10 @@ function App() {
 					<Route exact path='/map'>
 						<Map />
 					</Route>
+					<Route
+						path='/requestchange'
+						render={(props) => <RequestChange {...props} />}
+					/>
 				</header>
 			</div>
 		</Router>

@@ -3,6 +3,11 @@ import { Field, Form, Formik } from 'formik';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import CallIcon from '@material-ui/icons/Call';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
+
 import logo from '../../assets/caravan-logo-blueOnWhite.png';
 import Input from '../Input/Input';
 import BigButton from '../BigButton/BigButton';
@@ -12,61 +17,62 @@ import {
 	required,
 	validatePassword,
 } from '../../utilities/formValidation';
+import './Signup.scss';
 
 export const SignupForm = () => (
 	<Form>
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='firstname'
-			placeholder='First Name'
+			tag='FIRST NAME'
 			validate={required}
 			autoFocus={true}
 			component={Input}
 		/>
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='lastname'
-			placeholder='Last Name'
+			tag='LAST NAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
 		/>
 		{/* TO DO: error message in case username already exists */}
 		<Field
-			icon='person_pin'
+			icon={<PersonPinIcon />}
 			type='text'
 			name='username'
-			placeholder='Username'
+			tag='USERNAME'
 			validate={required}
 			autoFocus={false}
 			component={Input}
 		/>
 		<Field
-			icon='call'
+			icon={<CallIcon />}
 			type='text'
 			name='phone'
-			placeholder='Phone Number'
+			tag='PHONE NUMBER'
 			validate={validatePhone}
 			autoFocus={false}
 			component={Input}
 		/>
 		{/* To Do: error message when the email is already in the db */}
 		<Field
-			icon='email'
+			icon={<EmailIcon />}
 			type='text'
 			name='email'
-			placeholder='Email'
+			tag='EMAIL'
 			validate={validateEmail}
 			autoFocus={false}
 			component={Input}
 		/>
 		<Field
-			icon='lock'
+			icon={<LockIcon />}
 			type='password'
 			name='password'
-			placeholder='Password'
+			tag='PASSWORD'
 			validate={validatePassword}
 			autoFocus={false}
 			component={Input}
@@ -76,9 +82,9 @@ export const SignupForm = () => (
 	</Form>
 );
 
-export const Signup = props => {
+export const Signup = (props) => {
 	return (
-		<div>
+		<div className='signup-page-wrapper'>
 			<img src={logo} className='caravan-logo' alt='Caravan logo' />
 			<Formik
 				initialValues={{
@@ -89,7 +95,7 @@ export const Signup = props => {
 					email: '',
 					password: '',
 				}}
-				onSubmit={values => {
+				onSubmit={(values) => {
 					const { history } = props;
 					axios
 						.post('/signup', {
@@ -100,18 +106,19 @@ export const Signup = props => {
 							phonenumber: values.phone,
 							password: values.password,
 						})
-						.then(function(response) {
+						.then(function (response) {
 							history.push('/dashboard');
 						})
-						.catch(function(error) {
+						.catch(function (error) {
 							console.log(error);
 						});
 				}}
 			>
 				{() => <SignupForm />}
 			</Formik>
-			<p>Already have an account?</p>
-			<a href='/'>Sign In</a>
+			<p>
+				Already have an account? <a href='/'>Sign In</a>
+			</p>
 		</div>
 	);
 };

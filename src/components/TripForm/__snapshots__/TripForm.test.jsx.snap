@@ -2,7 +2,7 @@
 
 exports[`TripForm should match the snapshot 1`] = `
 <Fragment>
-  <TripContainer
+  <withRouter(TripFormContainer)
     initialValues={
       Object {
         "destination": "",
@@ -11,6 +11,8 @@ exports[`TripForm should match the snapshot 1`] = `
         "start_date": "",
         "start_location": "",
         "start_time": "",
+        "trip_description": "",
+        "trip_title": "",
       }
     }
   >
@@ -23,6 +25,6 @@ exports[`TripForm should match the snapshot 1`] = `
     <Component>
       <TripRestStops />
     </Component>
-  </TripContainer>
+  </withRouter(TripFormContainer)>
 </Fragment>
 `;

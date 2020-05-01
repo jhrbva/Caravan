@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Signup should match the snapshot 1`] = `
-<div>
+<div
+  className="signup-page-wrapper"
+>
   <img
     alt="Caravan logo"
     className="caravan-logo"
@@ -23,12 +25,12 @@ exports[`Signup should match the snapshot 1`] = `
     <Component />
   </Formik>
   <p>
-    Already have an account?
+    Already have an account? 
+    <a
+      href="/"
+    >
+      Sign In
+    </a>
   </p>
-  <a
-    href="/"
-  >
-    Sign In
-  </a>
 </div>
 `;

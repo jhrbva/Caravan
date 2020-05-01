@@ -1,0 +1,69 @@
+@import '../../utilities/colorPalette.scss';
+
+.flex-container {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.wrap {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-item {
+	padding: 5px;
+	margin: 10px;
+}
+
+.card.card {
+	width: 18rem;
+	height: 14rem;
+
+	margin: 15px auto;
+	border-radius: 30px;
+
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-title.h5 {
+	text-align: left;
+	font-size: 21px;
+	margin: 15px 0 15px 60px;
+}
+
+.card-text {
+	font-size: 18px;
+	font-weight: 500;
+	color: white;
+}
+
+.card-body {
+	overflow: scroll;
+	background-color: $dream-blue-fade;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card .material-icons {
+	position: absolute;
+	margin: 5px 10px;
+	color: $dream-blue-fade;
+}
+.MuiSvgIcon-fontSizeLarge {
+	font-size: 2rem !important;
+}

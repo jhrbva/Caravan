@@ -1,0 +1,13 @@
+// overriding bootstrap styles
+a:focus,
+a:active,
+button:focus,
+button:active {
+	outline: none !important;
+}
+.modal-content {
+	border-radius: 50px !important;
+}
+hr {
+	border-top: 2px solid rgba(0, 0, 0, 0.1) !important;
+}

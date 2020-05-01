@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Action Buttons should match the snapshot for accepted invitation 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Action Buttons should match the snapshot for new invitation 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Action Buttons should match the snapshot for rejected invitation 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

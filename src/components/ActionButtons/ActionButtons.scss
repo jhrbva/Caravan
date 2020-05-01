@@ -1,0 +1,13 @@
+@import '../../utilities/colorPalette.scss';
+
+.rejected-msg {
+	p {
+		margin: 10px 0;
+		text-align: center;
+	}
+}
+
+.invitation-btns .big-button:active,
+.invitation-btns .big-button:focus {
+	background: $fun-yellow;
+}
