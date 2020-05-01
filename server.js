@@ -105,7 +105,7 @@ app.get('/emergency/:ECid', (req, res) => {
 
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
-		'SELECT * FROM invitations NATURAL JOIN trips NATURAL JOIN usertable WHERE userid=$1',
+		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
