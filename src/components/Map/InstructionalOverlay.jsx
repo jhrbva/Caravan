@@ -13,17 +13,14 @@ export default class InstructionalOverlay extends React.Component {
 	}
 
 	getNextStep = (steps) => {
-		if (
-			steps.instruction &&
-			this.state.currentInstruction < steps.instruction.length
-		) {
+		if (this.state.currentInstruction < steps.instruction.length) {
 			this.setState({
 				currentInstructionMessage:
 					steps.instruction[this.state.currentInstruction][2],
 				currentInstruction: this.state.currentInstruction + 1,
 			});
+			setTimeout(() => this.getNextStep(steps), 5000);
 		}
-		setTimeout(() => this.getNextStep(steps), 5000);
 	};
 
 	componentDidMount = () => {

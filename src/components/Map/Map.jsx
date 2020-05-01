@@ -118,7 +118,9 @@ const Map = compose(
 							}}
 						/>
 					</GoogleMap>
-					<InstructionalOverlay instruction={props.stepsToDestination} />;
+					{props.stepsToDestination && (
+						<InstructionalOverlay instruction={props.stepsToDestination} />
+					)}
 				</>
 			)}
 		</>

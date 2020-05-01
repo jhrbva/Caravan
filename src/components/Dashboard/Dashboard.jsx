@@ -45,13 +45,11 @@ export default class Dashboard extends React.Component {
 					tripsJoined: response2.tripsJoined,
 					tripsHosted: response2.tripsHosted,
 				});
-				console.log(response1);
 				this.setState({
 					host: response1.map((item) => ({
 						host: item.username,
 					})),
 				});
-				//this.setState({ host: response1.username });
 				this.setState({ members: response3.members });
 				this.setState({ reststops: response4 });
 			});
