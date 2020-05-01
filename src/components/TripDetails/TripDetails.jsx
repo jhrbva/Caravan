@@ -46,7 +46,7 @@ const TripDetails = (props) => {
 		<div>
 			<div className='trip-details'>
 				<div className='map-snippet'>
-					<MapSnippet />
+					<MapSnippet trip={props.trip} />
 				</div>
 				<div className='blue-back'>
 					<h1>{trip_title}</h1>
@@ -82,7 +82,12 @@ const TripDetails = (props) => {
 					</li>
 				</ul>
 			</div>
-			<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />
+			<ActionButtons
+				userid={userid}
+				tripid={tripid}
+				trip={props.trip}
+				accepted={accepted}
+			/>
 		</div>
 	);
 };

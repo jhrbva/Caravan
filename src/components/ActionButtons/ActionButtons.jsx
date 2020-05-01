@@ -33,6 +33,7 @@ class ActionButtons extends React.Component {
 		return history.push({
 			pathname: `/${path}`,
 			tripid: this.props.tripid,
+			trip: this.props.trip,
 		});
 	};
 

@@ -8,10 +8,12 @@ import {
 	DirectionsRenderer,
 	Marker,
 } from 'react-google-maps';
+import { withRouter } from 'react-router';
 import { geolocated } from 'react-geolocated';
 import InstructionalOverlay from './InstructionalOverlay';
 
 const Map = compose(
+	withRouter,
 	withProps({
 		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
 		loadingElement: <div style={{ height: `100%` }} />,
@@ -34,11 +36,24 @@ const Map = compose(
 	geolocated(),
 	lifecycle({
 		componentDidMount() {
+			const {
+				start_lat,
+				start_long,
+				dest_lat,
+				dest_long,
+			} = this.props.location.trip;
+
 			const DirectionsService = new google.maps.DirectionsService();
 			DirectionsService.route(
 				{
-					origin: new google.maps.LatLng(29.90864, -97.97519),
-					destination: new google.maps.LatLng(29.89344, -97.962982),
+					origin: new google.maps.LatLng(
+						parseFloat(start_lat),
+						parseFloat(start_long)
+					),
+					destination: new google.maps.LatLng(
+						parseFloat(dest_lat),
+						parseFloat(dest_long)
+					),
 					travelMode: google.maps.TravelMode.DRIVING,
 				},
 				(result, status) => {

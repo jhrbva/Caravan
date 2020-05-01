@@ -13,7 +13,10 @@ export default class InstructionalOverlay extends React.Component {
 	}
 
 	getNextStep = (steps) => {
-		if (steps && this.state.currentInstruction < steps.instruction.length) {
+		if (
+			steps.instruction &&
+			this.state.currentInstruction < steps.instruction.length
+		) {
 			this.setState({
 				currentInstructionMessage:
 					steps.instruction[this.state.currentInstruction][2],
@@ -23,8 +26,11 @@ export default class InstructionalOverlay extends React.Component {
 		setTimeout(() => this.getNextStep(steps), 5000);
 	};
 
-	render() {
+	componentDidMount = () => {
 		this.getNextStep(this.props);
+	};
+
+	render() {
 		return (
 			<Row style={{ backgroundColor: '#3d6cb9', color: 'white' }}>
 				<Col md='xs'>
