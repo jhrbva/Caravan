@@ -1,6 +1,7 @@
 import React from 'react';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Row, Col } from 'react-bootstrap';
+import './InstructionalOverlay.scss';
 
 const InstructionalOverlay = () => (
 	<Row style={{ backgroundColor: '#3d6cb9', color: 'white' }}>
