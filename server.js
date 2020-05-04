@@ -133,6 +133,25 @@ app.get('/invitations/:userid', (req, res) => {
 	);
 });
 
+app.delete('/invitations/:userid/:tripid', (req, res) => {
+	pool.query(
+		'DELETE FROM invitations WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when deleting invitation for specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
 app.get('/user/:username', (req, res) => {
 	pool.query(
 		'SELECT userid FROM usertable WHERE username=$1',
