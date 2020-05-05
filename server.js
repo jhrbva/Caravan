@@ -334,6 +334,42 @@ app.get('/trips/:userid', (req, res) => {
 	);
 });
 
+
+app.delete('/reststop', (req, res) => {
+	const { reststopid } = req.body;
+	pool.query(
+		'DELETE FROM reststop WHERE tripid=$1',
+		[reststopid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting rest stop', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
 app.delete('/members/:tripid/:userid', (req, res) => {
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
