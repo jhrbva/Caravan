@@ -124,9 +124,10 @@ app.get('/invitations/:userid', (req, res) => {
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting invitations of a specific user', err);
+				console.log('Error when selecting invitation of a specific user', err);
 			}
 			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
 				res.send(result.rows);
 			}
 		}
@@ -161,6 +162,7 @@ app.get('/user/:username', (req, res) => {
 				console.log('Error when looking for user', err);
 			}
 			if (result.rows.length > 0) {
+				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -183,21 +185,6 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
-app.get('/reststop/:tripid', (req, res) => {
-	pool.query(
-		'SELECT * FROM reststop WHERE tripid=$1',
-		[req.params.tripid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting a rest stop', err);
-			}
-			if (result.rows.length > 0) {
-				res.send(result.rows);
-			}
-		}
-	);
-});
-
 app.post('/reststop', (req, res) => {
 	const { trip_id, location, loc_long, loc_lat } = req.body;
 	pool.query(
@@ -214,27 +201,8 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
-app.delete('/reststop', (req, res) => {
-	const { reststopid } = req.body;
-	pool.query(
-		'DELETE FROM reststop WHERE tripid=$1',
-		[reststopid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting rest stop', err);
-			}
-			if (result.rowCount > 0) {
-				res.sendStatus(200);
-			}
-			if (result.rowCount == 0) {
-				// No row that meets the condition
-				res.sendStatus(403);
-			}
-		}
-	);
-});
-
 app.get('/members/:tripid', (req, res) => {
+	let result = [];
 	pool.query(
 		'SELECT userid, firstname, lastname, username, email, phonenumber FROM members NATURAL JOIN usertable WHERE tripid=$1',
 		[req.params.tripid],
@@ -242,8 +210,9 @@ app.get('/members/:tripid', (req, res) => {
 			if (err) {
 				console.log('Error when selecting members of a specific trip', err);
 			}
+			result.push(results.rows);
+			console.log(result);
 
-			let result = results.rows;
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
 					req.params.tripid +
@@ -293,6 +262,7 @@ app.post('/itineraryrequest', (req, res) => {
 
 app.delete('/members', (req, res) => {
 	const { userid, tripid } = req.body;
+	console.log(userid, tripid);
 	pool.query(
 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
 		[userid, tripid],
@@ -379,19 +349,76 @@ app.get('/trips/:userid', (req, res) => {
 				);
 			}
 			const tripsHosted = result.rows;
+
 			pool.query(
 				'SELECT * FROM members NATURAL JOIN trips where userid=' +
 					req.params.userid,
 				(err, result) => {
 					if (err) {
 						console.log(
-							'Error when selecting trip for a user that they are a memeber of',
+							'Error when selecting trip for a user that they are a member of',
 							err
 						);
 					}
+					console.log(result);
 					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
+		}
+	);
+});
+
+
+app.delete('/reststop', (req, res) => {
+	const { reststopid } = req.body;
+	pool.query(
+		'DELETE FROM reststop WHERE tripid=$1',
+		[reststopid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting rest stop', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
+app.delete('/members/:tripid/:userid', (req, res) => {
+	pool.query(
+		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when removing a member from a trip', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
 		}
 	);
 });
@@ -410,7 +437,7 @@ app.post('/signup', (req, res) => {
 		bcrypt.hash(password, salt, function (err, hashpassword) {
 			if (err) console.log(err);
 			pool.query(
-				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6)',
+				'INSERT INTO userTable(firstName, lastName, username, email, phoneNumber, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
 				[firstname, lastname, username, email, phonenumber, hashpassword],
 				(err, results) => {
 					if (err) {
@@ -423,7 +450,7 @@ app.post('/signup', (req, res) => {
 						if (err) {
 							console.log(err);
 						}
-						res.json(user);
+						res.json(results.rows[0]);
 					});
 				}
 			);
