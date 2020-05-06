@@ -29,6 +29,12 @@ const MapSnippet = compose(
 				{
 					origin: new google.maps.LatLng(40.604279, -74.400543),
 					destination: new google.maps.LatLng(41.85258, -87.65141),
+					waypoints: [
+						{
+							location: new google.maps.LatLng(42.496403, -124.413128),
+							stopover: true,
+						},
+					],
 					travelMode: google.maps.TravelMode.DRIVING,
 				},
 				(result, status) => {
