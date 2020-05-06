@@ -7,7 +7,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="trip_title"
-    placeholder="Trip Title"
+    tag="TRIP TITLE"
     type="text"
     validate={[Function]}
   />
@@ -16,7 +16,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="trip_description"
-    placeholder="Description"
+    tag="DESCRIPTION"
     type="text"
     validate={[Function]}
   />
@@ -25,7 +25,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="start_location"
-    placeholder="Start Location"
+    tag="START LOCATION"
     type="text"
     validate={[Function]}
   />
@@ -34,7 +34,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="destination"
-    placeholder="Destination"
+    tag="DESTINATION"
     type="text"
     validate={[Function]}
   />
@@ -43,7 +43,7 @@ exports[`TripInformation should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="start_date"
-    placeholder="Date"
+    tag="DATE"
     type="text"
     validate={[Function]}
   />
