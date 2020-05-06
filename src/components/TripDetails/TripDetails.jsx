@@ -10,22 +10,6 @@ export const getDateTime = (date) => {
 	return { tripDate, tripTime };
 };
 
-export const getRestStops = (reststops) => {
-	if (reststops.length > 0) {
-		const listReststops = reststops.map((reststop, key) => (
-			<li key={key}>
-				<b>{reststop.location}</b>
-			</li>
-		));
-		return (
-			<div>
-				<p>Making stops at:</p>
-				<ul>{listReststops}</ul>
-			</div>
-		);
-	}
-};
-
 const TripDetails = (props) => {
 	const {
 		userid,
@@ -38,7 +22,18 @@ const TripDetails = (props) => {
 		destination,
 	} = props.trip;
 
+	const host = props.host;
+
 	const { reststops } = props;
+	const listReststops = reststops.map((reststop, key) => (
+		<li key={key}>{reststop.location}</li>
+	));
+
+	const members = props.members;
+	console.log(members);
+	const listMembers = members.map((member, key) => (
+		<li key={key}>{member.username}</li>
+	));
 
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
@@ -54,7 +49,7 @@ const TripDetails = (props) => {
 				</div>
 
 				<p>
-					Trip host: <b>@Host</b>
+					Trip host: <b>@{host}</b>
 				</p>
 				<p>
 					When: <b>{tripDate}</b>
@@ -68,18 +63,13 @@ const TripDetails = (props) => {
 				<p>
 					To: <b>{destination}</b>
 				</p>
-				{getRestStops(reststops)}
-				<p>Guests:</p>
+				<p className='no-margin-bottom'>Rest Stops:</p>
 				<ul>
-					<li>
-						<b>@guestA</b>
-					</li>
-					<li>
-						<b>@guestB</b>
-					</li>
-					<li>
-						<b>@guestC</b>
-					</li>
+					<b>{listReststops}</b>
+				</ul>
+				<p className='no-margin-bottom'>Guests:</p>
+				<ul>
+					<b>{listMembers}</b>
 				</ul>
 			</div>
 			<ActionButtons userid={userid} tripid={tripid} accepted={accepted} />

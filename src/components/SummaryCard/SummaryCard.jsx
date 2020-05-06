@@ -8,7 +8,7 @@ const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { trip, reststops, icon, isYourTrips } = props;
+	const { trip, host, members, reststops, icon, isYourTrips } = props;
 	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
 		: `You are invited to ${trip.destination} by ${trip.username}.`;
@@ -23,7 +23,12 @@ const SummaryCard = (props) => {
 				</Card.Body>
 			</Card>
 			<Modal show={show} onHide={handleClose}>
-				<TripDetails trip={trip} reststops={reststops} />
+				<TripDetails
+					trip={trip}
+					host={host}
+					members={members}
+					reststops={reststops}
+				/>
 			</Modal>
 		</>
 	);

@@ -23,7 +23,8 @@ exports[`Trip Details should match the snapshot 1`] = `
     <p>
       Trip host: 
       <b>
-        @Host
+        @
+        <Component />
       </b>
     </p>
     <p>
@@ -50,46 +51,36 @@ exports[`Trip Details should match the snapshot 1`] = `
         Grand Canyon, Grand Canyon Ave.
       </b>
     </p>
-    <div>
-      <p>
-        Making stops at:
-      </p>
-      <ul>
+    <p
+      className="no-margin-bottom"
+    >
+      Rest Stops:
+    </p>
+    <ul>
+      <b>
         <li
           key="0"
         >
-          <b>
-            Wawa
-          </b>
+          Wawa
         </li>
         <li
           key="1"
         >
-          <b>
-            Loves
-          </b>
+          Loves
         </li>
-      </ul>
-    </div>
-    <p>
+      </b>
+    </ul>
+    <p
+      className="no-margin-bottom"
+    >
       Guests:
     </p>
     <ul>
-      <li>
-        <b>
-          @guestA
-        </b>
-      </li>
-      <li>
-        <b>
-          @guestB
-        </b>
-      </li>
-      <li>
-        <b>
-          @guestC
-        </b>
-      </li>
+      <b>
+        <li
+          key="0"
+        />
+      </b>
     </ul>
   </div>
   <withRouter(ActionButtons) />

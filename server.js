@@ -103,16 +103,51 @@ app.get('/emergency/:ECid', (req, res) => {
 	);
 });
 
+app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
+	pool.query(
+		'UPDATE invitations SET accepted=$1 WHERE userid=$2 AND tripid=$3',
+		[req.params.accepted, req.params.userid, req.params.tripid],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
+		}
+	);
+});
+
 app.get('/invitations/:userid', (req, res) => {
 	pool.query(
 		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[req.params.userid],
 		(err, result) => {
 			if (err) {
-				console.log('Error when selecting invitations of a specific user', err);
+				console.log('Error when selecting invitation of a specific user', err);
 			}
 			if (result.rows.length > 0) {
+				console.log(result.rows[0]);
 				res.send(result.rows);
+			}
+		}
+	);
+});
+
+app.delete('/invitations/:userid/:tripid', (req, res) => {
+	pool.query(
+		'DELETE FROM invitations WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when deleting invitation for specific user', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
 			}
 		}
 	);
@@ -127,6 +162,7 @@ app.get('/user/:username', (req, res) => {
 				console.log('Error when looking for user', err);
 			}
 			if (result.rows.length > 0) {
+				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -149,21 +185,6 @@ app.post('/invitations', (req, res) => {
 	);
 });
 
-app.get('/reststop/:tripid', (req, res) => {
-	pool.query(
-		'SELECT * FROM reststop WHERE tripid=$1',
-		[req.params.tripid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting a rest stop', err);
-			}
-			if (result.rows.length > 0) {
-				res.send(result.rows);
-			}
-		}
-	);
-});
-
 app.post('/reststop', (req, res) => {
 	const { trip_id, location, loc_long, loc_lat } = req.body;
 	pool.query(
@@ -180,26 +201,6 @@ app.post('/reststop', (req, res) => {
 	);
 });
 
-app.delete('/reststop', (req, res) => {
-	const { reststopid } = req.body;
-	pool.query(
-		'DELETE FROM reststop WHERE tripid=$1',
-		[reststopid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting rest stop', err);
-			}
-			if (result.rowCount > 0) {
-				res.sendStatus(200);
-			}
-			if (result.rowCount == 0) {
-				// No row that meets the condition
-				res.sendStatus(403);
-			}
-		}
-	);
-});
-
 app.get('/members/:tripid', (req, res) => {
 	let result = [];
 	pool.query(
@@ -210,6 +211,7 @@ app.get('/members/:tripid', (req, res) => {
 				console.log('Error when selecting members of a specific trip', err);
 			}
 			result.push(results.rows);
+			console.log(result);
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
@@ -354,13 +356,69 @@ app.get('/trips/:userid', (req, res) => {
 				(err, result) => {
 					if (err) {
 						console.log(
-							'Error when selecting trip for a user that they are a memeber of',
+							'Error when selecting trip for a user that they are a member of',
 							err
 						);
 					}
+					console.log(result);
 					res.send({ tripsHosted: tripsHosted, tripsJoined: result.rows });
 				}
 			);
+		}
+	);
+});
+
+
+app.delete('/reststop', (req, res) => {
+	const { reststopid } = req.body;
+	pool.query(
+		'DELETE FROM reststop WHERE tripid=$1',
+		[reststopid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting rest stop', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
+		}
+	);
+});
+
+app.get('/reststop/:tripid', (req, res) => {
+	pool.query(
+		'SELECT * FROM reststop WHERE tripid=$1',
+		[req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when selecting a rest stop', err);
+			}
+			if (result.rows.length > 0) {
+				res.send(result.rows);
+			}
+		}
+	);
+});
+
+app.delete('/members/:tripid/:userid', (req, res) => {
+	pool.query(
+		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
+		[req.params.userid, req.params.tripid],
+		(err, result) => {
+			if (err) {
+				console.log('Error when removing a member from a trip', err);
+			}
+			if (result.rowCount > 0) {
+				res.sendStatus(200);
+			}
+			if (result.rowCount == 0) {
+				// No row that meets the condition
+				res.sendStatus(403);
+			}
 		}
 	);
 });
