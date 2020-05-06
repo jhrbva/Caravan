@@ -42,6 +42,7 @@ const Map = compose(
 				dest_lat,
 				dest_long,
 			} = this.props.location.trip;
+			console.log(this.props);
 
 			const DirectionsService = new google.maps.DirectionsService();
 			DirectionsService.route(
