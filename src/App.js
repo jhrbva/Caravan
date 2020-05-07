@@ -16,7 +16,7 @@ import RequestChange from './components/RequestChange/RequestChange';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { userid: 1, name: '' };
+		this.state = { userid: 0, name: '' };
 	}
 
 	getUser = (userid, name) => {
