@@ -39,10 +39,6 @@ class App extends React.Component {
 						<Route exact path='/summarycard'>
 							<SummaryCard />
 						</Route>
-						{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
-						<Route exact path='/invitation'>
-							<TripDetails />
-						</Route>
 						<Route exact path='/dashboard'>
 							<Navbar name={this.state.name} />
 							<Dashboard userid={this.state.userid} />
