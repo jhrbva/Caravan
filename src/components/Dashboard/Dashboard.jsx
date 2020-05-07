@@ -28,6 +28,8 @@ export default class Dashboard extends React.Component {
 				return Promise.all([dataTrips.json(), dataInvitations.json()]);
 			})
 			.then(([dataTrips, dataInvitations]) => {
+				// console.log(dataTrips);
+				console.log(dataInvitations);
 				this.setState({
 					tripsHosted: dataTrips.tripsHosted,
 					tripsJoined: dataTrips.tripsJoined,

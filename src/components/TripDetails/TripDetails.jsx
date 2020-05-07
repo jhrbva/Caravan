@@ -12,7 +12,6 @@ export const getDateTime = (date) => {
 
 const TripDetails = (props) => {
 	const {
-		userid,
 		tripid,
 		accepted,
 		trip_title,
@@ -21,15 +20,13 @@ const TripDetails = (props) => {
 		startlocation,
 		destination,
 	} = props.trip;
-	console.log(props);
-	const host = props.host;
+	// console.log(props);
+	const { userid, host, reststops, members } = props;
 
-	const { reststops } = props;
 	const listReststops = reststops.map((reststop, key) => (
 		<li key={key}>{reststop.location}</li>
 	));
 
-	const members = props.members;
 	const listMembers = members.map((member, key) => (
 		<li key={key}>{member.username}</li>
 	));

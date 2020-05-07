@@ -12,9 +12,24 @@ class ActionButtons extends React.Component {
 		this.state = {
 			accepted: this.props.accepted,
 		};
+		// console.log(this.props);
 	}
 
 	responseToInvitation = () => {
+		// console.log(this.state);
+		if (this.state.accepted === false) {
+			axios
+				.delete('/members', {
+					userid: this.props.userid,
+					tripid: this.props.tripid,
+				})
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 		axios
 			.post('/invitations/accept', {
 				userid: this.props.userid,
