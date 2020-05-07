@@ -23,31 +23,49 @@ const MapSnippet = compose(
 	geolocated(),
 	lifecycle({
 		componentDidMount() {
-			console.log(this.props);
-			const { start_lat, start_long, dest_lat, dest_long } = this.props.trip;
-			const DirectionsService = new google.maps.DirectionsService();
-			DirectionsService.route(
-				{
-					origin: new google.maps.LatLng(
-						parseFloat(start_lat),
-						parseFloat(start_long)
-					),
-					destination: new google.maps.LatLng(
-						parseFloat(dest_lat),
-						parseFloat(dest_long)
-					),
-					travelMode: google.maps.TravelMode.DRIVING,
-				},
-				(result, status) => {
-					if (status === google.maps.DirectionsStatus.OK) {
-						this.setState({
-							directions: result,
-						});
-					} else {
-						console.error(`error fetching directions ${result}`);
+			if (!this.props.trip) {
+				return 0;
+			} else {
+				const {
+					start_lat,
+					start_long,
+					dest_lat,
+					dest_long,
+					reststops,
+				} = this.props.trip;
+
+				var restStopLocations = [];
+				reststops.map((reststop) =>
+					restStopLocations.push({
+						location: reststop.location,
+						stopover: true,
+					})
+				);
+				const DirectionsService = new google.maps.DirectionsService();
+				DirectionsService.route(
+					{
+						origin: new google.maps.LatLng(
+							parseFloat(start_lat),
+							parseFloat(start_long)
+						),
+						destination: new google.maps.LatLng(
+							parseFloat(dest_lat),
+							parseFloat(dest_long)
+						),
+						waypoints: restStopLocations,
+						travelMode: google.maps.TravelMode.DRIVING,
+					},
+					(result, status) => {
+						if (status === google.maps.DirectionsStatus.OK) {
+							this.setState({
+								directions: result,
+							});
+						} else {
+							console.error(`error fetching directions ${result}`);
+						}
 					}
-				}
-			);
+				);
+			}
 		},
 	})
 )((props) => {

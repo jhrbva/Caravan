@@ -48,7 +48,7 @@ export default class Dashboard extends React.Component {
 					{type.length ? (
 						type.map((entry, id) => {
 							return (
-								<Col md={4}>
+								<Col md={4} key={id}>
 									<SummaryCard
 										key={id}
 										trip={entry}
