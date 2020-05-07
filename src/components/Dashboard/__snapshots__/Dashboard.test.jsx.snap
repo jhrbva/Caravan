@@ -2,7 +2,6 @@
 
 exports[`Dashboard should match the snapshot 1`] = `
 <Fragment>
-  <Navbar />
   <div
     className="dashboard-wrapper"
   >
@@ -27,13 +26,6 @@ exports[`Dashboard should match the snapshot 1`] = `
           md={4}
         >
           <SummaryCard
-            host={
-              Array [
-                Object {
-                  "username": "conniecode",
-                },
-              ]
-            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -43,16 +35,33 @@ exports[`Dashboard should match the snapshot 1`] = `
             key="0"
             members={
               Array [
-                Array [
-                  Object {
-                    "username": "jcode",
-                  },
-                ],
+                Object {
+                  "username": "jcode",
+                },
               ]
             }
             reststops={
               Array [
-                Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
                   Object {
                     "location": "Wawa",
                   },
@@ -60,11 +69,6 @@ exports[`Dashboard should match the snapshot 1`] = `
                     "location": "Loves",
                   },
                 ],
-              ]
-            }
-            trip={
-              Object {
-                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
                 "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
                 "trip_description": "Let's see Rockefeller",
                 "trip_title": "Brunch at gold statue :P",
@@ -88,13 +92,6 @@ exports[`Dashboard should match the snapshot 1`] = `
           md={4}
         >
           <SummaryCard
-            host={
-              Array [
-                Object {
-                  "username": "conniecode",
-                },
-              ]
-            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -104,16 +101,33 @@ exports[`Dashboard should match the snapshot 1`] = `
             key="0"
             members={
               Array [
-                Array [
-                  Object {
-                    "username": "jcode",
-                  },
-                ],
+                Object {
+                  "username": "jcode",
+                },
               ]
             }
             reststops={
               Array [
-                Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
                   Object {
                     "location": "Wawa",
                   },
@@ -121,11 +135,6 @@ exports[`Dashboard should match the snapshot 1`] = `
                     "location": "Loves",
                   },
                 ],
-              ]
-            }
-            trip={
-              Object {
-                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
                 "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
                 "trip_description": "Let's see Rockefeller",
                 "trip_title": "Brunch at gold statue :P",
@@ -149,13 +158,6 @@ exports[`Dashboard should match the snapshot 1`] = `
           md={4}
         >
           <SummaryCard
-            host={
-              Array [
-                Object {
-                  "username": "conniecode",
-                },
-              ]
-            }
             icon={
               <UNDEFINED
                 fontSize="large"
@@ -165,16 +167,33 @@ exports[`Dashboard should match the snapshot 1`] = `
             key="0"
             members={
               Array [
-                Array [
-                  Object {
-                    "username": "jcode",
-                  },
-                ],
+                Object {
+                  "username": "jcode",
+                },
               ]
             }
             reststops={
               Array [
-                Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
                   Object {
                     "location": "Wawa",
                   },
@@ -182,11 +201,6 @@ exports[`Dashboard should match the snapshot 1`] = `
                     "location": "Loves",
                   },
                 ],
-              ]
-            }
-            trip={
-              Object {
-                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
                 "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
                 "trip_description": "Let's see Rockefeller",
                 "trip_title": "Brunch at gold statue :P",

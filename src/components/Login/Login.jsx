@@ -53,22 +53,24 @@ const Login = (props) => {
 			</div>
 			<Formik
 				initialValues={{
-					email: '',
+					username: '',
 					password: '',
 				}}
 				onSubmit={(values) => {
 					const { history } = props;
-					// same shape as initial values
-					console.log(values);
-					console.log(props);
+
 					axios
 						.post('/login', {
 							username: values.username,
 							password: values.password,
 						})
 						.then(function (response) {
-							console.log(response);
-							history.push('/dashboard');
+							const name =
+								'Hi ' + response.data.firstname + ' ' + response.data.lastname;
+							props.getUser(response.data.userid, name);
+							return history.push({
+								pathname: '/dashboard',
+							});
 						})
 						.catch(function (error) {
 							console.log(error);
