@@ -51,6 +51,7 @@ export default class Dashboard extends React.Component {
 								<Col md={4}>
 									<SummaryCard
 										key={id}
+										userid={this.props.userid}
 										trip={entry}
 										icon={icon}
 										host={entry.hostname}
