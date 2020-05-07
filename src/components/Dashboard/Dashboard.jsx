@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './Dashboard.scss';
-import Navbar from '../Navbar/Navbar';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SummaryCard from '../SummaryCard/SummaryCard';
@@ -9,9 +8,8 @@ import BigButton from '../BigButton/BigButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
-import { withRouter } from 'react-router';
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -76,7 +74,6 @@ class Dashboard extends React.Component {
 
 		return (
 			<>
-				<Navbar />
 				<div className='dashboard-wrapper'>
 					<Link to='/trip'>
 						<BigButton value='+ New Trip' color={'green'} />
@@ -111,5 +108,3 @@ class Dashboard extends React.Component {
 		);
 	}
 }
-
-export default withRouter(Dashboard);

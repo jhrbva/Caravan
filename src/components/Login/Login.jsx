@@ -65,7 +65,9 @@ const Login = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
-							props.getUser(response.data.userid);
+							const name =
+								'Hi ' + response.data.firstname + ' ' + response.data.lastname;
+							props.getUser(response.data.userid, name);
 							return history.push({
 								pathname: '/dashboard',
 							});

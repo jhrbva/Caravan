@@ -9,17 +9,18 @@ import TripForm from './components/TripForm/TripForm';
 import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for Dashboard
 import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
+import Navbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
 import RequestChange from './components/RequestChange/RequestChange';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { userid: 1 };
+		this.state = { userid: 1, name: '' };
 	}
 
-	getUser = (userid) => {
-		this.setState({ userid });
+	getUser = (userid, name) => {
+		this.setState({ userid, name });
 	};
 
 	render() {
@@ -44,6 +45,7 @@ class App extends React.Component {
 							<TripDetails />
 						</Route>
 						<Route exact path='/dashboard'>
+							<Navbar name={this.state.name} />
 							<Dashboard userid={this.state.userid} />
 						</Route>
 						<Route exact path='/map'>
