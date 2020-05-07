@@ -83,7 +83,6 @@ export default class Dashboard extends React.Component {
 						{this.renderSection(
 							'Invitations',
 							invitations,
-
 							<MailOutlinedIcon fontSize='large' />
 						)}
 					</div>
@@ -91,7 +90,6 @@ export default class Dashboard extends React.Component {
 						{this.renderSection(
 							'Your Trips',
 							tripsHosted,
-
 							<CardTravelIcon fontSize='large' />
 						)}
 					</div>
@@ -99,7 +97,6 @@ export default class Dashboard extends React.Component {
 						{this.renderSection(
 							'Trips Joined',
 							tripsJoined,
-
 							<AirportShuttleIcon fontSize='large' />
 						)}
 					</div>
