@@ -118,20 +118,33 @@ app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
 	);
 });
 
+async function getInvitations(userid){
+	const invitations = (await pool.query(
+		'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
+		[userid]
+	)).rows;
+	const TripMembers = await Promise.all(invitations.map(trips => addMembers(trips)));
+	const InvitationInfo = await Promise.all(TripMembers.map(trips => addRestStops(trips)));
+
+	async function addMembers(trips) {
+		const res = await	pool.query(
+			'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
+			[trips.tripid]
+		);
+		return { ...trips, members: res.rows };
+	}
+
+	async function addRestStops(trips) {
+		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1',
+		[trips.tripid]
+		);
+		return { ...trips, reststops: res.rows };
+	}
+	return InvitationInfo;
+}
+
 app.get('/invitations/:userid', (req, res) => {
-	pool.query(
-		'SELECT * FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
-		[req.params.userid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting invitation of a specific user', err);
-			}
-			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
-				res.send(result.rows);
-			}
-		}
-	);
+	getInvitations(req.params.userid).then(invites => res.send(invites));
 });
 
 app.delete('/invitations/:userid/:tripid', (req, res) => {
