@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import './ActionButtons.scss';
-import { Link } from 'react-router-dom';
 import ModalButton from '../ModalButton/ModalButton';
 import { withRouter } from 'react-router';
 
@@ -44,11 +43,12 @@ class ActionButtons extends React.Component {
 			});
 	};
 
-	requestChangeButton = () => {
+	passProps = (path) => {
 		const { history } = this.props;
 		return history.push({
-			pathname: '/requestchange',
+			pathname: `/${path}`,
 			tripid: this.props.tripid,
+			trip: this.props.trip,
 		});
 	};
 
@@ -76,7 +76,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Request Change'}
 					onClick={() => {
-						this.requestChangeButton();
+						this.passProps('requestchange');
 					}}
 					numberofbuttons={'three'}
 				/>
@@ -87,9 +87,14 @@ class ActionButtons extends React.Component {
 	renderAccepted = () => {
 		return (
 			<div>
-				<Link to='/map'>
-					<ModalButton value={'Start Trip'} additionalClass={'start'} />
-				</Link>
+				<ModalButton
+					value={'Start Trip'}
+					additionalClass={'start'}
+					onClick={() => {
+						this.passProps('map');
+					}}
+				/>
+
 				<ModalButton
 					value={'Leave Trip'}
 					onClick={() => {
@@ -117,7 +122,7 @@ class ActionButtons extends React.Component {
 				<ModalButton
 					value={'Request a Change'}
 					onClick={() => {
-						this.requestChangeButton();
+						this.passProps('requestchange');
 					}}
 				/>
 			</div>
