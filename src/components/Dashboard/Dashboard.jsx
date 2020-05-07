@@ -9,8 +9,9 @@ import BigButton from '../BigButton/BigButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
+import { withRouter } from 'react-router';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -85,6 +86,7 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
+		console.log(this.props.history.location.userid);
 		const {
 			invitations,
 			tripsJoined,
@@ -136,3 +138,5 @@ export default class Dashboard extends React.Component {
 		);
 	}
 }
+
+export default withRouter(Dashboard);
