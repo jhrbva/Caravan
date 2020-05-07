@@ -128,7 +128,7 @@ async function getInvitations(userid){
 
 	async function addMembers(trips) {
 		const res = await	pool.query(
-			'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
+			'SELECT usertable.username, members.userid FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 			[trips.tripid]
 		);
 		return { ...trips, members: res.rows };
@@ -360,7 +360,7 @@ async function getTrips(userid){
 
 	async function addMembers(trips) {
 		const res = await	pool.query(
-			'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
+			'SELECT usertable.username, members.userid FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 			[trips.tripid]
 		);
 		return { ...trips, members: res.rows };
