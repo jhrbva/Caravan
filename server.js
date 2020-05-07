@@ -120,7 +120,7 @@ app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
 
 async function getInvitations(userid){
 	const invitations = (await pool.query(
-		'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
+		'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, accepted, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
 		[userid]
 	)).rows;
 	const TripMembers = await Promise.all(invitations.map(trips => addMembers(trips)));
