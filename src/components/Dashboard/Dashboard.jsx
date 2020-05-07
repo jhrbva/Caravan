@@ -18,15 +18,14 @@ class Dashboard extends React.Component {
 			invitations: [],
 			tripsJoined: [],
 			tripsHosted: [],
-			// host: [],
-			// members: [],
-			// reststops: [],
 		};
 	}
 
 	componentDidMount() {
-		// fetch(`/trips/${this.props.history.location.userid}`)
-		Promise.all([fetch('/trips/1'), fetch('/invitations/1')])
+		Promise.all([
+			fetch(`/trips/${this.props.userid}`),
+			fetch(`/invitations/${this.props.userid}`),
+		])
 			.then(([dataTrips, dataInvitations]) => {
 				return Promise.all([dataTrips.json(), dataInvitations.json()]);
 			})
@@ -39,7 +38,6 @@ class Dashboard extends React.Component {
 			});
 	}
 
-	// renderSection = (title, type, host, members, reststops, icon) => {
 	renderSection = (title, type, icon) => {
 		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
@@ -74,16 +72,8 @@ class Dashboard extends React.Component {
 	};
 
 	render() {
-		// console.log(this.props.history.location.userid);
-		const {
-			invitations,
-			tripsJoined,
-			tripsHosted,
-			// host,
-			// members,
-			// reststops,
-		} = this.state;
-		console.log(tripsHosted);
+		const { invitations, tripsJoined, tripsHosted } = this.state;
+
 		return (
 			<>
 				<Navbar />
@@ -96,9 +86,7 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Invitations',
 							invitations,
-							// host,
-							// members,
-							// reststops,
+
 							<MailOutlinedIcon fontSize='large' />
 						)}
 					</div>
@@ -106,9 +94,7 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Your Trips',
 							tripsHosted,
-							// host,
-							// members,
-							// reststops,
+
 							<CardTravelIcon fontSize='large' />
 						)}
 					</div>
@@ -116,9 +102,7 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Trips Joined',
 							tripsJoined,
-							// host,
-							// members,
-							// reststops,
+
 							<AirportShuttleIcon fontSize='large' />
 						)}
 					</div>

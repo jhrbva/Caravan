@@ -65,9 +65,9 @@ const Login = (props) => {
 							password: values.password,
 						})
 						.then(function (response) {
+							props.getUser(response.data.userid);
 							return history.push({
 								pathname: '/dashboard',
-								userid: response.data.userid,
 							});
 						})
 						.catch(function (error) {

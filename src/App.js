@@ -12,41 +12,52 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Map from './components/Map/Map';
 import RequestChange from './components/RequestChange/RequestChange';
 
-function App() {
-	return (
-		<Router>
-			<div className='App'>
-				<header className='app-wrapper'>
-					<Route exact path='/'>
-						<Login />
-					</Route>
-					<Route exact path='/signup'>
-						<Signup />
-					</Route>
-					<Route exact path='/trip'>
-						<TripForm />
-					</Route>
-					<Route exact path='/summarycard'>
-						<SummaryCard />
-					</Route>
-					{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
-					<Route exact path='/invitation'>
-						<TripDetails />
-					</Route>
-					<Route exact path='/dashboard'>
-						<Dashboard />
-					</Route>
-					<Route exact path='/map'>
-						<Map />
-					</Route>
-					<Route
-						path='/requestchange'
-						render={(props) => <RequestChange {...props} />}
-					/>
-				</header>
-			</div>
-		</Router>
-	);
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { userid: 1 };
+	}
+
+	getUser = (userid) => {
+		this.setState({ userid });
+	};
+
+	render() {
+		return (
+			<Router>
+				<div className='App'>
+					<header className='app-wrapper'>
+						<Route exact path='/'>
+							<Login getUser={this.getUser} />
+						</Route>
+						<Route exact path='/signup'>
+							<Signup />
+						</Route>
+						<Route exact path='/trip'>
+							<TripForm />
+						</Route>
+						<Route exact path='/summarycard'>
+							<SummaryCard />
+						</Route>
+						{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
+						<Route exact path='/invitation'>
+							<TripDetails />
+						</Route>
+						<Route exact path='/dashboard'>
+							<Dashboard userid={this.state.userid} />
+						</Route>
+						<Route exact path='/map'>
+							<Map />
+						</Route>
+						<Route
+							path='/requestchange'
+							render={(props) => <RequestChange {...props} />}
+						/>
+					</header>
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default App;
