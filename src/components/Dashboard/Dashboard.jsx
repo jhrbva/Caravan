@@ -3,7 +3,6 @@ import React from 'react';
 import './Dashboard.scss';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Login from '../Login/Login';
 import SummaryCard from '../SummaryCard/SummaryCard';
 import BigButton from '../BigButton/BigButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
