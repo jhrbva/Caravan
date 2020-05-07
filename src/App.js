@@ -7,7 +7,6 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
 import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for Dashboard
-import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
