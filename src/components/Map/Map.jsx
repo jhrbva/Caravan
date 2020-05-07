@@ -46,15 +46,16 @@ const Map = compose(
 					start_long,
 					dest_lat,
 					dest_long,
+					reststops,
 				} = this.props.location.trip;
-				// console.log(this.props);
-				// const reststops = [
-				// 	{
-				// 		location: new google.maps.LatLng(41.850033, -87.6500523),
-				// 		stopover: true,
-				// 	},
-				// ];
 
+				var restStopLocations = [];
+				reststops.map((reststop) =>
+					restStopLocations.push({
+						location: reststop.location,
+						stopover: true,
+					})
+				);
 				const DirectionsService = new google.maps.DirectionsService();
 				DirectionsService.route(
 					{
@@ -66,16 +67,7 @@ const Map = compose(
 							parseFloat(dest_lat),
 							parseFloat(dest_long)
 						),
-						waypoints: [
-							{
-								location: new google.maps.LatLng(
-									parseFloat(start_lat) + 1,
-									parseFloat(start_long),
-									+1
-								),
-								stopover: true,
-							},
-						],
+						waypoints: restStopLocations,
 						travelMode: google.maps.TravelMode.DRIVING,
 					},
 					(result, status) => {

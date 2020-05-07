@@ -30,7 +30,6 @@ const TripDetails = (props) => {
 	));
 
 	const members = props.members;
-	console.log(members);
 	const listMembers = members.map((member, key) => (
 		<li key={key}>{member.username}</li>
 	));
