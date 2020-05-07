@@ -314,7 +314,8 @@ app.post('/trip', (req, res) => {
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			res.json(results.rows[0].tripid);
+			const tripId = ((results || {}).rows || {})[0].tripid;
+			res.json(tripId);
 		}
 	);
 });
