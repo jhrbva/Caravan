@@ -7,7 +7,6 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TripForm from './components/TripForm/TripForm';
 import SummaryCard from './components/SummaryCard/SummaryCard'; // testing for Dashboard
-import TripDetails from './components/TripDetails/TripDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
@@ -16,7 +15,7 @@ import RequestChange from './components/RequestChange/RequestChange';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { userid: 1, name: '' };
+		this.state = { userid: 0, name: '' };
 	}
 
 	getUser = (userid, name) => {
@@ -39,10 +38,6 @@ class App extends React.Component {
 						</Route>
 						<Route exact path='/summarycard'>
 							<SummaryCard />
-						</Route>
-						{/* this route will change once we have the dashboard component and start getting trip and user ids dynamically */}
-						<Route exact path='/invitation'>
-							<TripDetails />
 						</Route>
 						<Route exact path='/dashboard'>
 							<Navbar name={this.state.name} />

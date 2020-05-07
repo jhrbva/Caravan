@@ -15,9 +15,6 @@ class RequestChange extends React.Component {
 
 	handleChange = (event) => {
 		this.setState({ reqtype: event.target.value });
-		// this.setState({ reqtype: event.target.value }, function () {
-		// 	console.log('handleChange', this.state);
-		// });
 	};
 
 	render() {

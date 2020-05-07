@@ -70,38 +70,50 @@ export default class Dashboard extends React.Component {
 	};
 
 	render() {
-		const { invitations, tripsJoined, tripsHosted } = this.state;
-
-		return (
-			<>
-				<div className='dashboard-wrapper'>
-					<Link to='/trip'>
-						<BigButton value='+ New Trip' color={'green'} />
+		if (this.props.userid === 0) {
+			return (
+				<>
+					<p>
+						Hi there! <br /> Login first to see your trips
+					</p>
+					<Link to='/'>
+						<BigButton value={'Login'} />
 					</Link>
+				</>
+			);
+		} else {
+			const { invitations, tripsJoined, tripsHosted } = this.state;
+			return (
+				<>
+					<div className='dashboard-wrapper'>
+						<Link to='/trip'>
+							<BigButton value='+ New Trip' color={'green'} />
+						</Link>
 
-					<div className='trip-section'>
-						{this.renderSection(
-							'Invitations',
-							invitations,
-							<MailOutlinedIcon fontSize='large' />
-						)}
+						<div className='trip-section'>
+							{this.renderSection(
+								'Invitations',
+								invitations,
+								<MailOutlinedIcon fontSize='large' />
+							)}
+						</div>
+						<div className='trip-section'>
+							{this.renderSection(
+								'Your Trips',
+								tripsHosted,
+								<CardTravelIcon fontSize='large' />
+							)}
+						</div>
+						<div className='trip-section'>
+							{this.renderSection(
+								'Trips Joined',
+								tripsJoined,
+								<AirportShuttleIcon fontSize='large' />
+							)}
+						</div>
 					</div>
-					<div className='trip-section'>
-						{this.renderSection(
-							'Your Trips',
-							tripsHosted,
-							<CardTravelIcon fontSize='large' />
-						)}
-					</div>
-					<div className='trip-section'>
-						{this.renderSection(
-							'Trips Joined',
-							tripsJoined,
-							<AirportShuttleIcon fontSize='large' />
-						)}
-					</div>
-				</div>
-			</>
-		);
+				</>
+			);
+		}
 	}
 }

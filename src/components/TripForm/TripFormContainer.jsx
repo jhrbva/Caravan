@@ -46,7 +46,7 @@ export class TripFormContainer extends React.Component {
 
 		axios
 			.post('/trip', {
-				host_id: 2,
+				host_id: 16,
 				start_location,
 				destination,
 				trip_date: this.pgFormatDate(start_date),
@@ -60,7 +60,7 @@ export class TripFormContainer extends React.Component {
 					})
 					.then((info) => {
 						axios.post('/invitations', {
-							host_id: 2,
+							host_id: 16,
 							user_id: info[0].userid,
 							trip_id: response.data,
 						});
