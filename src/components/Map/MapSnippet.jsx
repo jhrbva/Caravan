@@ -6,7 +6,6 @@ import {
 	withGoogleMap,
 	GoogleMap,
 	DirectionsRenderer,
-	Marker,
 } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
 
@@ -67,30 +66,6 @@ const MapSnippet = compose(
 					{props.directions && (
 						<DirectionsRenderer directions={props.directions} />
 					)}
-
-					<Marker
-						position={{
-							lat: props.coords.latitude,
-							lng: props.coords.longitude,
-						}}
-						icon={{
-							path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-							fillColor: props.iconColor,
-							fillOpacity: 0.8,
-							scale: 8,
-							strokeColor: props.iconColor,
-							strokeWeight: 0.8,
-							rotation: 270,
-							labelOrigin: new google.maps.Point(0, -2.5),
-						}}
-						label={{
-							text: props.iconLabel,
-							color: 'white',
-							fontSize: '9px',
-							fontWeight: 'bold',
-							fontFamily: 'Helvetica',
-						}}
-					/>
 				</GoogleMap>
 			)}
 		</>
