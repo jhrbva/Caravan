@@ -18,41 +18,29 @@ class Dashboard extends React.Component {
 			invitations: [],
 			tripsJoined: [],
 			tripsHosted: [],
-			host: [],
-			members: [],
-			reststops: [],
+			// host: [],
+			// members: [],
+			// reststops: [],
 		};
 	}
 
 	componentDidMount() {
-		// TO DO: add redux to dynamically import user id
-		Promise.all([
-			fetch('/invitations/1'),
-			fetch('/trips/2'),
-			fetch('/members/1'),
-			fetch('/reststop/1'),
-		])
-			.then(([response1, response2, response3, response4]) => {
-				return Promise.all([
-					response1.json(),
-					response2.json(),
-					response3.json(),
-					response4.json(),
-				]);
+		// fetch(`/trips/${this.props.history.location.userid}`)
+		Promise.all([fetch('/trips/1'), fetch('/invitations/1')])
+			.then(([dataTrips, dataInvitations]) => {
+				return Promise.all([dataTrips.json(), dataInvitations.json()]);
 			})
-			.then(([response1, response2, response3, response4]) => {
-				this.setState({ invitations: response1 });
+			.then(([dataTrips, dataInvitations]) => {
 				this.setState({
-					tripsJoined: response2.tripsJoined,
-					tripsHosted: response2.tripsHosted,
+					tripsHosted: dataTrips.tripsHosted,
+					tripsJoined: dataTrips.tripsJoined,
+					invitations: dataInvitations,
 				});
-				this.setState({ host: response3.host[0].username });
-				this.setState({ members: response3.members });
-				this.setState({ reststops: response4 });
 			});
 	}
 
-	renderSection = (title, type, host, members, reststops, icon) => {
+	// renderSection = (title, type, host, members, reststops, icon) => {
+	renderSection = (title, type, icon) => {
 		const isYourTrips = title === 'Your Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
@@ -69,9 +57,9 @@ class Dashboard extends React.Component {
 										key={id}
 										trip={entry}
 										icon={icon}
-										host={host}
-										members={members}
-										reststops={reststops}
+										host={entry.hostname}
+										members={entry.members}
+										reststops={entry.reststops}
 										isYourTrips={isYourTrips}
 									/>
 								</Col>
@@ -86,15 +74,16 @@ class Dashboard extends React.Component {
 	};
 
 	render() {
-		console.log(this.props.history.location.userid);
+		// console.log(this.props.history.location.userid);
 		const {
 			invitations,
 			tripsJoined,
 			tripsHosted,
-			host,
-			members,
-			reststops,
+			// host,
+			// members,
+			// reststops,
 		} = this.state;
+		console.log(tripsHosted);
 		return (
 			<>
 				<Navbar />
@@ -107,9 +96,9 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Invitations',
 							invitations,
-							host,
-							members,
-							reststops,
+							// host,
+							// members,
+							// reststops,
 							<MailOutlinedIcon fontSize='large' />
 						)}
 					</div>
@@ -117,9 +106,9 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Your Trips',
 							tripsHosted,
-							host,
-							members,
-							reststops,
+							// host,
+							// members,
+							// reststops,
 							<CardTravelIcon fontSize='large' />
 						)}
 					</div>
@@ -127,9 +116,9 @@ class Dashboard extends React.Component {
 						{this.renderSection(
 							'Trips Joined',
 							tripsJoined,
-							host,
-							members,
-							reststops,
+							// host,
+							// members,
+							// reststops,
 							<AirportShuttleIcon fontSize='large' />
 						)}
 					</div>
