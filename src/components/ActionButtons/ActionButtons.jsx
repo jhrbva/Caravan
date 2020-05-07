@@ -11,7 +11,6 @@ class ActionButtons extends React.Component {
 		this.state = {
 			accepted: this.props.accepted,
 		};
-		// console.log(this.props);
 	}
 
 	responseToInvitation = () => {

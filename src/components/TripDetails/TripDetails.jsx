@@ -20,7 +20,6 @@ const TripDetails = (props) => {
 		startlocation,
 		destination,
 	} = props.trip;
-	// console.log(props);
 	const { userid, host, reststops, members } = props;
 
 	const listReststops = reststops.map((reststop, key) => (
