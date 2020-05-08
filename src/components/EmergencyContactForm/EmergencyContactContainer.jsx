@@ -65,6 +65,7 @@ export class EmergencyContactContainer extends React.Component {
                     onSubmit={this.handleSubmit}
                     render={({ values, handleSubmit, isSubmitting, handleReset }) => (
                         <form onSubmit={handleSubmit}>
+                            {this.props.children}
                             <div className='buttons'>
                                 <BigButton
                                     type='submit'
