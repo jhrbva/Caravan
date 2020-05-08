@@ -118,16 +118,22 @@ app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
 	);
 });
 
-async function getInvitations(userid){
-	const invitations = (await pool.query(
-		'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, accepted, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
-		[userid]
-	)).rows;
-	const TripMembers = await Promise.all(invitations.map(trips => addMembers(trips)));
-	const InvitationInfo = await Promise.all(TripMembers.map(trips => addRestStops(trips)));
+async function getInvitations(userid) {
+	const invitations = (
+		await pool.query(
+			'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, accepted, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
+			[userid]
+		)
+	).rows;
+	const TripMembers = await Promise.all(
+		invitations.map((trips) => addMembers(trips))
+	);
+	const InvitationInfo = await Promise.all(
+		TripMembers.map((trips) => addRestStops(trips))
+	);
 
 	async function addMembers(trips) {
-		const res = await	pool.query(
+		const res = await pool.query(
 			'SELECT usertable.username, members.userid FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 			[trips.tripid]
 		);
@@ -135,16 +141,16 @@ async function getInvitations(userid){
 	}
 
 	async function addRestStops(trips) {
-		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1',
-		[trips.tripid]
-		);
+		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1', [
+			trips.tripid,
+		]);
 		return { ...trips, reststops: res.rows };
 	}
 	return InvitationInfo;
 }
 
 app.get('/invitations/:userid', (req, res) => {
-	getInvitations(req.params.userid).then(invites => res.send(invites));
+	getInvitations(req.params.userid).then((invites) => res.send(invites));
 });
 
 app.delete('/invitations/:userid/:tripid', (req, res) => {
@@ -327,8 +333,7 @@ app.post('/trip', (req, res) => {
 				// TODO: add better error handling
 				res.sendStatus(400);
 			}
-			const tripId = ((results || {}).rows || {})[0].tripid;
-			res.json(tripId);
+			res.json(results.rows[0].tripid);
 		}
 	);
 });
@@ -351,16 +356,22 @@ app.get('/trip/:tripid', (req, res) => {
 	);
 });
 
-async function getTrips(userid){
-	const tripsHosted = (await pool.query(
-		'SELECT usertable.username as hostname, hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips JOIN usertable on (usertable.userid = trips.hostid) WHERE hostid=$1',
-		[userid]
-	)).rows;
-	const HostedMerged = await Promise.all(tripsHosted.map(trips => addMembers(trips)));
-	const HostedInfos = await Promise.all(HostedMerged.map(trips => addRestStops(trips)));
+async function getTrips(userid) {
+	const tripsHosted = (
+		await pool.query(
+			'SELECT usertable.username as hostname, hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips JOIN usertable on (usertable.userid = trips.hostid) WHERE hostid=$1',
+			[userid]
+		)
+	).rows;
+	const HostedMerged = await Promise.all(
+		tripsHosted.map((trips) => addMembers(trips))
+	);
+	const HostedInfos = await Promise.all(
+		HostedMerged.map((trips) => addRestStops(trips))
+	);
 
 	async function addMembers(trips) {
-		const res = await	pool.query(
+		const res = await pool.query(
 			'SELECT usertable.username, members.userid FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 			[trips.tripid]
 		);
@@ -368,25 +379,31 @@ async function getTrips(userid){
 	}
 
 	async function addRestStops(trips) {
-		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1',
-		[trips.tripid]
-		);
+		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1', [
+			trips.tripid,
+		]);
 		return { ...trips, reststops: res.rows };
 	}
 
-	const tripsJoined = (await pool.query(
-		'SELECT t1.userid as memberid, t1.tripid, t3.username as hostname, t2.hostid, t2.tripid, t2.trip_title, t2.trip_description, t2.startlocation, t2.start_long, t2.start_lat, t2.destination, t2.dest_long, t2.dest_lat, t2.tripdate FROM members t1 join trips t2 on t1.tripid=t2.tripid join usertable t3 on t2.hostid=t3.userid where t1.userid=$1', [userid]
-	)).rows;
-	const JoinedMerged = await Promise.all(tripsJoined.map(trips => addMembers(trips)));
-	const JoinedInfos = await Promise.all(JoinedMerged.map(trips => addRestStops(trips)));
+	const tripsJoined = (
+		await pool.query(
+			'SELECT t1.userid as memberid, t1.tripid, t3.username as hostname, t2.hostid, t2.tripid, t2.trip_title, t2.trip_description, t2.startlocation, t2.start_long, t2.start_lat, t2.destination, t2.dest_long, t2.dest_lat, t2.tripdate FROM members t1 join trips t2 on t1.tripid=t2.tripid join usertable t3 on t2.hostid=t3.userid where t1.userid=$1',
+			[userid]
+		)
+	).rows;
+	const JoinedMerged = await Promise.all(
+		tripsJoined.map((trips) => addMembers(trips))
+	);
+	const JoinedInfos = await Promise.all(
+		JoinedMerged.map((trips) => addRestStops(trips))
+	);
 
 	return { tripsHosted: HostedInfos, tripsJoined: JoinedInfos };
 }
 
 app.get('/trips/:userid', (req, res) => {
-	getTrips(req.params.userid).then(trips => res.send(trips));
+	getTrips(req.params.userid).then((trips) => res.send(trips));
 });
-
 
 app.delete('/reststop', (req, res) => {
 	const { reststopid } = req.body;
