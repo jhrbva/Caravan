@@ -4,7 +4,8 @@ import usePlacesAutocomplete, {
 	getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import '../Input/Input.scss';
+// import '../Input/Input.scss';
+import './Autocomplete.scss';
 
 const PlacesAutocomplete = ({ tag, icon }) => {
 	const {
@@ -55,7 +56,7 @@ const PlacesAutocomplete = ({ tag, icon }) => {
 			} = suggestion;
 
 			return (
-				<li key={id} onClick={handleSelect(suggestion)}>
+				<li className='suggestions' key={id} onClick={handleSelect(suggestion)}>
 					<strong>{main_text}</strong> <small>{secondary_text}</small>
 				</li>
 			);
