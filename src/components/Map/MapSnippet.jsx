@@ -6,7 +6,6 @@ import {
 	withGoogleMap,
 	GoogleMap,
 	DirectionsRenderer,
-	Marker,
 } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
 
@@ -24,30 +23,49 @@ const MapSnippet = compose(
 	geolocated(),
 	lifecycle({
 		componentDidMount() {
-			const { start_lat, start_long, dest_lat, dest_long } = this.props.trip;
-			const DirectionsService = new google.maps.DirectionsService();
-			DirectionsService.route(
-				{
-					origin: new google.maps.LatLng(
-						parseFloat(start_lat),
-						parseFloat(start_long)
-					),
-					destination: new google.maps.LatLng(
-						parseFloat(dest_lat),
-						parseFloat(dest_long)
-					),
-					travelMode: google.maps.TravelMode.DRIVING,
-				},
-				(result, status) => {
-					if (status === google.maps.DirectionsStatus.OK) {
-						this.setState({
-							directions: result,
-						});
-					} else {
-						console.error(`error fetching directions ${result}`);
+			if (!this.props.trip) {
+				return 0;
+			} else {
+				const {
+					start_lat,
+					start_long,
+					dest_lat,
+					dest_long,
+					reststops,
+				} = this.props.trip;
+
+				var restStopLocations = [];
+				(reststops || []).map((reststop) =>
+					restStopLocations.push({
+						location: reststop.location,
+						stopover: true,
+					})
+				);
+				const DirectionsService = new google.maps.DirectionsService();
+				DirectionsService.route(
+					{
+						origin: new google.maps.LatLng(
+							parseFloat(start_lat),
+							parseFloat(start_long)
+						),
+						destination: new google.maps.LatLng(
+							parseFloat(dest_lat),
+							parseFloat(dest_long)
+						),
+						waypoints: restStopLocations,
+						travelMode: google.maps.TravelMode.DRIVING,
+					},
+					(result, status) => {
+						if (status === google.maps.DirectionsStatus.OK) {
+							this.setState({
+								directions: result,
+							});
+						} else {
+							console.error(`error fetching directions ${result}`);
+						}
 					}
-				}
-			);
+				);
+			}
 		},
 	})
 )((props) => {
@@ -66,30 +84,6 @@ const MapSnippet = compose(
 					{props.directions && (
 						<DirectionsRenderer directions={props.directions} />
 					)}
-
-					<Marker
-						position={{
-							lat: props.coords.latitude,
-							lng: props.coords.longitude,
-						}}
-						icon={{
-							path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-							fillColor: props.iconColor,
-							fillOpacity: 0.8,
-							scale: 8,
-							strokeColor: props.iconColor,
-							strokeWeight: 0.8,
-							rotation: 270,
-							labelOrigin: new google.maps.Point(0, -2.5),
-						}}
-						label={{
-							text: props.iconLabel,
-							color: 'white',
-							fontSize: '9px',
-							fontWeight: 'bold',
-							fontFamily: 'Helvetica',
-						}}
-					/>
 				</GoogleMap>
 			)}
 		</>

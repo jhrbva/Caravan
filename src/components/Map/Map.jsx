@@ -10,6 +10,8 @@ import {
 } from 'react-google-maps';
 import { withRouter } from 'react-router';
 import { geolocated } from 'react-geolocated';
+import BigButton from '../BigButton/BigButton';
+import { Link } from 'react-router-dom';
 import InstructionalOverlay from './InstructionalOverlay';
 
 const Map = compose(
@@ -20,7 +22,7 @@ const Map = compose(
 		containerElement: (
 			<div
 				style={{
-					height: `90vh`,
+					height: `88vh`,
 					width: `100%`,
 					position: `absolute`,
 					top: `0`,
@@ -36,47 +38,62 @@ const Map = compose(
 	geolocated(),
 	lifecycle({
 		componentDidMount() {
-			const {
-				start_lat,
-				start_long,
-				dest_lat,
-				dest_long,
-			} = this.props.location.trip;
+			if (!this.props.location.trip) {
+				return 0;
+			} else {
+				const {
+					start_lat,
+					start_long,
+					dest_lat,
+					dest_long,
+					reststops,
+				} = this.props.location.trip;
 
-			const DirectionsService = new google.maps.DirectionsService();
-			DirectionsService.route(
-				{
-					origin: new google.maps.LatLng(
-						parseFloat(start_lat),
-						parseFloat(start_long)
-					),
-					destination: new google.maps.LatLng(
-						parseFloat(dest_lat),
-						parseFloat(dest_long)
-					),
-					travelMode: google.maps.TravelMode.DRIVING,
-				},
-				(result, status) => {
-					if (status === google.maps.DirectionsStatus.OK) {
-						const stepsToDestination = result.routes[0].legs[0].steps.map(
-							(coords) => {
-								return [
-									coords.start_location.lat(),
-									coords.start_location.lng(),
-									coords.instructions,
-								];
+				var restStopLocations = [];
+				(reststops || []).map((reststop) =>
+					restStopLocations.push({
+						location: reststop.location,
+						stopover: true,
+					})
+				);
+				const DirectionsService = new google.maps.DirectionsService();
+				DirectionsService.route(
+					{
+						origin: new google.maps.LatLng(
+							parseFloat(start_lat),
+							parseFloat(start_long)
+						),
+						destination: new google.maps.LatLng(
+							parseFloat(dest_lat),
+							parseFloat(dest_long)
+						),
+						waypoints: restStopLocations,
+						travelMode: google.maps.TravelMode.DRIVING,
+					},
+					(result, status) => {
+						if (status === google.maps.DirectionsStatus.OK) {
+							if (result.routes[0].legs[0].steps) {
+								const stepsToDestination = result.routes[0].legs[0].steps.map(
+									(coords) => {
+										return [
+											coords.start_location.lat(),
+											coords.start_location.lng(),
+											coords.instructions,
+										];
+									}
+								);
+
+								this.setState({
+									directions: result,
+									stepsToDestination: stepsToDestination,
+								});
 							}
-						);
-
-						this.setState({
-							directions: result,
-							stepsToDestination: stepsToDestination,
-						});
-					} else {
-						console.error(`error fetching directions ${result}`);
+						} else {
+							console.error(`error fetching directions ${result}`);
+						}
 					}
-				}
-			);
+				);
+			}
 		},
 	})
 )((props) => {
@@ -121,10 +138,21 @@ const Map = compose(
 					{props.stepsToDestination && (
 						<InstructionalOverlay instruction={props.stepsToDestination} />
 					)}
+					{!props.location.trip && (
+						<>
+							<b>
+								<p className='no-margin'>
+									Sorry, there was an error retrieving your directions.
+								</p>
+							</b>
+							<Link to='/dashboard'>
+								<BigButton value={'Back to Dashboard'} />
+							</Link>
+						</>
+					)}
 				</>
 			)}
 		</>
 	);
 });
-
 export default Map;

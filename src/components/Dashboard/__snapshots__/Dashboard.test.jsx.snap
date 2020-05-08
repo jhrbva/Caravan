@@ -23,6 +23,7 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
+          key="0"
           md={4}
         >
           <SummaryCard
@@ -91,6 +92,7 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
+          key="0"
           md={4}
         >
           <SummaryCard
@@ -159,6 +161,7 @@ exports[`Dashboard should match the snapshot 1`] = `
         noGutters={false}
       >
         <Col
+          key="0"
           md={4}
         >
           <SummaryCard
