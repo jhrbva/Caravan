@@ -3,15 +3,47 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Row, Col } from 'react-bootstrap';
 import './InstructionalOverlay.scss';
 
-const InstructionalOverlay = () => (
-	<Row style={{ backgroundColor: '#056638', color: 'white' }}>
-		<Col md={2}>
-			<ArrowRightAltIcon style={{ fontSize: 80 }} />
-		</Col>
-		<Col md={8}>
-			<h1 className='align-middle'>Turn right on Clark St.</h1>
-		</Col>
-	</Row>
-);
+export default class InstructionalOverlay extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentInstruction: 0,
+			currentInstructionMessage: '',
+			timer: null,
+		};
+	}
 
-export default InstructionalOverlay;
+	getNextStep = (steps) => {
+		if (this.state.currentInstruction < steps.instruction.length) {
+			this.setState({
+				currentInstructionMessage:
+					steps.instruction[this.state.currentInstruction][2],
+				currentInstruction: this.state.currentInstruction + 1,
+			});
+			setTimeout(() => this.getNextStep(steps), 5000);
+		}
+	};
+
+	componentDidMount = () => {
+		this.getNextStep(this.props);
+	};
+
+	render() {
+		return (
+			<Row style={{ backgroundColor: '#056638', color: 'white' }}>
+				<Col md={2}>
+					<ArrowRightAltIcon style={{ fontSize: 80 }} />
+				</Col>
+				<Col md={8}>
+					<h1 className='align-middle'>
+						<div
+							dangerouslySetInnerHTML={{
+								__html: this.state.currentInstructionMessage,
+							}}
+						/>
+					</h1>
+				</Col>
+			</Row>
+		);
+	}
+}
