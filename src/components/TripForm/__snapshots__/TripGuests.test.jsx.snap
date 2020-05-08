@@ -7,7 +7,7 @@ exports[`TripGuests should match the snapshot 1`] = `
     component={[Function]}
     icon={<UNDEFINED />}
     name="guests"
-    placeholder="Guest"
+    tag="GUESTS"
     type="text"
     validate={[Function]}
   />

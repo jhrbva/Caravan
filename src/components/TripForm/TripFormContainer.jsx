@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Formik } from 'formik';
 import { withRouter } from 'react-router';
 
+import Navbar from '../Navbar/Navbar';
 import BigButton from '../BigButton/BigButton';
 
 export class TripFormContainer extends React.Component {
@@ -39,11 +40,13 @@ export class TripFormContainer extends React.Component {
 			start_date,
 			trip_description,
 			trip_title,
+			guests,
 		} = values;
-		console.log('in onSubmit', values, bag);
+		//console.log('in onSubmit', values, bag);
+
 		axios
 			.post('/trip', {
-				host_id: 2,
+				host_id: 16,
 				start_location,
 				destination,
 				trip_date: this.pgFormatDate(start_date),
@@ -51,7 +54,17 @@ export class TripFormContainer extends React.Component {
 				trip_title,
 			})
 			.then(function (response) {
-				console.log(response);
+				fetch(`/user/${guests}`)
+					.then((res) => {
+						return res.json();
+					})
+					.then((info) => {
+						axios.post('/invitations', {
+							host_id: 16,
+							user_id: info[0].userid,
+							trip_id: response.data,
+						});
+					});
 				history.push('/dashboard');
 			})
 			.catch(function (error) {
@@ -79,34 +92,37 @@ export class TripFormContainer extends React.Component {
 		const isLastPage = page === React.Children.count(children) - 1;
 
 		return (
-			<Formik
-				initialValues={values}
-				enableReinitialize={false}
-				onSubmit={this.handleSubmit}
-				render={({ values, handleSubmit, isSubmitting, handleReset }) => (
-					<form onSubmit={handleSubmit}>
-						{activePage}
-						<div className='buttons'>
-							{page > 0 && (
-								<BigButton
-									type='button'
-									onClick={this.previousPage}
-									value='Previous'
-								/>
-							)}
+			<>
+				<Navbar />
+				<Formik
+					initialValues={values}
+					enableReinitialize={false}
+					onSubmit={this.handleSubmit}
+					render={({ values, handleSubmit, isSubmitting, handleReset }) => (
+						<form onSubmit={handleSubmit}>
+							{activePage}
+							<div className='buttons'>
+								{page > 0 && (
+									<BigButton
+										type='button'
+										onClick={this.previousPage}
+										value='Previous'
+									/>
+								)}
 
-							{!isLastPage && <BigButton type='submit' value='Next' />}
-							{isLastPage && (
-								<BigButton
-									type='submit'
-									value='Submit'
-									disabled={isSubmitting}
-								/>
-							)}
-						</div>
-					</form>
-				)}
-			/>
+								{!isLastPage && <BigButton type='submit' value='Next' />}
+								{isLastPage && (
+									<BigButton
+										type='submit'
+										value='Submit'
+										disabled={isSubmitting}
+									/>
+								)}
+							</div>
+						</form>
+					)}
+				/>
+			</>
 		);
 	}
 }

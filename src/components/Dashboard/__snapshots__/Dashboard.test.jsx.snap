@@ -2,89 +2,215 @@
 
 exports[`Dashboard should match the snapshot 1`] = `
 <Fragment>
-  <h1>
-    Dashboard
-  </h1>
-  <Link
-    to="/trip"
+  <div
+    className="dashboard-wrapper"
   >
-    <Button
-      active={false}
-      disabled={false}
-      type="button"
-      variant="success"
+    <Link
+      to="/trip"
     >
-      New Trip +
-    </Button>
-  </Link>
-  <h3>
-    Invitations
-  </h3>
-  <Row
-    noGutters={false}
-  >
-    <Col>
-      <SummaryCard
-        host={Array []}
-        key="0"
-        reststops={Array []}
-        trip={
-          Object {
-            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
-            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
-            "trip_description": "Let's see Rockefeller",
-            "trip_title": "Brunch at gold statue :P",
-            "tripdate": "2020-06-01T13:55:06.000Z",
-          }
-        }
+      <BigButton
+        color="green"
+        value="+ New Trip"
       />
-    </Col>
-  </Row>
-  <h3>
-    Your Trips
-  </h3>
-  <Row
-    noGutters={false}
-  >
-    <Col>
-      <SummaryCard
-        host={Array []}
-        key="0"
-        reststops={Array []}
-        trip={
-          Object {
-            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
-            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
-            "trip_description": "Let's see Rockefeller",
-            "trip_title": "Brunch at gold statue :P",
-            "tripdate": "2020-06-01T13:55:06.000Z",
-          }
-        }
-      />
-    </Col>
-  </Row>
-  <h3>
-    Trips Joined
-  </h3>
-  <Row
-    noGutters={false}
-  >
-    <Col>
-      <SummaryCard
-        host={Array []}
-        key="0"
-        reststops={Array []}
-        trip={
-          Object {
-            "destination": "45 Rockefeller Plaza, New York, NY, 10111",
-            "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
-            "trip_description": "Let's see Rockefeller",
-            "trip_title": "Brunch at gold statue :P",
-            "tripdate": "2020-06-01T13:55:06.000Z",
-          }
-        }
-      />
-    </Col>
-  </Row>
+    </Link>
+    <div
+      className="trip-section"
+    >
+      <h2>
+        Invitations
+      </h2>
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={4}
+        >
+          <SummaryCard
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={false}
+            key="0"
+            members={
+              Array [
+                Object {
+                  "username": "jcode",
+                },
+              ]
+            }
+            reststops={
+              Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+                "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+                "trip_description": "Let's see Rockefeller",
+                "trip_title": "Brunch at gold statue :P",
+                "tripdate": "2020-06-01T13:55:06.000Z",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="trip-section"
+    >
+      <h2>
+        Your Trips
+      </h2>
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={4}
+        >
+          <SummaryCard
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={true}
+            key="0"
+            members={
+              Array [
+                Object {
+                  "username": "jcode",
+                },
+              ]
+            }
+            reststops={
+              Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+                "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+                "trip_description": "Let's see Rockefeller",
+                "trip_title": "Brunch at gold statue :P",
+                "tripdate": "2020-06-01T13:55:06.000Z",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="trip-section"
+    >
+      <h2>
+        Trips Joined
+      </h2>
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={4}
+        >
+          <SummaryCard
+            icon={
+              <UNDEFINED
+                fontSize="large"
+              />
+            }
+            isYourTrips={false}
+            key="0"
+            members={
+              Array [
+                Object {
+                  "username": "jcode",
+                },
+              ]
+            }
+            reststops={
+              Array [
+                Object {
+                  "location": "Wawa",
+                },
+                Object {
+                  "location": "Loves",
+                },
+              ]
+            }
+            trip={
+              Object {
+                "destination": "45 Rockefeller Plaza, New York, NY, 10111",
+                "host": Object {
+                  "username": "conniecode",
+                },
+                "members": Array [
+                  Object {
+                    "username": "jcode",
+                  },
+                ],
+                "reststops": Array [
+                  Object {
+                    "location": "Wawa",
+                  },
+                  Object {
+                    "location": "Loves",
+                  },
+                ],
+                "startlocation": "1307 Florence Avenue, Plainfield, NJ 07060",
+                "trip_description": "Let's see Rockefeller",
+                "trip_title": "Brunch at gold statue :P",
+                "tripdate": "2020-06-01T13:55:06.000Z",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+  </div>
 </Fragment>
 `;

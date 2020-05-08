@@ -3,114 +3,106 @@
 exports[`Trip Details should match the snapshot 1`] = `
 <div>
   <div
-    className="trip-details-wrapper"
+    className="trip-details"
   >
-    <div
-      className="trip-details-header"
-    >
-      <h1
-        className="header-text"
-      >
-        Wonders of the Canyon
-      </h1>
-      <h2
-        className="header-text-light"
-      >
-        Join in as we travel to the Grand Canyon
-      </h2>
-    </div>
     <div
       className="map-snippet"
     >
-      <withProps(withScriptjs(withGoogleMap(Geolocated(lifecycle(Component))))) />
+      <withProps(withScriptjs(withGoogleMap(Geolocated(lifecycle(Component)))))
+        trip={
+          Object {
+            "destination": "Grand Canyon, Grand Canyon Ave.",
+            "startlocation": "123 OneTreeHill St.",
+            "trip_description": "Join in as we travel to the Grand Canyon",
+            "trip_title": "Wonders of the Canyon",
+            "tripdate": "2020-06-01T13:55:06.000Z",
+          }
+        }
+      />
     </div>
     <div
-      className="trip-details"
+      className="blue-back"
     >
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          You were invited by 
-        </span>
-        @ Host
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          When:
-        </span>
-         
-        2020-06-01
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          Leaving at:
-        </span>
-        13:55:06
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          From
-        </span>
-        <br />
-         
-        123 OneTreeHill St.
-      </p>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          To
-        </span>
-        <br />
-         
-        Grand Canyon, Grand Canyon Ave.
-      </p>
-      <div>
-        <span
-          className="trip-details-headings"
-        >
-          Stoping at
-        </span>
-        <ul>
-          <li
-            key="0"
-          >
-            Wawa
-          </li>
-          <li
-            key="1"
-          >
-            Loves
-          </li>
-        </ul>
-      </div>
-      <p>
-        <span
-          className="trip-details-headings"
-        >
-          Guest list
-        </span>
-      </p>
-      <ul>
-        <li>
-          @guestA
-        </li>
-        <li>
-          @guestB
-        </li>
-        <li>
-          @guestC
-        </li>
-      </ul>
+      <h1>
+        Wonders of the Canyon
+      </h1>
+      <h3>
+        Join in as we travel to the Grand Canyon
+      </h3>
     </div>
-    <withRouter(ActionButtons) />
+    <p>
+      Trip host: 
+      <b>
+        @
+        <Component />
+      </b>
+    </p>
+    <p>
+      When: 
+      <b>
+        2020-06-01
+      </b>
+    </p>
+    <p>
+      Leaving at: 
+      <b>
+        13:55:06
+      </b>
+    </p>
+    <p>
+      From: 
+      <b>
+        123 OneTreeHill St.
+      </b>
+    </p>
+    <p>
+      To: 
+      <b>
+        Grand Canyon, Grand Canyon Ave.
+      </b>
+    </p>
+    <p
+      className="no-margin-bottom"
+    >
+      Rest Stops:
+    </p>
+    <ul>
+      <b>
+        <li
+          key="0"
+        >
+          Wawa
+        </li>
+        <li
+          key="1"
+        >
+          Loves
+        </li>
+      </b>
+    </ul>
+    <p
+      className="no-margin-bottom"
+    >
+      Guests:
+    </p>
+    <ul>
+      <b>
+        <li
+          key="0"
+        />
+      </b>
+    </ul>
   </div>
+  <withRouter(ActionButtons)
+    trip={
+      Object {
+        "destination": "Grand Canyon, Grand Canyon Ave.",
+        "startlocation": "123 OneTreeHill St.",
+        "trip_description": "Join in as we travel to the Grand Canyon",
+        "trip_title": "Wonders of the Canyon",
+        "tripdate": "2020-06-01T13:55:06.000Z",
+      }
+    }
+  />
 </div>
 `;

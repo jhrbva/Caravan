@@ -1,16 +1,16 @@
-import React from "react";
-import { Field, Form, Formik } from "formik";
-import { withRouter } from "react-router";
-import axios from "axios";
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
-import logo from "../../assets/caravan-logo-blueOnWhite.png";
-import Input from "../Input/Input";
-import BigButton from "../BigButton/BigButton";
-import { required } from "../../utilities/formValidation";
+import logo from '../../assets/caravan-logo-blueOnWhite.png';
+import Input from '../Input/Input';
+import BigButton from '../BigButton/BigButton';
+import { required } from '../../utilities/formValidation';
 
-import PersonIcon from "@material-ui/icons/PersonOutlined";
-import VpnKeyIcon from "@material-ui/icons/VpnKeyOutlined";
-import "./Login.scss";
+import PersonIcon from '@material-ui/icons/PersonOutlined';
+import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
+import './Login.scss';
 
 export const LoginForm = () => (
 	<Form>
@@ -34,7 +34,7 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={"Login"} />
+		<BigButton value={'Login'} />
 	</Form>
 );
 
@@ -53,22 +53,24 @@ const Login = (props) => {
 			</div>
 			<Formik
 				initialValues={{
-					email: "",
-					password: "",
+					username: '',
+					password: '',
 				}}
 				onSubmit={(values) => {
 					const { history } = props;
-					// same shape as initial values
-					console.log(values);
-					console.log(props);
+
 					axios
-						.post("/login", {
+						.post('/login', {
 							username: values.username,
 							password: values.password,
 						})
 						.then(function (response) {
-							console.log(response);
-							history.push("/dashboard");
+							const name =
+								'Hi ' + response.data.firstname + ' ' + response.data.lastname;
+							props.getUser(response.data.userid, name);
+							return history.push({
+								pathname: '/dashboard',
+							});
 						})
 						.catch(function (error) {
 							console.log(error);

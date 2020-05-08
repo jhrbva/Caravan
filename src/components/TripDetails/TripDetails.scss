@@ -1,21 +1,30 @@
 @import '../../utilities/colorPalette.scss';
 @import '../../utilities/mediaQueries.scss';
 
-.trip-details-header {
-	padding: 20px;
+.trip-details {
+	border-radius: 50px;
 	text-align: center;
 }
-.trip-details {
-	background: $dream-blue;
-	color: white;
-
-	padding: 30px 20px;
-}
-.trip-details-headings {
-	font-weight: bold;
-	font-size: 18px;
-}
 .map-snippet {
-	width: 100%;
 	height: 200px;
+	width: 100%;
+	padding: 10px 0 0 0;
+
+	position: absolute;
+	top: -10px;
+	left: 0px;
+	margin: auto;
+}
+.map-snippet div div {
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+}
+.blue-back {
+	margin: 190px 0 20px;
+	background: $dream-blue-fade;
+	padding: 20px 0;
+	color: white;
+}
+.no-margin-bottom {
+	margin-bottom: 0;
 }
