@@ -12,7 +12,7 @@ const SummaryCard = (props) => {
 	console.log(props);
 	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
-		: `You are invited to ${trip.destination} by ${trip.username}.`;
+		: `You are invited to ${trip.destination} by ${trip.hostname}.`;
 
 	return (
 		<>
