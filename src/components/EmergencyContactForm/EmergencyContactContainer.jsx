@@ -11,13 +11,7 @@ export class EmergencyContactContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            values: {
-                firstname: '',
-                lastname: '',
-                address: '',
-                phonenumber: '',
-                relationship: '',
-            }
+            values: props.initialValues
         };
     }
     onSubmit = (values, bag) => {
@@ -28,7 +22,6 @@ export class EmergencyContactContainer extends React.Component {
             address,
             phonenumber,
             relationship,
-            ecid
         } = values;
         //console.log('in onSubmit', values, bag);
 
@@ -60,7 +53,7 @@ export class EmergencyContactContainer extends React.Component {
             <>
                 <Navbar />
                 <Formik
-                    values={values}
+                    initialValues={values}
                     enableReinitialize={false}
                     onSubmit={this.handleSubmit}
                     render={({ values, handleSubmit, isSubmitting, handleReset }) => (

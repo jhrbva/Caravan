@@ -5,7 +5,14 @@ import EmergencyContact from './EmergencyContact';
 
 const EmergencyForm = () => (
     <>
-        <EmergencyContactContainer>
+        <EmergencyContactContainer
+            initialValues={{
+                firstname: '',
+                lastname: '',
+                address: '',
+                phonenumber: '',
+                relationship: '',
+            }}>
             <EmergencyContact />
         </EmergencyContactContainer>
     </>
