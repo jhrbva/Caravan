@@ -14,6 +14,37 @@ class ActionButtons extends React.Component {
 	}
 
 	responseToInvitation = () => {
+		const { rerender } = this.props;
+		// if user rejects invitation or decides to leave the trip, delete from members table
+		if (this.state.accepted === false) {
+			axios
+				.delete(`/members/${this.props.tripid}/${this.props.userid}`, {
+					params: { userid: this.props.userid, tripid: this.props.tripid },
+				})
+				.then((response) => {
+					console.log(response);
+					rerender();
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+		//otherwise, add to members table
+		else {
+			axios
+				.post(`/members/${this.props.tripid}`, {
+					tripid: this.props.tripid,
+					userid: this.props.userid,
+				})
+				.then(function (response) {
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
+
+		// in either case, update status on invitations table
 		axios
 			.post('/invitations/accept', {
 				userid: this.props.userid,
@@ -22,6 +53,7 @@ class ActionButtons extends React.Component {
 			})
 			.then(function (response) {
 				console.log(response);
+				rerender();
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -38,35 +70,49 @@ class ActionButtons extends React.Component {
 	};
 
 	renderInitial = () => {
-		return (
-			<div>
+		// if user is the host
+		if (this.props.isYourTrips) {
+			return (
 				<ModalButton
-					value={'Accept'}
+					value={'Start Trip'}
 					onClick={() => {
-						this.setState({ accepted: true }, () => {
-							this.responseToInvitation();
-						});
+						this.passProps('map');
 					}}
-					numberofbuttons={'three'}
+					numberofbuttons={'one'}
 				/>
-				<ModalButton
-					value={'Reject'}
-					onClick={() => {
-						this.setState({ accepted: false }, () => {
-							this.responseToInvitation();
-						});
-					}}
-					numberofbuttons={'three'}
-				/>
-				<ModalButton
-					value={'Request Change'}
-					onClick={() => {
-						this.passProps('requestchange');
-					}}
-					numberofbuttons={'three'}
-				/>
-			</div>
-		);
+			);
+			// if user is a guest
+		} else {
+			return (
+				<div>
+					<ModalButton
+						value={'Accept'}
+						onClick={() => {
+							this.setState({ accepted: true }, () => {
+								this.responseToInvitation();
+							});
+						}}
+						numberofbuttons={'three'}
+					/>
+					<ModalButton
+						value={'Reject'}
+						onClick={() => {
+							this.setState({ accepted: false }, () => {
+								this.responseToInvitation();
+							});
+						}}
+						numberofbuttons={'three'}
+					/>
+					<ModalButton
+						value={'Request Change'}
+						onClick={() => {
+							this.passProps('requestchange');
+						}}
+						numberofbuttons={'three'}
+					/>
+				</div>
+			);
+		}
 	};
 
 	renderAccepted = () => {
@@ -85,6 +131,7 @@ class ActionButtons extends React.Component {
 					onClick={() => {
 						this.setState({ accepted: false }, () => {
 							this.responseToInvitation();
+							this.props.rerender();
 						});
 					}}
 					additionalClass={'leave'}
@@ -100,7 +147,7 @@ class ActionButtons extends React.Component {
 					value={'Accept Invitation'}
 					onClick={() => {
 						this.setState({ accepted: true }, () => {
-							this.responseToInvitation();
+							this.responseToInvitation().then(this.props.rerender());
 						});
 					}}
 				/>

@@ -49,7 +49,6 @@ passport.use(
 							cb(null, false);
 						}
 						if (res) {
-							console.log(res);
 							cb(null, first);
 						}
 					});
@@ -96,7 +95,6 @@ app.get('/emergency/:ECid', (req, res) => {
 				);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows[0]);
 				res.send(result.rows);
 			}
 		}
@@ -121,7 +119,7 @@ app.put('/invitations/:userid/:tripid/:accepted', (req, res) => {
 async function getInvitations(userid) {
 	const invitations = (
 		await pool.query(
-			'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, accepted, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1',
+			'SELECT usertable.username as hostname, trips.hostid, invitations.tripid, accepted, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM invitations INNER JOIN trips ON trips.tripid = invitations.tripid INNER JOIN usertable ON trips.hostid = usertable.userid WHERE invitations.userid=$1 AND accepted IS NULL',
 			[userid]
 		)
 	).rows;
@@ -181,7 +179,6 @@ app.get('/user/:username', (req, res) => {
 				console.log('Error when looking for user', err);
 			}
 			if (result.rows.length > 0) {
-				console.log(result.rows);
 				res.send(result.rows);
 			}
 		}
@@ -230,7 +227,6 @@ app.get('/members/:tripid', (req, res) => {
 				console.log('Error when selecting members of a specific trip', err);
 			}
 			result.push(results.rows);
-			console.log(result);
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
@@ -279,26 +275,27 @@ app.post('/itineraryrequest', (req, res) => {
 	);
 });
 
-app.delete('/members', (req, res) => {
-	const { userid, tripid } = req.body;
-	console.log(userid, tripid);
-	pool.query(
-		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
-		[userid, tripid],
-		(err, result) => {
-			if (err) {
-				console.log('Error when selecting invitation of a specific user', err);
-			}
-			if (result.rowCount > 0) {
-				res.sendStatus(200);
-			}
-			if (result.rowCount == 0) {
-				// No row that meets the condition
-				res.sendStatus(403);
-			}
-		}
-	);
-});
+// I think we don't need this endpoint anymore because of app.delete('/members/:tripid/:userid')
+// app.delete('/members', (req, res) => {
+// 	const { userid, tripid } = req.body;
+// 	console.log(userid, tripid);
+// 	pool.query(
+// 		'DELETE FROM members WHERE userid=$1 AND tripid=$2',
+// 		[userid, tripid],
+// 		(err, result) => {
+// 			if (err) {
+// 				console.log('Error when selecting invitation of a specific user', err);
+// 			}
+// 			if (result.rowCount > 0) {
+// 				res.sendStatus(200);
+// 			}
+// 			if (result.rowCount == 0) {
+// 				// No row that meets the condition
+// 				res.sendStatus(403);
+// 			}
+// 		}
+// 	);
+// });
 
 app.post('/trip', (req, res) => {
 	const {
@@ -387,7 +384,7 @@ async function getTrips(userid) {
 
 	const tripsJoined = (
 		await pool.query(
-			'SELECT t1.userid as memberid, t1.tripid, t3.username as hostname, t2.hostid, t2.tripid, t2.trip_title, t2.trip_description, t2.startlocation, t2.start_long, t2.start_lat, t2.destination, t2.dest_long, t2.dest_lat, t2.tripdate FROM members t1 join trips t2 on t1.tripid=t2.tripid join usertable t3 on t2.hostid=t3.userid where t1.userid=$1',
+			'SELECT t4.accepted, t1.userid as memberid, t1.tripid, t3.username as hostname, t2.hostid, t2.tripid, t2.trip_title, t2.trip_description, t2.startlocation, t2.start_long, t2.start_lat, t2.destination, t2.dest_long, t2.dest_lat, t2.tripdate FROM members t1 join trips t2 on t1.tripid=t2.tripid join usertable t3 on t2.hostid=t3.userid left join invitations t4 on t1.userid = t4.userid AND t4.accepted = true where t1.userid=$1',
 			[userid]
 		)
 	).rows;
@@ -452,9 +449,24 @@ app.delete('/members/:tripid/:userid', (req, res) => {
 				res.sendStatus(200);
 			}
 			if (result.rowCount == 0) {
-				// No row that meets the condition
+				console.log('User not in members table yet');
 				res.sendStatus(403);
 			}
+		}
+	);
+});
+
+app.post('/members/:tripid', (req, res) => {
+	const { tripid, userid } = req.body;
+	pool.query(
+		'INSERT INTO members(tripid, userid) VALUES ($1, $2)',
+		[tripid, userid],
+		(err) => {
+			if (err) {
+				console.log('Error when adding member to members table', err);
+				res.sendStatus(400);
+			}
+			res.sendStatus(201);
 		}
 	);
 });

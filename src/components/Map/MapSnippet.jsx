@@ -35,7 +35,7 @@ const MapSnippet = compose(
 				} = this.props.trip;
 
 				var restStopLocations = [];
-				reststops.map((reststop) =>
+				(reststops || []).map((reststop) =>
 					restStopLocations.push({
 						location: reststop.location,
 						stopover: true,
