@@ -1,14 +1,15 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import { useFormikContext } from 'formik';
+import { useFormikContext, useField } from 'formik';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import Input from '../Input/Input';
 import './DatePickerInput.css';
 
 const DatePickerInput = (props) => {
 	const { setFieldValue } = useFormikContext();
-	const { start_date } = props.field.value;
+	const [field] = useField(props);
+	const { start_date } = field.value;
+
 	return (
 		<>
 			<DatePicker
