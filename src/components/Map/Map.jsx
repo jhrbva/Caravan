@@ -50,7 +50,7 @@ const Map = compose(
 				} = this.props.location.trip;
 
 				var restStopLocations = [];
-				reststops.map((reststop) =>
+				(reststops || []).map((reststop) =>
 					restStopLocations.push({
 						location: reststop.location,
 						stopover: true,
