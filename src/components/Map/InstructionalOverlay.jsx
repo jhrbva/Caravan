@@ -4,11 +4,11 @@ import { Row, Col } from 'react-bootstrap';
 import './InstructionalOverlay.scss';
 
 const InstructionalOverlay = () => (
-	<Row style={{ backgroundColor: '#3d6cb9', color: 'white' }}>
-		<Col md='xs'>
-			<ArrowRightAltIcon style={{ fontSize: 100 }} />
+	<Row style={{ backgroundColor: '#056638', color: 'white' }}>
+		<Col md={2}>
+			<ArrowRightAltIcon style={{ fontSize: 80 }} />
 		</Col>
-		<Col>
+		<Col md={8}>
 			<h1 className='align-middle'>Turn right on Clark St.</h1>
 		</Col>
 	</Row>
