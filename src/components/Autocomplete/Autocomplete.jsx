@@ -48,7 +48,6 @@ const PlacesAutocomplete = ({ tag, icon }) => {
 	};
 
 	const renderSuggestions = () => {
-		console.log('in renderSuggestion', data);
 		return data.map((suggestion) => {
 			const {
 				id,
@@ -74,7 +73,7 @@ const PlacesAutocomplete = ({ tag, icon }) => {
 				disabled={!ready}
 			/>
 			{/* We can use the "status" to decide whether we should display the dropdown or not */}
-			{status === 'OK' && <ul>{renderSuggestions()}</ul>}
+			{status === 'OK' && <ul className='listbox'>{renderSuggestions()}</ul>}
 		</div>
 	);
 };

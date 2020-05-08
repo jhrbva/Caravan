@@ -48,7 +48,7 @@ const TripInformation = () => (
 			tag='DESTINATION'
 			validate={required}
 			autoFocus={false}
-			component={Input}
+			component={Autocomplete}
 		/>
 		<Field
 			icon={<EventIcon />}
