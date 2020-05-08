@@ -1,6 +1,7 @@
 import React from 'react';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Row, Col } from 'react-bootstrap';
+import './InstructionalOverlay.scss';
 
 export default class InstructionalOverlay extends React.Component {
 	constructor(props) {
@@ -29,18 +30,18 @@ export default class InstructionalOverlay extends React.Component {
 
 	render() {
 		return (
-			<Row style={{ backgroundColor: '#3d6cb9', color: 'white' }}>
-				<Col md='xs'>
-					<ArrowRightAltIcon style={{ fontSize: 100 }} />
+			<Row style={{ backgroundColor: '#056638', color: 'white' }}>
+				<Col md={2}>
+					<ArrowRightAltIcon style={{ fontSize: 80 }} />
 				</Col>
-				<Col>
-					<h4 className='align-middle'>
+				<Col md={8}>
+					<h1 className='align-middle'>
 						<div
 							dangerouslySetInnerHTML={{
 								__html: this.state.currentInstructionMessage,
 							}}
 						/>
-					</h4>
+					</h1>
 				</Col>
 			</Row>
 		);
