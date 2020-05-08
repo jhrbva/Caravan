@@ -14,12 +14,12 @@ class ActionButtons extends React.Component {
 	}
 
 	responseToInvitation = () => {
-		// console.log(this.state);
+		// if user rejects invitation or decides to leave the trip, delete from members table
 		if (this.state.accepted === false) {
 			axios
-				.delete('/members', {
-					userid: this.props.userid,
-					tripid: this.props.tripid,
+				.delete(`/members/${this.props.userid}/${this.props.userid}`, {
+					withCredentials: false,
+					params: { userid: this.props.userid, tripid: this.props.tripid },
 				})
 				.then((response) => {
 					console.log(response);
@@ -28,6 +28,22 @@ class ActionButtons extends React.Component {
 					console.log(error);
 				});
 		}
+		//otherwise, add to members table
+		else {
+			axios
+				.post(`/members/${this.props.tripid}`, {
+					tripid: this.props.tripid,
+					userid: this.props.userid,
+				})
+				.then(function (response) {
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
+
+		// in either case, update status on invitations table
 		axios
 			.post('/invitations/accept', {
 				userid: this.props.userid,
