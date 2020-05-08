@@ -71,8 +71,23 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 app.post('/emergency', (req, res) => {
 	const { address, firstname, lastname, phonenumber, relationship } = req.body;
 	pool.query(
-		'INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship) VALUES ($1, $2, $3, $4, $5)',
+		'INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship) VALUES ($1, $2, $3, $4, $5) RETURNING ecid',
 		[address, firstname, lastname, phonenumber, relationship],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.json(results.rows[0]);
+		}
+	);
+});
+
+app.put('/emergency/:userid/:ecid', (req, res) => {
+	pool.query(
+		'UPDATE usertable SET ecid=$2 WHERE userid=$1',
+		[req.params.userid, req.params.ecid],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting emergency contact for user', err);
@@ -215,8 +230,8 @@ app.get('/members/:tripid', (req, res) => {
 
 			pool.query(
 				'SELECT userid, firstname, lastname, username, email, phonenumber FROM usertable WHERE userid = (SELECT hostid FROM trips WHERE tripid=' +
-					req.params.tripid +
-					')',
+				req.params.tripid +
+				')',
 				(err, results) => {
 					if (err) {
 						console.log('Error when selecting host id', err);
@@ -338,7 +353,7 @@ app.get('/trip/:tripid', (req, res) => {
 	);
 });
 
-async function getTrips(userid){
+async function getTrips(userid) {
 	const tripsHosted = (await pool.query(
 		'SELECT usertable.username as hostname, hostid, tripid, trip_title, trip_description, startlocation, start_long, start_lat, destination, dest_long, dest_lat, tripdate FROM trips JOIN usertable on (usertable.userid = trips.hostid) WHERE hostid=$1',
 		[userid]
@@ -347,7 +362,7 @@ async function getTrips(userid){
 	const HostedInfos = await Promise.all(HostedMerged.map(trips => addRestStops(trips)));
 
 	async function addMembers(trips) {
-		const res = await	pool.query(
+		const res = await pool.query(
 			'SELECT usertable.username FROM members JOIN usertable on (members.userid = usertable.userid) WHERE tripid=$1',
 			[trips.tripid]
 		);
@@ -356,7 +371,7 @@ async function getTrips(userid){
 
 	async function addRestStops(trips) {
 		const res = await pool.query('SELECT * FROM reststop WHERE tripid=$1',
-		[trips.tripid]
+			[trips.tripid]
 		);
 		return { ...trips, reststops: res.rows };
 	}

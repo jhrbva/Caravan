@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
 import RequestChange from './components/RequestChange/RequestChange';
+import EmergencyForm from './components/EmergencyContactForm/EmergencyForm';
 
 class App extends React.Component {
 	constructor(props) {
@@ -50,6 +51,9 @@ class App extends React.Component {
 							path='/requestchange'
 							render={(props) => <RequestChange {...props} />}
 						/>
+						<Route exact path='/ec'>
+							<EmergencyForm />
+						</Route>
 					</header>
 				</div>
 			</Router>
