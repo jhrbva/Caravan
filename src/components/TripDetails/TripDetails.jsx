@@ -20,7 +20,7 @@ const TripDetails = (props) => {
 		startlocation,
 		destination,
 	} = props.trip;
-	const { userid, host, reststops, members, isYourTrips } = props;
+	const { userid, host, reststops, members, isYourTrips, rerender } = props;
 
 	const listReststops = reststops.map((reststop, key) => (
 		<li key={key}>{reststop.location}</li>
@@ -73,6 +73,7 @@ const TripDetails = (props) => {
 				isYourTrips={isYourTrips}
 				trip={props.trip}
 				accepted={accepted}
+				rerender={rerender}
 			/>
 		</div>
 	);

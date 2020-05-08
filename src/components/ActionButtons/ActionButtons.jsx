@@ -14,6 +14,7 @@ class ActionButtons extends React.Component {
 	}
 
 	responseToInvitation = () => {
+		const { rerender } = this.props;
 		// if user rejects invitation or decides to leave the trip, delete from members table
 		if (this.state.accepted === false) {
 			axios
@@ -22,6 +23,7 @@ class ActionButtons extends React.Component {
 				})
 				.then((response) => {
 					console.log(response);
+					rerender();
 				})
 				.catch((error) => {
 					console.log(error);
@@ -51,6 +53,7 @@ class ActionButtons extends React.Component {
 			})
 			.then(function (response) {
 				console.log(response);
+				rerender();
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -128,6 +131,7 @@ class ActionButtons extends React.Component {
 					onClick={() => {
 						this.setState({ accepted: false }, () => {
 							this.responseToInvitation();
+							this.props.rerender();
 						});
 					}}
 					additionalClass={'leave'}
@@ -143,7 +147,7 @@ class ActionButtons extends React.Component {
 					value={'Accept Invitation'}
 					onClick={() => {
 						this.setState({ accepted: true }, () => {
-							this.responseToInvitation();
+							this.responseToInvitation().then(this.props.rerender());
 						});
 					}}
 				/>

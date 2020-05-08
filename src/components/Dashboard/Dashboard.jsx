@@ -16,6 +16,7 @@ export default class Dashboard extends React.Component {
 			invitations: [],
 			tripsJoined: [],
 			tripsHosted: [],
+			rerender: false,
 		};
 	}
 
@@ -35,6 +36,24 @@ export default class Dashboard extends React.Component {
 				});
 			});
 	}
+
+	rerenderDashboard = () => {
+		this.setState({ rerender: true });
+		Promise.all([
+			fetch(`/trips/${this.props.userid}`),
+			fetch(`/invitations/${this.props.userid}`),
+		])
+			.then(([dataTrips, dataInvitations]) => {
+				return Promise.all([dataTrips.json(), dataInvitations.json()]);
+			})
+			.then(([dataTrips, dataInvitations]) => {
+				this.setState({
+					tripsHosted: dataTrips.tripsHosted,
+					tripsJoined: dataTrips.tripsJoined,
+					invitations: dataInvitations,
+				});
+			});
+	};
 
 	renderSection = (title, type, icon) => {
 		const isYourTrips = title === 'Your Trips' ? true : false;
@@ -58,6 +77,7 @@ export default class Dashboard extends React.Component {
 										members={entry.members}
 										reststops={entry.reststops}
 										isYourTrips={isYourTrips}
+										rerender={this.rerenderDashboard}
 									/>
 								</Col>
 							);
