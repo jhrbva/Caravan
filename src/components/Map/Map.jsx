@@ -72,20 +72,22 @@ const Map = compose(
 					},
 					(result, status) => {
 						if (status === google.maps.DirectionsStatus.OK) {
-							const stepsToDestination = result.routes[0].legs[0].steps.map(
-								(coords) => {
-									return [
-										coords.start_location.lat(),
-										coords.start_location.lng(),
-										coords.instructions,
-									];
-								}
-							);
+							if (result.routes[0].legs[0].steps) {
+								const stepsToDestination = result.routes[0].legs[0].steps.map(
+									(coords) => {
+										return [
+											coords.start_location.lat(),
+											coords.start_location.lng(),
+											coords.instructions,
+										];
+									}
+								);
 
-							this.setState({
-								directions: result,
-								stepsToDestination: stepsToDestination,
-							});
+								this.setState({
+									directions: result,
+									stepsToDestination: stepsToDestination,
+								});
+							}
 						} else {
 							console.error(`error fetching directions ${result}`);
 						}
