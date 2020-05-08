@@ -3,6 +3,7 @@ import { Field } from 'formik';
 
 import Input from '../Input/Input';
 import DatePickerInput from '../DatePicker/DatePickerInput';
+import Autocomplete from '../Autocomplete/Autocomplete';
 import { required } from '../../utilities/formValidation';
 
 import TitleIcon from '@material-ui/icons/Title';
@@ -13,6 +14,7 @@ import EventIcon from '@material-ui/icons/Event';
 
 const TripInformation = () => (
 	<>
+		<Autocomplete />
 		<Field
 			icon={<TitleIcon />}
 			type='text'
