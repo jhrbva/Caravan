@@ -24,7 +24,6 @@ const MapSnippet = compose(
 	geolocated(),
 	lifecycle({
 		componentDidMount() {
-			console.log(this.props);
 			const { start_lat, start_long, dest_lat, dest_long } = this.props.trip;
 			const DirectionsService = new google.maps.DirectionsService();
 			DirectionsService.route(

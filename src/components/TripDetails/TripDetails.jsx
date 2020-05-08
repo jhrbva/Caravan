@@ -32,6 +32,8 @@ const TripDetails = (props) => {
 
 	const { tripDate, tripTime } = getDateTime(tripdate);
 
+	console.log(props);
+
 	return (
 		<div>
 			<div className='trip-details'>
