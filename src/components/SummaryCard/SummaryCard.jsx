@@ -25,6 +25,7 @@ const SummaryCard = (props) => {
 			<Modal show={show} onHide={handleClose}>
 				<TripDetails
 					userid={props.userid}
+					isYourTrips={isYourTrips}
 					trip={trip}
 					host={host}
 					members={members}

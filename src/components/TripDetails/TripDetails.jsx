@@ -20,7 +20,7 @@ const TripDetails = (props) => {
 		startlocation,
 		destination,
 	} = props.trip;
-	const { userid, host, reststops, members } = props;
+	const { userid, host, reststops, members, isYourTrips } = props;
 
 	const listReststops = reststops.map((reststop, key) => (
 		<li key={key}>{reststop.location}</li>
@@ -31,8 +31,6 @@ const TripDetails = (props) => {
 	));
 
 	const { tripDate, tripTime } = getDateTime(tripdate);
-
-	console.log(props);
 
 	return (
 		<div>
@@ -72,6 +70,7 @@ const TripDetails = (props) => {
 			<ActionButtons
 				userid={userid}
 				tripid={tripid}
+				isYourTrips={isYourTrips}
 				trip={props.trip}
 				accepted={accepted}
 			/>

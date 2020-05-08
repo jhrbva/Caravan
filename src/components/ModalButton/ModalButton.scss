@@ -16,6 +16,12 @@
 	border-bottom-right-radius: 50px;
 	background: $traffic-yellow;
 }
+.one {
+	width: 100%;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	background: $traffic-green !important;
+}
 .two {
 	width: 50%;
 }
