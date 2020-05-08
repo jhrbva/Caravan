@@ -52,7 +52,7 @@ class App extends React.Component {
 							render={(props) => <RequestChange {...props} />}
 						/>
 						<Route exact path='/ec'>
-							<EmergencyForm />
+							<EmergencyForm userid={this.state.userid} />
 						</Route>
 					</header>
 				</div>
