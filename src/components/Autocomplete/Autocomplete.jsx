@@ -4,8 +4,9 @@ import usePlacesAutocomplete, {
 	getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import '../Input/Input.scss';
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = ({ tag, icon }) => {
 	const {
 		ready,
 		value,
@@ -62,12 +63,14 @@ const PlacesAutocomplete = () => {
 	};
 
 	return (
-		<div ref={ref}>
+		<div className='input-wrapper' ref={ref}>
+			<p className='field-header'>{tag}</p>
+			<i className='material-icons'>{icon}</i>
 			<input
+				className='input-outlined'
 				value={value}
 				onChange={handleInput}
 				disabled={!ready}
-				placeholder='Where are you going?'
 			/>
 			{/* We can use the "status" to decide whether we should display the dropdown or not */}
 			{status === 'OK' && <ul>{renderSuggestions()}</ul>}

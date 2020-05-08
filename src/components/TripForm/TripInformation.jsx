@@ -14,7 +14,6 @@ import EventIcon from '@material-ui/icons/Event';
 
 const TripInformation = () => (
 	<>
-		<Autocomplete />
 		<Field
 			icon={<TitleIcon />}
 			type='text'
@@ -40,7 +39,7 @@ const TripInformation = () => (
 			tag='START LOCATION'
 			validate={required}
 			autoFocus={false}
-			component={Input}
+			component={Autocomplete}
 		/>
 		<Field
 			icon={<LocationCityIcon />}
