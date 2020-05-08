@@ -17,8 +17,7 @@ class ActionButtons extends React.Component {
 		// if user rejects invitation or decides to leave the trip, delete from members table
 		if (this.state.accepted === false) {
 			axios
-				.delete(`/members/${this.props.userid}/${this.props.userid}`, {
-					withCredentials: false,
+				.delete(`/members/${this.props.tripid}/${this.props.userid}`, {
 					params: { userid: this.props.userid, tripid: this.props.tripid },
 				})
 				.then((response) => {

@@ -75,6 +75,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 "tripdate": "2020-06-01T13:55:06.000Z",
               }
             }
+            userid={1}
           />
         </Col>
       </Row>
@@ -141,6 +142,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 "tripdate": "2020-06-01T13:55:06.000Z",
               }
             }
+            userid={1}
           />
         </Col>
       </Row>
@@ -207,6 +209,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 "tripdate": "2020-06-01T13:55:06.000Z",
               }
             }
+            userid={1}
           />
         </Col>
       </Row>
