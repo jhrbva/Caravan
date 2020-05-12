@@ -9,7 +9,6 @@ export default class InstructionalOverlay extends React.Component {
 		this.state = {
 			currentInstruction: 0,
 			currentInstructionMessage: '',
-			timer: null,
 		};
 	}
 
