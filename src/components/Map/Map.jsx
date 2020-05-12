@@ -22,7 +22,7 @@ const Map = compose(
 		containerElement: (
 			<div
 				style={{
-					height: `88vh`,
+					height: `89vh`,
 					width: `100%`,
 					position: `absolute`,
 					top: `0`,

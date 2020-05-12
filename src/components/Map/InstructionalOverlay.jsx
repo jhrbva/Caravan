@@ -59,13 +59,13 @@ export default class InstructionalOverlay extends React.Component {
 					<InstructionalArrows maneuver={this.state.maneuver} />
 				</Col>
 				<Col md={8}>
-					<h1 className='align-middle'>
+					<h4 className='align-middle'>
 						<div
 							dangerouslySetInnerHTML={{
 								__html: this.state.currentInstructionMessage,
 							}}
 						/>
-					</h1>
+					</h4>
 				</Col>
 			</Row>
 		);
