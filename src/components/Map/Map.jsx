@@ -41,7 +41,6 @@ const Map = compose(
 			if (!this.props.location.trip) {
 				return 0;
 			} else {
-				console.log(this.props.location.trip);
 				const {
 					start_lat,
 					start_long,
@@ -80,10 +79,10 @@ const Map = compose(
 											coords.start_location.lat(),
 											coords.start_location.lng(),
 											coords.instructions,
+											coords.maneuver,
 										];
 									}
 								);
-
 								this.setState({
 									directions: result,
 									stepsToDestination: stepsToDestination,
