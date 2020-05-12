@@ -41,6 +41,7 @@ const Map = compose(
 			if (!this.props.location.trip) {
 				return 0;
 			} else {
+				console.log(this.props.location.trip);
 				const {
 					start_lat,
 					start_long,

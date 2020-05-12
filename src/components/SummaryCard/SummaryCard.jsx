@@ -9,7 +9,6 @@ const SummaryCard = (props) => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const { trip, host, members, reststops, icon, isYourTrips, rerender } = props;
-	console.log(props);
 	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
 		: `You are invited to ${trip.destination} by ${trip.hostname}.`;
