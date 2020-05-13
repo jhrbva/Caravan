@@ -34,7 +34,7 @@ export const LoginForm = () => (
 			component={Input}
 		/>
 
-		<BigButton value={'Login'} />
+		<BigButton value={'Login'} type='submit' />
 	</Form>
 );
 
