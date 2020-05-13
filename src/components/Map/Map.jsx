@@ -100,16 +100,18 @@ const Map = compose(
 )((props) => {
 	const backToDashboard = () => {
 		return (
-			<Link
-				to={{
-					pathname: '/dashboard',
-					state: {
-						userid: props.userid,
-					},
-				}}
-			>
-				<BigButton value={'Exit Navigation'} color={'red'} />
-			</Link>
+			<div className='back-to-dashboard'>
+				<Link
+					to={{
+						pathname: '/dashboard',
+						state: {
+							userid: props.userid,
+						},
+					}}
+				>
+					<BigButton value={'Exit Navigation'} color={'red'} />
+				</Link>
+			</div>
 		);
 	};
 

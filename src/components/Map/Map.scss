@@ -1,8 +1,14 @@
 @import '../../utilities/colorPalette.scss';
 @import '../../utilities/mediaQueries.scss';
 
-.align-middle{
-font-family: "Quicksand";
-font-size: 35px;
-line-height: 75px;
+.align-middle {
+	font-family: 'Quicksand';
+	font-size: 35px;
+	line-height: 75px;
+}
+
+.back-to-dashboard {
+	position: absolute;
+	bottom: -10px;
+	left: 5px;
 }
