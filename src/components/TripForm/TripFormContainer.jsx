@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 
 import Navbar from '../Navbar/Navbar';
 import BigButton from '../BigButton/BigButton';
-import { getLatLng } from '../Map/geocode';
+//import { getLatLng } from '../Map/geocode';
 
 export class TripFormContainer extends React.Component {
 	static Page = ({ children }) => children;
