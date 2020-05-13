@@ -1,7 +1,7 @@
 import React from 'react';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Row, Col } from 'react-bootstrap';
-import './InstructionalOverlay.scss';
+import './Map.scss';
 
 export default class InstructionalOverlay extends React.Component {
 	constructor(props) {

@@ -13,6 +13,7 @@ import { geolocated } from 'react-geolocated';
 import BigButton from '../BigButton/BigButton';
 import { Link } from 'react-router-dom';
 import InstructionalOverlay from './InstructionalOverlay';
+import './Map.scss';
 
 const Map = compose(
 	withRouter,
