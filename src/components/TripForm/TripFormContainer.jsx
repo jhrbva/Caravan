@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 
 import Navbar from '../Navbar/Navbar';
 import BigButton from '../BigButton/BigButton';
+import { getLatLng } from '../Map/geocode';
 
 export class TripFormContainer extends React.Component {
 	static Page = ({ children }) => children;
@@ -42,6 +43,9 @@ export class TripFormContainer extends React.Component {
 			trip_title,
 			guests,
 		} = values;
+
+		// get lat long of rest stops.
+		// getLatLong(rest_stops).then((data) => console.log(data));
 
 		axios
 			.post('/trip', {

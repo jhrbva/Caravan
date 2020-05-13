@@ -35,7 +35,6 @@ const PlacesAutocomplete = (props) => {
 		// by setting the second parameter as "false"
 		getLatLng(description).then((data) => {
 			const place = { name: description, lat: data.lat, lng: data.lng };
-			console.log(place);
 			setValue(description, false);
 			setFieldValue(field.name, place);
 		});
