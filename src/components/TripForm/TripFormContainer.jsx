@@ -42,16 +42,19 @@ export class TripFormContainer extends React.Component {
 			trip_title,
 			guests,
 		} = values;
-		//console.log('in onSubmit', values, bag);
 
 		axios
 			.post('/trip', {
 				host_id: 16,
-				start_location,
-				destination,
+				start_location: start_location.name,
+				destination: destination.name,
 				trip_date: this.pgFormatDate(start_date),
 				trip_description,
 				trip_title,
+				start_long: start_location.lng,
+				start_lat: start_location.lat,
+				dest_long: destination.lng,
+				dest_lat: destination.lat,
 			})
 			.then(function (response) {
 				fetch(`/user/${guests}`)

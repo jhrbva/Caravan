@@ -3,6 +3,7 @@ import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import './Autocomplete.scss';
 import { useFormikContext } from 'formik';
+import { getLatLng } from '../Map/geocode';
 
 const PlacesAutocomplete = (props) => {
 	const { tag, icon, field } = props;
@@ -32,10 +33,13 @@ const PlacesAutocomplete = (props) => {
 	const handleSelect = ({ description }) => () => {
 		// When user selects a place, we can replace the keyword without request data from API
 		// by setting the second parameter as "false"
-		setValue(description, false);
-		setFieldValue(field.name, description);
+		getLatLng(description).then((data) => {
+			const place = { name: description, lat: data.lat, lng: data.lng };
+			console.log(place);
+			setValue(description, false);
+			setFieldValue(field.name, place);
+		});
 		clearSuggestions();
-		//add our geocode function here
 	};
 
 	const renderSuggestions = () => {
