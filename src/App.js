@@ -44,7 +44,7 @@ class App extends React.Component {
 							<Dashboard userid={this.state.userid} />
 						</Route>
 						<Route exact path='/map'>
-							<Map />
+							<Map userid={this.state.userid} />
 						</Route>
 						<Route
 							path='/requestchange'

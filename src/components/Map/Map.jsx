@@ -97,6 +97,21 @@ const Map = compose(
 		},
 	})
 )((props) => {
+	const backToDashboard = () => {
+		return (
+			<Link
+				to={{
+					pathname: '/dashboard',
+					state: {
+						userid: props.userid,
+					},
+				}}
+			>
+				<BigButton value={'Exit Navigation'} color={'red'} />
+			</Link>
+		);
+	};
+
 	return (
 		<>
 			{props.directions && <DirectionsRenderer directions={props.directions} />}
@@ -135,21 +150,14 @@ const Map = compose(
 							}}
 						/>
 					</GoogleMap>
+
 					{props.stepsToDestination && (
-						<InstructionalOverlay instruction={props.stepsToDestination} />
-					)}
-					{!props.location.trip && (
 						<>
-							<b>
-								<p className='no-margin'>
-									Sorry, there was an error retrieving your directions.
-								</p>
-							</b>
-							<Link to='/dashboard'>
-								<BigButton value={'Back to Dashboard'} />
-							</Link>
+							{backToDashboard()}
+							<InstructionalOverlay instruction={props.stepsToDestination} />
 						</>
 					)}
+					{!props.location.trip && backToDashboard()}
 				</>
 			)}
 		</>
