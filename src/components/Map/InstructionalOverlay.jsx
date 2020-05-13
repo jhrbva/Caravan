@@ -20,7 +20,7 @@ export default class InstructionalOverlay extends React.Component {
 				maneuver: steps.instruction[this.state.currentInstruction][3],
 				currentInstruction: this.state.currentInstruction + 1,
 			});
-			setTimeout(() => this.getNextStep(steps), 10000);
+			setTimeout(() => this.getNextStep(steps), 5000);
 		}
 	};
 
