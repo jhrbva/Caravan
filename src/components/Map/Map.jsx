@@ -146,22 +146,21 @@ const Map = compose(
 									<Marker
 										key={key}
 										position={{
-											lat: user[1].lat,
-											lng: user[1].lng,
+											lat: user[2].lat,
+											lng: user[2].lng,
 										}}
 										icon={{
 											path: google.maps.SymbolPath.CIRCLE,
-											fillColor: 'yellow',
-											fillOpacity: 0.8,
-											scale: 8,
-											strokeColor: 'yellow',
-											strokeWeight: 0.8,
-											rotation: 270,
+											fillColor: user[1],
+											fillOpacity: 1,
+											scale: 10,
+											strokeColor: user[1],
+											// strokeWeight: 'lighter',
 										}}
 										label={{
 											text: user[0],
-											color: 'white',
-											fontSize: '9px',
+											color: '#34495e',
+											fontSize: '12px',
 											fontWeight: 'bold',
 											fontFamily: 'Helvetica',
 										}}
