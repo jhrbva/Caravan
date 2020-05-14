@@ -155,7 +155,6 @@ const Map = compose(
 											fillOpacity: 1,
 											scale: 10,
 											strokeColor: user[1],
-											// strokeWeight: 'lighter',
 										}}
 										label={{
 											text: user[0],
