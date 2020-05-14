@@ -79,6 +79,7 @@ export default class Dashboard extends React.Component {
 
 	renderSection = (title, type, icon) => {
 		const isYourTrips = title === 'Your Trips' ? true : false;
+		const isPastTrip = title === 'Past Trips' ? true : false;
 		const nullResponse =
 			title === 'Invitations' ? 'No invitations' : 'No trips';
 
@@ -99,6 +100,7 @@ export default class Dashboard extends React.Component {
 										members={entry.members}
 										reststops={entry.reststops}
 										isYourTrips={isYourTrips}
+										isPastTrip={isPastTrip}
 										rerender={this.rerenderDashboard}
 									/>
 								</Col>

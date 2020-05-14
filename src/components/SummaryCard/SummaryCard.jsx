@@ -8,7 +8,16 @@ const SummaryCard = (props) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { trip, host, members, reststops, icon, isYourTrips, rerender } = props;
+	const {
+		trip,
+		host,
+		members,
+		reststops,
+		icon,
+		isYourTrips,
+		isPastTrip,
+		rerender,
+	} = props;
 	console.log(props);
 	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
@@ -27,6 +36,7 @@ const SummaryCard = (props) => {
 				<TripDetails
 					userid={props.userid}
 					isYourTrips={isYourTrips}
+					isPastTrip={isPastTrip}
 					trip={trip}
 					host={host}
 					members={members}
