@@ -98,10 +98,11 @@ const Map = compose(
 		},
 	})
 )((props) => {
+	console.log(props);
 	return (
 		<>
 			{props.directions && <DirectionsRenderer directions={props.directions} />}
-			{props.coords && (
+			{props.coords && props.history && (
 				<>
 					<GoogleMap
 						defaultZoom={16}
@@ -118,19 +119,17 @@ const Map = compose(
 								lng: props.coords.longitude,
 							}}
 							icon={{
-								path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+								path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 								fillColor: props.iconColor,
-								fillOpacity: 0.8,
+								fillOpacity: 1,
 								scale: 8,
 								strokeColor: props.iconColor,
-								strokeWeight: 0.8,
-								rotation: 270,
 								labelOrigin: new google.maps.Point(0, -2.5),
 							}}
 							label={{
-								text: props.iconLabel,
-								color: 'white',
-								fontSize: '9px',
+								text: props.name.slice(3, props.name.length),
+								color: props.iconColor,
+								fontSize: '12px',
 								fontWeight: 'bold',
 								fontFamily: 'Helvetica',
 							}}
@@ -153,7 +152,7 @@ const Map = compose(
 											path: google.maps.SymbolPath.CIRCLE,
 											fillColor: user[1],
 											fillOpacity: 1,
-											scale: 10,
+											scale: 11,
 											strokeColor: user[1],
 										}}
 										label={{
