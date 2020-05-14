@@ -8,6 +8,7 @@ import BigButton from '../BigButton/BigButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ export default class Dashboard extends React.Component {
 			invitations: [],
 			tripsJoined: [],
 			tripsHosted: [],
+			pastTrips: [],
 			rerender: false,
 		};
 	}
@@ -34,7 +36,8 @@ export default class Dashboard extends React.Component {
 					tripsJoined: dataTrips.tripsJoined,
 					invitations: dataInvitations,
 				});
-			});
+			})
+			.then(() => this.getPastTrips());
 	}
 
 	rerenderDashboard = () => {
@@ -52,7 +55,17 @@ export default class Dashboard extends React.Component {
 					tripsJoined: dataTrips.tripsJoined,
 					invitations: dataInvitations,
 				});
-			});
+			})
+			.then(() => this.getPastTrips());
+	};
+
+	getPastTrips = () => {
+		let pastTrips = [...this.state.tripsHosted, ...this.state.tripsJoined];
+		const today = new Date();
+
+		pastTrips = pastTrips.filter((trip) => new Date(trip.tripdate) < today);
+
+		this.setState({ pastTrips: pastTrips });
 	};
 
 	renderSection = (title, type, icon) => {
@@ -103,7 +116,7 @@ export default class Dashboard extends React.Component {
 				</>
 			);
 		} else {
-			const { invitations, tripsJoined, tripsHosted } = this.state;
+			const { invitations, tripsJoined, tripsHosted, pastTrips } = this.state;
 			return (
 				<>
 					<div className='dashboard-wrapper'>
@@ -134,6 +147,13 @@ export default class Dashboard extends React.Component {
 								'Trips Joined',
 								tripsJoined,
 								<AirportShuttleIcon fontSize='large' />
+							)}
+						</div>
+						<div className='trip-section'>
+							{this.renderSection(
+								'Past Trips',
+								pastTrips,
+								<QueryBuilderIcon fontSize='large' />
 							)}
 						</div>
 					</div>
