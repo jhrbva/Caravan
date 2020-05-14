@@ -136,12 +136,15 @@ const Map = compose(
 						/>
 
 						{props.location.trip.members &&
-							generateUsers(props.location.trip.members, {
-								lat: props.coords.latitude,
-								lng: props.coords.longitude,
-							}).map((user, key) => (
+							generateUsers(
+								props.location.trip.members,
+								props.location.userid,
+								{
+									lat: props.coords.latitude,
+									lng: props.coords.longitude,
+								}
+							).map((user, key) => (
 								<>
-									{console.log('user', user)}
 									<Marker
 										key={key}
 										position={{
