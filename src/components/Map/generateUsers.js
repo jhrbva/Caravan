@@ -12,11 +12,12 @@ export const generateUsers = (members, userLocation) => {
 	const generatedMembers = members.map((member, i) => {
 		var a = Math.random() * 2;
 		a = a < 1.5 ? -a : a;
-		return [
-			member.username,
-			userMarkerColors[i],
-			{ lat: userLocation.lat + a, lng: userLocation.lng + a },
-		];
+		return {
+			username: member.username,
+			markerColor: userMarkerColors[i],
+			position: { lat: userLocation.lat + a, lng: userLocation.lng + a },
+		};
 	});
+	console.log(generatedMembers);
 	return generatedMembers;
 };

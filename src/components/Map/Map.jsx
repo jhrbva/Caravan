@@ -145,18 +145,18 @@ const Map = compose(
 									<Marker
 										key={key}
 										position={{
-											lat: user[2].lat,
-											lng: user[2].lng,
+											lat: user.position.lat,
+											lng: user.position.lng,
 										}}
 										icon={{
 											path: google.maps.SymbolPath.CIRCLE,
-											fillColor: user[1],
+											fillColor: user.markerColor,
 											fillOpacity: 1,
 											scale: 11,
-											strokeColor: user[1],
+											strokeColor: user.markerColor,
 										}}
 										label={{
-											text: user[0],
+											text: user.username,
 											color: '#34495e',
 											fontSize: '12px',
 											fontWeight: 'bold',
