@@ -70,8 +70,23 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 app.post('/emergency', (req, res) => {
 	const { address, firstname, lastname, phonenumber, relationship } = req.body;
 	pool.query(
-		'INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship) VALUES ($1, $2, $3, $4, $5)',
+		'INSERT INTO emergencyContact(address, firstName, lastName, phoneNumber, relationship) VALUES ($1, $2, $3, $4, $5) RETURNING ecid',
 		[address, firstname, lastname, phonenumber, relationship],
+		(err, results) => {
+			if (err) {
+				console.log('Error when inserting emergency contact for user', err);
+				// TODO: add better error handling
+				res.sendStatus(400);
+			}
+			res.json(results.rows[0].ecid);
+		}
+	);
+});
+
+app.put('/emergency/:userid/:ecid', (req, res) => {
+	pool.query(
+		'UPDATE usertable SET ecid=$2 WHERE userid=$1',
+		[req.params.userid, req.params.ecid],
 		(err, results) => {
 			if (err) {
 				console.log('Error when inserting emergency contact for user', err);

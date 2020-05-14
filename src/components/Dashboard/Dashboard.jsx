@@ -110,6 +110,10 @@ export default class Dashboard extends React.Component {
 						<Link to='/trip'>
 							<BigButton value='+ New Trip' color={'green'} />
 						</Link>
+						<span></span>
+						<Link to='/ec'>
+							<BigButton value='Update Emergency Contact' color={'blue'} />
+						</Link>
 
 						<div className='trip-section'>
 							{this.renderSection(

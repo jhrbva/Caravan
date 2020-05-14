@@ -13,6 +13,15 @@ exports[`Dashboard should match the snapshot 1`] = `
         value="+ New Trip"
       />
     </Link>
+    <span />
+    <Link
+      to="/ec"
+    >
+      <BigButton
+        color="blue"
+        value="Update Emergency Contact"
+      />
+    </Link>
     <div
       className="trip-section"
     >
