@@ -10,6 +10,7 @@ import {
 } from 'react-google-maps';
 import { withRouter } from 'react-router';
 import { geolocated } from 'react-geolocated';
+import { generateUsers } from './generateUsers';
 import BigButton from '../BigButton/BigButton';
 import { Link } from 'react-router-dom';
 import InstructionalOverlay from './InstructionalOverlay';
@@ -134,6 +135,39 @@ const Map = compose(
 								fontFamily: 'Helvetica',
 							}}
 						/>
+
+						{props.location.trip.members &&
+							generateUsers(props.location.trip.members, {
+								lat: props.coords.latitude,
+								lng: props.coords.longitude,
+							}).map((user, key) => (
+								<>
+									{console.log('user', user)}
+									<Marker
+										key={key}
+										position={{
+											lat: user[1].lat,
+											lng: user[1].lng,
+										}}
+										icon={{
+											path: google.maps.SymbolPath.CIRCLE,
+											fillColor: 'yellow',
+											fillOpacity: 0.8,
+											scale: 8,
+											strokeColor: 'yellow',
+											strokeWeight: 0.8,
+											rotation: 270,
+										}}
+										label={{
+											text: user[0],
+											color: 'white',
+											fontSize: '9px',
+											fontWeight: 'bold',
+											fontFamily: 'Helvetica',
+										}}
+									/>
+								</>
+							))}
 					</GoogleMap>
 					{props.stepsToDestination && (
 						<InstructionalOverlay instruction={props.stepsToDestination} />
