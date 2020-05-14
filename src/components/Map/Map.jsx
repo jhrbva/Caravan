@@ -98,7 +98,6 @@ const Map = compose(
 		},
 	})
 )((props) => {
-	console.log(props);
 	return (
 		<>
 			{props.directions && <DirectionsRenderer directions={props.directions} />}
