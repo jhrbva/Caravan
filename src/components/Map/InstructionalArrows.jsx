@@ -14,6 +14,7 @@ import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
 import TrainIcon from '@material-ui/icons/Train';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import CallSplitIcon from '@material-ui/icons/CallSplit';
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import './InstructionalOverlay.scss';
 
 const InstructionalArrows = (maneuver) => {
@@ -55,7 +56,7 @@ const InstructionalArrows = (maneuver) => {
 		case 'fork-right':
 			return <CallSplitIcon className={'maneuver'} />;
 		default:
-			return '';
+			return <GpsFixedIcon className={'maneuver'} />;
 	}
 };
 
