@@ -61,11 +61,20 @@ export default class Dashboard extends React.Component {
 
 	getPastTrips = () => {
 		let pastTrips = [...this.state.tripsHosted, ...this.state.tripsJoined];
+
 		const today = new Date();
 
 		pastTrips = pastTrips.filter((trip) => new Date(trip.tripdate) < today);
 
-		this.setState({ pastTrips: pastTrips });
+		this.setState({
+			tripsHosted: this.state.tripsHosted.filter(
+				(trip) => new Date(trip.tripdate) > today
+			),
+			tripsJoined: this.state.tripsJoined.filter(
+				(trip) => new Date(trip.tripdate) > today
+			),
+			pastTrips: pastTrips,
+		});
 	};
 
 	renderSection = (title, type, icon) => {
