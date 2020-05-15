@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
 import RequestChange from './components/RequestChange/RequestChange';
+import EmergencyForm from './components/EmergencyContactForm/EmergencyForm';
 
 class App extends React.Component {
 	constructor(props) {
@@ -44,12 +45,15 @@ class App extends React.Component {
 							<Dashboard userid={this.state.userid} />
 						</Route>
 						<Route exact path='/map'>
-							<Map userid={this.state.userid} />
+							<Map name={this.state.name} />
 						</Route>
 						<Route
 							path='/requestchange'
 							render={(props) => <RequestChange {...props} />}
 						/>
+						<Route exact path='/ec'>
+							<EmergencyForm userid={this.state.userid} />
+						</Route>
 					</header>
 				</div>
 			</Router>
