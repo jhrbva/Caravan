@@ -22,7 +22,7 @@ const Map = compose(
 		containerElement: (
 			<div
 				style={{
-					height: `88vh`,
+					height: `89vh`,
 					width: `100%`,
 					position: `absolute`,
 					top: `0`,
@@ -79,10 +79,10 @@ const Map = compose(
 											coords.start_location.lat(),
 											coords.start_location.lng(),
 											coords.instructions,
+											coords.maneuver,
 										];
 									}
 								);
-
 								this.setState({
 									directions: result,
 									stepsToDestination: stepsToDestination,

@@ -1,6 +1,5 @@
 import React from 'react';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-import { Row, Col } from 'react-bootstrap';
+import InstructionalArrows from './InstructionalArrows';
 import './InstructionalOverlay.scss';
 
 export default class InstructionalOverlay extends React.Component {
@@ -9,7 +8,7 @@ export default class InstructionalOverlay extends React.Component {
 		this.state = {
 			currentInstruction: 0,
 			currentInstructionMessage: '',
-			timer: null,
+			maneuver: '',
 		};
 	}
 
@@ -18,6 +17,7 @@ export default class InstructionalOverlay extends React.Component {
 			this.setState({
 				currentInstructionMessage:
 					steps.instruction[this.state.currentInstruction][2],
+				maneuver: steps.instruction[this.state.currentInstruction][3],
 				currentInstruction: this.state.currentInstruction + 1,
 			});
 			setTimeout(() => this.getNextStep(steps), 5000);
@@ -30,20 +30,17 @@ export default class InstructionalOverlay extends React.Component {
 
 	render() {
 		return (
-			<Row style={{ backgroundColor: '#056638', color: 'white' }}>
-				<Col md={2}>
-					<ArrowRightAltIcon style={{ fontSize: 80 }} />
-				</Col>
-				<Col md={8}>
-					<h1 className='align-middle'>
-						<div
-							dangerouslySetInnerHTML={{
-								__html: this.state.currentInstructionMessage,
-							}}
-						/>
-					</h1>
-				</Col>
-			</Row>
+			<div className='instructional-overlay'>
+				<div className='arrow-wrapper'>
+					<InstructionalArrows maneuver={this.state.maneuver} />
+				</div>
+				<div
+					className='instruction-wrapper'
+					dangerouslySetInnerHTML={{
+						__html: this.state.currentInstructionMessage,
+					}}
+				/>
+			</div>
 		);
 	}
 }
