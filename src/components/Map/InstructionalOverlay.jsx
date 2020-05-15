@@ -1,6 +1,7 @@
 import React from 'react';
+
 import InstructionalArrows from './InstructionalArrows';
-import './InstructionalOverlay.scss';
+import './Map.scss';
 
 export default class InstructionalOverlay extends React.Component {
 	constructor(props) {

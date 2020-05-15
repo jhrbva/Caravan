@@ -14,6 +14,7 @@ import { generateUsers } from './generateUsers';
 import BigButton from '../BigButton/BigButton';
 import { Link } from 'react-router-dom';
 import InstructionalOverlay from './InstructionalOverlay';
+import './Map.scss';
 
 const Map = compose(
 	withRouter,
@@ -98,6 +99,23 @@ const Map = compose(
 		},
 	})
 )((props) => {
+	const backToDashboard = () => {
+		return (
+			<div className='back-to-dashboard'>
+				<Link
+					to={{
+						pathname: '/dashboard',
+						state: {
+							userid: props.userid,
+						},
+					}}
+				>
+					<BigButton value={'Exit Navigation'} color={'red'} />
+				</Link>
+			</div>
+		);
+	};
+
 	return (
 		<>
 			{props.directions && <DirectionsRenderer directions={props.directions} />}
@@ -168,21 +186,14 @@ const Map = compose(
 								</>
 							))}
 					</GoogleMap>
+
 					{props.stepsToDestination && (
-						<InstructionalOverlay instruction={props.stepsToDestination} />
-					)}
-					{!props.location.trip && (
 						<>
-							<b>
-								<p className='no-margin'>
-									Sorry, there was an error retrieving your directions.
-								</p>
-							</b>
-							<Link to='/dashboard'>
-								<BigButton value={'Back to Dashboard'} />
-							</Link>
+							{backToDashboard()}
+							<InstructionalOverlay instruction={props.stepsToDestination} />
 						</>
 					)}
+					{!props.location.trip && backToDashboard()}
 				</>
 			)}
 		</>

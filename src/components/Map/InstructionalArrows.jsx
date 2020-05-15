@@ -15,7 +15,7 @@ import TrainIcon from '@material-ui/icons/Train';
 import MergeTypeIcon from '@material-ui/icons/MergeType';
 import CallSplitIcon from '@material-ui/icons/CallSplit';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import './InstructionalOverlay.scss';
+import './Map.scss';
 
 const InstructionalArrows = (maneuver) => {
 	switch (maneuver.maneuver) {

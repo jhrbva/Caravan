@@ -1,6 +1,7 @@
 @import '../../utilities/colorPalette.scss';
 @import '../../utilities/mediaQueries.scss';
 
+/* ---------- Overlay styles ----------- */
 .instructional-overlay {
 	position: absolute;
 	width: 100%;
@@ -28,4 +29,11 @@
 }
 .top-left {
 	transform: rotate(45deg);
+}
+
+/* ---------- Back to Dashboard Button ----------- */
+.back-to-dashboard {
+	position: absolute;
+	bottom: -10px;
+	left: 5px;
 }
