@@ -16,6 +16,7 @@ export class TripFormContainer extends React.Component {
 			page: 0,
 			values: props.initialValues,
 		};
+		// console.log(props);
 	}
 
 	nextPage = (values) =>
@@ -34,7 +35,7 @@ export class TripFormContainer extends React.Component {
 	};
 
 	onSubmit = (values, bag) => {
-		const { history } = this.props;
+		const { history, userid } = this.props;
 		const {
 			start_location,
 			destination,
@@ -49,7 +50,7 @@ export class TripFormContainer extends React.Component {
 
 		axios
 			.post('/trip', {
-				host_id: 16,
+				host_id: userid,
 				start_location: start_location.name,
 				destination: destination.name,
 				trip_date: this.pgFormatDate(start_date),
@@ -67,7 +68,7 @@ export class TripFormContainer extends React.Component {
 					})
 					.then((info) => {
 						axios.post('/invitations', {
-							host_id: 16,
+							host_id: userid,
 							user_id: info[0].userid,
 							trip_id: response.data,
 						});
