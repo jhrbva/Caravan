@@ -1,8 +1,7 @@
 import Geocode from 'react-geocode';
-import apikey from './apikey';
 
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey(apikey);
+Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
 // set response language. Defaults to english.
 Geocode.setLanguage('en');
@@ -14,8 +13,9 @@ Geocode.setRegion('en');
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
 
-export const getLatLng = async address => {
+export const getLatLng = async (address) => {
 	// Get latidude & longitude from address.
-	let response = await Geocode.fromAddress(address);
-	return response.results[0].geometry.location;
+	return Geocode.fromAddress(address).then(
+		(data) => data.results[0].geometry.location
+	);
 };
