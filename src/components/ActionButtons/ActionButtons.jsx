@@ -66,6 +66,7 @@ class ActionButtons extends React.Component {
 			pathname: `/${path}`,
 			tripid: this.props.tripid,
 			trip: this.props.trip,
+			userid: this.props.userid,
 		});
 	};
 

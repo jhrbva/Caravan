@@ -18,7 +18,7 @@ const SummaryCard = (props) => {
 		isPastTrip,
 		rerender,
 	} = props;
-	console.log(props);
+
 	const text = isYourTrips
 		? `You are going to ${trip.destination}.`
 		: `You are invited to ${trip.destination} by ${trip.hostname}.`;

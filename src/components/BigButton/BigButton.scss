@@ -10,14 +10,17 @@
 	border: none;
 	border-radius: 5px;
 	box-shadow: none;
+
+	color: white;
 }
 .big-button.blue {
 	background: $happy-blue;
-	color: white;
 }
 .big-button.green {
 	background: $trust-green;
-	color: white;
+}
+.big-button.red {
+	background: $traffic-red;
 }
 button:active {
 	background: $fun-yellow;

@@ -1,0 +1,39 @@
+@import '../../utilities/colorPalette.scss';
+@import '../../utilities/mediaQueries.scss';
+
+/* ---------- Overlay styles ----------- */
+.instructional-overlay {
+	position: absolute;
+	width: 100%;
+	font-family: 'Quicksand';
+	font-size: 30px;
+	background-color: $overlay-green;
+	color: white;
+	min-height: 11vh;
+}
+.instructional-overlay div {
+	margin-top: 10px;
+}
+.arrow-wrapper {
+	width: 10%;
+	float: left;
+}
+.instruction-wrapper {
+	width: 89%;
+	float: left;
+}
+
+/* ---------- Arrow styles ----------- */
+.maneuver {
+	font-size: 70px !important;
+}
+.top-left {
+	transform: rotate(45deg);
+}
+
+/* ---------- Back to Dashboard Button ----------- */
+.back-to-dashboard {
+	position: absolute;
+	bottom: -10px;
+	left: 5px;
+}
