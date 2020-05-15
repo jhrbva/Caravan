@@ -16,7 +16,6 @@ export class TripFormContainer extends React.Component {
 			page: 0,
 			values: props.initialValues,
 		};
-		// console.log(props);
 	}
 
 	nextPage = (values) =>

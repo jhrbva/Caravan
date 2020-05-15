@@ -7,7 +7,6 @@ import TripRestStops from './TripRestStops';
 
 const TripForm = (props) => (
 	<>
-		{/* {console.log(props)} */}
 		<TripFormContainer
 			initialValues={{
 				trip_title: '',
