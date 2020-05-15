@@ -41,6 +41,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 fontSize="large"
               />
             }
+            isPastTrip={false}
             isYourTrips={false}
             key="0"
             members={
@@ -110,6 +111,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 fontSize="large"
               />
             }
+            isPastTrip={false}
             isYourTrips={true}
             key="0"
             members={
@@ -179,6 +181,7 @@ exports[`Dashboard should match the snapshot 1`] = `
                 fontSize="large"
               />
             }
+            isPastTrip={false}
             isYourTrips={false}
             key="0"
             members={
@@ -227,6 +230,20 @@ exports[`Dashboard should match the snapshot 1`] = `
             userid={1}
           />
         </Col>
+      </Row>
+    </div>
+    <div
+      className="trip-section"
+    >
+      <h2>
+        Past Trips
+      </h2>
+      <Row
+        noGutters={false}
+      >
+        <p>
+          No trips
+        </p>
       </Row>
     </div>
   </div>
