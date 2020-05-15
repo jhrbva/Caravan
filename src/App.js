@@ -49,7 +49,12 @@ class App extends React.Component {
 						</Route>
 						<Route
 							path='/requestchange'
-							render={(props) => <RequestChange {...props} />}
+							render={(props) => (
+								<>
+									<Navbar name={this.state.name} />
+									<RequestChange {...props} />
+								</>
+							)}
 						/>
 						<Route exact path='/ec'>
 							<EmergencyForm userid={this.state.userid} />
