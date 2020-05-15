@@ -10,6 +10,7 @@ import {
 } from 'react-google-maps';
 import { withRouter } from 'react-router';
 import { geolocated } from 'react-geolocated';
+import { generateUsers } from './generateUsers';
 import BigButton from '../BigButton/BigButton';
 import { Link } from 'react-router-dom';
 import InstructionalOverlay from './InstructionalOverlay';
@@ -100,7 +101,7 @@ const Map = compose(
 	return (
 		<>
 			{props.directions && <DirectionsRenderer directions={props.directions} />}
-			{props.coords && (
+			{props.coords && props.history && (
 				<>
 					<GoogleMap
 						defaultZoom={16}
@@ -117,23 +118,55 @@ const Map = compose(
 								lng: props.coords.longitude,
 							}}
 							icon={{
-								path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+								path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 								fillColor: props.iconColor,
-								fillOpacity: 0.8,
+								fillOpacity: 1,
 								scale: 8,
 								strokeColor: props.iconColor,
-								strokeWeight: 0.8,
-								rotation: 270,
 								labelOrigin: new google.maps.Point(0, -2.5),
 							}}
 							label={{
-								text: props.iconLabel,
-								color: 'white',
-								fontSize: '9px',
+								text: props.name.slice(3, props.name.length),
+								color: props.iconColor,
+								fontSize: '12px',
 								fontWeight: 'bold',
 								fontFamily: 'Helvetica',
 							}}
 						/>
+
+						{props.location.trip.members &&
+							generateUsers(
+								props.location.trip.members,
+								props.location.userid,
+								{
+									lat: props.coords.latitude,
+									lng: props.coords.longitude,
+								}
+							).map((user, key) => (
+								<>
+									<Marker
+										key={key}
+										position={{
+											lat: user.position.lat,
+											lng: user.position.lng,
+										}}
+										icon={{
+											path: google.maps.SymbolPath.CIRCLE,
+											fillColor: user.markerColor,
+											fillOpacity: 1,
+											scale: 11,
+											strokeColor: user.markerColor,
+										}}
+										label={{
+											text: user.username,
+											color: '#34495e',
+											fontSize: '12px',
+											fontWeight: 'bold',
+											fontFamily: 'Helvetica',
+										}}
+									/>
+								</>
+							))}
 					</GoogleMap>
 					{props.stepsToDestination && (
 						<InstructionalOverlay instruction={props.stepsToDestination} />
