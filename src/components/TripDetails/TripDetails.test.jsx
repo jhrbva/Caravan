@@ -47,11 +47,3 @@ describe('Trip Details', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 });
-
-describe('getDateTime()', () => {
-	xit('gets the date and time for a trip', () => {
-		const results = getDateTime(testDateTime);
-		expect(results.tripDate).toBe('6/1/2020');
-		expect(results.tripTime).toBe('13:00');
-	});
-});
