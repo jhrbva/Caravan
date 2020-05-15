@@ -15,7 +15,7 @@ exports[`Trip Details should match the snapshot 1`] = `
             "startlocation": "123 OneTreeHill St.",
             "trip_description": "Join in as we travel to the Grand Canyon",
             "trip_title": "Wonders of the Canyon",
-            "tripdate": "2020-06-01T13:55:06.000Z",
+            "tripdate": "2020-06-01T13:00:06.000Z",
           }
         }
       />
@@ -40,13 +40,13 @@ exports[`Trip Details should match the snapshot 1`] = `
     <p>
       When: 
       <b>
-        2020-06-01
+        6/1/2020
       </b>
     </p>
     <p>
       Leaving at: 
       <b>
-        13:55:06
+        8:00
       </b>
     </p>
     <p>
@@ -100,7 +100,7 @@ exports[`Trip Details should match the snapshot 1`] = `
         "startlocation": "123 OneTreeHill St.",
         "trip_description": "Join in as we travel to the Grand Canyon",
         "trip_title": "Wonders of the Canyon",
-        "tripdate": "2020-06-01T13:55:06.000Z",
+        "tripdate": "2020-06-01T13:00:06.000Z",
       }
     }
   />
