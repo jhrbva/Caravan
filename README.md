@@ -39,7 +39,7 @@ Explain what these tests test and why
 React.js - The web framework used
 Node.js - Backend
 Express -
-Postgress -
+Postgres -
 
 ## Contributing
 
