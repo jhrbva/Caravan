@@ -35,7 +35,7 @@ class App extends React.Component {
 							<Signup />
 						</Route>
 						<Route exact path='/trip'>
-							<TripForm />
+							<TripForm userid={this.state.userid} />
 						</Route>
 						<Route exact path='/summarycard'>
 							<SummaryCard />

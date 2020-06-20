@@ -5,7 +5,7 @@ import TripInformation from './TripInformation';
 import TripGuests from './TripGuests';
 import TripRestStops from './TripRestStops';
 
-const TripForm = () => (
+const TripForm = (props) => (
 	<>
 		<TripFormContainer
 			initialValues={{
@@ -18,6 +18,7 @@ const TripForm = () => (
 				guests: '',
 				rest_stops: '',
 			}}
+			userid={props.userid}
 		>
 			<TripFormContainer.Page>
 				<TripInformation />

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TripDetails, { getDateTime } from './TripDetails';
 
-const testDateTime = '2020-06-01T13:55:06.000Z';
+const testDateTime = '2020-06-01T13:00:06.000Z';
 const trip = {
 	trip_title: 'Wonders of the Canyon',
 	tripdate: testDateTime,
@@ -45,13 +45,5 @@ describe('Trip Details', () => {
 			/>
 		);
 		expect(wrapper).toMatchSnapshot();
-	});
-});
-
-describe('getDateTime()', () => {
-	it('gets the date and time for a trip', () => {
-		const results = getDateTime(testDateTime);
-		expect(results.tripDate).toBe('2020-06-01');
-		expect(results.tripTime).toBe('13:55:06');
 	});
 });

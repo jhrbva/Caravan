@@ -5,8 +5,17 @@ import ActionButtons from '../ActionButtons/ActionButtons';
 import MapSnippet from '../Map/MapSnippet';
 
 export const getDateTime = (date) => {
-	const tripDate = date.slice(0, 10);
-	const tripTime = date.slice(11, 19);
+	const dateOfTrip = new Date(date);
+
+	const tripMonth = dateOfTrip.getMonth() + 1;
+	const tripDay = dateOfTrip.getDate();
+	const tripYear = dateOfTrip.getFullYear();
+
+	const tripHour = dateOfTrip.getHours();
+	const tripMinutes = dateOfTrip.getMinutes();
+
+	const tripDate = `${tripMonth}/${tripDay}/${tripYear}`;
+	const tripTime = `${tripHour}:${tripMinutes}0`;
 	return { tripDate, tripTime };
 };
 
@@ -29,6 +38,8 @@ const TripDetails = (props) => {
 		isPastTrip,
 		rerender,
 	} = props;
+
+	console.log(tripdate);
 
 	const listReststops = reststops.map((reststop, key) => (
 		<li key={key}>{reststop.location}</li>
